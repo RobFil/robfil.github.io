@@ -6,7 +6,7 @@ permalink: /language/
 
 ## Beiträge zur Rubrik „Sprache“
 
-{% assign lang_posts = site.posts | where_exp:'post','post.categories contains "language"' %}
+{% assign lang_posts = site.categories.language %}
 <ul>
 {% for post in lang_posts %}
   <li>

@@ -6,7 +6,7 @@ permalink: /tech/
 
 ## Beiträge zur Rubrik „Technik“
 
-{% assign tech_posts = site.posts | where_exp:'post','post.categories contains "tech"' %}
+{% assign tech_posts = site.categories.tech %}
 <ul>
 {% for post in tech_posts %}
   <li>

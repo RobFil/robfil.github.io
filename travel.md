@@ -6,7 +6,7 @@ permalink: /travel/
 
 ## Beiträge zur Rubrik „Reisen“
 
-{% assign travel_posts = site.posts | where_exp:'post','post.categories contains "travel"' %}
+{% assign travel_posts = site.categories.travel %}
 <ul>
 {% for post in travel_posts %}
   <li>
