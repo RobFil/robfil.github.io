@@ -14,7 +14,5 @@ categories: [language]
   </p>
 </div>
 
-
-
 Das ist mein erster Blogeintrag (2).
 
