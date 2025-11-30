@@ -1,3 +1,6 @@
-title: 日本のブログ
-description: 日本語、テクノロジー、旅行
+title: "日本のブログ"
+description: "日本語、テクノロジー、旅行"
 theme: minima
+
+# optional (schöne URLs)
+permalink: /:categories/:year/:month/:day/:title/
