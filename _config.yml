@@ -1,4 +1,3 @@
-echo "title: 日本のブログ
+title: 日本のブログ
 description: 日本語、テクノロジー、旅行
 theme: minima
-" > _config.yml
