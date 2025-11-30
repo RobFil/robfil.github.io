@@ -1,0 +1,15 @@
+---
+---
+
+@import "minima";
+
+body {
+  background-color: #f9f5ef;
+  background-image: repeating-linear-gradient(
+      45deg,
+      rgba(255, 255, 255, 0.05) 0,
+      rgba(255, 255, 255, 0.05) 2px,
+      transparent 2px,
+      transparent 4px
+  );
+}
