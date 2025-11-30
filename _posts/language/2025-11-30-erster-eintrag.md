@@ -15,7 +15,6 @@ categories: [language]
 </div>
 
 
-<img src="/assets/images/language/tokyo_pic1.jpg" alt="IMG TEST" />
 
 Das ist mein erster Blogeintrag (2).
 
