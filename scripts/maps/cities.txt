@@ -1,3 +1,4 @@
+Saromako
 Tokyo
 Sapporo
 Morioka
@@ -17,5 +18,4 @@ Asahikawa
 Otaru
 Hakodate
 Shiretoko
-Tokorocho
 Utsunomiya
