@@ -1,0 +1,17 @@
+obc 10..20kW
+  bidirectional
+  3phase 
+  1phase
+
+dcdc wandler
+  hv <-> 48V <-> 12V
+  sleep current wandler
+  separation for battery banks
+  DAB Bridge
+
+inverter for emachine
+
+pdu
+  e-fuses
+
+battery management

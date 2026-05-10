@@ -19,3 +19,8 @@ Otaru
 Hakodate
 Shiretoko
 Utsunomiya
+Hakata
+Beppu
+Kumamoto
+Aso
+Saga
