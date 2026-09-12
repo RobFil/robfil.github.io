@@ -35,6 +35,13 @@ auf dem iPhone muss sie ueber HTTPS bereitgestellt werden. In Safari: Teilen und
 anschliessend "Zum Home-Bildschirm" auswaehlen. Die Kamera wird erst mit MVP 2
 eingebunden.
 
+## GitHub Pages
+
+Der Deployment-Workflow veroeffentlicht die App unter
+`https://robfil.github.io/food-inventory/`. In den Repository-Einstellungen unter
+**Pages** muss einmalig **GitHub Actions** als Publishing Source aktiviert werden.
+Der Workflow baut dabei die bestehende Website und die App gemeinsam.
+
 ## Grenzen von MVP 0
 
 Noch keine Barcode-Scans, keine Open-Food-Facts-Abfrage und kein GitHub-Sync. Es

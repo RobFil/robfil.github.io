@@ -3,6 +3,7 @@ import react from "@vitejs/plugin-react";
 import { VitePWA } from "vite-plugin-pwa";
 
 export default defineConfig({
+  base: "/food-inventory/",
   plugins: [
     react(),
     VitePWA({
@@ -12,13 +13,14 @@ export default defineConfig({
         short_name: "Vorrat",
         display: "standalone",
         orientation: "portrait",
-        start_url: "/",
+        start_url: "/food-inventory/",
+        scope: "/food-inventory/",
         background_color: "#f7faf8",
         theme_color: "#156f5c",
-        icons: [{ src: "/icon.svg", sizes: "any", type: "image/svg+xml", purpose: "any" }],
+        icons: [{ src: "icon.svg", sizes: "any", type: "image/svg+xml", purpose: "any" }],
       },
       workbox: {
-        navigateFallback: "/index.html",
+        navigateFallback: "/food-inventory/index.html",
       },
     }),
   ],
