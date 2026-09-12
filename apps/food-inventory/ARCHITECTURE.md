@@ -26,10 +26,16 @@ ueberschreiben.
 
 ## Gemeinsamer Supabase-Sync
 
-Jede Person meldet sich mit einem eigenen Magic-Link an und tritt einem Haushalt
-bei. Die Datenbank setzt Row Level Security durch: Ein Nutzer kann nur die Daten
-von Haushalten lesen oder schreiben, deren Mitglied er ist. Ein zufaelliger
-Einladungscode verbindet das zweite Geraet mit dem Haushalt.
+Jedes Geraet erhaelt bei der ersten Verbindung eine anonyme Supabase-Identitaet.
+Sie erfordert weder E-Mail-Adresse noch Passwort, nimmt aber bei Datenzugriffen
+die Rolle `authenticated` ein. Die Datenbank setzt Row Level Security durch: Ein
+Geraet kann nur die Daten von Haushalten lesen oder schreiben, deren Mitglied es
+ist. Ein zufaelliger Einladungscode verbindet das zweite Geraet mit dem Haushalt.
+
+Die Identitaet ist an den Browser gebunden. Nach dem Loeschen von Browserdaten
+tritt das Geraet erneut per Einladungscode bei. Das vermeidet kostenpflichtigen
+oder rate-limitierten E-Mail-Versand und ist fuer den privaten Zwei-Geraete-Fall
+ausreichend.
 
 Der Adapter zieht zuerst Produkte und Ereignisse. Ereignisse werden anhand ihrer
 UUID vereinigt. Produkte verwenden bei Barcodes die stabile ID `barcode:<code>`;

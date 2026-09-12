@@ -25,7 +25,6 @@ interface RemoteEvent {
 }
 
 export interface SyncAccount {
-  email: string;
   householdId?: string;
   lastSyncedAt?: string;
 }
@@ -81,27 +80,16 @@ export async function getSyncAccount(): Promise<SyncAccount | null> {
   const supabase = client();
   if (!supabase) return null;
   const { data } = await supabase.auth.getSession();
-  if (!data.session?.user.email) return null;
+  if (!data.session?.user) return null;
   const settings = await getAppSettings();
-  return { email: data.session.user.email, householdId: settings.householdId, lastSyncedAt: settings.lastSyncedAt };
+  return { householdId: settings.householdId, lastSyncedAt: settings.lastSyncedAt };
 }
 
-export async function sendSignInLink(email: string): Promise<void> {
+export async function connectDevice(): Promise<void> {
   const supabase = client();
   if (!supabase) throw new Error("Supabase ist noch nicht konfiguriert.");
-  const { error } = await supabase.auth.signInWithOtp({
-    email,
-    options: { emailRedirectTo: window.location.href },
-  });
+  const { error } = await supabase.auth.signInAnonymously();
   if (error) throw error;
-}
-
-export async function signOut(): Promise<void> {
-  const supabase = client();
-  if (!supabase) return;
-  const { error } = await supabase.auth.signOut();
-  if (error) throw error;
-  await updateAppSettings({ householdId: undefined, lastSyncedAt: undefined });
 }
 
 export async function createHousehold(name: string): Promise<{ householdId: string; inviteCode: string }> {
@@ -109,7 +97,8 @@ export async function createHousehold(name: string): Promise<{ householdId: stri
   if (!supabase) throw new Error("Supabase ist noch nicht konfiguriert.");
   const { data, error } = await supabase.rpc("create_household", { household_name: name.trim() });
   if (error) throw error;
-  const household = data as { household_id: string; invite_code: string };
+  const household = (data as Array<{ household_id: string; invite_code: string }>)[0];
+  if (!household) throw new Error("Der Haushalt konnte nicht erstellt werden.");
   await updateAppSettings({ householdId: household.household_id });
   return { householdId: household.household_id, inviteCode: household.invite_code };
 }

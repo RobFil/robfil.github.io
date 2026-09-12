@@ -9,7 +9,7 @@ import { ProductsPage } from "./pages/ProductsPage";
 import { ScannerPage, type ScanMode } from "./pages/ScannerPage";
 import { SettingsPage } from "./pages/SettingsPage";
 import { consumeProduct, createProduct, getAllInventory, getProductByBarcode, purchaseProduct, updateProduct } from "./services/inventoryService";
-import { createHousehold, getSyncAccount, isSupabaseConfigured, joinHousehold, sendSignInLink, signOut, syncNow, watchHouseholdChanges, type SyncAccount } from "./services/sync/supabaseSync";
+import { connectDevice, createHousehold, getSyncAccount, isSupabaseConfigured, joinHousehold, syncNow, watchHouseholdChanges, type SyncAccount } from "./services/sync/supabaseSync";
 
 export default function App() {
   const [activePage, setActivePage] = useState<PageId>("home");
@@ -155,10 +155,9 @@ export default function App() {
         : <SettingsPage
             account={syncAccount}
             configured={isSupabaseConfigured()}
+            onConnectDevice={async () => { await connectDevice(); await refreshSyncAccount(); }}
             onCreateHousehold={async (name) => { const household = await createHousehold(name); await refreshSyncAccount(); void syncInBackground(); return household; }}
             onJoinHousehold={async (code) => { await joinHousehold(code); await refreshSyncAccount(); await syncInBackground(); }}
-            onSendLink={sendSignInLink}
-            onSignOut={async () => { await signOut(); await refreshSyncAccount(); }}
             onSync={async () => { await syncNow(); await refreshSyncAccount(); await refresh(); }}
           />;
 
