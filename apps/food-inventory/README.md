@@ -53,11 +53,6 @@ Der Sync ist absichtlich optional. Ohne Konfiguration bleibt die App lokal.
    Geraet einen Haushalt erstellen, auf dem zweiten den angezeigten Einladungscode
    eingeben.
 
-Wenn das Schema bereits vor dem 12. September 2026 ausgefuehrt wurde, den Inhalt
-von `supabase/migrations/20260912_read_household_name.sql` einmal zusaetzlich im
-SQL Editor ausfuehren. Das erlaubt Mitgliedern ausschliesslich, den Namen ihres
-eigenen Haushalts anzuzeigen.
-
 Die anonyme Geraeteidentitaet liegt nur im Browser. Werden Browserdaten geloescht
 oder die App auf einem neuen Geraet installiert, muss dieses Geraet erneut ueber
 den Einladungscode mit dem Haushalt verbunden werden.

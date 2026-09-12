@@ -7,12 +7,13 @@ interface SettingsPageProps {
   account: SyncAccount | null;
   onConnectDevice: () => Promise<void>;
   onCreateHousehold: (name: string) => Promise<{ householdId: string; inviteCode: string }>;
-  onJoinHousehold: (code: string) => Promise<void>;
+  onJoinHousehold: (code: string, householdName: string) => Promise<void>;
   onSync: () => Promise<void>;
 }
 
 export function SettingsPage({ configured, account, onConnectDevice, onCreateHousehold, onJoinHousehold, onSync }: SettingsPageProps) {
   const [householdName, setHouseholdName] = useState("Unser Haushalt");
+  const [joiningHouseholdName, setJoiningHouseholdName] = useState("");
   const [inviteCode, setInviteCode] = useState("");
   const [newInviteCode, setNewInviteCode] = useState<string | null>(null);
   const [message, setMessage] = useState<string | null>(null);
@@ -40,7 +41,7 @@ export function SettingsPage({ configured, account, onConnectDevice, onCreateHou
   );
 
   if (!account.householdId) return (
-    <section className="page settings-page"><header className="page-header"><p className="eyebrow">Dieses Geraet ist verbunden</p><h1>Gemeinsamer Vorrat</h1></header><form className="product-form" onSubmit={(event) => { event.preventDefault(); void run(async () => { const household = await onCreateHousehold(householdName); setNewInviteCode(household.inviteCode); setMessage("Haushalt erstellt."); }); }}><label>Name eures Haushalts<input autoComplete="organization" onChange={(event) => setHouseholdName(event.target.value)} required value={householdName} /></label><button className="submit-button" disabled={working || !householdName.trim()} type="submit"><Users aria-hidden="true" size={20} />Haushalt erstellen</button></form><div className="or-divider">oder</div><form className="product-form" onSubmit={(event) => { event.preventDefault(); void run(async () => { await onJoinHousehold(inviteCode); setMessage("Dem gemeinsamen Haushalt beigetreten."); }); }}><label>Einladungscode<input autoCapitalize="characters" autoComplete="off" onChange={(event) => setInviteCode(event.target.value)} required value={inviteCode} /></label><button className="manual-action" disabled={working || !inviteCode.trim()} type="submit">Haushalt beitreten</button></form>{newInviteCode && <div className="invite-code"><span>Teile diesen Code einmal mit deiner Frau</span><strong>{newInviteCode}</strong><button aria-label="Einladungscode kopieren" className="icon-button" onClick={() => void navigator.clipboard.writeText(newInviteCode)} type="button"><Copy aria-hidden="true" size={20} /></button></div>}{message && <p className="sync-message" role="status">{message}</p>}</section>
+    <section className="page settings-page"><header className="page-header"><p className="eyebrow">Dieses Geraet ist verbunden</p><h1>Gemeinsamer Vorrat</h1></header><form className="product-form" onSubmit={(event) => { event.preventDefault(); void run(async () => { const household = await onCreateHousehold(householdName); setNewInviteCode(household.inviteCode); setMessage("Haushalt erstellt."); }); }}><label>Name eures Haushalts<input autoComplete="organization" onChange={(event) => setHouseholdName(event.target.value)} required value={householdName} /></label><button className="submit-button" disabled={working || !householdName.trim()} type="submit"><Users aria-hidden="true" size={20} />Haushalt erstellen</button></form><div className="or-divider">oder</div><form className="product-form" onSubmit={(event) => { event.preventDefault(); void run(async () => { await onJoinHousehold(inviteCode, joiningHouseholdName); setMessage("Dem gemeinsamen Haushalt beigetreten."); }); }}><label>Name des Haushalts<input autoComplete="organization" onChange={(event) => setJoiningHouseholdName(event.target.value)} placeholder="z. B. Wendlingen" value={joiningHouseholdName} /></label><label>Einladungscode<input autoCapitalize="characters" autoComplete="off" onChange={(event) => setInviteCode(event.target.value)} required value={inviteCode} /></label><button className="manual-action" disabled={working || !inviteCode.trim()} type="submit">Haushalt beitreten</button></form>{newInviteCode && <div className="invite-code"><span>Teile diesen Code einmal mit deiner Frau</span><strong>{newInviteCode}</strong><button aria-label="Einladungscode kopieren" className="icon-button" onClick={() => void navigator.clipboard.writeText(newInviteCode)} type="button"><Copy aria-hidden="true" size={20} /></button></div>}{message && <p className="sync-message" role="status">{message}</p>}</section>
   );
 
   return (

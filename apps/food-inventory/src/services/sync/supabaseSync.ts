@@ -104,15 +104,13 @@ export async function createHousehold(name: string): Promise<{ householdId: stri
   return { householdId: household.household_id, inviteCode: household.invite_code };
 }
 
-export async function joinHousehold(inviteCode: string): Promise<void> {
+export async function joinHousehold(inviteCode: string, householdName: string): Promise<void> {
   const supabase = client();
   if (!supabase) throw new Error("Supabase ist noch nicht konfiguriert.");
   const { data, error } = await supabase.rpc("join_household", { household_invite_code: inviteCode.trim().toUpperCase() });
   if (error) throw error;
   const householdId = data as string;
-  const { data: household, error: householdError } = await supabase.from("households").select("name").eq("id", householdId).single();
-  if (householdError) throw householdError;
-  await updateAppSettings({ householdId, householdName: household.name as string });
+  await updateAppSettings({ householdId, householdName: householdName.trim() || "Gemeinsamer Vorrat" });
 }
 
 async function requireReady(): Promise<{ supabase: SupabaseClient; householdId: string }> {

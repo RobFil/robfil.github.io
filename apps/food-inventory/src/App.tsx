@@ -157,7 +157,7 @@ export default function App() {
             configured={isSupabaseConfigured()}
             onConnectDevice={async () => { await connectDevice(); await refreshSyncAccount(); }}
             onCreateHousehold={async (name) => { const household = await createHousehold(name); await refreshSyncAccount(); void syncInBackground(); return household; }}
-            onJoinHousehold={async (code) => { await joinHousehold(code); await refreshSyncAccount(); await syncInBackground(); }}
+            onJoinHousehold={async (code, householdName) => { await joinHousehold(code, householdName); await refreshSyncAccount(); await syncInBackground(); }}
             onSync={async () => { await syncNow(); await refreshSyncAccount(); await refresh(); }}
           />;
 
