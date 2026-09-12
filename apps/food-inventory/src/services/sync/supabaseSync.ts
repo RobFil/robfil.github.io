@@ -30,6 +30,8 @@ export interface SyncAccount {
   lastSyncedAt?: string;
 }
 
+let activeSync: Promise<void> | null = null;
+
 function client(): SupabaseClient | null {
   const url = import.meta.env.VITE_SUPABASE_URL;
   const key = import.meta.env.VITE_SUPABASE_ANON_KEY;
@@ -126,7 +128,7 @@ async function requireReady(): Promise<{ supabase: SupabaseClient; householdId: 
   return { supabase, householdId: account.householdId };
 }
 
-export async function syncNow(): Promise<void> {
+async function performSync(): Promise<void> {
   const { supabase, householdId } = await requireReady();
   const [{ data: remoteProducts, error: productsError }, { data: remoteEvents, error: eventsError }] = await Promise.all([
     supabase.from("products").select("*").eq("household_id", householdId),
@@ -139,7 +141,7 @@ export async function syncNow(): Promise<void> {
   const remoteProductMap = new Map((remoteProducts as RemoteProduct[]).map((product) => [product.id, product]));
   const productsToPush = localProducts.filter((product) => {
     const remote = remoteProductMap.get(product.id);
-    return !remote || product.updatedAt >= remote.updated_at;
+    return !remote || product.updatedAt > remote.updated_at;
   });
 
   await db.transaction("rw", db.products, db.events, async () => {
@@ -166,6 +168,12 @@ export async function syncNow(): Promise<void> {
     await db.events.bulkPut(eventsToPush.map((event) => ({ ...event, synced: true })));
   }
   await updateAppSettings({ lastSyncedAt: new Date().toISOString() });
+}
+
+export function syncNow(): Promise<void> {
+  if (activeSync) return activeSync;
+  activeSync = performSync().finally(() => { activeSync = null; });
+  return activeSync;
 }
 
 export async function watchHouseholdChanges(onChange: () => void): Promise<(() => void) | undefined> {
