@@ -96,4 +96,11 @@ $$;
 grant execute on function public.create_household(text) to authenticated;
 grant execute on function public.join_household(text) to authenticated;
 
+-- Data API access is explicit. RLS policies above still decide which household
+-- rows an authenticated user may see or change.
+revoke all on table public.households, public.household_members, public.products, public.inventory_events from anon;
+grant usage on schema public to authenticated;
+grant select, insert, update on table public.products to authenticated;
+grant select, insert on table public.inventory_events to authenticated;
+
 alter publication supabase_realtime add table public.products, public.inventory_events;
