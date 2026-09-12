@@ -8,8 +8,8 @@ eigenen Server und bleibt mit bekannten Produkten offline nutzbar.
 
 MVP 1 ist umgesetzt: React/TypeScript/Vite, PWA-Grundlage, Dexie-Schema,
 manuelle Produkterfassung, append-only Bestandsereignisse, `+1`/`-1`,
-Produktbearbeitung und mobile Navigation. Barcode-Scanning folgt im naechsten
-Milestone.
+Produktbearbeitung, lokaler Barcode-Scan und mobile Navigation. Bekannte
+Barcodes funktionieren nach ihrer ersten Zuordnung auch ohne Netzwerk.
 
 ## Installation und Start
 
@@ -44,5 +44,6 @@ Der Workflow baut dabei die bestehende Website und die App gemeinsam.
 
 ## Grenzen von MVP 0
 
-Noch keine Barcode-Scans, keine Open-Food-Facts-Abfrage und kein GitHub-Sync. Es
-werden weder Zugangsdaten noch Tokens im Projekt gespeichert.
+Noch keine Open-Food-Facts-Abfrage und kein GitHub-Sync. Ein unbekannter Barcode
+wird beim Kauf derzeit einmalig manuell benannt; beim Verbrauch wird er nicht
+gebucht. Es werden weder Zugangsdaten noch Tokens im Projekt gespeichert.

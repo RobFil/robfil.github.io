@@ -6,13 +6,16 @@ import { HomePage } from "./pages/HomePage";
 import { InventoryPage } from "./pages/InventoryPage";
 import { ProductFormPage } from "./pages/ProductFormPage";
 import { ProductsPage } from "./pages/ProductsPage";
-import { consumeProduct, createProduct, getAllInventory, purchaseProduct, updateProduct } from "./services/inventoryService";
+import { ScannerPage, type ScanMode } from "./pages/ScannerPage";
+import { consumeProduct, createProduct, getAllInventory, getProductByBarcode, purchaseProduct, updateProduct } from "./services/inventoryService";
 
 export default function App() {
   const [activePage, setActivePage] = useState<PageId>("home");
   const [items, setItems] = useState<InventoryItem[]>([]);
   const [formProduct, setFormProduct] = useState<Product | null>(null);
   const [formOpen, setFormOpen] = useState(false);
+  const [formBarcode, setFormBarcode] = useState<string | undefined>();
+  const [scannerMode, setScannerMode] = useState<ScanMode | null>(null);
   const [notice, setNotice] = useState<string | null>(null);
 
   const refresh = useCallback(async () => setItems(await getAllInventory()), []);
@@ -28,8 +31,9 @@ export default function App() {
     window.setTimeout(() => setNotice(null), 2400);
   }
 
-  function openNewProduct() {
+  function openNewProduct(barcode?: string) {
     setFormProduct(null);
+    setFormBarcode(barcode);
     setFormOpen(true);
   }
 
@@ -37,6 +41,7 @@ export default function App() {
     const item = items.find((entry) => entry.product.id === productId);
     if (!item) return;
     setFormProduct(item.product);
+    setFormBarcode(undefined);
     setFormOpen(true);
   }
 
@@ -56,7 +61,7 @@ export default function App() {
   }
 
   async function saveProduct(
-    input: { name: string; genericIngredient: string | null },
+    input: { name: string; genericIngredient: string | null; barcode?: string },
     addToStock: boolean,
   ) {
     if (formProduct) {
@@ -68,19 +73,49 @@ export default function App() {
     }
     await refresh();
     setFormOpen(false);
+    setFormBarcode(undefined);
+  }
+
+  async function handleBarcode(barcode: string) {
+    const mode = scannerMode;
+    if (!mode) return;
+    const product = await getProductByBarcode(barcode);
+    setScannerMode(null);
+
+    if (!product) {
+      if (mode === "purchase") {
+        openNewProduct(barcode);
+        showNotice("Neuer Barcode. Bitte Produkt einmal benennen.");
+      } else {
+        showNotice("Dieser Barcode ist noch nicht bekannt.");
+      }
+      return;
+    }
+
+    if (mode === "purchase") await addOne(product.id);
+    else await removeOne(product.id);
+  }
+
+  if (scannerMode) {
+    return (
+      <main className="app-shell">
+        <div className="app-content"><ScannerPage mode={scannerMode} onCancel={() => setScannerMode(null)} onDetected={handleBarcode} /></div>
+        {notice && <div className="toast" role="status">{notice}</div>}
+      </main>
+    );
   }
 
   if (formOpen) {
     return (
       <main className="app-shell">
-        <div className="app-content"><ProductFormPage onCancel={() => setFormOpen(false)} onSave={saveProduct} product={formProduct ?? undefined} /></div>
+        <div className="app-content"><ProductFormPage barcode={formBarcode} onCancel={() => setFormOpen(false)} onSave={saveProduct} product={formProduct ?? undefined} /></div>
         {notice && <div className="toast" role="status">{notice}</div>}
       </main>
     );
   }
 
   const content = activePage === "home"
-    ? <HomePage itemCount={stockedItemCount} onConsume={() => setActivePage("inventory")} onPurchase={openNewProduct} />
+    ? <HomePage itemCount={stockedItemCount} onConsume={() => setScannerMode("consume")} onManualAdd={openNewProduct} onPurchase={() => setScannerMode("purchase")} />
     : activePage === "inventory"
       ? <InventoryPage items={items} onAdd={addOne} onConsume={removeOne} onEdit={openProduct} />
       : <ProductsPage items={items} onAdd={openNewProduct} onEdit={openProduct} />;

@@ -4,11 +4,12 @@ import type { Product } from "../domain/types";
 
 interface ProductFormPageProps {
   product?: Product;
+  barcode?: string;
   onCancel: () => void;
-  onSave: (input: { name: string; genericIngredient: string | null }, addToStock: boolean) => Promise<void>;
+  onSave: (input: { name: string; genericIngredient: string | null; barcode?: string }, addToStock: boolean) => Promise<void>;
 }
 
-export function ProductFormPage({ product, onCancel, onSave }: ProductFormPageProps) {
+export function ProductFormPage({ product, barcode, onCancel, onSave }: ProductFormPageProps) {
   const [name, setName] = useState(product?.name ?? "");
   const [ingredient, setIngredient] = useState(product?.genericIngredient ?? "");
   const [addToStock, setAddToStock] = useState(!product);
@@ -18,7 +19,7 @@ export function ProductFormPage({ product, onCancel, onSave }: ProductFormPagePr
     event.preventDefault();
     if (!name.trim()) return;
     setSaving(true);
-    await onSave({ name, genericIngredient: ingredient || null }, addToStock);
+    await onSave({ name, genericIngredient: ingredient || null, barcode }, addToStock);
     setSaving(false);
   }
 
@@ -31,6 +32,7 @@ export function ProductFormPage({ product, onCancel, onSave }: ProductFormPagePr
         <h1>{product ? "Produkt bearbeiten" : "Produkt hinzufuegen"}</h1>
       </header>
       <form className="product-form" onSubmit={handleSubmit}>
+        {barcode && <p className="barcode-hint">Barcode: {barcode}</p>}
         <label>
           Produktname
           <input autoComplete="off" autoFocus onChange={(event) => setName(event.target.value)} required value={name} />

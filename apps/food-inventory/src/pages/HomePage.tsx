@@ -4,9 +4,10 @@ interface HomePageProps {
   itemCount: number;
   onPurchase: () => void;
   onConsume: () => void;
+  onManualAdd: () => void;
 }
 
-export function HomePage({ itemCount, onPurchase, onConsume }: HomePageProps) {
+export function HomePage({ itemCount, onPurchase, onConsume, onManualAdd }: HomePageProps) {
   return (
     <section className="page home-page">
       <header className="page-header">
@@ -21,15 +22,16 @@ export function HomePage({ itemCount, onPurchase, onConsume }: HomePageProps) {
         <button className="scan-action purchase" onClick={onPurchase} type="button">
           <Plus aria-hidden="true" size={28} />
           <span>Gekauft</span>
-          <small>Manuell hinzufuegen</small>
+          <small>Barcode scannen</small>
         </button>
         <button className="scan-action consume" onClick={onConsume} type="button">
           <Minus aria-hidden="true" size={28} />
           <span>Verbraucht</span>
-          <small>Im Bestand auswaehlen</small>
+          <small>Barcode scannen</small>
         </button>
       </div>
-      <p className="muted-status">Barcode-Scan und Synchronisierung folgen in einer spaeteren Version.</p>
+      <button className="manual-action" onClick={onManualAdd} type="button">Ohne Barcode hinzufuegen</button>
+      <p className="muted-status">Lokal auf diesem Geraet gespeichert.</p>
     </section>
   );
 }

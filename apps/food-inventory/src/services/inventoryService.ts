@@ -5,6 +5,7 @@ import type { AppSettings, InventoryEvent, Product } from "../domain/types";
 export interface ProductInput {
   name: string;
   genericIngredient: string | null;
+  barcode?: string | null;
 }
 
 function id(): string {
@@ -45,6 +46,10 @@ export async function getAllInventory(): Promise<InventoryItem[]> {
   return getInventoryItems(products, events);
 }
 
+export async function getProductByBarcode(barcode: string): Promise<Product | undefined> {
+  return db.products.where("barcode").equals(barcode).first();
+}
+
 export async function getStockedItemCount(): Promise<number> {
   const inventory = await getAllInventory();
   return inventory.filter((item) => item.quantity > 0).length;
@@ -54,7 +59,7 @@ export async function createProduct(input: ProductInput, addToStock: boolean): P
   const timestamp = now();
   const product: Product = {
     id: id(),
-    barcode: null,
+    barcode: input.barcode ?? null,
     name: input.name.trim(),
     genericIngredient: input.genericIngredient?.trim() || null,
     source: "manual",
