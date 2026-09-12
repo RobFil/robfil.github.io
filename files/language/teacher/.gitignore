@@ -1,0 +1,20 @@
+*.py[cod]
+__pycache__/
+
+input/pdfs/*
+!input/pdfs/.gitkeep
+
+input/text/*
+!input/text/.gitkeep
+
+output/debug/*
+!output/debug/.gitkeep
+
+output/human/*
+!output/human/.gitkeep
+
+output/machine/*
+!output/machine/.gitkeep
+
+# Temporary visual evidence for AI comparison; regenerate from source PDFs.
+output/debug/review/
