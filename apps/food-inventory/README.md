@@ -6,10 +6,10 @@ eigenen Server und bleibt mit bekannten Produkten offline nutzbar.
 
 ## Entwicklungsstand
 
-MVP 0 ist angelegt: React/TypeScript/Vite, PWA-Grundlage, Dexie-Schema,
-Domaintypen, Repository-Vertraege, GitHub-Sync-Stummel und mobile Navigation.
-Barcode-Scanning und die eigentliche Bestandsverwaltung folgen in den naechsten
-Milestones.
+MVP 1 ist umgesetzt: React/TypeScript/Vite, PWA-Grundlage, Dexie-Schema,
+manuelle Produkterfassung, append-only Bestandsereignisse, `+1`/`-1`,
+Produktbearbeitung und mobile Navigation. Barcode-Scanning folgt im naechsten
+Milestone.
 
 ## Installation und Start
 

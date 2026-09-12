@@ -9,6 +9,7 @@
 
 body { margin: 0; min-width: 320px; min-height: 100vh; }
 button { font: inherit; }
+input, select { font: inherit; }
 
 .app-shell { min-height: 100vh; background: #f7faf8; }
 .app-content { max-width: 680px; margin: 0 auto; padding: 24px 20px 104px; }
@@ -28,6 +29,31 @@ button { font: inherit; }
 .manual-action { display: flex; align-items: center; justify-content: center; gap: 9px; width: 100%; min-height: 52px; border: 1px solid #9ab8ae; border-radius: 8px; background: #fff; color: #18332d; font-weight: 650; cursor: pointer; }
 .muted-status { margin: 24px 2px; color: #687e78; font-size: 14px; line-height: 1.5; }
 .placeholder-page p { color: #527069; font-size: 16px; line-height: 1.5; }
+.page-header-row, .form-header { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.icon-button, .quantity-button { display: inline-grid; place-items: center; width: 44px; height: 44px; border: 1px solid #9ab8ae; border-radius: 8px; background: #fff; color: #156f5c; cursor: pointer; }
+.form-header { margin-bottom: 28px; }
+.form-header h1 { margin: 0; font-size: 24px; }
+.product-form { display: grid; gap: 20px; }
+.product-form label { display: grid; gap: 8px; color: #35564d; font-size: 14px; font-weight: 700; }
+.product-form input:not([type="checkbox"]), .product-form select { min-height: 50px; width: 100%; padding: 0 12px; border: 1px solid #9ab8ae; border-radius: 6px; background: #fff; color: #18332d; }
+.checkbox-field { grid-template-columns: 20px 1fr; align-items: center; min-height: 44px; }
+.checkbox-field input { width: 20px; height: 20px; accent-color: #156f5c; }
+.submit-button { display: flex; align-items: center; justify-content: center; gap: 8px; min-height: 52px; border: 0; border-radius: 8px; background: #156f5c; color: #fff; font-weight: 750; cursor: pointer; }
+.submit-button:disabled { cursor: not-allowed; opacity: 0.55; }
+.inventory-list, .product-list { display: grid; gap: 10px; }
+.inventory-row, .product-list-item { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 14px; border: 1px solid #c7d9d2; border-radius: 8px; background: #fff; }
+.product-summary { display: grid; min-width: 0; gap: 4px; padding: 0; border: 0; background: transparent; color: #18332d; text-align: left; cursor: pointer; }
+.product-summary strong, .product-list-item strong { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.product-summary span, .product-list-item small { color: #617a72; font-size: 13px; }
+.quantity-controls { display: flex; align-items: center; gap: 7px; flex-shrink: 0; }
+.quantity-button { width: 36px; height: 36px; }
+.quantity-controls output { display: grid; place-items: center; width: 26px; font-variant-numeric: tabular-nums; font-weight: 800; }
+.product-list-item { width: 100%; color: #18332d; text-align: left; cursor: pointer; }
+.product-list-item span { display: grid; min-width: 0; gap: 4px; }
+.product-list-item b { color: #156f5c; font-variant-numeric: tabular-nums; }
+.empty-state { display: grid; justify-items: center; gap: 8px; padding: 38px 20px; border: 1px dashed #9ab8ae; border-radius: 8px; color: #527069; text-align: center; }
+.empty-state p { margin: 0; }
+.toast { position: fixed; right: 16px; bottom: 90px; left: 16px; z-index: 3; max-width: 640px; margin: 0 auto; padding: 14px 16px; border: 1px solid #b7dfd2; border-radius: 8px; background: #18332d; color: #fff; box-shadow: 0 8px 20px rgb(24 51 45 / 18%); }
 
 .bottom-navigation { position: fixed; right: 0; bottom: 0; left: 0; display: grid; grid-template-columns: repeat(4, 1fr); min-height: 72px; border-top: 1px solid #c7d9d2; background: #fff; }
 .navigation-item { display: grid; place-items: center; gap: 3px; min-width: 0; padding: 8px 3px; border: 0; background: transparent; color: #607872; font-size: 12px; cursor: pointer; }

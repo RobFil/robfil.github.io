@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
-import { getInventoryQuantity } from "./inventory";
-import type { InventoryEvent } from "./types";
+import { getInventoryItems, getInventoryQuantity } from "./inventory";
+import type { InventoryEvent, Product } from "./types";
 
 function event(quantityChange: number): InventoryEvent {
   return {
@@ -14,6 +14,22 @@ function event(quantityChange: number): InventoryEvent {
   };
 }
 
+function product(id: string, name: string): Product {
+  return {
+    id,
+    barcode: null,
+    name,
+    genericIngredient: null,
+    brand: null,
+    amount: null,
+    unit: null,
+    storageLocation: "fridge",
+    source: "manual",
+    createdAt: "2026-09-12T10:00:00.000Z",
+    updatedAt: "2026-09-12T10:00:00.000Z",
+  };
+}
+
 describe("getInventoryQuantity", () => {
   it("sums append-only inventory events", () => {
     expect(
@@ -22,5 +38,20 @@ describe("getInventoryQuantity", () => {
         event(-1),
       ]),
     ).toBe(1);
+  });
+
+  it("derives quantities for every known product", () => {
+    const milk = product("milk", "Milch");
+    const rice = product("rice", "Reis");
+
+    const items = getInventoryItems([rice, milk], [
+      { ...event(2), productId: "milk" },
+      { ...event(-1), productId: "milk" },
+    ]);
+
+    expect(items).toEqual([
+      { product: milk, quantity: 1 },
+      { product: rice, quantity: 0 },
+    ]);
   });
 });
