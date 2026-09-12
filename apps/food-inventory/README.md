@@ -53,6 +53,11 @@ Der Sync ist absichtlich optional. Ohne Konfiguration bleibt die App lokal.
    Geraet einen Haushalt erstellen, auf dem zweiten den angezeigten Einladungscode
    eingeben.
 
+Wurde das Schema bereits vor dem 12. September 2026 angelegt, den Inhalt von
+`supabase/migrations/20260912_grant_sync_access.sql` einmal zusaetzlich im SQL
+Editor ausfuehren. Die Rechte machen nur die Data API erreichbar; RLS bleibt fuer
+die Haushaltsgrenzen verantwortlich.
+
 Die anonyme Geraeteidentitaet liegt nur im Browser. Werden Browserdaten geloescht
 oder die App auf einem neuen Geraet installiert, muss dieses Geraet erneut ueber
 den Einladungscode mit dem Haushalt verbunden werden.
