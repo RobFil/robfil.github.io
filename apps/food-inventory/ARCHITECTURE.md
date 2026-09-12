@@ -6,6 +6,10 @@ Die Anwendung arbeitet vollstaendig lokal. IndexedDB ist die Datenquelle auf dem
 Geraet; Netzwerkzugriffe sind nur fuer unbekannte Barcodes und einen spaeteren,
 optionalen GitHub-Sync vorgesehen.
 
+Ein Produkt besteht bewusst nur aus einem Namen, einer optionalen allgemeinen
+Zutat und einer optionalen Barcode-Zuordnung. Details wie Aufbewahrungsort oder
+Packungsgroesse werden erst ergaenzt, wenn sie einen konkreten Nutzen haben.
+
 ## Ereignisbasierter Bestand
 
 `InventoryEvent` ist append-only. Der aktuelle Bestand eines Produkts ist die

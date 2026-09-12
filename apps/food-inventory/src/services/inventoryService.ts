@@ -1,11 +1,10 @@
 import { db } from "../db/database";
 import { getInventoryItems, getInventoryQuantity, type InventoryItem } from "../domain/inventory";
-import type { AppSettings, InventoryEvent, Product, StorageLocation } from "../domain/types";
+import type { AppSettings, InventoryEvent, Product } from "../domain/types";
 
 export interface ProductInput {
   name: string;
   genericIngredient: string | null;
-  storageLocation: StorageLocation;
 }
 
 function id(): string {
@@ -23,9 +22,6 @@ async function settings(): Promise<AppSettings> {
   const created: AppSettings = {
     key: "app",
     deviceId: id(),
-    defaultStorageLocation: "fridge",
-    vibrationEnabled: true,
-    soundEnabled: false,
   };
   await db.settings.put(created);
   return created;
@@ -61,10 +57,6 @@ export async function createProduct(input: ProductInput, addToStock: boolean): P
     barcode: null,
     name: input.name.trim(),
     genericIngredient: input.genericIngredient?.trim() || null,
-    brand: null,
-    amount: null,
-    unit: null,
-    storageLocation: input.storageLocation,
     source: "manual",
     createdAt: timestamp,
     updatedAt: timestamp,
@@ -83,7 +75,6 @@ export async function updateProduct(product: Product, input: ProductInput): Prom
     ...product,
     name: input.name.trim(),
     genericIngredient: input.genericIngredient?.trim() || null,
-    storageLocation: input.storageLocation,
     updatedAt: now(),
   });
 }

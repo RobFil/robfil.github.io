@@ -1,12 +1,11 @@
-import { Box, House, PackageSearch, Settings } from "lucide-react";
+import { Box, House, PackageSearch } from "lucide-react";
 
-export type PageId = "home" | "inventory" | "products" | "settings";
+export type PageId = "home" | "inventory" | "products";
 
 const items = [
   { id: "home", label: "Start", icon: House },
   { id: "inventory", label: "Bestand", icon: Box },
   { id: "products", label: "Produkte", icon: PackageSearch },
-  { id: "settings", label: "Einstellungen", icon: Settings },
 ] as const;
 
 interface BottomNavigationProps {

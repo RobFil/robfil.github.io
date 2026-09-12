@@ -1,4 +1,3 @@
-export type StorageLocation = "fridge" | "freezer" | "pantry" | "other";
 export type ProductSource = "manual" | "open_food_facts";
 export type InventoryEventType =
   | "purchase"
@@ -12,10 +11,6 @@ export interface Product {
   barcode: string | null;
   name: string;
   genericIngredient: string | null;
-  brand: string | null;
-  amount: number | null;
-  unit: "g" | "kg" | "ml" | "l" | "piece" | "package" | null;
-  storageLocation: StorageLocation;
   source: ProductSource;
   createdAt: string;
   updatedAt: string;
@@ -34,7 +29,4 @@ export interface InventoryEvent {
 export interface AppSettings {
   key: "app";
   deviceId: string;
-  defaultStorageLocation: StorageLocation;
-  vibrationEnabled: boolean;
-  soundEnabled: boolean;
 }

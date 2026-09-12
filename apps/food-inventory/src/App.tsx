@@ -1,19 +1,12 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { BottomNavigation, type PageId } from "./components/BottomNavigation";
 import type { InventoryItem } from "./domain/inventory";
-import type { Product, StorageLocation } from "./domain/types";
+import type { Product } from "./domain/types";
 import { HomePage } from "./pages/HomePage";
 import { InventoryPage } from "./pages/InventoryPage";
-import { PlaceholderPage } from "./pages/PlaceholderPage";
 import { ProductFormPage } from "./pages/ProductFormPage";
 import { ProductsPage } from "./pages/ProductsPage";
 import { consumeProduct, createProduct, getAllInventory, purchaseProduct, updateProduct } from "./services/inventoryService";
-
-const pageContent: Record<Exclude<PageId, "home">, { title: string; description: string }> = {
-  inventory: { title: "Bestand", description: "Dein aktueller Vorrat erscheint hier." },
-  products: { title: "Produkte", description: "Bekannte Produkte werden hier verwaltet." },
-  settings: { title: "Einstellungen", description: "Geraete- und App-Einstellungen werden hier konfiguriert." },
-};
 
 export default function App() {
   const [activePage, setActivePage] = useState<PageId>("home");
@@ -63,7 +56,7 @@ export default function App() {
   }
 
   async function saveProduct(
-    input: { name: string; genericIngredient: string | null; storageLocation: StorageLocation },
+    input: { name: string; genericIngredient: string | null },
     addToStock: boolean,
   ) {
     if (formProduct) {
@@ -87,12 +80,10 @@ export default function App() {
   }
 
   const content = activePage === "home"
-    ? <HomePage itemCount={stockedItemCount} onConsume={() => setActivePage("inventory")} onManualAdd={openNewProduct} onPurchase={openNewProduct} />
+    ? <HomePage itemCount={stockedItemCount} onConsume={() => setActivePage("inventory")} onPurchase={openNewProduct} />
     : activePage === "inventory"
       ? <InventoryPage items={items} onAdd={addOne} onConsume={removeOne} onEdit={openProduct} />
-      : activePage === "products"
-        ? <ProductsPage items={items} onAdd={openNewProduct} onEdit={openProduct} />
-        : <PlaceholderPage {...pageContent.settings} />;
+      : <ProductsPage items={items} onAdd={openNewProduct} onEdit={openProduct} />;
 
   return (
     <main className="app-shell">

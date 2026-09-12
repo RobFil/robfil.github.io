@@ -8,8 +8,6 @@ interface InventoryPageProps {
   onEdit: (productId: string) => void;
 }
 
-const locationLabels = { fridge: "Kuehlschrank", freezer: "Gefrierfach", pantry: "Vorratsschrank", other: "Sonstiges" };
-
 export function InventoryPage({ items, onAdd, onConsume, onEdit }: InventoryPageProps) {
   const stockedItems = items.filter((item) => item.quantity > 0);
 
@@ -24,7 +22,7 @@ export function InventoryPage({ items, onAdd, onConsume, onEdit }: InventoryPage
             <article className="inventory-row" key={item.product.id}>
               <button className="product-summary" onClick={() => onEdit(item.product.id)} type="button">
                 <strong>{item.product.name}</strong>
-                <span>{item.product.genericIngredient ?? locationLabels[item.product.storageLocation]}</span>
+                {item.product.genericIngredient && <span>{item.product.genericIngredient}</span>}
               </button>
               <div className="quantity-controls">
                 <button aria-label={`${item.product.name} verbrauchen`} className="quantity-button" onClick={() => void onConsume(item.product.id)} type="button"><Minus aria-hidden="true" size={18} /></button>

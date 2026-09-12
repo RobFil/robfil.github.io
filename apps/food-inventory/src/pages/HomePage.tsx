@@ -1,13 +1,12 @@
-import { Barcode, Minus, Plus } from "lucide-react";
+import { Minus, Plus } from "lucide-react";
 
 interface HomePageProps {
   itemCount: number;
   onPurchase: () => void;
   onConsume: () => void;
-  onManualAdd: () => void;
 }
 
-export function HomePage({ itemCount, onPurchase, onConsume, onManualAdd }: HomePageProps) {
+export function HomePage({ itemCount, onPurchase, onConsume }: HomePageProps) {
   return (
     <section className="page home-page">
       <header className="page-header">
@@ -30,10 +29,6 @@ export function HomePage({ itemCount, onPurchase, onConsume, onManualAdd }: Home
           <small>Im Bestand auswaehlen</small>
         </button>
       </div>
-      <button className="manual-action" onClick={onManualAdd} type="button">
-        <Barcode aria-hidden="true" size={20} />
-        Ohne Barcode hinzufuegen
-      </button>
       <p className="muted-status">Barcode-Scan und Synchronisierung folgen in einer spaeteren Version.</p>
     </section>
   );

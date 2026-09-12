@@ -13,6 +13,27 @@ class FoodInventoryDatabase extends Dexie {
       events: "id, productId, timestamp, synced",
       settings: "key",
     });
+    this.version(2)
+      .stores({
+        products: "id, &barcode, name, genericIngredient",
+        events: "id, productId, timestamp, synced",
+        settings: "key",
+      })
+      .upgrade(async (transaction) => {
+        await transaction.table("products").toCollection().modify((product) => {
+          const legacyProduct = product as Record<string, unknown>;
+          delete legacyProduct.storageLocation;
+          delete legacyProduct.brand;
+          delete legacyProduct.amount;
+          delete legacyProduct.unit;
+        });
+        await transaction.table("settings").toCollection().modify((settings) => {
+          const legacySettings = settings as Record<string, unknown>;
+          delete legacySettings.defaultStorageLocation;
+          delete legacySettings.vibrationEnabled;
+          delete legacySettings.soundEnabled;
+        });
+      });
   }
 }
 
