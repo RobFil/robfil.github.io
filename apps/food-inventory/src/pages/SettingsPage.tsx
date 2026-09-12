@@ -29,7 +29,11 @@ export function SettingsPage({ configured, account, onSendLink, onCreateHousehol
 
   function submitLogin(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    void run(async () => { await onSendLink(email); setMessage("Pruefe dein E-Mail-Postfach und oeffne den Anmeldelink auf diesem Geraet."); });
+    void run(async () => {
+      setMessage("Anmeldelink wird gesendet ...");
+      await onSendLink(email);
+      setMessage("Pruefe dein E-Mail-Postfach und oeffne den Anmeldelink auf diesem Geraet.");
+    });
   }
 
   if (!configured) return (
@@ -37,7 +41,7 @@ export function SettingsPage({ configured, account, onSendLink, onCreateHousehol
   );
 
   if (!account) return (
-    <section className="page settings-page"><header className="page-header"><p className="eyebrow">Gemeinsamer Vorrat</p><h1>Synchronisierung</h1></header><form className="product-form" onSubmit={submitLogin}><label>E-Mail-Adresse<input autoComplete="email" inputMode="email" onChange={(event) => setEmail(event.target.value)} required type="email" value={email} /></label><button className="submit-button" disabled={working} type="submit"><Cloud aria-hidden="true" size={20} />Anmeldelink senden</button></form>{message && <p className="sync-message" role="status">{message}</p>}</section>
+    <section className="page settings-page"><header className="page-header"><p className="eyebrow">Gemeinsamer Vorrat</p><h1>Synchronisierung</h1></header><form aria-busy={working} className="product-form" onSubmit={submitLogin}><label>E-Mail-Adresse<input autoComplete="email" inputMode="email" onChange={(event) => setEmail(event.target.value)} required type="email" value={email} /></label><button className="submit-button" disabled={working} type="submit"><Cloud aria-hidden="true" size={20} />{working ? "Wird gesendet ..." : "Anmeldelink senden"}</button></form>{message && <p className="sync-message" role="status">{message}</p>}</section>
   );
 
   if (!account.householdId) return (
