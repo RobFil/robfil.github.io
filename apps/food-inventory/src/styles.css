@@ -1,0 +1,41 @@
+:root {
+  color: #18332d;
+  background: #f7faf8;
+  font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+  font-synthesis: none;
+}
+
+* { box-sizing: border-box; }
+
+body { margin: 0; min-width: 320px; min-height: 100vh; }
+button { font: inherit; }
+
+.app-shell { min-height: 100vh; background: #f7faf8; }
+.app-content { max-width: 680px; margin: 0 auto; padding: 24px 20px 104px; }
+.page-header { margin-bottom: 28px; }
+.page-header h1 { margin: 0; font-size: 30px; line-height: 1.15; letter-spacing: 0; }
+.eyebrow { margin: 0 0 6px; color: #527069; font-size: 14px; font-weight: 650; }
+
+.inventory-summary { display: grid; gap: 4px; padding: 24px; background: #dff2ea; border: 1px solid #b7dfd2; border-radius: 8px; }
+.inventory-summary strong { color: #156f5c; font-size: 48px; line-height: 1; }
+.inventory-summary span { color: #3d5f56; }
+.primary-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 22px 0 12px; }
+.scan-action { display: grid; justify-items: start; gap: 6px; min-height: 146px; padding: 18px; border: 0; border-radius: 8px; color: #fff; text-align: left; cursor: pointer; }
+.scan-action span { font-size: 18px; font-weight: 750; }
+.scan-action small { opacity: 0.86; }
+.purchase { background: #156f5c; }
+.consume { background: #bb4d31; }
+.manual-action { display: flex; align-items: center; justify-content: center; gap: 9px; width: 100%; min-height: 52px; border: 1px solid #9ab8ae; border-radius: 8px; background: #fff; color: #18332d; font-weight: 650; cursor: pointer; }
+.muted-status { margin: 24px 2px; color: #687e78; font-size: 14px; line-height: 1.5; }
+.placeholder-page p { color: #527069; font-size: 16px; line-height: 1.5; }
+
+.bottom-navigation { position: fixed; right: 0; bottom: 0; left: 0; display: grid; grid-template-columns: repeat(4, 1fr); min-height: 72px; border-top: 1px solid #c7d9d2; background: #fff; }
+.navigation-item { display: grid; place-items: center; gap: 3px; min-width: 0; padding: 8px 3px; border: 0; background: transparent; color: #607872; font-size: 12px; cursor: pointer; }
+.navigation-item.active { color: #156f5c; font-weight: 750; }
+.navigation-item:focus-visible, button:focus-visible { outline: 3px solid #e2a342; outline-offset: -3px; }
+
+@media (min-width: 681px) {
+  .app-shell { padding-bottom: 0; }
+  .app-content { padding-top: 40px; }
+  .bottom-navigation { left: 50%; max-width: 680px; transform: translateX(-50%); border-right: 1px solid #c7d9d2; border-left: 1px solid #c7d9d2; }
+}

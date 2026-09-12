@@ -2,3 +2,5 @@
 *.pdf
 *.PDF
 debug.log
+node_modules/
+dist/
