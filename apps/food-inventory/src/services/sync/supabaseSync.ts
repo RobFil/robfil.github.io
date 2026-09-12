@@ -31,11 +31,14 @@ export interface SyncAccount {
 }
 
 let activeSync: Promise<void> | null = null;
+let supabaseClient: SupabaseClient | null | undefined;
 
 function client(): SupabaseClient | null {
+  if (supabaseClient !== undefined) return supabaseClient;
   const url = import.meta.env.VITE_SUPABASE_URL;
   const key = import.meta.env.VITE_SUPABASE_ANON_KEY;
-  return url && key ? createClient(url, key) : null;
+  supabaseClient = url && key ? createClient(url, key) : null;
+  return supabaseClient;
 }
 
 function toRemoteProduct(product: Product, householdId: string): RemoteProduct {

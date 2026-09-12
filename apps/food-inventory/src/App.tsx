@@ -42,8 +42,10 @@ export default function App() {
   useEffect(() => {
     void refreshSyncAccount();
     const unsubscribe = onAuthStateChange(() => {
-      void refreshSyncAccount();
-      void syncInBackground();
+      window.setTimeout(() => {
+        void refreshSyncAccount();
+        void syncInBackground();
+      }, 0);
     });
     window.addEventListener("online", syncInBackground);
     return () => {
