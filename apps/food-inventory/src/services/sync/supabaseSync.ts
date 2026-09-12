@@ -1,4 +1,4 @@
-import { createClient, type Session, type SupabaseClient, type User } from "@supabase/supabase-js";
+import { createClient, type SupabaseClient } from "@supabase/supabase-js";
 import { db } from "../../db/database";
 import type { InventoryEvent, Product } from "../../domain/types";
 import { getAppSettings, updateAppSettings } from "../inventoryService";
@@ -187,11 +187,4 @@ export async function watchHouseholdChanges(onChange: () => void): Promise<(() =
     .on("postgres_changes", { event: "*", schema: "public", table: "inventory_events", filter: `household_id=eq.${householdId}` }, onChange)
     .subscribe();
   return () => { void supabase.removeChannel(channel); };
-}
-
-export function onAuthStateChange(callback: (session: Session | null, user: User | null) => void): (() => void) | undefined {
-  const supabase = client();
-  if (!supabase) return undefined;
-  const { data } = supabase.auth.onAuthStateChange((_event, session) => callback(session, session?.user ?? null));
-  return () => data.subscription.unsubscribe();
 }

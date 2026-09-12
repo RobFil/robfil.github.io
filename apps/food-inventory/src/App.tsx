@@ -9,7 +9,7 @@ import { ProductsPage } from "./pages/ProductsPage";
 import { ScannerPage, type ScanMode } from "./pages/ScannerPage";
 import { SettingsPage } from "./pages/SettingsPage";
 import { consumeProduct, createProduct, getAllInventory, getProductByBarcode, purchaseProduct, updateProduct } from "./services/inventoryService";
-import { createHousehold, getSyncAccount, isSupabaseConfigured, joinHousehold, onAuthStateChange, sendSignInLink, signOut, syncNow, watchHouseholdChanges, type SyncAccount } from "./services/sync/supabaseSync";
+import { createHousehold, getSyncAccount, isSupabaseConfigured, joinHousehold, sendSignInLink, signOut, syncNow, watchHouseholdChanges, type SyncAccount } from "./services/sync/supabaseSync";
 
 export default function App() {
   const [activePage, setActivePage] = useState<PageId>("home");
@@ -41,16 +41,8 @@ export default function App() {
 
   useEffect(() => {
     void refreshSyncAccount();
-    const unsubscribe = onAuthStateChange(() => {
-      window.setTimeout(() => {
-        void refreshSyncAccount();
-      }, 0);
-    });
     window.addEventListener("online", syncInBackground);
-    return () => {
-      unsubscribe?.();
-      window.removeEventListener("online", syncInBackground);
-    };
+    return () => window.removeEventListener("online", syncInBackground);
   }, [refreshSyncAccount, syncInBackground]);
 
   useEffect(() => {
