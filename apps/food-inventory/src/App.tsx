@@ -44,7 +44,6 @@ export default function App() {
     const unsubscribe = onAuthStateChange(() => {
       window.setTimeout(() => {
         void refreshSyncAccount();
-        void syncInBackground();
       }, 0);
     });
     window.addEventListener("online", syncInBackground);

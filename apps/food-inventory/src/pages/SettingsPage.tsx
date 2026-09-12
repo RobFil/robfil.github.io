@@ -14,7 +14,7 @@ interface SettingsPageProps {
 
 export function SettingsPage({ configured, account, onSendLink, onCreateHousehold, onJoinHousehold, onSync, onSignOut }: SettingsPageProps) {
   const [email, setEmail] = useState("");
-  const [householdName, setHouseholdName] = useState("");
+  const [householdName, setHouseholdName] = useState("Unser Haushalt");
   const [inviteCode, setInviteCode] = useState("");
   const [newInviteCode, setNewInviteCode] = useState<string | null>(null);
   const [message, setMessage] = useState<string | null>(null);

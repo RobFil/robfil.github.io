@@ -80,10 +80,10 @@ export function isSupabaseConfigured(): boolean {
 export async function getSyncAccount(): Promise<SyncAccount | null> {
   const supabase = client();
   if (!supabase) return null;
-  const { data } = await supabase.auth.getUser();
-  if (!data.user?.email) return null;
+  const { data } = await supabase.auth.getSession();
+  if (!data.session?.user.email) return null;
   const settings = await getAppSettings();
-  return { email: data.user.email, householdId: settings.householdId, lastSyncedAt: settings.lastSyncedAt };
+  return { email: data.session.user.email, householdId: settings.householdId, lastSyncedAt: settings.lastSyncedAt };
 }
 
 export async function sendSignInLink(email: string): Promise<void> {
