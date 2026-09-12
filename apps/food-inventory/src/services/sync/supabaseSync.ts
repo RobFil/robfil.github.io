@@ -106,7 +106,7 @@ export async function createHousehold(name: string): Promise<{ householdId: stri
   if (error) throw error;
   const household = data as { household_id: string; invite_code: string };
   await updateAppSettings({ householdId: household.household_id });
-  return household;
+  return { householdId: household.household_id, inviteCode: household.invite_code };
 }
 
 export async function joinHousehold(inviteCode: string): Promise<void> {
@@ -159,7 +159,7 @@ export async function syncNow(): Promise<void> {
     const { error } = await supabase.from("products").upsert(productsToPush.map((product) => toRemoteProduct(product, householdId)));
     if (error) throw error;
   }
-  const eventsToPush = await db.events.where("synced").equals(false).toArray();
+  const eventsToPush = await db.events.filter((event) => !event.synced).toArray();
   if (eventsToPush.length) {
     const { error } = await supabase.from("inventory_events").upsert(eventsToPush.map((event) => toRemoteEvent(event, householdId)), { onConflict: "id" });
     if (error) throw error;
