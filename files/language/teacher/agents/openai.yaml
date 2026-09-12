@@ -1,4 +1,4 @@
 interface:
-  display_name: "Japanischtrainer"
-  short_description: "Japanisch aus eigenem Kontext lernen und aufnehmen."
-  default_prompt: "Use $teacher to practice reviewed Japanese topics through a newly varied Japanese role-play, correct my answers like a native-level teacher, and avoid copying source examples verbatim."
+  display_name: "Japanese Teacher"
+  short_description: "Japanisch ueben, korrigieren und vertiefen."
+  default_prompt: "Use $teacher to practice reviewed Japanese topics with fresh drills or role-play and concise corrective feedback."

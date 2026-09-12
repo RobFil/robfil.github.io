@@ -1,0 +1,4 @@
+interface:
+  display_name: "Japanese Source Ingest"
+  short_description: "Japanisch-Quellen extrahieren und reviewen."
+  default_prompt: "Use $source-ingest to parse local Japanese PDFs, manage review state, and rebuild accepted source context for later teaching."
