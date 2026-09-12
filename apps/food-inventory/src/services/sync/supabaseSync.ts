@@ -26,6 +26,7 @@ interface RemoteEvent {
 
 export interface SyncAccount {
   householdId?: string;
+  householdName?: string;
   lastSyncedAt?: string;
 }
 
@@ -82,7 +83,7 @@ export async function getSyncAccount(): Promise<SyncAccount | null> {
   const { data } = await supabase.auth.getSession();
   if (!data.session?.user) return null;
   const settings = await getAppSettings();
-  return { householdId: settings.householdId, lastSyncedAt: settings.lastSyncedAt };
+  return { householdId: settings.householdId, householdName: settings.householdName, lastSyncedAt: settings.lastSyncedAt };
 }
 
 export async function connectDevice(): Promise<void> {
@@ -99,7 +100,7 @@ export async function createHousehold(name: string): Promise<{ householdId: stri
   if (error) throw error;
   const household = (data as Array<{ household_id: string; invite_code: string }>)[0];
   if (!household) throw new Error("Der Haushalt konnte nicht erstellt werden.");
-  await updateAppSettings({ householdId: household.household_id });
+  await updateAppSettings({ householdId: household.household_id, householdName: name.trim() });
   return { householdId: household.household_id, inviteCode: household.invite_code };
 }
 
@@ -108,7 +109,10 @@ export async function joinHousehold(inviteCode: string): Promise<void> {
   if (!supabase) throw new Error("Supabase ist noch nicht konfiguriert.");
   const { data, error } = await supabase.rpc("join_household", { household_invite_code: inviteCode.trim().toUpperCase() });
   if (error) throw error;
-  await updateAppSettings({ householdId: data as string });
+  const householdId = data as string;
+  const { data: household, error: householdError } = await supabase.from("households").select("name").eq("id", householdId).single();
+  if (householdError) throw householdError;
+  await updateAppSettings({ householdId, householdName: household.name as string });
 }
 
 async function requireReady(): Promise<{ supabase: SupabaseClient; householdId: string }> {

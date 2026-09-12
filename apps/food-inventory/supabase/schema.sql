@@ -100,6 +100,7 @@ grant execute on function public.join_household(text) to authenticated;
 -- rows an authenticated user may see or change.
 revoke all on table public.households, public.household_members, public.products, public.inventory_events from anon;
 grant usage on schema public to authenticated;
+grant select on table public.households to authenticated;
 grant select, insert, update on table public.products to authenticated;
 grant select, insert on table public.inventory_events to authenticated;
 

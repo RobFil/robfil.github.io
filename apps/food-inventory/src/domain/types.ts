@@ -30,5 +30,6 @@ export interface AppSettings {
   key: "app";
   deviceId: string;
   householdId?: string;
+  householdName?: string;
   lastSyncedAt?: string;
 }
