@@ -93,6 +93,10 @@ export async function connectDevice(): Promise<void> {
   if (error) throw error;
 }
 
+export async function disconnectHousehold(): Promise<void> {
+  await updateAppSettings({ householdId: undefined, householdName: undefined, lastSyncedAt: undefined });
+}
+
 export async function createHousehold(name: string): Promise<{ householdId: string; inviteCode: string }> {
   const supabase = client();
   if (!supabase) throw new Error("Supabase ist noch nicht konfiguriert.");

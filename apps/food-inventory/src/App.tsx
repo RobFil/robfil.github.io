@@ -9,7 +9,7 @@ import { ProductsPage } from "./pages/ProductsPage";
 import { ScannerPage, type ScanMode } from "./pages/ScannerPage";
 import { SettingsPage } from "./pages/SettingsPage";
 import { consumeProduct, createProduct, getAllInventory, getProductByBarcode, purchaseProduct, updateProduct } from "./services/inventoryService";
-import { connectDevice, createHousehold, getSyncAccount, isSupabaseConfigured, joinHousehold, syncNow, watchHouseholdChanges, type SyncAccount } from "./services/sync/supabaseSync";
+import { connectDevice, createHousehold, disconnectHousehold, getSyncAccount, isSupabaseConfigured, joinHousehold, syncNow, watchHouseholdChanges, type SyncAccount } from "./services/sync/supabaseSync";
 
 export default function App() {
   const [activePage, setActivePage] = useState<PageId>("home");
@@ -158,6 +158,7 @@ export default function App() {
             onConnectDevice={async () => { await connectDevice(); await refreshSyncAccount(); }}
             onCreateHousehold={async (name) => { const household = await createHousehold(name); await refreshSyncAccount(); void syncInBackground(); return household; }}
             onJoinHousehold={async (code, householdName) => { await joinHousehold(code, householdName); await refreshSyncAccount(); await syncInBackground(); }}
+            onDisconnect={async () => { await disconnectHousehold(); await refreshSyncAccount(); }}
             onSync={async () => { await syncNow(); await refreshSyncAccount(); await refresh(); }}
           />;
 

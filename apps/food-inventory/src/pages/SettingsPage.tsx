@@ -1,4 +1,4 @@
-import { Cloud, Copy, RefreshCw, Smartphone, Users } from "lucide-react";
+import { Cloud, Copy, RefreshCw, Smartphone, Unplug, Users } from "lucide-react";
 import { useState } from "react";
 import type { SyncAccount } from "../services/sync/supabaseSync";
 
@@ -9,9 +9,10 @@ interface SettingsPageProps {
   onCreateHousehold: (name: string) => Promise<{ householdId: string; inviteCode: string }>;
   onJoinHousehold: (code: string, householdName: string) => Promise<void>;
   onSync: () => Promise<void>;
+  onDisconnect: () => Promise<void>;
 }
 
-export function SettingsPage({ configured, account, onConnectDevice, onCreateHousehold, onJoinHousehold, onSync }: SettingsPageProps) {
+export function SettingsPage({ configured, account, onConnectDevice, onCreateHousehold, onJoinHousehold, onSync, onDisconnect }: SettingsPageProps) {
   const [householdName, setHouseholdName] = useState("Unser Haushalt");
   const [joiningHouseholdName, setJoiningHouseholdName] = useState("");
   const [inviteCode, setInviteCode] = useState("");
@@ -45,6 +46,6 @@ export function SettingsPage({ configured, account, onConnectDevice, onCreateHou
   );
 
   return (
-    <section className="page settings-page"><header className="page-header"><p className="eyebrow">Verbunden mit</p><h1>{account.householdName ?? "Gemeinsamer Vorrat"}</h1></header>{newInviteCode && <div className="invite-code"><span>Einladungscode fuer das zweite Geraet</span><strong>{newInviteCode}</strong><button aria-label="Einladungscode kopieren" className="icon-button" onClick={() => void navigator.clipboard.writeText(newInviteCode)} type="button"><Copy aria-hidden="true" size={20} /></button></div>}<button className="submit-button" disabled={working} onClick={() => void run(onSync)} type="button"><RefreshCw aria-hidden="true" size={20} />Jetzt synchronisieren</button><p className="muted-status">{account.lastSyncedAt ? `Zuletzt synchronisiert: ${new Date(account.lastSyncedAt).toLocaleString("de-DE")}` : "Noch nicht synchronisiert."}</p>{message && <p className="sync-message" role="status">{message}</p>}</section>
+    <section className="page settings-page"><header className="page-header"><p className="eyebrow">Verbunden mit</p><h1>{account.householdName ?? "Gemeinsamer Vorrat"}</h1></header>{newInviteCode && <div className="invite-code"><span>Einladungscode fuer das zweite Geraet</span><strong>{newInviteCode}</strong><button aria-label="Einladungscode kopieren" className="icon-button" onClick={() => void navigator.clipboard.writeText(newInviteCode)} type="button"><Copy aria-hidden="true" size={20} /></button></div>}<button className="submit-button" disabled={working} onClick={() => void run(onSync)} type="button"><RefreshCw aria-hidden="true" size={20} />Jetzt synchronisieren</button><p className="muted-status">{account.lastSyncedAt ? `Zuletzt synchronisiert: ${new Date(account.lastSyncedAt).toLocaleString("de-DE")}` : "Noch nicht synchronisiert."}</p><button className="text-action" disabled={working} onClick={() => void run(onDisconnect)} type="button"><Unplug aria-hidden="true" size={18} />Verbindung trennen</button>{message && <p className="sync-message" role="status">{message}</p>}</section>
   );
 }
