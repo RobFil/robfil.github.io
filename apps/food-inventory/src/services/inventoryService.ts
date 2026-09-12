@@ -28,6 +28,17 @@ async function settings(): Promise<AppSettings> {
   return created;
 }
 
+export async function getAppSettings(): Promise<AppSettings> {
+  return settings();
+}
+
+export async function updateAppSettings(changes: Partial<Omit<AppSettings, "key" | "deviceId">>): Promise<AppSettings> {
+  const current = await settings();
+  const updated = { ...current, ...changes };
+  await db.settings.put(updated);
+  return updated;
+}
+
 async function addEvent(productId: string, eventType: InventoryEvent["eventType"], quantityChange: number) {
   const appSettings = await settings();
   await db.events.add({
@@ -58,7 +69,8 @@ export async function getStockedItemCount(): Promise<number> {
 export async function createProduct(input: ProductInput, addToStock: boolean): Promise<Product> {
   const timestamp = now();
   const product: Product = {
-    id: id(),
+    // A barcode is a shared product identity, so both phones create the same ID offline.
+    id: input.barcode ? `barcode:${input.barcode}` : id(),
     barcode: input.barcode ?? null,
     name: input.name.trim(),
     genericIngredient: input.genericIngredient?.trim() || null,

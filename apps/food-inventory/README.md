@@ -1,15 +1,17 @@
 # Mein Vorrat
 
 Eine local-first PWA zum Verwalten von Lebensmitteln. Bestandsaenderungen werden
-als unveraenderliche Ereignisse in IndexedDB gespeichert. Die App benoetigt keinen
-eigenen Server und bleibt mit bekannten Produkten offline nutzbar.
+als unveraenderliche Ereignisse in IndexedDB gespeichert. Sie bleibt mit bekannten
+Produkten offline nutzbar und kann optional einen gemeinsamen Supabase-Haushalt
+automatisch synchronisieren.
 
 ## Entwicklungsstand
 
 MVP 1 ist umgesetzt: React/TypeScript/Vite, PWA-Grundlage, Dexie-Schema,
 manuelle Produkterfassung, append-only Bestandsereignisse, `+1`/`-1`,
-Produktbearbeitung, lokaler Barcode-Scan und mobile Navigation. Bekannte
-Barcodes funktionieren nach ihrer ersten Zuordnung auch ohne Netzwerk.
+Produktbearbeitung, lokaler Barcode-Scan, mobile Navigation und optionaler
+Haushalts-Sync. Bekannte Barcodes funktionieren nach ihrer ersten Zuordnung auch
+ohne Netzwerk.
 
 ## Installation und Start
 
@@ -32,8 +34,27 @@ npm run build
 
 Im Entwicklungsmodus funktioniert die App im Browser. Fuer Kamera und Installation
 auf dem iPhone muss sie ueber HTTPS bereitgestellt werden. In Safari: Teilen und
-anschliessend "Zum Home-Bildschirm" auswaehlen. Die Kamera wird erst mit MVP 2
-eingebunden.
+anschliessend "Zum Home-Bildschirm" auswaehlen.
+
+## Gemeinsamer Sync mit Supabase
+
+Der Sync ist absichtlich optional. Ohne Konfiguration bleibt die App lokal.
+
+1. Bei [Supabase](https://supabase.com/) ein kostenloses Projekt anlegen.
+2. Den Inhalt von `supabase/schema.sql` im **SQL Editor** des Projekts ausfuehren.
+3. Unter **Authentication > URL Configuration** die URL
+   `https://robfil.github.io/food-inventory/` als Redirect URL eintragen.
+4. Unter **Project Settings > API** die Project URL und den **anon public** Key
+   unter GitHub **Settings > Secrets and variables > Actions > Variables** als
+   `VITE_SUPABASE_URL` und `VITE_SUPABASE_ANON_KEY` hinterlegen. Diese Werte sind fuer Browser-Apps
+   bestimmt; der `service_role` Key darf nie verwendet oder gespeichert werden.
+5. Den Deploy-Workflow erneut ausfuehren. Danach erscheint der Tab **Gemeinsam**:
+   Auf dem ersten Geraet anmelden und einen Haushalt erstellen, auf dem zweiten
+   Geraet anmelden und den angezeigten Einladungscode eingeben.
+
+Beim Start, nach lokalen Aenderungen, nach einer Netzwerkrueckkehr und bei einer
+Realtime-Aenderung des gemeinsamen Haushalts gleicht die App Ereignisse ab.
+Ereignisse werden per UUID zusammengefuehrt; sie ueberschreiben sich nicht.
 
 ## GitHub Pages
 
@@ -42,7 +63,7 @@ Der Deployment-Workflow veroeffentlicht die App unter
 **Pages** muss einmalig **GitHub Actions** als Publishing Source aktiviert werden.
 Der Workflow baut dabei die bestehende Website und die App gemeinsam.
 
-## Grenzen von MVP 0
+## Noch nicht enthalten
 
 Noch keine Open-Food-Facts-Abfrage und kein GitHub-Sync. Ein unbekannter Barcode
 wird beim Kauf derzeit einmalig manuell benannt; beim Verbrauch wird er nicht

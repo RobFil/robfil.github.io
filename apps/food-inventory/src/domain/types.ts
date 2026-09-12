@@ -29,4 +29,6 @@ export interface InventoryEvent {
 export interface AppSettings {
   key: "app";
   deviceId: string;
+  householdId?: string;
+  lastSyncedAt?: string;
 }

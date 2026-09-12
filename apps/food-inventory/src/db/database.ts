@@ -34,6 +34,11 @@ class FoodInventoryDatabase extends Dexie {
           delete legacySettings.soundEnabled;
         });
       });
+    this.version(3).stores({
+      products: "id, &barcode, name, genericIngredient",
+      events: "id, productId, timestamp, synced",
+      settings: "key",
+    });
   }
 }
 

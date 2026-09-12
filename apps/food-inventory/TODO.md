@@ -6,6 +6,7 @@
 - [ ] MVP 3: Open Food Facts fuer unbekannte Barcodes
 - [ ] MVP 4: mobile Optimierung und iPhone-PWA-Test
 - [ ] MVP 5: optionaler manueller GitHub-Sync
+- [x] Gemeinsamer Supabase-Sync: lokale Warteschlange, Haushalte, Anmeldung und Realtime
 
 Rezeptvorschlaege und ein Recipe Skill gehoeren bewusst nicht in diese Anwendung,
 bis der lokale Vorratsbestand belastbar ist.
