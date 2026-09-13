@@ -24,7 +24,7 @@ eine Markdown-Datei in `_posts/reading/`.
 
 ```yaml
 ---
-layout: post
+layout: reading
 title: "Japanischer Titel"
 date: 2026-09-13
 categories: [reading]

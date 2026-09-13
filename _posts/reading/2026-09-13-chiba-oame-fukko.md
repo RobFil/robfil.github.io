@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: reading
 title: "千葉県の大雨被害と復旧支援"
 date: 2026-09-13
 categories: [reading]

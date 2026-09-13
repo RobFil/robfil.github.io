@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: reading
 title: "リリース前の相談"
 date: 2026-09-13
 categories: [reading]

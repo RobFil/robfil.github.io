@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: reading
 title: "更新の日の朝"
 date: 2026-09-13
 categories: [reading]

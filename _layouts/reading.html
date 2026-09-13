@@ -1,0 +1,27 @@
+---
+layout: default
+---
+<link rel="stylesheet" href="{{ '/assets/css/reading.css' | relative_url }}">
+
+<main class="reading-shell" aria-label="Lesetext">
+  <nav class="reading-nav" aria-label="Lesetexte Navigation">
+    <a href="{{ '/reading/' | relative_url }}">Lesetexte</a>
+    <a href="{{ '/' | relative_url }}">Blog</a>
+  </nav>
+
+  {% if page.reading_time_minutes %}
+    <article class="reading-article">
+      <header class="reading-article-header">
+        <p class="reading-meta">{{ page.topic }} <span aria-hidden="true">/</span> {{ page.level }} <span aria-hidden="true">/</span> ca. {{ page.reading_time_minutes }} Min.</p>
+        <h1>{{ page.title }}</h1>
+      </header>
+      <div class="reading-prose">
+        {{ content }}
+      </div>
+    </article>
+  {% else %}
+    <section class="reading-index">
+      {{ content }}
+    </section>
+  {% endif %}
+</main>

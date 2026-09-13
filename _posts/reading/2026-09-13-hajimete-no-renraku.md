@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: reading
 title: "初めての連絡"
 date: 2026-09-13
 categories: [reading]
