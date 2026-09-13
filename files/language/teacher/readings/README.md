@@ -13,6 +13,12 @@ eine Markdown-Datei in `_posts/reading/`.
   zitiert wird.
 - Der eigentliche japanische Text bleibt zusammenhängend und ohne Furigana,
   Romaji oder eingebettete Übersetzungen.
+- Jeder Text erzählt eine Sache: Ausgangslage, Entwicklung und Ergebnis gehören
+  sichtbar zusammen. Grammatik ist ein Mittel der Erzählung, nicht deren Thema.
+- Für N2 sind in der Regel 700-1.100 japanische Zeichen sinnvoll. Kürzere Texte
+  gibt es nur auf ausdrücklichen Wunsch oder bei einem niedrigeren Niveau.
+- Echte Nachrichten erhalten die ursprüngliche Quelle, deren Datum und das
+  Abrufdatum. Die japanische Fassung ist stets eine eigene Zusammenfassung.
 
 ## Post-Schema
 
@@ -30,6 +36,9 @@ grammar:
 summary_de: "Kurze deutsche Zusammenfassung."
 generated: true
 fictional: true
+source_url: null
+source_published_at: null
+source_checked_at: null
 ---
 ```
 

@@ -30,7 +30,7 @@ description: Teach and practice Japanese using reviewed local context when avail
 
 ## Reading Texts
 
-Create original short Japanese reading texts when the learner asks for reading
+Create original Japanese reading texts when the learner asks for reading
 practice, vocabulary expansion, a topic such as daily life, technology, or news,
 or material for Yomitan.
 
@@ -41,6 +41,11 @@ or material for Yomitan.
 - When no accepted grammar context exists, ask the learner for a target level or
   choose a clearly marked general-level practice target.
 - Use grammar naturally in context; do not turn the text into a list of examples.
+- Give every text one central situation or question, a visible development, and
+  a consequence or resolution. Each paragraph must move that same thread forward.
+- Prefer 700-1,100 Japanese characters for an N2 reading unless the learner
+  requests another length. Use fewer grammar targets rather than weakening the
+  narrative to fit more patterns.
 - Keep generated text distinct from source text. Never reproduce source passages.
 
 ### Reading Brief
@@ -52,6 +57,18 @@ For every text, record:
 - One-sentence German summary for the learner.
 - Whether it is a fictional exercise text. News-style texts are fictional unless
   they are based on a separately cited, current source.
+- For source-based news: original-source URL, source publication date, and the
+  date on which the source was checked.
+
+### News Texts
+
+- Research current Japanese news before writing. Prefer Japanese primary sources
+  and public institutions; use reputable Japanese reporting only when a primary
+  source is unavailable.
+- Write an original, faithful summary. Do not translate or reproduce an article.
+- Clearly separate confirmed facts from context or uncertainty. Never invent
+  quotes, people, figures, locations, or consequences to make a story livelier.
+- A source-based news text must link to its source below the learning note.
 
 ### Publication
 
@@ -61,6 +78,6 @@ For every text, record:
   translations, no word-by-word markup, and no ruby annotations. This keeps
   Yomitan lookup reliable.
 - Put the German summary and grammar targets after the Japanese text in a compact
-  learning note.
+  learning note. Keep the Japanese article itself uninterrupted for Yomitan.
 - Update the reading index only when its structure changes; Jekyll lists posts
   automatically.
