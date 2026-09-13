@@ -15,3 +15,7 @@ permalink: /language/
   </li>
 {% endfor %}
 </ul>
+
+## Lesetexte
+
+- [Japanische Lesetexte](/reading/)
