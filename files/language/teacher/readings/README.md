@@ -17,6 +17,9 @@ eine Markdown-Datei in `_posts/reading/`.
   sichtbar zusammen. Grammatik ist ein Mittel der Erzählung, nicht deren Thema.
 - Für N2 sind in der Regel 700-1.100 japanische Zeichen sinnvoll. Kürzere Texte
   gibt es nur auf ausdrücklichen Wunsch oder bei einem niedrigeren Niveau.
+- Der Standard ist ein Paar aus zwei Texten mit insgesamt etwa 20 Minuten
+  Lernzeit. Jeder Post hat ungefähr 10 Minuten Lernzeit und trägt das Feld
+  `reading_time_minutes: 10`.
 - Echte Nachrichten erhalten die ursprüngliche Quelle, deren Datum und das
   Abrufdatum. Die japanische Fassung ist stets eine eigene Zusammenfassung.
 
@@ -30,6 +33,7 @@ date: 2026-09-13
 categories: [reading]
 topic: Technik
 level: N2
+reading_time_minutes: 10
 grammar:
   - "〜た上で"
   - "〜可能性があります"

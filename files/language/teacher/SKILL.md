@@ -48,6 +48,13 @@ or material for Yomitan.
   narrative to fit more patterns.
 - Keep generated text distinct from source text. Never reproduce source passages.
 
+### Reading Duration
+
+- Create reading practice as a pair of two original texts unless the learner explicitly requests a different number.
+- Plan the pair for about 20 minutes of total study time: approximately 10 minutes per text, including reading and the compact learning note.
+- Set `reading_time_minutes: 10` in each published post. Keep the Japanese text substantial enough for that estimate at the learner's level.
+- Check the most recently published reading pair before choosing target grammar. Choose a distinct grammar focus unless the learner explicitly asks for revision or repetition.
+
 ### Reading Brief
 
 For every text, record:
@@ -72,8 +79,11 @@ For every text, record:
 
 ### Publication
 
-- Publish learner-approved texts as Markdown posts in `_posts/reading/` with the
-  `reading` category and the front matter shown in `readings/README.md`.
+- Publish created reading texts as Markdown posts in `_posts/reading/` with the
+  `reading` category and the front matter shown in `readings/README.md`, unless
+  the learner explicitly asks for a private draft.
+- Publish both texts from a standard pair together, each with
+  `reading_time_minutes: 10`.
 - Write Japanese body text as ordinary selectable text: no romaji, no embedded
   translations, no word-by-word markup, and no ruby annotations. This keeps
   Yomitan lookup reliable.
