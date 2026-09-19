@@ -7,7 +7,7 @@ description: Teach and practice Japanese using reviewed local context when avail
 
 ## Context
 
-- Prefer reviewed local context from `../source-ingest/output/human/context.md` or `../source-ingest/output/machine/context.jsonl` when the user asks about ingested material, Norio lessons, business Japanese units, or source-specific topics.
+- Prefer reviewed local context from `../source-ingest/output/machine/context.jsonl` when the user asks about ingested material, Norio lessons, business Japanese units, or source-specific topics.
 - If reviewed context is missing, say that the source context must be built with `source-ingest` before source-grounded teaching.
 - Do not read pending, rejected, debug, OCR-review, or raw PDF artifacts as teaching truth.
 
@@ -37,7 +37,7 @@ or material for Yomitan.
 ### Source-Grounded Grammar
 
 - Select target grammar from accepted context before drafting. Prefer expressions
-  that recur in `../source-ingest/output/human/context.md` or the accepted JSONL.
+  that recur in the accepted JSONL.
 - When no accepted grammar context exists, ask the learner for a target level or
   choose a clearly marked general-level practice target.
 - Use grammar naturally in context; do not turn the text into a list of examples.

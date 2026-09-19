@@ -5,8 +5,7 @@
 - `input/pdfs/`: original PDF sources.
 - `input/text/`: manually exported or OCR-generated text files.
 - `output/machine/`: JSON and JSONL files for later programmatic training workflows.
-- `output/human/`: Markdown files for review, correction, and debugging by humans.
-- `output/debug/`: warnings, extraction logs, skipped pages, and uncertain chunks.
+- `output/debug/`: optional Markdown review files, page images, warnings, extraction logs, skipped pages, and uncertain chunks.
 
 ## Source Index and Review States
 
@@ -14,19 +13,19 @@ Use `output/machine/parsed_files_index.json` as the authoritative registry. Use 
 
 - `source_id`: stable identifier derived from the UTF-8 filename.
 - `sha256`: content hash used to detect new file versions.
-- `document_date`: ISO date inferred from a valid leading `YYYYMMDD` filename prefix or confirmed during review; otherwise `null`.
+- `document_date`: ISO date inferred from a valid leading `YYYYMMDD` filename prefix or corrected when needed; otherwise `null`.
 - `topic_group`: normalized thematic series title. Repeated documents may share it; a standalone PDF uses its own title.
 - `document_role`: source role such as `content`, `material`, `answer`, `exercise`, or `part-N`.
-- `status`: `pending_review`, `accepted`, `needs_retry`, `needs_manual_review`, `extraction_failed`, or `source_missing`.
+- `status`: `accepted`, `needs_retry`, `extraction_failed`, or `source_missing`. Text-bearing sources are accepted automatically.
 - `attempts`: number of deterministic extraction attempts for the current indexed source.
-- `artifact_jsonl`, `review_markdown`, and `review_images`: paths used for comparison and review.
-- `review_history`: timestamped AI decisions and evidence notes.
-- `excluded_pages`: reviewed 1-based page numbers omitted from accepted context, normally because they contain only secondary exercises with unreliable OCR or redundant material.
+- `artifact_jsonl`: path to the source records. `review_markdown` and `review_images` are optional debug paths, present only when debug review was explicitly requested.
+- `review_history`: timestamped corrective decisions and evidence notes, when an exception is handled.
+- `excluded_pages`: 1-based page numbers omitted from accepted context, normally because they contain only secondary exercises with unreliable OCR or redundant material.
 - `exclusion_reason`: required human-readable reason when `excluded_pages` is non-empty.
 
 `source_id` is derived from the UTF-8 filename and connects the source JSONL, review Markdown, page-image directory, and index entry. It is not the content hash. Use `sha256` to detect identical or changed file content.
 
-Never add `pending_review` content to the reviewed context. Rebuild `output/machine/context.jsonl` and `output/human/context.md` exclusively from entries with `status: accepted`, omitting every record whose page is listed in that source's `excluded_pages`. Preserve excluded records in the per-source JSONL for provenance.
+Rebuild `output/machine/context.jsonl` exclusively from entries with `status: accepted`, omitting every record whose page is listed in that source's `excluded_pages`. Preserve excluded records in the per-source JSONL for provenance.
 
 Group accepted context by `topic_group`. Order groups by their earliest `document_date`; order sources inside each group by date and then filename. Place undated groups and sources after dated ones. Treat inferred grouping as a reviewable suggestion, not as semantic ground truth.
 
@@ -64,9 +63,9 @@ Recommended optional fields:
 - `confidence`: `high`, `medium`, or `low` for automatic classification.
 - `notes`: extraction caveats or review notes.
 
-## Human Review Files
+## Optional Debug Review Files
 
-Maintain `output/human/review-index.md` as the user-facing map from original filenames to source IDs, statuses, review files, and page images. Start every source review Markdown with its original filename, source ID, document metadata, extraction method, attempt count, current status, artifact links, and review note. Then list extracted pages with page metadata:
+When `--debug-review` was used, maintain `output/human/review-index.md` as the local map from original filenames to source IDs, statuses, review files, and page images. Start every source review Markdown with its original filename, source ID, document metadata, extraction method, attempt count, current status, artifact links, and review note. Then list extracted pages with page metadata:
 
 ```markdown
 ## lesson.pdf, page 1

@@ -371,14 +371,9 @@ def rebuild_context(index: dict[str, Any], output_dir: Path) -> None:
         return (entry.get("document_date") or "9999-12-31", entry["source_file"].casefold())
 
     all_records: list[dict[str, Any]] = []
-    markdown = [
-        "# Reviewed Japanese Learning Context",
-        "",
-        "> Only source-faithful extractions accepted after visual and linguistic review.",
-        "",
-    ]
+    # Keep the per-source data machine-readable; human files are debug-only.
+    markdown: list[str] = []
     for topic_group, entries in ordered_groups:
-        markdown.extend([f"## Topic: {topic_group}", ""])
         for entry in sorted(entries, key=entry_sort_key):
             artifact = skill_root() / entry["artifact_jsonl"]
             excluded_pages = {int(page) for page in entry.get("excluded_pages") or []}
@@ -420,12 +415,10 @@ def rebuild_context(index: dict[str, Any], output_dir: Path) -> None:
                 )
 
     context_jsonl = output_dir / "machine" / "context.jsonl"
-    context_md = output_dir / "human" / "context.md"
     atomic_write_text(
         context_jsonl,
         "".join(json.dumps(record, ensure_ascii=False) + "\n" for record in all_records),
     )
-    atomic_write_text(context_md, "\n".join(markdown).rstrip() + "\n")
 
 
 def resolve_entry(index: dict[str, Any], selector: str) -> tuple[str, dict[str, Any]]:
@@ -528,12 +521,23 @@ def command_extract_new(args: argparse.Namespace) -> int:
             args.language_hint,
             source_metadata,
         )
-        write_source_artifacts(records, pages, machine_path, human_path)
-        rendered_pages = render_review_images(pdf_path, image_dir, args.review_dpi)
+        atomic_write_text(
+            machine_path,
+            "".join(json.dumps(record, ensure_ascii=False) + "\n" for record in records),
+        )
+        if args.debug_review:
+            write_source_artifacts(records, pages, machine_path, human_path)
+            rendered_pages = render_review_images(pdf_path, image_dir, args.review_dpi)
+            review_markdown = relative_to_skill(human_path)
+            review_images = relative_to_skill(image_dir)
+        else:
+            rendered_pages = 0
+            review_markdown = None
+            review_images = None
 
         attempts = int(existing.get("attempts", 0)) + 1 if existing else 1
         history = existing.get("review_history", []) if existing else []
-        status = "pending_review" if records else "extraction_failed"
+        status = "accepted" if records else "extraction_failed"
         index["files"][pdf_path.name] = {
             "source_file": pdf_path.name,
             "source_id": identifier,
@@ -548,13 +552,13 @@ def command_extract_new(args: argparse.Namespace) -> int:
             "status": status,
             "attempts": attempts,
             "parsed_at": now_utc(),
-            "accepted_at": None,
+            "accepted_at": now_utc() if records else None,
             "page_count": len(pages),
             "rendered_review_pages": rendered_pages,
             "record_count": len(records),
             "artifact_jsonl": relative_to_skill(machine_path),
-            "review_markdown": relative_to_skill(human_path),
-            "review_images": relative_to_skill(image_dir),
+            "review_markdown": review_markdown,
+            "review_images": review_images,
             "extraction": {
                 "pdf_method": pdf_method,
                 "ocr_mode": args.ocr,
@@ -574,7 +578,6 @@ def command_extract_new(args: argparse.Namespace) -> int:
 
     if changed_index:
         save_index(args.index, index)
-        refresh_review_outputs(index, args.output_dir)
         rebuild_context(index, args.output_dir)
     print(f"Extracted={extracted}, skipped={skipped}")
     return 0
@@ -613,8 +616,8 @@ def command_review(args: argparse.Namespace) -> int:
         raise ValueError(f"Excluded page numbers are outside the PDF: {invalid_pages}")
 
     if args.decision == "accept":
-        if entry.get("status") != "pending_review":
-            raise ValueError("Only a pending_review extraction can be accepted.")
+        if entry.get("status") not in {"pending_review", "needs_manual_review"}:
+            raise ValueError("Only a legacy pending or manual-review extraction can be accepted.")
         artifact = skill_root() / entry["artifact_jsonl"]
         remaining_records = [
             record
@@ -631,7 +634,7 @@ def command_review(args: argparse.Namespace) -> int:
         entry["status"] = "needs_retry"
         entry["accepted_at"] = None
     else:
-        entry["status"] = "needs_manual_review"
+        entry["status"] = "needs_retry"
         entry["accepted_at"] = None
 
     entry["review_notes"] = args.notes
@@ -646,7 +649,6 @@ def command_review(args: argparse.Namespace) -> int:
         }
     )
     save_index(args.index, index)
-    refresh_review_outputs(index, args.output_dir)
     rebuild_context(index, args.output_dir)
     print(f"{entry['status']:20} {name}")
     return 0
@@ -691,7 +693,7 @@ def build_parser() -> argparse.ArgumentParser:
     status.set_defaults(function=command_status)
 
     refresh = subparsers.add_parser(
-        "refresh-review", help="Refresh review Markdown headers and the review index."
+        "refresh-review", help="Refresh explicitly generated debug-review Markdown files."
     )
     add_common_paths(refresh)
     refresh.set_defaults(function=command_refresh_review)
@@ -714,6 +716,11 @@ def build_parser() -> argparse.ArgumentParser:
     extract.add_argument("--tesseract-cmd", type=Path)
     extract.add_argument("--tessdata-dir", type=Path)
     extract.add_argument("--review-dpi", type=int, default=150)
+    extract.add_argument(
+        "--debug-review",
+        action="store_true",
+        help="Also render local review Markdown and page images for extraction debugging.",
+    )
     extract.set_defaults(function=command_extract_new)
 
     review = subparsers.add_parser("review", help="Record the AI review decision.")

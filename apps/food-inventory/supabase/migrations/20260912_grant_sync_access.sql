@@ -3,4 +3,4 @@
 grant usage on schema public to authenticated;
 grant select on table public.households to authenticated;
 grant select, insert, update on table public.products to authenticated;
-grant select, insert on table public.inventory_events to authenticated;
+grant select, insert, update on table public.inventory_events to authenticated;

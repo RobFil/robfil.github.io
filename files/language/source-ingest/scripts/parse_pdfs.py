@@ -101,7 +101,7 @@ def default_ocr_language(language_profile: str, language_hint: str) -> str:
 
 
 def default_tessdata_dir() -> Path | None:
-    candidate = skill_root().parents[1] / ".venv" / "tools" / "tessdata"
+    candidate = skill_root().parents[2] / ".venv" / "tools" / "tessdata"
     return candidate if candidate.is_dir() else None
 
 
@@ -167,12 +167,15 @@ def write_outputs(
     language_detector: LanguageDetector | None = None,
     language_hint: str = "auto",
     language_profile: str = "none",
+    human_readable: bool = False,
 ) -> int:
     machine_dir = output_dir / "machine"
-    human_dir = output_dir / "human"
     debug_dir = output_dir / "debug"
-    for directory in (machine_dir, human_dir, debug_dir):
+    for directory in (machine_dir, debug_dir):
         directory.mkdir(parents=True, exist_ok=True)
+    human_dir = output_dir / "human"
+    if human_readable:
+        human_dir.mkdir(parents=True, exist_ok=True)
 
     machine_handles = {}
     human_blocks: dict[str, list[str]] = {}
@@ -211,19 +214,21 @@ def write_outputs(
                 machine_handles[theme] = (machine_dir / f"{theme}.jsonl").open("a", encoding="utf-8")
             machine_handles[theme].write(json.dumps(record, ensure_ascii=False) + "\n")
 
-            human_blocks.setdefault(theme, []).append(
-                f"## {page.source_file}, page {page.page}\n\n"
-                f"Theme: {theme}\nConfidence: {confidence}\n\n{page.text}\n"
-            )
+            if human_readable:
+                human_blocks.setdefault(theme, []).append(
+                    f"## {page.source_file}, page {page.page}\n\n"
+                    f"Theme: {theme}\nConfidence: {confidence}\n\n{page.text}\n"
+                )
             count += 1
     finally:
         for handle in machine_handles.values():
             handle.close()
 
-    for theme, blocks in human_blocks.items():
-        with (human_dir / f"{theme}.md").open("a", encoding="utf-8") as handle:
-            handle.write("\n---\n\n".join(blocks))
-            handle.write("\n")
+    if human_readable:
+        for theme, blocks in human_blocks.items():
+            with (human_dir / f"{theme}.md").open("a", encoding="utf-8") as handle:
+                handle.write("\n---\n\n".join(blocks))
+                handle.write("\n")
 
     if warnings:
         with (debug_dir / "extraction_warnings.txt").open("a", encoding="utf-8") as handle:
@@ -231,7 +236,7 @@ def write_outputs(
 
     manifest = {
         "records_written": count,
-        "themes": sorted(human_blocks),
+        "themes": sorted(machine_handles),
         "warnings": len(warnings),
         "language_profile": language_profile,
         "language_hint": language_hint,
@@ -278,6 +283,11 @@ def main(argv: list[str] | None = None) -> int:
     )
     parser.add_argument("--ocr-dpi", type=int, default=300)
     parser.add_argument("--ocr-psm", type=int, default=3)
+    parser.add_argument(
+        "--human-readable",
+        action="store_true",
+        help="Write optional Markdown copies for local debugging.",
+    )
     parser.add_argument("--tesseract-cmd", type=Path)
     parser.add_argument(
         "--tessdata-dir",
@@ -326,6 +336,7 @@ def main(argv: list[str] | None = None) -> int:
         language_detector=language_detector,
         language_hint=args.language_hint,
         language_profile=args.language_profile,
+        human_readable=args.human_readable,
     )
     print(f"Processed {len(pdfs)} PDF(s), wrote {count} text record(s).")
     for filename, method in methods.items():
