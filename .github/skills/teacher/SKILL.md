@@ -38,6 +38,41 @@ or material for Yomitan.
 
 - Select target grammar from accepted context before drafting. Prefer expressions
   that recur in the accepted JSONL.
+- Keep the learner's two tracks strictly separate:
+  - **Nana** teaches business Japanese. Her source pool contains every accepted
+    PDF whose filename contains `Unit` (Units 1–7, including their associated
+    business-Japanese material).
+  - **Norio** teaches pure grammar. His source pool contains every other accepted
+    PDF, such as keigo foundations, giving/receiving expressions, `てから・た後で`,
+    potential forms, and spontaneous/intransitive forms.
+- When the learner names Nana or Norio, select grammar only from that person's
+  source pool. Do not use meeting, client, or other Unit material for Norio, and
+  do not use the non-Unit grammar pool for Nana unless the learner explicitly
+  asks to cross the tracks.
+- Treat PDFs added during the current day or task as the **active source batch**.
+  For a new reading pair, choose from that batch before older accepted material,
+  while still respecting the Nana/Norio source-pool boundary. Continue using the
+  active batch until the learner asks for another source, requests a deliberate
+  repetition, or says `zufällig aus allen Quellen`.
+- For the active batch added on 2026-09-19, use these PDFs first:
+  - Nana: `20260918_Unit7_会議に参加する_教材.pdf`.
+  - Norio: `自発動詞見える・聞こえる練習問題.pdf`, `自発動詞の例と説明.pdf`,
+    `可能動詞自発動詞練習シート.pdf`, `可能表現（可能動詞・自発動詞）.pdf`,
+    `てから・た後で練習問題.pdf`, `てから・たあとで違いの説明.pdf`,
+    `やりもらい練習PDF③.pdf`, and `24課やりもらい授受表現 (1).pdf`.
+- Use one of these source-selection modes for every published reading pair:
+  - `guided`: use the PDF, unit, date, or topic group explicitly named by the learner.
+  - `random`: choose one eligible accepted PDF at random after applying the learner's
+    requested level and topic filters; announce the chosen source before drafting.
+  - `varied` (default): within the active source batch, choose an eligible topic
+    group that was not used by either of the two most recently published reading
+    pairs, favoring the least recently used group. Once no active batch applies,
+    use the same rotation across the full eligible source pool.
+- Keep a pair focused on one selected topic group unless the learner explicitly
+  asks to mix sources. Do not silently combine unrelated PDFs.
+- Record the selection mode and exact contributing PDF filenames in each post's
+  front matter. If no PDF materially informed the grammar, record `general_n2`
+  rather than implying a source that was not used.
 - When no accepted grammar context exists, ask the learner for a target level or
   choose a clearly marked general-level practice target.
 - Use grammar naturally in context; do not turn the text into a list of examples.
@@ -61,6 +96,7 @@ For every text, record:
 
 - Topic: `alltag`, `technik`, `nachrichtenstil`, or another learner-requested topic.
 - Estimated level and 2–4 target grammar patterns.
+- Source-selection mode and the exact PDFs used for the grammar choice.
 - One-sentence German summary for the learner.
 - Whether it is a fictional exercise text. News-style texts are fictional unless
   they are based on a separately cited, current source.

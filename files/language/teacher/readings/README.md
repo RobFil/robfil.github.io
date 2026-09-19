@@ -37,6 +37,9 @@ reading_time_minutes: 10
 grammar:
   - "〜た上で"
   - "〜可能性があります"
+source_selection: varied # guided | random | varied | active_batch | general_n2
+learning_sources:
+  - "20260607_Unit4_不具合・障害報告_教材.pdf"
 summary_de: "Kurze deutsche Zusammenfassung."
 generated: true
 fictional: true
@@ -48,4 +51,6 @@ source_checked_at: null
 
 Unterhalb des japanischen Texts folgt eine kurze Lernnotiz mit den verwendeten
 Grammatikmustern. Die Front Matter ist zugleich die maschinenlesbare Zuordnung
-für spätere Auswahl- und Wiederholungslogik.
+für spätere Auswahl- und Wiederholungslogik. `learning_sources` enthält nur PDFs,
+die die Grammatikwahl tatsächlich beeinflusst haben; bei allgemeinem Material
+steht dort `general_n2`.
