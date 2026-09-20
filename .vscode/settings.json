@@ -1,4 +1,5 @@
 {
     "python.analysis.autoImportCompletions": false,
-    "chatgpt.openOnStartup": true
+    "chatgpt.openOnStartup": true,
+    "chat.promptFiles": true
 }

@@ -1,0 +1,6 @@
+interface:
+  display_name: "Japanese Teacher (Legacy)"
+  short_description: "Kompatibilitätsroute für die spezialisierten Teacher-Skills."
+  default_prompt: "Choose the appropriate Japanese teacher workflow."
+policy:
+  allow_implicit_invocation: false

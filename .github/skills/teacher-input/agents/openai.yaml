@@ -1,0 +1,4 @@
+interface:
+  display_name: "Japanese Teacher Input"
+  short_description: "Lernquellen importieren und geprüften Kontext erzeugen."
+  default_prompt: "Use $teacher-input to ingest the supplied Japanese learning material and rebuild the reviewed context."

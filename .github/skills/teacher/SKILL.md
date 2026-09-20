@@ -5,6 +5,12 @@ description: Teach and practice Japanese using reviewed local context when avail
 
 # Japanese Teacher
 
+> Legacy router: use `teacher-input` for source preparation, `teacher-write`
+> for creating or publishing reading posts, and `teacher-read` for a
+> source-bound reading session. Do not use the remaining historical sections
+> below for those requests; they are retained only for compatibility with older
+> prompts.
+
 ## Context
 
 - Prefer reviewed local context from `../source-ingest/output/machine/context.jsonl` when the user asks about ingested material, Norio lessons, business Japanese units, or source-specific topics.
@@ -81,6 +87,37 @@ or material for Yomitan.
 - Prefer 700-1,100 Japanese characters for an N2 reading unless the learner
   requests another length. Use fewer grammar targets rather than weakening the
   narrative to fit more patterns.
+
+### Ongoing Mixed Reading Plan
+
+The learner wants a continuing, varied revision routine: one new reading every
+day or every second day, with genuinely different material rather than the same
+few sources recurring.
+
+- Treat `random` as a **shuffled deck**, not repeated independent draws. Within
+  the applicable source pool, select each eligible topic group once in a random
+  order before beginning a new shuffled round.
+- Determine the current position from the published posts' front matter:
+  `learning_sources`, `source_selection`, `topic`, and `date` are the rotation
+  record. Do not require a separate learner-state file for this.
+- First exclude topic groups used in the current round. If every group has been
+  used, start a new round and randomly order all eligible groups again.
+- Do not select the same topic group as either of the two most recently
+  published texts when another eligible group exists, even at the start of a
+  new round.
+- Keep the two learning tracks separate while rotating:
+  - **Business / Nana:** rotate only through all accepted `Unit` topic groups.
+  - **Alltag / Norio:** rotate only through all accepted non-`Unit` grammar
+    topic groups.
+- When a learning session contains several texts, vary their form as well:
+  include dialogue or role-play regularly, use one business text when requested,
+  and use an everyday-life text that revises two or three compatible standard
+  grammar topics when requested. A dialogue may be a realistic everyday
+  situation, such as a restaurant, shop, neighbour, or travel encounter.
+- Announce the selected topic group(s) and whether they continue or start a
+  shuffled round before drafting. Record `source_selection: random` for a
+  shuffled-deck selection; use `guided` only when the learner directly names a
+  source or grammar topic.
 - Keep generated text distinct from source text. Never reproduce source passages.
 
 ### Reading Duration

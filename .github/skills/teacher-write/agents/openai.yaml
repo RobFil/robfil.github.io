@@ -1,0 +1,4 @@
+interface:
+  display_name: "Japanese Teacher Write"
+  short_description: "Quellenbasierte japanische Lesetexte schreiben."
+  default_prompt: "Use $teacher-write to create a source-grounded Japanese reading post from the reviewed learning context."

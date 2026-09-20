@@ -2,3 +2,5 @@ interface:
   display_name: "Japanese Teacher"
   short_description: "Japanisch ueben, korrigieren und vertiefen."
   default_prompt: "Use $teacher to practice reviewed Japanese topics with fresh drills or role-play and concise corrective feedback."
+policy:
+  allow_implicit_invocation: false
