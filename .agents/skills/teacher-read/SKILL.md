@@ -35,22 +35,37 @@ Conduct a source-bound Japanese reading session. Speak Japanese by default.
   questions against the source, clearly distinguishing explanation from what the
   text explicitly says.
 - Treat every recognisable pause in the learner's reading as the end of a
-  reading segment. Identify the exact corresponding source span and compare the
-  complete segment before continuing; do not wait for the learner to ask for
-  feedback.
-- Compare every spoken word in that source span with the original text's
-  intended reading. Check for omissions, additions, substitutions, wrong kanji
-  readings, pronunciation errors, and word-choice changes. Do not assess only a
-  conspicuous word or assume that the remainder was correct.
-- Check the learner's reading, pronunciation and word choice critically against
-  the source text, including the intended reading of its kanji.
+  reading segment. Before giving feedback or advancing, locate the exact
+  consecutive source span that the learner just read, beginning at the current
+  unchecked source position. Do not merely find a similar phrase elsewhere in
+  the text. Compare that whole span, then advance the source position only by
+  the span that was established.
+- If a pause cuts through a sentence, still check the partial source span at
+  that pause. On the next attempt, resume at the first unchecked character
+  unless the learner explicitly repeats material. Never defer a segment's
+  check until the end of a sentence or paragraph.
+- A temporary local reading index may be prepared before the session when it
+  makes repeated matching faster. It may contain ordered source spans and their
+  intended kana readings, but is only an aid: retain the visible browser page
+  as the source of truth and verify each matched span against it. Do not use a
+  local index to substitute for an unavailable or changed source page.
+- This is a literal reading check, not a comprehension or plausibility check.
+  Convert the complete source span to its intended spoken reading and compare
+  the learner's spoken sequence word by word and in order, including morae,
+  long vowels, gemination, particles, and inflection. A semantically
+  equivalent paraphrase, a different grammatical form, or an otherwise sensible
+  substitution is still a reading error.
+- Check for every omission, addition, substitution, changed particle, wrong
+  kanji reading, and pronunciation error. Do not assess only a conspicuous word
+  or assume that the remainder was correct. Do not use whether the content still
+  makes sense as evidence that the reading was correct.
 - Voice transcription is imperfect evidence. Kana-versus-kanji conversion,
   homophone conversion, and recognizer spelling are not pronunciation mistakes.
   Compare the recognised pronunciation with the source rather than judging its
   kanji conversion. If the transcription is partial, misaligned, or otherwise
-  too ambiguous for a complete comparison, say in Japanese that it was not
-  heard clearly and request a repetition. Keep the source position unchanged;
-  never infer that omitted recognition was correct.
+  too ambiguous to establish the exact spoken sequence, say in Japanese that it
+  was not heard clearly and request a repetition. Keep the source position
+  unchanged; never infer that omitted recognition was correct.
 - Treat `nani`, `nani nani`, `何`, and likely speech-to-text variants as an
   explicit request for reading help, never as a correct reading. Locate the
   closest unclear word in the current source segment, give its kana reading and
