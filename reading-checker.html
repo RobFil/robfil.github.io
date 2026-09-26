@@ -1,0 +1,145 @@
+---
+layout: null
+title: Japanese Reading Checker
+permalink: /reading-checker/
+---
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Japanese Reading Checker</title>
+  <style>
+    :root { color-scheme: light dark; font-family: system-ui, sans-serif; }
+    body { margin: 0; background: #f5f5f2; color: #202321; }
+    main { max-width: 860px; margin: 0 auto; padding: 2rem 1rem 4rem; }
+    h1 { margin-bottom: .25rem; } .lead { color: #5d625e; margin-top: 0; }
+    .panel { background: #fff; border: 1px solid #d9ddd8; border-radius: 12px; padding: 1rem; margin: 1rem 0; }
+    label { display: block; font-weight: 650; margin: .7rem 0 .3rem; }
+    textarea, input[type=file] { box-sizing: border-box; width: 100%; font: inherit; }
+    textarea { min-height: 10rem; padding: .7rem; border: 1px solid #aeb5ae; border-radius: 7px; }
+    button { border: 0; border-radius: 7px; padding: .65rem .9rem; margin: .75rem .45rem 0 0; font: inherit; font-weight: 650; cursor: pointer; background: #176b42; color: #fff; }
+    button.secondary { background: #e8ece7; color: #202321; } button.danger { background: #8d3131; }
+    button:disabled { opacity: .5; cursor: not-allowed; }
+    .hidden { display: none; }
+    #source { font-size: 1.35rem; line-height: 1.85; white-space: pre-wrap; }
+    #status { font-weight: 700; } .ok { color: #126438; } .problem { color: #9e2e2e; } .uncertain { color: #805c00; }
+    .compare { display: grid; gap: .75rem; grid-template-columns: 1fr 1fr; }
+    .compare section { padding: .75rem; background: #f5f7f4; border-radius: 7px; }
+    .compare p { margin: .2rem 0; white-space: pre-wrap; line-height: 1.6; }
+    .note { font-size: .92rem; color: #59605a; } code { background: #edf0eb; padding: .1rem .25rem; border-radius: 4px; }
+    @media (prefers-color-scheme: dark) { body { background: #171918; color: #e7e9e5; } .panel { background:#202321; border-color:#404640; } textarea { background:#171918; border-color:#626a62; } .compare section, code { background:#2a2e2a; } .lead,.note { color:#bdc5bd; } button.secondary { background:#3d443e; color:#fff; } }
+    @media (max-width: 600px) { .compare { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Japanese Reading Checker</h1>
+    <p class="lead">Deterministischer Vergleich pro Satz – kein Gesprächsmodus, keine frei erfundenen Korrekturen.</p>
+
+    <section class="panel" id="setup">
+      <label for="file">Jekyll-Lesetext laden (optional)</label>
+      <input id="file" type="file" accept=".md,text/markdown,text/plain">
+      <label for="text">Oder japanischen Text einfügen</label>
+      <textarea id="text" lang="ja" placeholder="日本語の本文を貼り付けてください。"></textarea>
+      <button id="start">Prüfsitzung starten</button>
+      <p class="note">Diese Seite lädt den Text nicht auf einen Server hoch. Markdown-Front-Matter und <code>## Lernnotiz</code> werden automatisch entfernt. Die Browser-Spracherkennung kann je nach Browser einen Anbieter-Dienst verwenden.</p>
+    </section>
+
+    <section class="panel hidden" id="reader">
+      <p id="progress"></p>
+      <div id="source" lang="ja"></div>
+      <button id="record">🎙 Aufnahme starten</button>
+      <button id="stop" class="secondary" disabled>Aufnahme stoppen</button>
+      <label for="heard">Erkannter Text – bei Bedarf korrigieren</label>
+      <textarea id="heard" lang="ja" placeholder="Die Spracherkennung schreibt hier hinein. Manuelle Eingabe ist ebenfalls möglich."></textarea>
+      <button id="check">Lesung prüfen</button>
+      <button id="skip" class="secondary">Als ungeprüft überspringen</button>
+      <button id="reset" class="danger">Sitzung beenden</button>
+      <p id="status" aria-live="polite"></p>
+      <div class="compare hidden" id="comparison">
+        <section><strong>Original</strong><p id="expected" lang="ja"></p></section>
+        <section><strong>Erkannt</strong><p id="actual" lang="ja"></p></section>
+      </div>
+      <p class="note">„Korrekt“ bedeutet: gleiche Zeichenfolge nach Entfernen von Leerzeichen, Satzzeichen und klaren Füllwörtern wie <code>えー</code> oder <code>えっと</code>. Eine kurze Selbstkorrektur wird akzeptiert, wenn die vollständige Endfassung in Reihenfolge erkannt wird. Bei abweichender Kanji-Umwandlung oder unsicherer Erkennung wird absichtlich nicht geraten.</p>
+    </section>
+  </main>
+  <script>
+    (() => {
+      const $ = id => document.getElementById(id);
+      const state = { segments: [], index: 0, recognition: null };
+      const stripFillers = value => value.replace(/(?:えー+|ええー+|えっと|えーっと|うーん+|あのー+)(?:[、。！？!?\s　]|$)/g, ' ');
+      const normalize = value => stripFillers(value).normalize('NFKC').replace(/[\s　、。！？!?「」『』（）()\[\]…]/g, '');
+      const helpSignal = value => /何々|何|なになに|〇〇|○○|nani\s*nani|nani/i.test(value);
+      const subsequenceExtras = (expected, heard) => {
+        let position = 0;
+        for (const character of heard) if (character === expected[position]) position += 1;
+        return position === expected.length ? heard.length - expected.length : null;
+      };
+      const stripMarkdown = value => value
+        .replace(/^---\r?\n[\s\S]*?\r?\n---\s*\r?\n/, '')
+        .replace(/\r\n?/g, '\n')
+        .replace(/\n## Lernnotiz[\s\S]*$/, '')
+        .trim();
+      const splitSentences = value => (value.match(/[^。！？\n]+[。！？]?/g) || []).map(s => s.trim()).filter(Boolean);
+      const current = () => state.segments[state.index] || '';
+      const setStatus = (text, kind) => { $('status').textContent = text; $('status').className = kind || ''; };
+      const showCurrent = () => {
+        const source = current();
+        $('source').textContent = source;
+        $('progress').textContent = `Satz ${state.index + 1} von ${state.segments.length}`;
+        $('heard').value = ''; $('comparison').classList.add('hidden'); setStatus('', '');
+        if (!source) { setStatus('Text beendet.', 'ok'); $('record').disabled = $('check').disabled = $('skip').disabled = true; }
+      };
+      const advance = (message) => { state.index += 1; showCurrent(); if (message) setStatus(message, 'uncertain'); };
+
+      $('file').addEventListener('change', event => {
+        const selected = event.target.files[0]; if (!selected) return;
+        const reader = new FileReader();
+        reader.onload = () => { $('text').value = stripMarkdown(String(reader.result)); };
+        reader.readAsText(selected, 'utf-8');
+      });
+
+      $('start').addEventListener('click', () => {
+        state.segments = splitSentences(stripMarkdown($('text').value)); state.index = 0;
+        if (!state.segments.length) { setStatus('Bitte zuerst japanischen Text laden oder einfügen.', 'problem'); return; }
+        $('setup').classList.add('hidden'); $('reader').classList.remove('hidden'); showCurrent();
+      });
+
+      $('check').addEventListener('click', () => {
+        const expected = current(), heard = $('heard').value.trim();
+        if (!heard) { setStatus('Keine Lesung erkannt. Bitte wiederholen oder den Text eintragen.', 'uncertain'); return; }
+        $('expected').textContent = expected; $('actual').textContent = heard; $('comparison').classList.remove('hidden');
+        const expectedNormalized = normalize(expected), heardNormalized = normalize(heard);
+        const extraCharacters = subsequenceExtras(expectedNormalized, heardNormalized);
+        if (expectedNormalized === heardNormalized) {
+          setStatus('tadashii', 'ok');
+          window.setTimeout(() => advance(''), 500);
+        } else if (extraCharacters !== null && extraCharacters <= Math.max(12, Math.ceil(expectedNormalized.length * .35))) {
+          setStatus('Selbst korrigiert – akzeptiert.', 'ok');
+          window.setTimeout(() => advance(''), 500);
+        } else if (helpSignal(heard)) {
+          setStatus('Lesehilfe benötigt. Vergleiche den Originalsatz; der Fortschritt bleibt stehen.', 'uncertain');
+        } else {
+          setStatus('Abweichung erkannt. Bitte den Originalsatz mit der erkannten Lesung vergleichen und wiederholen – oder bewusst überspringen.', 'problem');
+        }
+      });
+
+      $('skip').addEventListener('click', () => advance('Als ungeprüft übersprungen.'));
+      $('reset').addEventListener('click', () => { if (state.recognition) state.recognition.stop(); $('reader').classList.add('hidden'); $('setup').classList.remove('hidden'); });
+
+      const Recognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+      if (!Recognition) { $('record').disabled = $('stop').disabled = true; $('record').title = 'Spracherkennung wird von diesem Browser nicht unterstützt.'; }
+      else {
+        const recognition = state.recognition = new Recognition();
+        recognition.lang = 'ja-JP'; recognition.interimResults = false; recognition.continuous = false; recognition.maxAlternatives = 1;
+        recognition.onstart = () => { $('record').disabled = true; $('stop').disabled = false; setStatus('Ich höre zu …', 'uncertain'); };
+        recognition.onend = () => { $('record').disabled = false; $('stop').disabled = true; };
+        recognition.onerror = event => setStatus(`Spracherkennung: ${event.error}. Du kannst die Lesung unten manuell eintragen.`, 'problem');
+        recognition.onresult = event => { $('heard').value = event.results[0][0].transcript; setStatus('Lesung erkannt. Jetzt prüfen.', 'uncertain'); };
+        $('record').addEventListener('click', () => recognition.start()); $('stop').addEventListener('click', () => recognition.stop());
+      }
+    })();
+  </script>
+</body>
+</html>

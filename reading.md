@@ -4,6 +4,8 @@ title: Lesetexte
 permalink: /reading/
 ---
 
+<p><a href="{{ '/reading-checker/' | relative_url }}">Programmatischer Reading Checker</a> – Lesetext lokal laden, Satz für Satz sprechen und deterministisch vergleichen.</p>
+
 {% assign reading_posts = site.categories.reading %}
 <div class="reading-list">
 {% for post in reading_posts %}
