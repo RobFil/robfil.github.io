@@ -1,7 +1,7 @@
 [CmdletBinding()]
 param(
     [Parameter(Mandatory = $true)]
-    [ValidateSet('initialize', 'context', 'compare', 'advance', 'status', 'version')]
+    [ValidateSet('initialize', 'context', 'compare', 'advance', 'skip', 'status', 'version')]
     [string]$Command,
 
     [string]$InputPath,
@@ -159,6 +159,20 @@ switch ($Command) {
         $state.cursor = $cursor + $Text.Length
         Write-Utf8Json $state $StatePath
         Write-Result ([ordered]@{ status = 'advanced'; cursor = $state.cursor })
+    }
+    'skip' {
+        $state = Read-State $StatePath
+        $skippedText = Get-CurrentSentence $state
+        if ([string]::IsNullOrEmpty($skippedText)) { throw 'There is no unread source text to skip.' }
+        $state.cursor = [int]$state.cursor + $skippedText.Length
+        $record = [ordered]@{
+            status = 'skipped_unverified'
+            cursor = $state.cursor
+            skipped_text = $skippedText
+        }
+        $state | Add-Member -NotePropertyName last_skip -NotePropertyValue $record -Force
+        Write-Utf8Json $state $StatePath
+        Write-Result $record
     }
     'status' {
         $state = Read-State $StatePath

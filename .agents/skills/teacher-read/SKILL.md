@@ -20,6 +20,21 @@ receive `tadashii`. For `review_required` or `reading_help_required`, praise,
 scene comments, encouragement and `continue` prompts are prohibited. Begin
 directly with the source-grounded correction or reading help.
 
+## Learner-controlled progress
+
+The learner may decline a repetition after receiving a correction. Treat a
+standalone instruction, or a clear control clause after correction, such as
+`weiter`, `überspringen`, `nächster Satz`,
+`もう分かった`, `分かりました`, `大丈夫、次へ`, `次へ`, `先へ`, `進もう`, or `スキップ`
+as a session-control request, not as source reading. Do not argue, reteach, or
+ask for one more attempt.
+
+Run `skip` on the local source state. It advances exactly one currently unread
+source sentence and records it as `skipped_unverified`. Reply once, concisely,
+for example `了解です。この文は未確認として次へ進みます。` Then accept the next
+source sentence immediately. A skipped sentence is neither correct nor wrong;
+do not mention it again unless the learner asks to revisit it.
+
 ## Skill version check
 
 The authoritative version is the single-line `VERSION` file in this skill
