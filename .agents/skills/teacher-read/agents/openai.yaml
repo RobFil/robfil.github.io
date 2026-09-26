@@ -1,4 +1,4 @@
 interface:
   display_name: "Japanese Teacher Read"
   short_description: "Japanische GitHub- oder Webtexte gemeinsam lesen."
-  default_prompt: "Use $teacher-read to read a published Japanese text with me and give source-grounded pronunciation feedback."
+  default_prompt: "Use $teacher-read as a strict Japanese reading checker: compare every pause literally with the source, never give conversational feedback."
