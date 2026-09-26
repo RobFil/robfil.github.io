@@ -57,6 +57,38 @@ that returned text; never infer, paraphrase, synonym-substitute or complete it
 from the scene. In particular, a plausible word such as `縁` may not be offered
 unless those exact characters occur in the returned source span.
 
+Also call `compare` with the complete recognised learner segment before writing
+any feedback. It returns the exact current source sentence and a decision:
+
+- `surface_match`: the transcript has the same literal source characters apart
+  from punctuation and spacing. Perform the remaining pronunciation check;
+  only then may `tadashii` or `advance` be used.
+- `reading_help_required`: a placeholder such as `何々` was detected. Do not
+  praise, assess the rest as correct, or advance. Identify the unknown word
+  exclusively from `expected_text`, then give its source spelling, hiragana
+  reading and a concise explanation. Still compare the whole segment: if the
+  surrounding sequence also differs, report each clear error in source order;
+  never let a help signal hide an earlier or later reading error.
+- `review_required`: the literal sequences differ. Positive feedback is
+  forbidden. Compare the returned `expected_text` against the transcript in
+  order, correct every clear omission, addition, substitution, reordering and
+  contraction, and request a repetition from the earliest mismatch. If a
+  kanji-versus-kana transcription conversion might account for part of the
+  difference, ask for a repetition rather than declaring it correct.
+
+For example, a reading that changes `弱くなったり強くなったり` to
+`強くなったり弱くなったり強くなったり`, says `何々`, or shortens
+`気にしていた` to `気にしてた` must return `review_required` or
+`reading_help_required`; it can never receive a generic acknowledgement such
+as `いいですね`.
+
+This is a hard response gate: until `surface_match` and the pronunciation check
+both succeed, do not comment on the scene, effort, fluency, plausibility or
+progress. The reply must consist only of source-grounded correction, reading
+help, or a repetition request. For the example above, correct the sequence as
+`弱くなったり強くなったり`, give `端（はし）`, correct `気にしていた`, and ask
+for a repeat; do not call any part of it correct.
+
 After, and only after, an exact comparison, call `advance` with the exact source
 text that was confirmed. The script refuses any non-consecutive or altered
 text. Do not call `advance` for a correction, a help request, a filler, a

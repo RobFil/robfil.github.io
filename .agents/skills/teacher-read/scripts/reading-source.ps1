@@ -1,7 +1,7 @@
 [CmdletBinding()]
 param(
     [Parameter(Mandatory = $true)]
-    [ValidateSet('initialize', 'context', 'advance', 'status')]
+    [ValidateSet('initialize', 'context', 'compare', 'advance', 'status')]
     [string]$Command,
 
     [string]$InputPath,
@@ -30,6 +30,17 @@ function Read-State([string]$Path) {
 
 function Write-Result([object]$Value) {
     $Value | ConvertTo-Json -Depth 5 -Compress
+}
+
+function Get-ComparableText([string]$Value) {
+    return $Value -replace '[\s\u3000\u3001\u3002\uFF01\uFF1F!?\u300C\u300D\u300E\u300F\uFF08\uFF09()]', ''
+}
+
+function Get-CurrentSentence([object]$State) {
+    $remainder = $State.exact_text.Substring([int]$State.cursor)
+    $match = [regex]::Match($remainder, '^.*?[\u3002\uFF01\uFF1F]')
+    if ($match.Success) { return $match.Value }
+    return $remainder
 }
 
 switch ($Command) {
@@ -65,6 +76,34 @@ switch ($Command) {
         $start = [int]$state.cursor
         $length = [Math]::Min([Math]::Max($Width, 1), $state.exact_text.Length - $start)
         Write-Result ([ordered]@{ cursor = $start; end = $start + $length; text = $state.exact_text.Substring($start, $length) })
+    }
+    'compare' {
+        if ([string]::IsNullOrWhiteSpace($Text)) { throw 'Text is required for compare.' }
+        $state = Read-State $StatePath
+        $expected = Get-CurrentSentence $state
+        $hasHelpSignal = [regex]::IsMatch($Text, '\u4F55\u3005|\u306A\u306B\u306A\u306B|\u3007\u3007|\u25CB\u25CB|nani\s*nani|nani', [System.Text.RegularExpressions.RegexOptions]::IgnoreCase)
+        $expectedComparable = Get-ComparableText $expected
+        $transcriptComparable = Get-ComparableText $Text
+        if ($hasHelpSignal) {
+            $decision = 'reading_help_required'
+        }
+        elseif ($expectedComparable -ceq $transcriptComparable) {
+            $decision = 'surface_match'
+        }
+        else {
+            $decision = 'review_required'
+        }
+        $result = [ordered]@{
+            decision = $decision
+            cursor = [int]$state.cursor
+            expected_text = $expected
+            transcript = $Text
+            source_sha256 = $state.source_sha256
+            advance_allowed = ($decision -eq 'surface_match')
+        }
+        $state | Add-Member -NotePropertyName last_comparison -NotePropertyValue $result -Force
+        Write-Utf8Json $state $StatePath
+        Write-Result $result
     }
     'advance' {
         if ([string]::IsNullOrEmpty($Text)) { throw 'Text is required for advance.' }
