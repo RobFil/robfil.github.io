@@ -1,11 +1,10 @@
 [CmdletBinding()]
 param(
     [Parameter(Mandatory = $true)]
-    [ValidateSet('initialize', 'context', 'compare', 'advance', 'status')]
+    [ValidateSet('initialize', 'context', 'compare', 'advance', 'status', 'version')]
     [string]$Command,
 
     [string]$InputPath,
-    [Parameter(Mandatory = $true)]
     [string]$StatePath,
     [int]$Width = 120,
     [string]$Text
@@ -22,10 +21,17 @@ function Write-Utf8Json([object]$Value, [string]$Path) {
 }
 
 function Read-State([string]$Path) {
+    if ([string]::IsNullOrWhiteSpace($Path)) {
+        throw 'StatePath is required for this command.'
+    }
     if (-not (Test-Path -LiteralPath $Path -PathType Leaf)) {
         throw "Reading state not found: $Path"
     }
     return Get-Content -LiteralPath $Path -Raw -Encoding utf8 | ConvertFrom-Json
+}
+
+function Get-FileSha256([string]$Path) {
+    return (Get-FileHash -LiteralPath $Path -Algorithm SHA256).Hash.ToLowerInvariant()
 }
 
 function Write-Result([object]$Value) {
@@ -43,7 +49,44 @@ function Get-CurrentSentence([object]$State) {
     return $remainder
 }
 
+function Get-ConfirmedPrefix([string]$Source, [string]$Transcript) {
+    $target = Get-ComparableText $Transcript
+    if ([string]::IsNullOrEmpty($target)) { return $null }
+    $candidate = ''
+    for ($index = 0; $index -lt $Source.Length; $index++) {
+        $candidate += Get-ComparableText ([string]$Source[$index])
+        if (-not $target.StartsWith($candidate, [System.StringComparison]::Ordinal)) {
+            return $null
+        }
+        if ($candidate -ceq $target) {
+            $end = $index + 1
+            while ($end -lt $Source.Length -and (Get-ComparableText ([string]$Source[$end])).Length -eq 0) {
+                $end++
+            }
+            return $Source.Substring(0, $end)
+        }
+    }
+    return $null
+}
+
+if ($Command -ne 'version' -and [string]::IsNullOrWhiteSpace($StatePath)) {
+    throw 'StatePath is required for this command.'
+}
+
 switch ($Command) {
+    'version' {
+        $skillRoot = Split-Path -Parent $PSScriptRoot
+        $versionPath = Join-Path $skillRoot 'VERSION'
+        $skillPath = Join-Path $skillRoot 'SKILL.md'
+        if (-not (Test-Path -LiteralPath $versionPath) -or -not (Test-Path -LiteralPath $skillPath)) {
+            throw 'The skill version files are incomplete.'
+        }
+        Write-Result ([ordered]@{
+            skill_version = (Get-Content -LiteralPath $versionPath -Raw -Encoding ascii).Trim()
+            skill_sha256 = Get-FileSha256 $skillPath
+            script_sha256 = Get-FileSha256 $PSCommandPath
+        })
+    }
     'initialize' {
         if (-not $InputPath) { throw 'InputPath is required for initialize.' }
         $resolved = (Resolve-Path -LiteralPath $InputPath -ErrorAction Stop).Path
@@ -81,14 +124,13 @@ switch ($Command) {
         if ([string]::IsNullOrWhiteSpace($Text)) { throw 'Text is required for compare.' }
         $state = Read-State $StatePath
         $expected = Get-CurrentSentence $state
-        $hasHelpSignal = [regex]::IsMatch($Text, '\u4F55\u3005|\u306A\u306B\u306A\u306B|\u3007\u3007|\u25CB\u25CB|nani\s*nani|nani', [System.Text.RegularExpressions.RegexOptions]::IgnoreCase)
-        $expectedComparable = Get-ComparableText $expected
-        $transcriptComparable = Get-ComparableText $Text
-        if ($hasHelpSignal) {
-            $decision = 'reading_help_required'
-        }
-        elseif ($expectedComparable -ceq $transcriptComparable) {
+        $confirmedText = Get-ConfirmedPrefix $expected $Text
+        $hasHelpSignal = [regex]::IsMatch($Text, '\u4F55\u3005|\u4F55|\u306A\u306B\u306A\u306B|\u3007\u3007|\u25CB\u25CB|nani\s*nani|nani', [System.Text.RegularExpressions.RegexOptions]::IgnoreCase)
+        if ($null -ne $confirmedText) {
             $decision = 'surface_match'
+        }
+        elseif ($hasHelpSignal) {
+            $decision = 'reading_help_required'
         }
         else {
             $decision = 'review_required'
@@ -97,6 +139,7 @@ switch ($Command) {
             decision = $decision
             cursor = [int]$state.cursor
             expected_text = $expected
+            confirmed_text = $confirmedText
             transcript = $Text
             source_sha256 = $state.source_sha256
             advance_allowed = ($decision -eq 'surface_match')

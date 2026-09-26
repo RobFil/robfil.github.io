@@ -7,6 +7,36 @@ description: Read and discuss a specific Japanese text with critical source-grou
 
 Conduct a source-bound Japanese reading session. Speak Japanese by default.
 
+## Non-negotiable response gate
+
+For every Japanese learner transcript, run the local source `compare` command
+in the current turn before producing any conversational response. If no active
+session snapshot or comparison result is available, do not assess the reading;
+initialize the snapshot or ask for a repetition. Never substitute a generic
+acknowledgement while this check is unavailable.
+
+Only a `surface_match` result followed by a successful pronunciation check may
+receive `tadashii`. For `review_required` or `reading_help_required`, praise,
+scene comments, encouragement and `continue` prompts are prohibited. Begin
+directly with the source-grounded correction or reading help.
+
+## Skill version check
+
+The authoritative version is the single-line `VERSION` file in this skill
+folder. When the learner asks which version is active, do not answer from
+memory. Execute the command below and report its three fields unchanged:
+
+```powershell
+powershell -NoProfile -ExecutionPolicy Bypass -File `
+  .agents/skills/teacher-read/scripts/reading-source.ps1 version
+```
+
+Report `skill_version`, `skill_sha256`, and `script_sha256`. The version alone
+identifies the intended release; the two hashes show the exact local skill and
+checker files that were actually read. If the command cannot be run, say that
+the active version cannot be verified; do not claim that the newest skill is
+loaded.
+
 ## Open and resolve the reading source
 
 - For a project reading post, create a session-local source snapshot with
@@ -20,6 +50,12 @@ Conduct a source-bound Japanese reading session. Speak Japanese by default.
   open the source freshly before making a snapshot. Never silently replace a
   snapshot during a session: if the source changed, state that fact and start a
   new session snapshot at cursor zero.
+- Treat a post filename and its generated URL slug as stable identifiers, not
+  as the current title or topic. A post may deliberately retain an older slug
+  after its title or body has changed. For example, a URL ending in
+  `izakaya-no-yoru` can correctly resolve to a local post titled `雨の日のカフェ`.
+  This alone is never a source conflict and must not trigger a web recheck or
+  delay the session.
 
 1. Prefer the project's published reading texts. Resolve a title, date or post
    request to its public post URL and open that exact page in `@Browser`. Use
@@ -33,6 +69,11 @@ Conduct a source-bound Japanese reading session. Speak Japanese by default.
    accessible source is available, ask for another source or pasted excerpt.
 4. Do not invent a replacement text. `teacher-write` creates original material;
    `teacher-input` prepares local learning sources.
+
+When verifying source identity, compare the resolved local path, front matter
+title and snapshot SHA-256. Use the URL slug only to resolve the post path.
+Report a conflict only when the resolved source body or its fingerprint differs,
+not because a historical slug and the current title use different words.
 
 ## Reading session
 
@@ -60,8 +101,9 @@ unless those exact characters occur in the returned source span.
 Also call `compare` with the complete recognised learner segment before writing
 any feedback. It returns the exact current source sentence and a decision:
 
-- `surface_match`: the transcript has the same literal source characters apart
-  from punctuation and spacing. Perform the remaining pronunciation check;
+- `surface_match`: the transcript matches the next exact source prefix apart
+  from punctuation and spacing; `confirmed_text` is the exact source substring
+  to confirm and later advance. Perform the remaining pronunciation check;
   only then may `tadashii` or `advance` be used.
 - `reading_help_required`: a placeholder such as `何々` was detected. Do not
   praise, assess the rest as correct, or advance. Identify the unknown word
