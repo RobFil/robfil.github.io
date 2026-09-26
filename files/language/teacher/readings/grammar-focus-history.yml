@@ -1,0 +1,63 @@
+# Verbindliche Historie der Grammatikschwerpunkte für teacher-write.
+# Jeder Eintrag bleibt erhalten, auch wenn ein Post später inhaltlich ersetzt wird.
+version: 1
+entries:
+  - post: "2026-09-20-izakaya-no-yoru.md"
+    recorded_at: 2026-09-20
+    status: replaced
+    grammar:
+      - "〜てみる"
+      - "〜ようになる"
+      - "〜わけではない"
+      - "〜ことにする"
+    source_selection: general_n2
+    learning_sources: ["general_n2"]
+    note: "Historischer Fokus vor der Überarbeitung vom 2026-09-26."
+  - post: "2026-09-20-nana-no-code-review.md"
+    recorded_at: 2026-09-20
+    status: current
+    grammar:
+      - "意図を教えていただけますか"
+      - "という認識で合っていますでしょうか"
+      - "おっしゃる通りです"
+      - "〜たほうがよいかと思います"
+    source_selection: random
+    learning_sources: ["20260529_Unit3_コードレビュー_教材.pdf"]
+  - post: "2026-09-20-norio-no-asa-no-junbi.md"
+    recorded_at: 2026-09-20
+    status: current
+    grammar:
+      - "〜てから"
+      - "〜たあとで"
+      - "〜てもらう"
+      - "〜が見える／〜が聞こえる"
+    source_selection: varied
+    learning_sources:
+      - "てから・たあとで違いの説明.pdf"
+      - "24課やりもらい授受表現 (1).pdf"
+      - "自発動詞見える・聞こえる練習問題.pdf"
+  - post: "2026-09-26-nana-no-online-kaigi.md"
+    recorded_at: 2026-09-26
+    status: current
+    grammar:
+      - "〜についてなのですが"
+      - "1点確認させてください"
+      - "〜という理解でよろしいでしょうか"
+      - "〜という点は賛成です"
+    source_selection: guided
+    learning_sources:
+      - "20260905_Unit6_社外メール・クライアント対応_教材.pdf"
+      - "20260918_Unit7_会議に参加する_教材.pdf"
+  - post: "2026-09-20-izakaya-no-yoru.md"
+    recorded_at: 2026-09-26
+    status: current
+    grammar:
+      - "〜てくれる／〜てくださる"
+      - "〜ていただく"
+      - "〜てくださいませんか"
+      - "〜をいただく"
+    source_selection: guided
+    learning_sources:
+      - "やりもらい練習PDF③.pdf"
+      - "24課やりもらい授受表現 (1).pdf"
+    note: "Überarbeitete Fassung von 雨の日のカフェ."

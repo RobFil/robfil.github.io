@@ -14,10 +14,16 @@ Create original, source-grounded Japanese reading practice for the site.
   index. Never use raw OCR, pending records or debug artifacts as learning
   truth.
 - Honour a learner-named source, grammar focus, topic, level, length and track.
+- Before selecting a grammar focus, read
+  `files/language/teacher/readings/grammar-focus-history.yml`. It is the
+  permanent rotation record; published post front matter is a cross-check, not
+  a substitute. Prefer an eligible grammar that has never been a focus. Do not
+  repeat a recorded focus while an eligible unused alternative exists.
 - Use `guided` for an explicitly named source or grammar, `random` for a
-  shuffled eligible-topic deck, and `varied` by default. For `random` and
-  `varied`, use published post front matter as the rotation record and avoid
-  either of the two latest topic groups when an alternative exists.
+  shuffled eligible-topic deck, and `varied` by default. A learner may
+  explicitly request a recorded focus; record that reason in the history.
+  For `random` and `varied`, also avoid either of the two latest topic groups
+  when an alternative exists.
 - Keep Nana/business material to accepted `Unit` sources and Norio/grammar
   material to accepted non-`Unit` sources unless the learner explicitly asks to
   cross the tracks. Keep one text focused on one topic group unless asked to mix.
@@ -32,6 +38,10 @@ Create original, source-grounded Japanese reading practice for the site.
   `files/language/teacher/readings/README.md`. Record selection mode and exact
   contributing filenames in front matter; use `general_n2` only when no source
   materially informed the grammar.
+- After creating or changing a post, update
+  `files/language/teacher/readings/grammar-focus-history.yml` in the same
+  change. Preserve prior entries as historical records; add the new focus and
+  mark a superseded post focus as `replaced`.
 - Keep the Japanese body uninterrupted and selectable: no romaji, furigana,
   embedded translation or word-by-word markup. Put the German summary and a
   compact grammar note after the text.
