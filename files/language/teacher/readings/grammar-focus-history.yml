@@ -3,6 +3,30 @@
 version: 1
 entries:
   - post: "2026-09-20-izakaya-no-yoru.md"
+    recorded_at: 2026-10-03
+    status: current
+    grammar: ["～ことになっている", "～わけにはいかない", "～ものの", "～ようとする"]
+    source_selection: varied
+    learning_sources: ["可能表現（可能動詞・自発動詞）.pdf"]
+  - post: "2026-09-20-norio-no-asa-no-junbi.md"
+    recorded_at: 2026-10-03
+    status: current
+    grammar: ["～ておく", "～たところ", "～ことにする", "～ようになる"]
+    source_selection: varied
+    learning_sources: ["てから・た後で違いの説明.pdf"]
+  - post: "2026-09-20-nana-no-code-review.md"
+    recorded_at: 2026-10-03
+    status: current
+    grammar: ["恐れ入りますが", "～ていただけますでしょうか", "～ということでよろしいでしょうか", "～次第"]
+    source_selection: varied
+    learning_sources: ["20260410_Unit1_仕様確認・仕様変更対応_教材.pdf", "20260410_Unit1_依頼・許可の表現.pdf"]
+  - post: "2026-09-26-nana-no-online-kaigi.md"
+    recorded_at: 2026-10-03
+    status: current
+    grammar: ["～見込みです", "～予定です", "～に合わせて", "～ようにする"]
+    source_selection: varied
+    learning_sources: ["20260510_Unit2_進捗報告・スケジュール調整_教材.pdf"]
+  - post: "2026-09-20-izakaya-no-yoru.md"
     recorded_at: 2026-09-20
     status: replaced
     grammar:
@@ -15,7 +39,7 @@ entries:
     note: "Historischer Fokus vor der Überarbeitung vom 2026-09-26."
   - post: "2026-09-20-nana-no-code-review.md"
     recorded_at: 2026-09-20
-    status: current
+    status: replaced
     grammar:
       - "意図を教えていただけますか"
       - "という認識で合っていますでしょうか"
@@ -25,7 +49,7 @@ entries:
     learning_sources: ["20260529_Unit3_コードレビュー_教材.pdf"]
   - post: "2026-09-20-norio-no-asa-no-junbi.md"
     recorded_at: 2026-09-20
-    status: current
+    status: replaced
     grammar:
       - "〜てから"
       - "〜たあとで"
@@ -38,7 +62,7 @@ entries:
       - "自発動詞見える・聞こえる練習問題.pdf"
   - post: "2026-09-26-nana-no-online-kaigi.md"
     recorded_at: 2026-09-26
-    status: current
+    status: replaced
     grammar:
       - "〜についてなのですが"
       - "1点確認させてください"
@@ -50,7 +74,7 @@ entries:
       - "20260918_Unit7_会議に参加する_教材.pdf"
   - post: "2026-09-20-izakaya-no-yoru.md"
     recorded_at: 2026-09-26
-    status: current
+    status: replaced
     grammar:
       - "〜てくれる／〜てくださる"
       - "〜ていただく"
