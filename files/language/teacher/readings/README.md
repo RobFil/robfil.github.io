@@ -1,5 +1,8 @@
 # Lesetexte
 
+Die dauerhaften inhaltlichen Vorlieben der lernenden Person stehen in
+`learner-preferences.yml` und werden bei jeder neuen Auswahl berÃ¼cksichtigt.
+
 Dieses Verzeichnis beschreibt den Veröffentlichungsweg für vom Teacher-Skill
 erstellte Lesetexte. Die veröffentlichte, Yomitan-freundliche Quelle ist jeweils
 eine Markdown-Datei in `_posts/reading/`.

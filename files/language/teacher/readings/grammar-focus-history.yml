@@ -2,6 +2,36 @@
 # Jeder Eintrag bleibt erhalten, auch wenn ein Post später inhaltlich ersetzt wird.
 version: 1
 entries:
+  - post: "2026-10-04-nana-no-kaigi-no-kakunin.md"
+    recorded_at: 2026-10-04
+    status: current
+    grammar: ["少々よろしいですか", "～についてなのですが", "もう一度おっしゃっていただけますか"]
+    source_selection: guided
+    learning_sources: ["20260927_Unit7_会議に参加する_教材.pdf", "20261004_Unit7_会議に参加する_教材.pdf"]
+  - post: "2026-10-04-nana-no-iken.md"
+    recorded_at: 2026-10-04
+    status: current
+    grammar: ["補足させていただくと", "～という点は理解しておりますが", "私の意見としては"]
+    source_selection: guided
+    learning_sources: ["20260927_Unit7_会議に参加する_教材.pdf", "20261004_Unit7_会議に参加する_教材.pdf"]
+  - post: "2026-10-04-mika-no-kissa-ten.md"
+    recorded_at: 2026-10-04
+    status: current
+    grammar: ["お～します", "お使いになりますか", "お～ください"]
+    source_selection: random
+    learning_sources: ["20260327_敬語の全体像と基礎の確認.pdf"]
+  - post: "2026-10-04-haru-no-suupaa.md"
+    recorded_at: 2026-10-04
+    status: current
+    grammar: ["お～になる", "ご覧になる", "～なさらないでください"]
+    source_selection: random
+    learning_sources: ["20260403_敬語の全体像と基礎の確認_2.pdf"]
+  - post: "2026-10-04-yoru-no-apuri.md"
+    recorded_at: 2026-10-04
+    status: current
+    grammar: ["～が原因で～が発生している", "～だと考えられます", "～については調査中です"]
+    source_selection: varied
+    learning_sources: ["20260620_Unit4_不具合・障害報告_教材.pdf"]
   - post: "2026-09-20-izakaya-no-yoru.md"
     recorded_at: 2026-10-03
     status: current

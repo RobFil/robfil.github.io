@@ -1,0 +1,11 @@
+# Dauerhafte Vorgaben für neue Lesetexte.
+version: 1
+updated_at: 2026-10-04
+priorities:
+  - track: business
+    preference: "Business-Texte haben hohe Priorität. Nutze vorrangig bekannte akzeptierte Unit-Quellen; neue Unit-Inhalte dürfen gezielt eingeführt werden."
+    source_pool: "accepted Unit PDFs"
+  - track: alltag
+    preference: "Alltagstexte haben hohe Priorität. Wähle Grammatik zufällig aus den akzeptierten Nicht-Unit-Quellen und erzähle alltagsnahe Geschichten mit viel zwischenmenschlicher Kommunikation."
+    preferred_scenarios: ["Einkaufen", "Café", "Nachbarschaft", "Restaurant", "Freizeit", "Reise"]
+    source_pool: "accepted non-Unit grammar PDFs"
