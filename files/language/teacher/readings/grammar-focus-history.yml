@@ -2,6 +2,12 @@
 # Jeder Eintrag bleibt erhalten, auch wenn ein Post später inhaltlich ersetzt wird.
 version: 1
 entries:
+  - post: "2026-10-04-robert-no-mensetsu.md"
+    recorded_at: 2026-10-04
+    status: current
+    grammar: ["おっしゃることは理解できるのですが", "〜という理解でよろしいでしょうか"]
+    source_selection: guided
+    learning_sources: ["20260927_Unit7_会議に参加する_教材.pdf", "20261004_Unit7_会議に参加する_教材.pdf"]
   - post: "2026-10-04-nana-no-kaigi-no-kakunin.md"
     recorded_at: 2026-10-04
     status: current
