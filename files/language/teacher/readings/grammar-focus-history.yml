@@ -2,6 +2,30 @@
 # Jeder Eintrag bleibt erhalten, auch wenn ein Post später inhaltlich ersetzt wird.
 version: 1
 entries:
+  - post: "2026-10-08-udon-ya-no-chumon.md"
+    recorded_at: 2026-10-08
+    status: current
+    grammar: ["～うちに", "～に応じて"]
+    source_selection: guided
+    learning_sources: ["general_n2"]
+  - post: "2026-10-08-ryokan-no-check-in.md"
+    recorded_at: 2026-10-08
+    status: current
+    grammar: ["～に伴って", "～ことなく"]
+    source_selection: guided
+    learning_sources: ["general_n2"]
+  - post: "2026-10-08-ryokan-no-check-out.md"
+    recorded_at: 2026-10-08
+    status: current
+    grammar: ["～をめぐって", "～にすぎない"]
+    source_selection: guided
+    learning_sources: ["general_n2"]
+  - post: "2026-10-08-suupaa-de-no-kaimono.md"
+    recorded_at: 2026-10-08
+    status: current
+    grammar: ["～たとたん（に）", "～おかげで"]
+    source_selection: guided
+    learning_sources: ["general_n2"]
   - post: "2026-10-08-toshokan-no-tegami.md"
     recorded_at: 2026-10-08
     status: current
