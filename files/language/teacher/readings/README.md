@@ -57,3 +57,13 @@ Grammatikmustern. Die Front Matter ist zugleich die maschinenlesbare Zuordnung
 für spätere Auswahl- und Wiederholungslogik. `learning_sources` enthält nur PDFs,
 die die Grammatikwahl tatsächlich beeinflusst haben; bei allgemeinem Material
 steht dort `general_n2`.
+
+## Rotation
+
+Vor jeder neuen Erstellung wird `grammar-focus-history.yml` gelesen. Ein
+Grammatikschwerpunkt wird zufällig aus den noch nicht verwendeten, passenden
+Alternativen gewählt; bereits eingetragene Schwerpunkte werden erst wiederholt,
+wenn keine geeignete Alternative mehr offen ist. Für Business-Texte gilt das
+Gleiche zusätzlich für die Höflichkeits- und Arbeitsausdrücke in
+`business-expression-history.yml`. Die verwendeten Business-Hyōgen stehen
+sowohl in `business_expressions` der Front Matter als auch im Register.

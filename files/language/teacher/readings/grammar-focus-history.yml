@@ -2,63 +2,93 @@
 # Jeder Eintrag bleibt erhalten, auch wenn ein Post später inhaltlich ersetzt wird.
 version: 1
 entries:
+  - post: "2026-10-08-toshokan-no-tegami.md"
+    recorded_at: 2026-10-08
+    status: current
+    grammar: ["～ことから", "～につれて"]
+    source_selection: varied
+    learning_sources: ["general_n2"]
+  - post: "2026-10-08-umi-no-machi-no-ryokan.md"
+    recorded_at: 2026-10-08
+    status: current
+    grammar: ["～わりに", "～ものだから"]
+    source_selection: varied
+    learning_sources: ["general_n2"]
+  - post: "2026-10-08-shiyou-sho-no-saishu-kakunin.md"
+    recorded_at: 2026-10-08
+    status: current
+    grammar: ["～にあたり", "～ものとする"]
+    source_selection: varied
+    learning_sources: ["20260829_Unit6_社外メール・クライアント対応_教材.pdf", "20260712_Unit5_補足_クッション言葉.pdf"]
+  - post: "2026-10-08-ririsu-henkou-no-soudan.md"
+    recorded_at: 2026-10-08
+    status: current
+    grammar: ["～かねる", "～にかかわらず"]
+    source_selection: varied
+    learning_sources: ["20260726_Unit5_様々なコミュニケーション（依頼・調整・断り・交渉）_教材.pdf", "20260712_Unit5_補足_クッション言葉.pdf"]
+  - post: "2026-10-08-oe-kenzaburo-no-kotoba.md"
+    recorded_at: 2026-10-08
+    status: current
+    grammar: ["～を通じて", "～にほかならない"]
+    source_selection: varied
+    learning_sources: ["general_n2"]
   - post: "2026-10-04-robert-no-mensetsu.md"
     recorded_at: 2026-10-04
-    status: current
+    status: replaced
     grammar: ["おっしゃることは理解できるのですが", "〜という理解でよろしいでしょうか"]
     source_selection: guided
     learning_sources: ["20260927_Unit7_会議に参加する_教材.pdf", "20261004_Unit7_会議に参加する_教材.pdf"]
   - post: "2026-10-04-nana-no-kaigi-no-kakunin.md"
     recorded_at: 2026-10-04
-    status: current
+    status: replaced
     grammar: ["少々よろしいですか", "～についてなのですが", "もう一度おっしゃっていただけますか"]
     source_selection: guided
     learning_sources: ["20260927_Unit7_会議に参加する_教材.pdf", "20261004_Unit7_会議に参加する_教材.pdf"]
   - post: "2026-10-04-nana-no-iken.md"
     recorded_at: 2026-10-04
-    status: current
+    status: replaced
     grammar: ["補足させていただくと", "～という点は理解しておりますが", "私の意見としては"]
     source_selection: guided
     learning_sources: ["20260927_Unit7_会議に参加する_教材.pdf", "20261004_Unit7_会議に参加する_教材.pdf"]
   - post: "2026-10-04-mika-no-kissa-ten.md"
     recorded_at: 2026-10-04
-    status: current
+    status: replaced
     grammar: ["お～します", "お使いになりますか", "お～ください"]
     source_selection: random
     learning_sources: ["20260327_敬語の全体像と基礎の確認.pdf"]
   - post: "2026-10-04-haru-no-suupaa.md"
     recorded_at: 2026-10-04
-    status: current
+    status: replaced
     grammar: ["お～になる", "ご覧になる", "～なさらないでください"]
     source_selection: random
     learning_sources: ["20260403_敬語の全体像と基礎の確認_2.pdf"]
   - post: "2026-10-04-yoru-no-apuri.md"
     recorded_at: 2026-10-04
-    status: current
+    status: replaced
     grammar: ["～が原因で～が発生している", "～だと考えられます", "～については調査中です"]
     source_selection: varied
     learning_sources: ["20260620_Unit4_不具合・障害報告_教材.pdf"]
   - post: "2026-09-20-izakaya-no-yoru.md"
     recorded_at: 2026-10-03
-    status: current
+    status: replaced
     grammar: ["～ことになっている", "～わけにはいかない", "～ものの", "～ようとする"]
     source_selection: varied
     learning_sources: ["可能表現（可能動詞・自発動詞）.pdf"]
   - post: "2026-09-20-norio-no-asa-no-junbi.md"
     recorded_at: 2026-10-03
-    status: current
+    status: replaced
     grammar: ["～ておく", "～たところ", "～ことにする", "～ようになる"]
     source_selection: varied
     learning_sources: ["てから・た後で違いの説明.pdf"]
   - post: "2026-09-20-nana-no-code-review.md"
     recorded_at: 2026-10-03
-    status: current
+    status: replaced
     grammar: ["恐れ入りますが", "～ていただけますでしょうか", "～ということでよろしいでしょうか", "～次第"]
     source_selection: varied
     learning_sources: ["20260410_Unit1_仕様確認・仕様変更対応_教材.pdf", "20260410_Unit1_依頼・許可の表現.pdf"]
   - post: "2026-09-26-nana-no-online-kaigi.md"
     recorded_at: 2026-10-03
-    status: current
+    status: replaced
     grammar: ["～見込みです", "～予定です", "～に合わせて", "～ようにする"]
     source_selection: varied
     learning_sources: ["20260510_Unit2_進捗報告・スケジュール調整_教材.pdf"]
