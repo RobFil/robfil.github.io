@@ -10,4 +10,5 @@ Willkommen auf meinem Blog!
 - [Sprache](/language/)
 - [Japanische Lesetexte](/reading/)
 - [Technik](/tech/)
+- [Bewerbungsgespräch / 就職面接](/interview/)
 - [Reisen](/travel/)
