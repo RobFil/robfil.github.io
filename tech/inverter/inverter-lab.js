@@ -168,9 +168,12 @@
     const bottom = 603;
     line(ctx, 700, top, 765, top); line(ctx, 824, top, 856, top); line(ctx, 937, top, 978, top);
     line(ctx, 978, top, 978, bottom); line(ctx, 978, bottom, 700, bottom); line(ctx, 700, bottom, 700, 574); line(ctx, 700, 556, 700, top);
-    line(ctx, 684, 556, 716, 556, "#dc2626", 3); line(ctx, 690, 574, 710, 574, "#2563eb", 3);
-    text(ctx, "+", 672, voltage >= 0 ? 556 : 574, 12, "#dc2626", "center", "700");
-    text(ctx, "-", 672, voltage >= 0 ? 574 : 556, 12, "#2563eb", "center", "700");
+    const positiveAtTop = voltage >= 0;
+    const topColour = positiveAtTop ? "#dc2626" : "#2563eb";
+    const bottomColour = positiveAtTop ? "#2563eb" : "#dc2626";
+    line(ctx, 684, 556, 716, 556, topColour, 3); line(ctx, 690, 574, 710, 574, bottomColour, 3);
+    text(ctx, positiveAtTop ? "+" : "-", 672, 556, 12, topColour, "center", "700");
+    text(ctx, positiveAtTop ? "-" : "+", 672, 574, 12, bottomColour, "center", "700");
     text(ctx, `U_bat ${voltage >= 0 ? "+" : ""}${voltage.toFixed(1)} V`, 700, 622, 8, "#0f172a", "center", "700");
     const zigzag = [[765, top], [773, top - 8], [782, top + 8], [791, top - 8], [800, top + 8], [809, top - 8], [816, top + 8], [824, top]];
     ctx.strokeStyle = "#475569"; ctx.lineWidth = 2; ctx.beginPath(); zigzag.forEach(([x, y], i) => i ? ctx.lineTo(x, y) : ctx.moveTo(x, y)); ctx.stroke();

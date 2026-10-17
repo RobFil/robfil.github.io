@@ -820,11 +820,13 @@ class InverterVisualizer(tk.Tk):
         canvas.create_line(battery_x, 556, battery_x, top_y, fill=wire_colour, width=2)
 
         positive_at_top = voltage >= 0.0
-        plus_y, minus_y = (556, 574) if positive_at_top else (574, 556)
-        canvas.create_line(battery_x - 16, 556, battery_x + 16, 556, fill="#dc2626", width=3)
-        canvas.create_line(battery_x - 10, 574, battery_x + 10, 574, fill="#2563eb", width=3)
-        canvas.create_text(battery_x - 28, plus_y, text="+", font=("Segoe UI", 11, "bold"), fill="#dc2626")
-        canvas.create_text(battery_x - 28, minus_y, text="-", font=("Segoe UI", 11, "bold"), fill="#2563eb")
+        top_mark, bottom_mark = ("+", "-") if positive_at_top else ("-", "+")
+        top_colour = "#dc2626" if positive_at_top else "#2563eb"
+        bottom_colour = "#2563eb" if positive_at_top else "#dc2626"
+        canvas.create_line(battery_x - 16, 556, battery_x + 16, 556, fill=top_colour, width=3)
+        canvas.create_line(battery_x - 10, 574, battery_x + 10, 574, fill=bottom_colour, width=3)
+        canvas.create_text(battery_x - 28, 556, text=top_mark, font=("Segoe UI", 11, "bold"), fill=top_colour)
+        canvas.create_text(battery_x - 28, 574, text=bottom_mark, font=("Segoe UI", 11, "bold"), fill=bottom_colour)
         canvas.create_text(battery_x, 622, text=f"U_bat {voltage:+.1f} V", font=("Segoe UI", 8, "bold"), fill="#0f172a")
 
         resistor_points: list[float] = [resistor_left, top_y]
