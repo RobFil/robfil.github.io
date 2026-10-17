@@ -4,37 +4,37 @@ version: 1
 entries:
   - post: "2026-10-08-udon-ya-no-chumon.md"
     recorded_at: 2026-10-08
-    status: current
+    status: replaced
     grammar: ["～うちに", "～に応じて"]
     source_selection: guided
     learning_sources: ["general_n2"]
   - post: "2026-10-08-ryokan-no-check-in.md"
     recorded_at: 2026-10-08
-    status: current
+    status: replaced
     grammar: ["～に伴って", "～ことなく"]
     source_selection: guided
     learning_sources: ["general_n2"]
   - post: "2026-10-08-ryokan-no-check-out.md"
     recorded_at: 2026-10-08
-    status: current
+    status: replaced
     grammar: ["～をめぐって", "～にすぎない"]
     source_selection: guided
     learning_sources: ["general_n2"]
   - post: "2026-10-08-suupaa-de-no-kaimono.md"
     recorded_at: 2026-10-08
-    status: current
+    status: replaced
     grammar: ["～たとたん（に）", "～おかげで"]
     source_selection: guided
     learning_sources: ["general_n2"]
   - post: "2026-10-08-toshokan-no-tegami.md"
     recorded_at: 2026-10-08
-    status: current
+    status: replaced
     grammar: ["～ことから", "～につれて"]
     source_selection: varied
     learning_sources: ["general_n2"]
   - post: "2026-10-08-umi-no-machi-no-ryokan.md"
     recorded_at: 2026-10-08
-    status: current
+    status: replaced
     grammar: ["～わりに", "～ものだから"]
     source_selection: varied
     learning_sources: ["general_n2"]
@@ -52,10 +52,11 @@ entries:
     learning_sources: ["20260726_Unit5_様々なコミュニケーション（依頼・調整・断り・交渉）_教材.pdf", "20260712_Unit5_補足_クッション言葉.pdf"]
   - post: "2026-10-08-soai-kenso-no-noberu-kagakusho.md"
     recorded_at: 2026-10-08
-    status: current
+    status: removed
     grammar: ["～を通じて", "～にほかならない"]
     source_selection: guided
     learning_sources: ["general_n2"]
+    note: "Post auf Wunsch am 2026-10-17 gelöscht; Fokus bleibt für die Rotationshistorie erhalten."
   - post: "2026-10-04-robert-no-mensetsu.md"
     recorded_at: 2026-10-04
     status: replaced
@@ -175,3 +176,51 @@ entries:
       - "やりもらい練習PDF③.pdf"
       - "24課やりもらい授受表現 (1).pdf"
     note: "Überarbeitete Fassung von 雨の日のカフェ."
+  - post: "2026-10-17-furuhon-ichi-no-chizu.md"
+    recorded_at: 2026-10-17
+    status: current
+    grammar: ["～にしては"]
+    source_selection: random
+    learning_sources: ["にしては解説文.pdf"]
+  - post: "2026-10-17-hogoneko-no-satooya.md"
+    recorded_at: 2026-10-17
+    status: current
+    grammar: ["なかなか～ない"]
+    source_selection: random
+    learning_sources: ["なかなか～ない説明文.pdf"]
+  - post: "2026-10-17-machinaka-hanadan.md"
+    recorded_at: 2026-10-17
+    status: current
+    grammar: ["～に限らず"]
+    source_selection: random
+    learning_sources: ["AIに限り・に限らず説明と例文①.pdf"]
+  - post: "2026-10-17-kouen-sanpo-no-tenki.md"
+    recorded_at: 2026-10-17
+    status: current
+    grammar: ["～から～にかけて"]
+    source_selection: random
+    learning_sources: ["かけて・わたって説明と例文.pdf"]
+  - post: "2026-10-17-tana-tsukuri-no-kouza.md"
+    recorded_at: 2026-10-17
+    status: current
+    grammar: ["～ば～ほど"]
+    source_selection: random
+    learning_sources: ["35課条件形～ば～ほど.pdf"]
+  - post: "2026-10-17-andonzukuri-no-sankakan.md"
+    recorded_at: 2026-10-17
+    status: current
+    grammar: ["～にわたって"]
+    source_selection: random
+    learning_sources: ["かけて・わたって説明と例文.pdf"]
+  - post: "2026-10-17-shanai-happyo-kai.md"
+    recorded_at: 2026-10-17
+    status: current
+    grammar: ["～てもよろしいでしょうか"]
+    source_selection: guided
+    learning_sources: ["20260918_Unit7_会議に参加する_教材.pdf"]
+  - post: "2026-10-17-sprint-no-furikaeri.md"
+    recorded_at: 2026-10-17
+    status: current
+    grammar: ["～たことで", "～ことができる"]
+    source_selection: guided
+    learning_sources: ["20261011_Unit8__振り返り_教材.pdf"]

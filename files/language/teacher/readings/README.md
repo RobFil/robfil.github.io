@@ -1,7 +1,10 @@
 # Lesetexte
 
+Wenn kein Thema, keine Grammatik und keine Quelle vorgegeben sind, ist
+`random` die Standardauswahl.
+
 Die dauerhaften inhaltlichen Vorlieben der lernenden Person stehen in
-`learner-preferences.yml` und werden bei jeder neuen Auswahl berÃ¼cksichtigt.
+`learner-preferences.yml` und werden bei jeder neuen Auswahl berücksichtigt.
 
 Dieses Verzeichnis beschreibt den Veröffentlichungsweg für vom Teacher-Skill
 erstellte Lesetexte. Die veröffentlichte, Yomitan-freundliche Quelle ist jeweils
@@ -40,7 +43,7 @@ reading_time_minutes: 10
 grammar:
   - "〜た上で"
   - "〜可能性があります"
-source_selection: varied # guided | random | varied | active_batch | general_n2
+source_selection: random # guided | random | varied | active_batch | general_n2
 learning_sources:
   - "20260607_Unit4_不具合・障害報告_教材.pdf"
 summary_de: "Kurze deutsche Zusammenfassung."
@@ -60,10 +63,22 @@ steht dort `general_n2`.
 
 ## Rotation
 
-Vor jeder neuen Erstellung wird `grammar-focus-history.yml` gelesen. Ein
-Grammatikschwerpunkt wird zufällig aus den noch nicht verwendeten, passenden
-Alternativen gewählt; bereits eingetragene Schwerpunkte werden erst wiederholt,
-wenn keine geeignete Alternative mehr offen ist. Für Business-Texte gilt das
-Gleiche zusätzlich für die Höflichkeits- und Arbeitsausdrücke in
-`business-expression-history.yml`. Die verwendeten Business-Hyōgen stehen
-sowohl in `business_expressions` der Front Matter als auch im Register.
+Vor jeder neuen Erstellung werden `grammar-focus-history.yml` und
+`topic-history.yml` gelesen. Ohne ausdrücklich genannte Quelle, Grammatik oder
+Thema werden Quelle, Thema und Grammatikfokus zufällig aus den passenden,
+akzeptierten Einträgen in
+`files/language/source-ingest/output/machine/context.jsonl` gewählt. Bereits
+verwendete Foki und Themen werden nicht erneut gewählt, solange geeignete,
+ungenutzte Alternativen vorhanden sind. Fehlt der akzeptierte Kontext oder ist
+er leer, wird nicht auf PDFs ausgewichen; die fehlende Datei wird gemeldet.
+Für Business-Texte gilt die Rotation zusätzlich für die Höflichkeits- und
+Arbeitsausdrücke in `business-expression-history.yml`. Die verwendeten
+Business-Hyōgen stehen sowohl in `business_expressions` der Front Matter als
+auch im Register.
+
+Auch `topic-history.yml` ist ein dauerhaftes Register. Vor jeder Erstellung
+werden darin alle verwendeten Themen geprüft; neue Alltagstexte wählen ein
+noch nicht genutztes Thema, wenn passende Alternativen vorhanden sind. Nach
+dem Erstellen oder Ersetzen eines Posts wird das Register im selben Schritt
+aktualisiert. Alte Themen bleiben mit Status `replaced` oder `removed`
+erhalten, damit sie nicht versehentlich erneut als neu ausgewählt werden.

@@ -9,21 +9,37 @@ Create original, source-grounded Japanese reading practice for the site.
 
 ## Sources and selection
 
-- Read accepted context only from
-  `files/language/source-ingest/output/machine/context.jsonl` and its source
-  index. Never use raw OCR, pending records or debug artifacts as learning
-  truth.
+- Resolve the repository root before reading learning context: walk up from
+  this skill file until both `_posts/reading/` and
+  `files/language/source-ingest/` exist. The canonical input is
+  `files/language/source-ingest/output/machine/context.jsonl`; the matching
+  source registry is `files/language/source-ingest/output/machine/parsed_files_index.json`.
+  Do not resolve this path relative to the current shell directory or the
+  skill directory.
+- Read teaching material only from accepted records in `context.jsonl`,
+  cross-checked against accepted entries in `parsed_files_index.json`. Never
+  read raw PDFs, pending records, source-side JSONL files, OCR/debug artifacts
+  or review drafts as a substitute for the accepted context.
+- If the canonical context or index is missing, empty, or has no eligible
+  accepted material for the requested track, stop source selection and tell
+  the learner the exact missing path. Do not search for PDFs or extract them
+  from this writing skill; source preparation belongs to `teacher-input`.
 - Honour a learner-named source, grammar focus, topic, level, length and track.
 - Before selecting a grammar focus, read
   `files/language/teacher/readings/grammar-focus-history.yml`. It is the
   permanent rotation record; published post front matter is a cross-check, not
-  a substitute. Prefer an eligible grammar that has never been a focus. Do not
-  repeat a recorded focus while an eligible unused alternative exists.
-- Use `guided` for an explicitly named source or grammar, `random` for a
-  shuffled eligible-topic deck, and `varied` by default. A learner may
-  explicitly request a recorded focus; record that reason in the history.
-  For `random` and `varied`, also avoid either of the two latest topic groups
-  when an alternative exists.
+  a substitute. Prefer an eligible grammar that has never been a focus. Never
+  repeat a recorded focus while an eligible unused alternative exists. Also
+  read `files/language/teacher/readings/topic-history.yml` and avoid topics
+  already recorded there while an eligible unused topic exists. Keep both
+  registers append-only, including replaced or removed posts.
+- Default to `random`: randomly select an eligible accepted source, an unused
+  grammar focus and an unused topic group. Apply the learner's track and other
+  constraints before randomizing. Use `guided` only when the learner names a
+  source, grammar or topic; record any explicitly requested repeat and its
+  reason. Use `varied` only when the learner asks for a deliberate mix or
+  variation. When randomizing, also avoid either of the two latest topic groups
+  if another eligible group exists.
 - Keep Nana/business material to accepted `Unit` sources and Norio/grammar
   material to accepted non-`Unit` sources unless the learner explicitly asks to
   cross the tracks. Keep one text focused on one topic group unless asked to mix.
@@ -39,9 +55,12 @@ Create original, source-grounded Japanese reading practice for the site.
   contributing filenames in front matter; use `general_n2` only when no source
   materially informed the grammar.
 - After creating or changing a post, update
-  `files/language/teacher/readings/grammar-focus-history.yml` in the same
-  change. Preserve prior entries as historical records; add the new focus and
-  mark a superseded post focus as `replaced`.
+  `files/language/teacher/readings/grammar-focus-history.yml` and
+  `files/language/teacher/readings/topic-history.yml` in the same change.
+  Preserve prior entries as historical records; add each new focus and topic,
+  and mark superseded entries as `replaced` or `removed`. Record the source,
+  selection mode, topic and exact grammar focus so the next random selection
+  can avoid immediate repetition.
 - Keep the Japanese body uninterrupted and selectable: no romaji, furigana,
   embedded translation or word-by-word markup. Put the German summary and a
   compact grammar note after the text.

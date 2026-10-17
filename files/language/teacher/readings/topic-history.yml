@@ -1,0 +1,112 @@
+# Dauerhaftes Register genutzter und ersetzter Themen zur Themenrotation.
+# Ein Thema bleibt registriert, auch wenn sein Post später überarbeitet wird.
+version: 1
+entries:
+  - post: "2026-10-08-udon-ya-no-chumon.md"
+    recorded_at: 2026-10-08
+    status: replaced
+    topic: "Alltag / Restaurant: Udon bestellen"
+  - post: "2026-10-08-ryokan-no-check-in.md"
+    recorded_at: 2026-10-08
+    status: replaced
+    topic: "Alltag / Hotel: Ryokan-Check-in"
+  - post: "2026-10-08-ryokan-no-check-out.md"
+    recorded_at: 2026-10-08
+    status: replaced
+    topic: "Alltag / Hotel: Ryokan-Check-out"
+  - post: "2026-10-08-suupaa-de-no-kaimono.md"
+    recorded_at: 2026-10-08
+    status: replaced
+    topic: "Alltag / Supermarkt: Einkaufen"
+  - post: "2026-10-08-toshokan-no-tegami.md"
+    recorded_at: 2026-10-08
+    status: replaced
+    topic: "Alltag / Nachbarschaft: Brief aus der Bibliothek"
+  - post: "2026-10-08-umi-no-machi-no-ryokan.md"
+    recorded_at: 2026-10-08
+    status: replaced
+    topic: "Alltag / Reise: Ryokan in einer Küstenstadt"
+  - post: "2026-10-08-shiyou-sho-no-saishu-kakunin.md"
+    recorded_at: 2026-10-08
+    status: current
+    topic: "Business / Kundendokumente: Spezifikationsprüfung"
+  - post: "2026-10-08-ririsu-henkou-no-soudan.md"
+    recorded_at: 2026-10-08
+    status: current
+    topic: "Business / Projektabstimmung: Release-Änderung"
+  - post: "2026-10-08-soai-kenso-no-noberu-kagakusho.md"
+    recorded_at: 2026-10-08
+    status: removed
+    topic: "Wissenschaft / Nobelpreis: Chemie"
+  - post: "2026-10-04-mika-no-kissa-ten.md"
+    recorded_at: 2026-10-04
+    status: replaced
+    topic: "Alltag / Café: Bestellung und höfliche Bedienung"
+  - post: "2026-10-04-haru-no-suupaa.md"
+    recorded_at: 2026-10-04
+    status: replaced
+    topic: "Alltag / Supermarkt: saisonale Produkte"
+  - post: "2026-10-04-yoru-no-apuri.md"
+    recorded_at: 2026-10-04
+    status: replaced
+    topic: "Alltag / Smartphone-App: unerwartete Störung"
+  - post: "2026-09-20-izakaya-no-yoru.md"
+    recorded_at: 2026-10-03
+    status: replaced
+    topic: "Alltag / Restaurant: Abend im Izakaya"
+  - post: "2026-09-20-norio-no-asa-no-junbi.md"
+    recorded_at: 2026-10-03
+    status: replaced
+    topic: "Alltag / Morgenroutine: Vorbereitung auf den Tag"
+  - post: "2026-09-20-nana-no-code-review.md"
+    recorded_at: 2026-10-03
+    status: replaced
+    topic: "Business / Code-Review"
+  - post: "2026-09-26-nana-no-online-kaigi.md"
+    recorded_at: 2026-10-03
+    status: replaced
+    topic: "Business / Online-Meeting"
+  - post: "2026-10-17-furuhon-ichi-no-chizu.md"
+    recorded_at: 2026-10-17
+    status: current
+    topic: "Alltag / Freizeit: 古本市での思いがけない発見"
+  - post: "2026-10-17-hogoneko-no-satooya.md"
+    recorded_at: 2026-10-17
+    status: current
+    topic: "Alltag / Tiere: 保護猫との出会い"
+  - post: "2026-10-17-machinaka-hanadan.md"
+    recorded_at: 2026-10-17
+    status: current
+    topic: "Alltag / Gemeinschaft: 公園の花壇づくり"
+  - post: "2026-10-17-kouen-sanpo-no-tenki.md"
+    recorded_at: 2026-10-17
+    status: current
+    topic: "Alltag / Freizeit: 公園散歩の計画"
+  - post: "2026-10-17-tana-tsukuri-no-kouza.md"
+    recorded_at: 2026-10-17
+    status: current
+    topic: "Alltag / Wohnen: 木の棚づくり"
+  - post: "2026-10-17-andonzukuri-no-sankakan.md"
+    recorded_at: 2026-10-17
+    status: current
+    topic: "Alltag / Nachbarschaft: 祭りの準備"
+  - post: "2026-10-17-shanai-happyo-kai.md"
+    recorded_at: 2026-10-17
+    status: current
+    topic: "Business / Unit 7: 社内改善アイデア発表会"
+  - post: "2026-10-17-sprint-no-furikaeri.md"
+    recorded_at: 2026-10-17
+    status: current
+    topic: "Business / Unit 8: チームの振り返り"
+  - post: "2026-10-04-robert-no-mensetsu.md"
+    recorded_at: 2026-10-04
+    status: replaced
+    topic: "Business / Bewerbungsgespräch: Berufserfahrung erklären"
+  - post: "2026-10-04-nana-no-kaigi-no-kakunin.md"
+    recorded_at: 2026-10-04
+    status: replaced
+    topic: "Business / Meeting: Zuständigkeiten und Verständnis klären"
+  - post: "2026-10-04-nana-no-iken.md"
+    recorded_at: 2026-10-04
+    status: replaced
+    topic: "Business / Meeting: eine eigene Meinung einbringen"
