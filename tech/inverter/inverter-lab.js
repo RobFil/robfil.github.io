@@ -121,14 +121,14 @@
     const ctx = prepare(canvases.coil);
     const { voltage, current, history } = state.coil;
     const magneticField = current * 0.05;
-    text(ctx, "Spule mit Batterie", 25, 25, 18, "#0f172a", "left", "700");
+    text(ctx, "Coil with battery", 25, 25, 18, "#0f172a", "left", "700");
     text(ctx, `U_bat = ${voltage >= 0 ? "+" : ""}${voltage.toFixed(1)} V   |   i = ${current >= 0 ? "+" : ""}${current.toFixed(2)} A   |   B = ${magneticField >= 0 ? "+" : ""}${magneticField.toFixed(3)} T`, 25, 55, 12, "#166534", "left", "700");
-    drawTrace(ctx, 25, 95, 610, 195, "Strom i durch die Spule", "A", history.map(sample => sample.i), 10, "#d97706");
-    drawTrace(ctx, 25, 310, 610, 195, "Magnetfeld B in der Spule", "T", history.map(sample => sample.b), 0.5, "#16a34a");
-    drawTrace(ctx, 25, 525, 610, 90, "Batteriespannung U_bat", "V", history.map(sample => sample.u), 10, "#dc2626");
+    drawTrace(ctx, 25, 95, 610, 195, "Coil current i", "A", history.map(sample => sample.i), 10, "#d97706");
+    drawTrace(ctx, 25, 310, 610, 195, "Magnetic field B", "T", history.map(sample => sample.b), 0.5, "#16a34a");
+    drawTrace(ctx, 25, 525, 610, 90, "Battery voltage U_bat", "V", history.map(sample => sample.u), 10, "#dc2626");
 
-    card(ctx, 655, 75, 370, 400, "Einzelspule");
-    text(ctx, "Strom erzeugt ein Magnetfeld", 840, 117, 9, "#475569", "center");
+    card(ctx, 655, 75, 370, 400, "Single coil");
+    text(ctx, "Current creates a magnetic field", 840, 117, 9, "#475569", "center");
     const coilLeft = 710;
     const coilRight = 970;
     const coilY = 276;
@@ -162,8 +162,8 @@
   }
 
   function drawCoilEsb(ctx, voltage, current) {
-    card(ctx, 655, 493, 370, 153, "Einfaches ESB");
-    text(ctx, "Batterie - R - L", 1013, 510, 9, "#475569", "right");
+    card(ctx, 655, 493, 370, 153, "Simplified equivalent circuit");
+    text(ctx, "Battery - R - L", 1013, 510, 9, "#475569", "right");
     const top = 548;
     const bottom = 603;
     line(ctx, 700, top, 765, top); line(ctx, 824, top, 856, top); line(ctx, 937, top, 978, top);
@@ -192,16 +192,16 @@
   function drawTest() {
     const ctx = prepare(canvases.test);
     const field = testField();
-    const activeNames = phaseNames.filter((_, index) => state.test.active[index]).join(", ") || "keine";
-    const result = field.strength > 1e-9 ? `S_res bei ${degrees(field.angle).toFixed(0)} Grad` : "kein resultierender Statorpol";
+    const activeNames = phaseNames.filter((_, index) => state.test.active[index]).join(", ") || "none";
+    const result = field.strength > 1e-9 ? `S_res at ${degrees(field.angle).toFixed(0)} degrees` : "no resultant stator pole";
     const rpm = state.test.speed * 60 / (2 * Math.PI);
-    text(ctx, "Motor-Versuch: Statorpol manuell schalten", 25, 25, 18, "#0f172a", "left", "700");
-    text(ctx, `Aktiv: ${activeNames}   |   ${result}   |   T_em = ${state.test.torque >= 0 ? "+" : ""}${state.test.torque.toFixed(2)}   |   n = ${rpm >= 0 ? "+" : ""}${rpm.toFixed(1)} rpm`, 25, 55, 12, field.strength ? "#166534" : "#475569", "left", "700");
+    text(ctx, "Motor experiment: switch stator poles manually", 25, 25, 18, "#0f172a", "left", "700");
+    text(ctx, `Active: ${activeNames}   |   ${result}   |   T_em = ${state.test.torque >= 0 ? "+" : ""}${state.test.torque.toFixed(2)}   |   n = ${rpm >= 0 ? "+" : ""}${rpm.toFixed(1)} rpm`, 25, 55, 12, field.strength ? "#166534" : "#475569", "left", "700");
     drawTestPhasePanel(ctx); drawTestFieldPanel(ctx, field); drawTestRotorPanel(ctx); drawTestMachine(ctx, field); drawTestEsb(ctx);
   }
 
   function drawTestPhasePanel(ctx) {
-    card(ctx, 25, 95, 610, 195, "Phasen: 0 V oder +Udc"); text(ctx, "Q / S / E", 623, 112, 9, "#475569", "right", "700");
+    card(ctx, 25, 95, 610, 195, "Phases: 0 V or +Udc"); text(ctx, "Q / S / E", 623, 112, 9, "#475569", "right", "700");
     const keys = ["E", "Q", "S"];
     [0, 1, 2].forEach(index => {
       const y = 150 + index * 42; const active = state.test.active[index];
@@ -214,26 +214,26 @@
   }
 
   function drawTestFieldPanel(ctx, field) {
-    card(ctx, 25, 310, 610, 195, "Resultierender Statorpol");
+    card(ctx, 25, 310, 610, 195, "Resultant stator pole");
     const cx = 170; const cy = 410; ctx.strokeStyle = "#94a3b8"; ctx.lineWidth = 2; ctx.beginPath(); ctx.arc(cx, cy, 68, 0, 2 * Math.PI); ctx.stroke();
     [0, 120, 240].forEach(angle => text(ctx, `${angle}°`, cx + 68 * Math.cos(angle * Math.PI / 180), cy - 68 * Math.sin(angle * Math.PI / 180), 8, "#64748b", "center"));
     if (field.strength > 1e-9) {
       arrow(ctx, cx, cy, cx + 68 * Math.cos(field.angle), cy - 68 * Math.sin(field.angle), "#16a34a", 5);
       text(ctx, `S_res = ${degrees(field.angle).toFixed(0)}°`, 290, 382, 14, "#166534", "left", "700");
-      text(ctx, "T_em entsteht aus dem Winkelfehler zum Rotor-Nordpol.", 290, 414, 10, "#475569");
-    } else { text(ctx, "Kein resultierender Pol", 290, 393, 14, "#64748b", "left", "700"); text(ctx, "Bei U + V + W heben sich die Felder auf.", 290, 423, 10, "#475569"); }
-    text(ctx, `Feldstärke (normiert): ${field.strength.toFixed(1)}`, 290, 460, 10, "#475569", "left", "700");
+      text(ctx, "T_em comes from the angle error to the rotor north pole.", 290, 414, 10, "#475569");
+    } else { text(ctx, "No resultant pole", 290, 393, 14, "#64748b", "left", "700"); text(ctx, "With U + V + W, the fields cancel.", 290, 423, 10, "#475569"); }
+    text(ctx, `Field strength (normalized): ${field.strength.toFixed(1)}`, 290, 460, 10, "#475569", "left", "700");
   }
 
   function drawTestRotorPanel(ctx) {
-    card(ctx, 25, 525, 610, 90, "Rotorwinkel");
-    text(ctx, `${degrees(state.test.theta).toFixed(1)} Grad`, 623, 542, 9, "#b45309", "right");
+    card(ctx, 25, 525, 610, 90, "Rotor angle");
+    text(ctx, `${degrees(state.test.theta).toFixed(1)} degrees`, 623, 542, 9, "#b45309", "right");
     const left = 80; const right = 617; const top = 555; const bottom = 602; line(ctx, left, bottom, right, bottom, "#94a3b8", 1, [3, 3]); text(ctx, "360", 33, top, 8, "#64748b"); text(ctx, "0", 43, bottom, 8, "#64748b");
     ctx.strokeStyle = "#d97706"; ctx.lineWidth = 2; ctx.beginPath(); state.test.history.forEach((angle, index) => { const x = left + (right - left) * index / Math.max(1, state.test.history.length - 1); const y = bottom - (bottom - top) * degrees(angle) / 360; if (index) ctx.lineTo(x, y); else ctx.moveTo(x, y); }); ctx.stroke();
   }
 
   function drawTestMachine(ctx, field) {
-    const cx = 830; const cy = 280; const radius = 182; text(ctx, "Dreiphasen-Maschine", cx, 66, 12, "#0f172a", "center", "700");
+    const cx = 830; const cy = 280; const radius = 182; text(ctx, "Three-phase machine", cx, 66, 12, "#0f172a", "center", "700");
     ctx.fillStyle = "#e2e8f0"; ctx.strokeStyle = "#334155"; ctx.lineWidth = 3; ctx.beginPath(); ctx.arc(cx, cy, radius, 0, 2 * Math.PI); ctx.fill(); ctx.stroke();
     phaseAngles.forEach((angle, index) => {
       const active = state.test.active[index]; const rx = Math.cos(angle); const ry = -Math.sin(angle); const tx = -Math.sin(angle); const ty = -Math.cos(angle); const px = cx + 150 * rx; const py = cy + 150 * ry;
@@ -244,7 +244,7 @@
     });
     if (field.strength > 1e-9) arrow(ctx, cx, cy, cx + 142 * Math.cos(field.angle), cy - 142 * Math.sin(field.angle), "#16a34a", 4);
     drawRotor(ctx, cx, cy, state.test.theta, 67, 29, 78);
-    text(ctx, "T_em aus Winkelfehler bewegt den Rotor", cx, 468, 9, "#475569", "center");
+    text(ctx, "T_em from angle error moves the rotor", cx, 468, 9, "#475569", "center");
   }
 
   function drawRotor(ctx, cx, cy, theta, halfLength, halfWidth, radius) {
@@ -258,7 +258,7 @@
   }
 
   function drawTestEsb(ctx) {
-    card(ctx, 655, 493, 370, 153, "Vereinfachter Inverter"); text(ctx, "nur 0 V / +Udc", 1013, 510, 9, "#475569", "right");
+    card(ctx, 655, 493, 370, 153, "Simplified inverter"); text(ctx, "0 V / +Udc only", 1013, 510, 9, "#475569", "right");
     line(ctx, 694, 527, 895, 527, "#dc2626", 2); line(ctx, 694, 582, 895, 582, "#64748b", 2); text(ctx, "+Udc", 680, 527, 8, "#dc2626", "right", "700"); text(ctx, "0 V", 680, 582, 8, "#475569", "right", "700");
     [746, 803, 860].forEach((x, index) => { const active = state.test.active[index]; const colour = phaseColours[index]; line(ctx, x, 527, x, 541, "#475569", 1); ctx.fillStyle = active ? "#16a34a" : "#ffffff"; ctx.strokeStyle = active ? "#166534" : "#64748b"; ctx.lineWidth = 2; ctx.fillRect(x - 17, 541, 34, 16); ctx.strokeRect(x - 17, 541, 34, 16); text(ctx, active ? "+Udc" : "0 V", x, 549, 7, active ? "#ffffff" : "#475569", "center", "700"); line(ctx, x, 557, x, 567, colour, 2); line(ctx, x, 567, 935, 567, colour, 2); text(ctx, phaseNames[index], x, 603, 9, colour, "center", "700"); });
     ctx.fillStyle = "#f8fafc"; ctx.strokeStyle = "#334155"; ctx.lineWidth = 2; ctx.beginPath(); ctx.arc(970, 565, 30, 0, 2 * Math.PI); ctx.fill(); ctx.stroke(); text(ctx, "M", 970, 560, 14, "#0f172a", "center", "700"); text(ctx, "PSM", 970, 577, 8, "#475569", "center");
@@ -266,8 +266,8 @@
 
   function drawMotor() {
     const ctx = prepare(canvases.motor); const motor = state.motor; const currentAngle = motor.theta + motor.phase * Math.PI / 180; const iq = motor.amplitude * Math.sin(motor.phase * Math.PI / 180); const torque = 0.12 * iq; const voltage = 0.5 * motor.amplitude;
-    text(ctx, "Dreiphasensystem mit rotierendem Magnetfeld", 25, 25, 18, "#0f172a", "left", "700"); text(ctx, `Drehmoment T_e = ${torque >= 0 ? "+" : ""}${torque.toFixed(2)} Nm`, 25, 55, 13, "#166534", "left", "700");
-    drawMotorWave(ctx, 25, 95, "Phasenströme iabc", "A", motor.amplitude, 100, currentAngle); drawMotorWave(ctx, 25, 310, "Phasenspannungen uabc", "V", voltage, 50, currentAngle); drawMotorRotorPanel(ctx);
+    text(ctx, "Three-phase system with rotating magnetic field", 25, 25, 18, "#0f172a", "left", "700"); text(ctx, `Electromagnetic torque T_e = ${torque >= 0 ? "+" : ""}${torque.toFixed(2)} Nm`, 25, 55, 13, "#166534", "left", "700");
+    drawMotorWave(ctx, 25, 95, "Phase currents iabc", "A", motor.amplitude, 100, currentAngle); drawMotorWave(ctx, 25, 310, "Phase voltages uabc", "V", voltage, 50, currentAngle); drawMotorRotorPanel(ctx);
     drawMotorMachine(ctx, currentAngle); drawMotorEsb(ctx, voltage, currentAngle);
   }
 
@@ -276,11 +276,11 @@
     phaseAngles.forEach((offset, phase) => { const colour = phaseColours[phase]; ctx.strokeStyle = colour; ctx.lineWidth = 2; ctx.beginPath(); for (let px = left; px <= right; px += 3) { const historyAngle = angle - 2 * Math.PI * (right - px) / (right - left); const py = mid - (bottom - top) * .43 * (amplitude / limit) * Math.cos(historyAngle + offset); if (px === left) ctx.moveTo(px, py); else ctx.lineTo(px, py); } ctx.stroke(); const instantaneous = amplitude * Math.cos(angle + offset); text(ctx, `${"abc"[phase]}: ${instantaneous >= 0 ? "+" : ""}${instantaneous.toFixed(1)} ${unit}`, right - 2, top + 12 + phase * 18, 9, colour, "right"); });
   }
 
-  function drawMotorRotorPanel(ctx) { card(ctx, 25, 525, 610, 90, "Rotorwinkel"); const degreesValue = degrees(state.motor.theta); text(ctx, `${degreesValue.toFixed(1)} Grad`, 623, 542, 9, "#b45309", "right"); const left = 80; const right = 617; const bottom = 602; line(ctx, left, bottom, right, bottom, "#94a3b8", 1, [3, 3]); text(ctx, "360", 33, 555, 8, "#64748b"); text(ctx, "0", 43, bottom, 8, "#64748b"); const marker = bottom - 47 * degreesValue / 360; line(ctx, right, bottom, right, marker, "#d97706", 2); }
+  function drawMotorRotorPanel(ctx) { card(ctx, 25, 525, 610, 90, "Rotor angle"); const degreesValue = degrees(state.motor.theta); text(ctx, `${degreesValue.toFixed(1)} degrees`, 623, 542, 9, "#b45309", "right"); const left = 80; const right = 617; const bottom = 602; line(ctx, left, bottom, right, bottom, "#94a3b8", 1, [3, 3]); text(ctx, "360", 33, 555, 8, "#64748b"); text(ctx, "0", 43, bottom, 8, "#64748b"); const marker = bottom - 47 * degreesValue / 360; line(ctx, right, bottom, right, marker, "#d97706", 2); }
 
-  function drawMotorMachine(ctx, currentAngle) { const cx = 830; const cy = 280; const radius = 182; text(ctx, "Dreiphasen-Maschine", cx, 66, 12, "#0f172a", "center", "700"); ctx.fillStyle = "#e2e8f0"; ctx.strokeStyle = "#334155"; ctx.lineWidth = 3; ctx.beginPath(); ctx.arc(cx, cy, radius, 0, 2 * Math.PI); ctx.fill(); ctx.stroke(); phaseAngles.forEach((angle, index) => { const x = cx + 150 * Math.cos(angle); const y = cy - 150 * Math.sin(angle); ctx.strokeStyle = phaseColours[index]; ctx.lineWidth = 4; ctx.beginPath(); ctx.arc(x, y, 16, angle - 1.1, angle + 1.1); ctx.stroke(); text(ctx, phaseNames[index], cx + 174 * Math.cos(angle), cy - 174 * Math.sin(angle), 9, phaseColours[index], "center", "700"); }); arrow(ctx, cx, cy, cx + 138 * Math.cos(currentAngle), cy - 138 * Math.sin(currentAngle), "#16a34a", 4); drawRotor(ctx, cx, cy, state.motor.theta, 67, 29, 78); }
+  function drawMotorMachine(ctx, currentAngle) { const cx = 830; const cy = 280; const radius = 182; text(ctx, "Three-phase machine", cx, 66, 12, "#0f172a", "center", "700"); ctx.fillStyle = "#e2e8f0"; ctx.strokeStyle = "#334155"; ctx.lineWidth = 3; ctx.beginPath(); ctx.arc(cx, cy, radius, 0, 2 * Math.PI); ctx.fill(); ctx.stroke(); phaseAngles.forEach((angle, index) => { const x = cx + 150 * Math.cos(angle); const y = cy - 150 * Math.sin(angle); ctx.strokeStyle = phaseColours[index]; ctx.lineWidth = 4; ctx.beginPath(); ctx.arc(x, y, 16, angle - 1.1, angle + 1.1); ctx.stroke(); text(ctx, phaseNames[index], cx + 174 * Math.cos(angle), cy - 174 * Math.sin(angle), 9, phaseColours[index], "center", "700"); }); arrow(ctx, cx, cy, cx + 138 * Math.cos(currentAngle), cy - 138 * Math.sin(currentAngle), "#16a34a", 4); drawRotor(ctx, cx, cy, state.motor.theta, 67, 29, 78); }
 
-  function drawMotorEsb(ctx, voltage, currentAngle) { card(ctx, 655, 493, 370, 153, "Vereinfachtes ESB"); text(ctx, "grün: HS aktiv", 1013, 510, 9, "#475569", "right"); line(ctx, 690, 527, 886, 527, "#dc2626", 2); line(ctx, 690, 582, 886, 582, "#2563eb", 2); text(ctx, "+Udc", 680, 527, 8, "#dc2626", "right", "700"); text(ctx, "-Udc", 680, 582, 8, "#2563eb", "right", "700"); [746, 803, 860].forEach((x, index) => { const active = voltage * Math.cos(currentAngle + phaseAngles[index]) >= 0; ctx.fillStyle = active ? "#16a34a" : "#ffffff"; ctx.strokeStyle = "#166534"; ctx.lineWidth = 2; ctx.fillRect(x - 14, 540, 28, 16); ctx.strokeRect(x - 14, 540, 28, 16); text(ctx, active ? "HS" : "LS", x, 548, 7, active ? "#ffffff" : "#475569", "center", "700"); line(ctx, x, 556, x, 567, phaseColours[index], 2); line(ctx, x, 567, 935, 567, phaseColours[index], 2); text(ctx, phaseNames[index], x, 603, 9, phaseColours[index], "center", "700"); }); ctx.fillStyle = "#f8fafc"; ctx.strokeStyle = "#334155"; ctx.lineWidth = 2; ctx.beginPath(); ctx.arc(970, 565, 30, 0, 2 * Math.PI); ctx.fill(); ctx.stroke(); text(ctx, "M", 970, 560, 14, "#0f172a", "center", "700"); text(ctx, "3~", 970, 577, 8, "#475569", "center"); }
+  function drawMotorEsb(ctx, voltage, currentAngle) { card(ctx, 655, 493, 370, 153, "Simplified equivalent circuit"); text(ctx, "green: HS active", 1013, 510, 9, "#475569", "right"); line(ctx, 690, 527, 886, 527, "#dc2626", 2); line(ctx, 690, 582, 886, 582, "#2563eb", 2); text(ctx, "+Udc", 680, 527, 8, "#dc2626", "right", "700"); text(ctx, "-Udc", 680, 582, 8, "#2563eb", "right", "700"); [746, 803, 860].forEach((x, index) => { const active = voltage * Math.cos(currentAngle + phaseAngles[index]) >= 0; ctx.fillStyle = active ? "#16a34a" : "#ffffff"; ctx.strokeStyle = "#166534"; ctx.lineWidth = 2; ctx.fillRect(x - 14, 540, 28, 16); ctx.strokeRect(x - 14, 540, 28, 16); text(ctx, active ? "HS" : "LS", x, 548, 7, active ? "#ffffff" : "#475569", "center", "700"); line(ctx, x, 556, x, 567, phaseColours[index], 2); line(ctx, x, 567, 935, 567, phaseColours[index], 2); text(ctx, phaseNames[index], x, 603, 9, phaseColours[index], "center", "700"); }); ctx.fillStyle = "#f8fafc"; ctx.strokeStyle = "#334155"; ctx.lineWidth = 2; ctx.beginPath(); ctx.arc(970, 565, 30, 0, 2 * Math.PI); ctx.fill(); ctx.stroke(); text(ctx, "M", 970, 560, 14, "#0f172a", "center", "700"); text(ctx, "3~", 970, 577, 8, "#475569", "center"); }
 
   function updateTestButtons() { document.querySelectorAll(".phase-button").forEach(button => { const index = Number(button.dataset.phase); const active = state.test.active[index]; const key = index === 1 ? "Q" : index === 2 ? "S" : "E"; button.textContent = `${key}: ${phaseNames[index]} = ${active ? "+Udc" : "0 V"}`; button.classList.toggle("is-active", active); }); }
   function setTestPhase(index, active) { if (state.test.active[index] === active) return; state.test.active[index] = active; updateTestButtons(); }
