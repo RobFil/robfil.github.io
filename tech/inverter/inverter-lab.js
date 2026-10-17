@@ -193,7 +193,7 @@
     const ctx = prepare(canvases.test);
     const field = testField();
     const activeNames = phaseNames.filter((_, index) => state.test.active[index]).join(", ") || "keine";
-    const result = field.strength > 1e-9 ? `N_res bei ${degrees(field.angle).toFixed(0)} Grad` : "kein resultierender Statorpol";
+    const result = field.strength > 1e-9 ? `S_res bei ${degrees(field.angle).toFixed(0)} Grad` : "kein resultierender Statorpol";
     const rpm = state.test.speed * 60 / (2 * Math.PI);
     text(ctx, "Motor-Versuch: Statorpol manuell schalten", 25, 25, 18, "#0f172a", "left", "700");
     text(ctx, `Aktiv: ${activeNames}   |   ${result}   |   T_em = ${state.test.torque >= 0 ? "+" : ""}${state.test.torque.toFixed(2)}   |   n = ${rpm >= 0 ? "+" : ""}${rpm.toFixed(1)} rpm`, 25, 55, 12, field.strength ? "#166534" : "#475569", "left", "700");
@@ -208,7 +208,7 @@
       ctx.fillStyle = active ? "#dcfce7" : "#f8fafc"; ctx.strokeStyle = active ? "#16a34a" : "#94a3b8"; ctx.lineWidth = 2; ctx.fillRect(49, y - 14, 94, 28); ctx.strokeRect(49, y - 14, 94, 28);
       text(ctx, `${keys[index]}: ${phaseNames[index]}`, 96, y, 10, "#0f172a", "center", "700");
       line(ctx, 165, y, 480, y, active ? "#16a34a" : "#cbd5e1", active ? 5 : 2);
-      text(ctx, active ? "+Udc  ->  N" : "0 V", 525, y, 11, active ? "#166534" : "#475569", "center", "700");
+      text(ctx, active ? "+Udc  ->  S" : "0 V", 525, y, 11, active ? "#166534" : "#475569", "center", "700");
       text(ctx, `${index * 120}°`, 610, y, 9, "#64748b", "right");
     });
   }
@@ -219,8 +219,8 @@
     [0, 120, 240].forEach(angle => text(ctx, `${angle}°`, cx + 68 * Math.cos(angle * Math.PI / 180), cy - 68 * Math.sin(angle * Math.PI / 180), 8, "#64748b", "center"));
     if (field.strength > 1e-9) {
       arrow(ctx, cx, cy, cx + 68 * Math.cos(field.angle), cy - 68 * Math.sin(field.angle), "#16a34a", 5);
-      text(ctx, `N_res = ${degrees(field.angle).toFixed(0)}°`, 290, 382, 14, "#166534", "left", "700");
-      text(ctx, "T_em entsteht aus dem Winkelfehler zum Rotor-Südpol.", 290, 414, 10, "#475569");
+      text(ctx, `S_res = ${degrees(field.angle).toFixed(0)}°`, 290, 382, 14, "#166534", "left", "700");
+      text(ctx, "T_em entsteht aus dem Winkelfehler zum Rotor-Nordpol.", 290, 414, 10, "#475569");
     } else { text(ctx, "Kein resultierender Pol", 290, 393, 14, "#64748b", "left", "700"); text(ctx, "Bei U + V + W heben sich die Felder auf.", 290, 423, 10, "#475569"); }
     text(ctx, `Feldstärke (normiert): ${field.strength.toFixed(1)}`, 290, 460, 10, "#475569", "left", "700");
   }
@@ -240,7 +240,7 @@
       ctx.strokeStyle = active ? "#16a34a" : "#64748b"; ctx.lineWidth = 3; ctx.beginPath();
       for (let point = 0; point <= 24; point += 1) { const progress = point / 24; const along = -23 + 46 * progress; const offset = 7 * Math.sin(6 * Math.PI * progress); const x = px + along * tx + offset * rx; const y = py + along * ty + offset * ry; if (point) ctx.lineTo(x, y); else ctx.moveTo(x, y); } ctx.stroke();
       text(ctx, `${phaseNames[index]} ${active ? "+Udc" : "0 V"}`, cx + 174 * rx, cy + 174 * ry, 8, active ? "#166534" : "#64748b", "center", "700");
-      if (active) { const nx = cx + 118 * rx; const ny = cy + 118 * ry; ctx.fillStyle = "#dc2626"; ctx.strokeStyle = "#991b1b"; ctx.lineWidth = 2; ctx.beginPath(); ctx.arc(nx, ny, 16, 0, 2 * Math.PI); ctx.fill(); ctx.stroke(); text(ctx, "N", nx, ny, 12, "#ffffff", "center", "700"); }
+      if (active) { const nx = cx + 118 * rx; const ny = cy + 118 * ry; ctx.fillStyle = "#2563eb"; ctx.strokeStyle = "#1d4ed8"; ctx.lineWidth = 2; ctx.beginPath(); ctx.arc(nx, ny, 16, 0, 2 * Math.PI); ctx.fill(); ctx.stroke(); text(ctx, "S", nx, ny, 12, "#ffffff", "center", "700"); }
     });
     if (field.strength > 1e-9) arrow(ctx, cx, cy, cx + 142 * Math.cos(field.angle), cy - 142 * Math.sin(field.angle), "#16a34a", 4);
     drawRotor(ctx, cx, cy, state.test.theta, 67, 29, 78);
@@ -302,7 +302,7 @@
   function animate(time) {
     const dt = Math.min(0.05, Math.max(0, (time - previousTime) / 1000)); previousTime = time;
     const coil = state.coil; coil.current += ((coil.voltage - coil.current) / 0.25) * dt; coil.history.push({ u: coil.voltage, i: coil.current, b: coil.current * 0.05 }); if (coil.history.length > 240) coil.history.splice(0, coil.history.length - 240);
-    const field = testField(); const rotorSouth = state.test.theta + Math.PI; const error = wrapAngle(field.angle - rotorSouth); state.test.torque = 2.2 * field.strength * Math.sin(error); const acceleration = (state.test.torque - 1.1 * state.test.speed) / 0.35; state.test.speed += acceleration * dt; state.test.theta = (state.test.theta + state.test.speed * dt) % (2 * Math.PI); if (state.test.theta < 0) state.test.theta += 2 * Math.PI; state.test.history.push(state.test.theta); if (state.test.history.length > 240) state.test.history.splice(0, state.test.history.length - 240);
+    const field = testField(); const rotorNorth = state.test.theta; const error = wrapAngle(field.angle - rotorNorth); state.test.torque = 2.2 * field.strength * Math.sin(error); const acceleration = (state.test.torque - 1.1 * state.test.speed) / 0.35; state.test.speed += acceleration * dt; state.test.theta = (state.test.theta + state.test.speed * dt) % (2 * Math.PI); if (state.test.theta < 0) state.test.theta += 2 * Math.PI; state.test.history.push(state.test.theta); if (state.test.history.length > 240) state.test.history.splice(0, state.test.history.length - 240);
     state.motor.theta = (state.motor.theta + 2 * Math.PI * Math.min(state.motor.speed / 60, 8) * dt) % (2 * Math.PI);
     if (state.activeTab === "coil") drawCoil(); else if (state.activeTab === "test") drawTest(); else drawMotor();
     requestAnimationFrame(animate);

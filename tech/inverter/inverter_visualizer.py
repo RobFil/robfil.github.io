@@ -220,7 +220,7 @@ class InverterVisualizer(tk.Tk):
         self._draw_motor_test_page()
 
     def _test_stator_field(self) -> tuple[float, float, float]:
-        """Resultierender Nordpol aus drei gleich grossen, geschalteten Phasen."""
+        """Resultierender Südpol aus drei gleich grossen, geschalteten Phasen."""
         field_x = 0.0
         field_y = 0.0
         for active, phase_angle in zip(self.test_phase_active, (0.0, 2.0 * math.pi / 3.0, 4.0 * math.pi / 3.0)):
@@ -239,8 +239,8 @@ class InverterVisualizer(tk.Tk):
         """Integriert ein kleines Drehmomentmodell mit Trägheit und Reibung."""
         step_s = min(max(elapsed_s, 0.0), 0.05)
         field_angle, field_strength, _field_x = self._test_stator_field()
-        rotor_s_angle = self.test_rotor_angle + math.pi
-        error = self._wrap_angle(field_angle - rotor_s_angle)
+        # Der geschaltete Stator-Südpol zieht den Rotor-Nordpol an.
+        error = self._wrap_angle(field_angle - self.test_rotor_angle)
         self.test_torque = self.test_torque_constant * field_strength * math.sin(error)
         acceleration = (self.test_torque - self.test_damping * self.test_rotor_speed_rad_s) / self.test_inertia
         self.test_rotor_speed_rad_s += acceleration * step_s
@@ -260,7 +260,7 @@ class InverterVisualizer(tk.Tk):
         if field_strength <= 1e-9:
             result_text = "kein resultierender Statorpol"
         else:
-            result_text = f"N_res bei {math.degrees(field_angle) % 360.0:.0f} Grad"
+            result_text = f"S_res bei {math.degrees(field_angle) % 360.0:.0f} Grad"
         test_speed_rpm = self.test_rotor_speed_rad_s * 60.0 / (2.0 * math.pi)
 
         canvas.create_text(
@@ -312,7 +312,7 @@ class InverterVisualizer(tk.Tk):
             canvas.create_line(left + 140, row_y, left + 455, row_y, fill="#cbd5e1", width=2)
             if active:
                 canvas.create_line(left + 140, row_y, left + 455, row_y, fill="#16a34a", width=5)
-                canvas.create_text(left + 500, row_y, text="+Udc  ->  N", font=("Segoe UI", 11, "bold"), fill="#166534")
+                canvas.create_text(left + 500, row_y, text="+Udc  ->  S", font=("Segoe UI", 11, "bold"), fill="#166534")
             else:
                 canvas.create_text(left + 500, row_y, text="0 V", font=("Segoe UI", 11, "bold"), fill=text_colour)
             canvas.create_text(left + 585, row_y, text=f"{angle_deg}°", anchor="e", font=("Segoe UI", 9), fill="#64748b")
@@ -344,7 +344,7 @@ class InverterVisualizer(tk.Tk):
                 290,
                 382,
                 anchor="w",
-                text=f"N_res = {math.degrees(field_angle) % 360.0:.0f}°",
+                text=f"S_res = {math.degrees(field_angle) % 360.0:.0f}°",
                 font=("Segoe UI", 14, "bold"),
                 fill="#166534",
             )
@@ -352,7 +352,7 @@ class InverterVisualizer(tk.Tk):
                 290,
                 413,
                 anchor="w",
-                text="Der S-Pol des Rotors richtet sich dorthin aus.",
+                text="Der N-Pol des Rotors richtet sich dorthin aus.",
                 font=("Segoe UI", 10),
                 fill="#475569",
             )
@@ -438,8 +438,8 @@ class InverterVisualizer(tk.Tk):
             if active:
                 pole_x = centre_x + 118 * radial_x
                 pole_y = centre_y + 118 * radial_y
-                canvas.create_oval(pole_x - 16, pole_y - 16, pole_x + 16, pole_y + 16, fill="#dc2626", outline="#991b1b", width=2)
-                canvas.create_text(pole_x, pole_y, text="N", font=("Segoe UI", 12, "bold"), fill="white")
+                canvas.create_oval(pole_x - 16, pole_y - 16, pole_x + 16, pole_y + 16, fill="#2563eb", outline="#1d4ed8", width=2)
+                canvas.create_text(pole_x, pole_y, text="S", font=("Segoe UI", 12, "bold"), fill="white")
 
         if field_strength > 1e-9:
             field_length = 62 + 80 * min(field_strength, 1.0)
@@ -455,7 +455,7 @@ class InverterVisualizer(tk.Tk):
             canvas.create_text(
                 centre_x + 105 * math.cos(field_angle),
                 centre_y - 105 * math.sin(field_angle) - 15,
-                text="N_res",
+                text="S_res",
                 font=("Segoe UI", 9, "bold"),
                 fill="#166534",
             )
