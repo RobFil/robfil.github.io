@@ -1,6 +1,6 @@
 ---
 layout: reading
-title: Lesetexte
+title: 読解テキスト
 permalink: /reading/
 ---
 

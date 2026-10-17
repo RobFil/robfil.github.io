@@ -1,12 +1,12 @@
 ---
 layout: page
-title: Karriere / 就職面接
+title: キャリア / 就職面接
 permalink: /career/
 ---
 
 日本語での就職面接に向けた準備用のメモです。職務経験の概要から始め、今後はモーター制御、インバーター制御、モデルベース開発、技術評価などのテーマを個別の中間テキストとして追加します。
 
-## 中間テキスト
+## 公開中のテキスト
 
 {% assign interview_posts = site.categories.career %}
 <ul>
