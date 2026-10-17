@@ -4,9 +4,9 @@ title: Willkommen
 ---
 
 <section class="home-hero">
-  <p class="eyebrow">PERSÖNLICHES WISSENSARCHIV // 01</p>
-  <h1>Japanisch.<br><span>Präzise gelesen.</span></h1>
-  <p class="home-intro">Ein fokussierter Ort für japanische Lesepraxis, technische Karrierevorbereitung und Erinnerungen an Japan.</p>
+  <p class="eyebrow">日本語 // READING</p>
+  <h1>Japanische<br><span>Lesetexte.</span></h1>
+  <p class="home-intro">Übungsmaterial für Alltag, Beruf und technische Themen.</p>
   <a class="button-link" href="{{ '/reading/' | relative_url }}">Lesetexte öffnen <span aria-hidden="true">→</span></a>
 </section>
 
