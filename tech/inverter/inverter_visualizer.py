@@ -562,7 +562,7 @@ class InverterVisualizer(tk.Tk):
         self.coil_voltage_entry = ttk.Entry(controls, width=10, justify="right", textvariable=self.coil_voltage_input)
         self.coil_voltage_entry.grid(row=0, column=2, sticky="e")
         ttk.Label(controls, text="V").grid(row=0, column=3, sticky="w", padx=(4, 18))
-        ttk.Button(controls, text="Strom zurücksetzen", command=self._reset_coil_current).grid(row=0, column=4)
+        ttk.Button(controls, text="Spannung zurücksetzen", command=self._reset_coil_voltage).grid(row=0, column=4)
         ttk.Label(
             controls,
             text="Die festen R- und L-Werte wirken nur intern auf den Stromverlauf.",
@@ -594,10 +594,10 @@ class InverterVisualizer(tk.Tk):
         self.coil_voltage_entry.bind("<Return>", apply_voltage)
         self.coil_voltage_entry.bind("<FocusOut>", apply_voltage)
 
-    def _reset_coil_current(self) -> None:
-        self.coil_current_a = 0.0
-        self.coil_elapsed_s = 0.0
-        self.coil_history = [(0.0, self.coil_voltage_v.get(), 0.0, 0.0)]
+    def _reset_coil_voltage(self) -> None:
+        """Setzt nur die Batteriespannung auf 0 V; der RL-Strom klingt ab."""
+        self.coil_voltage_v.set(0.0)
+        self.coil_voltage_input.set("0.0")
         self._draw_coil_page()
 
     def _update_coil_current(self, elapsed_s: float) -> None:
