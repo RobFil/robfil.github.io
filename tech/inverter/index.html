@@ -1,0 +1,60 @@
+---
+layout: default
+title: Inverter-Labor
+---
+<link rel="stylesheet" href="{{ '/tech/inverter/inverter-lab.css' | relative_url }}">
+
+<section id="inverter-lab" aria-labelledby="lab-title">
+  <header class="lab-header">
+    <p class="lab-eyebrow">TECH // INTERAKTIVES LERNMODELL</p>
+    <h1 id="lab-title">Dreiphasen-Inverter</h1>
+    <p>Ein vereinfachtes Lernmodell für Spule, manuelles Schalten und eine SPMSM.</p>
+  </header>
+
+  <nav class="lab-tabs" aria-label="Lernseiten" role="tablist">
+    <button class="lab-tab is-active" type="button" role="tab" aria-selected="true" aria-controls="coil-panel" id="coil-tab" data-tab="coil">1&nbsp; Spule</button>
+    <button class="lab-tab" type="button" role="tab" aria-selected="false" aria-controls="test-panel" id="test-tab" data-tab="test">2&nbsp; Motor-Versuch</button>
+    <button class="lab-tab" type="button" role="tab" aria-selected="false" aria-controls="motor-panel" id="motor-tab" data-tab="motor">3&nbsp; Motor</button>
+  </nav>
+
+  <section class="lab-panel" id="coil-panel" role="tabpanel" aria-labelledby="coil-tab" data-panel="coil">
+    <div class="lab-controls">
+      <label>Batteriespannung <output id="coil-voltage-value">+0.0 V</output>
+        <input id="coil-voltage" type="range" min="-10" max="10" value="0" step="0.1">
+      </label>
+      <button id="coil-reset" type="button">Strom zurücksetzen</button>
+      <span>Feste Modellwerte: R und L</span>
+    </div>
+    <canvas id="coil-canvas" width="1050" height="660" aria-label="Spule mit Strom-, Magnetfeld- und Ersatzschaltbild"></canvas>
+  </section>
+
+  <section class="lab-panel" id="test-panel" role="tabpanel" aria-labelledby="test-tab" data-panel="test" hidden>
+    <div class="lab-controls test-controls">
+      <button type="button" class="phase-button" data-phase="1">Q: V = 0 V</button>
+      <button type="button" class="phase-button" data-phase="2">S: W = 0 V</button>
+      <button type="button" class="phase-button" data-phase="0">E: U = 0 V</button>
+      <button id="test-reset" type="button">Rotor zurücksetzen</button>
+      <span>+Udc liegt nur an, solange Taste oder Taster gedrückt ist.</span>
+    </div>
+    <canvas id="test-canvas" width="1050" height="660" aria-label="Manueller Dreiphasen-Inverter-Versuch"></canvas>
+  </section>
+
+  <section class="lab-panel" id="motor-panel" role="tabpanel" aria-labelledby="motor-tab" data-panel="motor" hidden>
+    <div class="lab-controls motor-controls">
+      <label>Drehzahl <output id="motor-speed-value">0 rpm</output>
+        <input id="motor-speed" type="range" min="0" max="100" value="0" step="1">
+      </label>
+      <label>Stromamplitude <output id="motor-amplitude-value">50 A</output>
+        <input id="motor-amplitude" type="range" min="0" max="100" value="50" step="1">
+      </label>
+      <label>Stromwinkel <output id="motor-phase-value">+90°</output>
+        <input id="motor-phase" type="range" min="-180" max="180" value="90" step="1">
+      </label>
+    </div>
+    <canvas id="motor-canvas" width="1050" height="660" aria-label="Dreiphasenmotor mit Strom-, Spannungs- und Drehmomentdarstellung"></canvas>
+  </section>
+
+  <p class="lab-note">Lernmodell: Alle Feldstärken und mechanischen Werte sind normiert. Es ist kein Motorregler.</p>
+</section>
+
+<script src="{{ '/tech/inverter/inverter-lab.js' | relative_url }}" defer></script>

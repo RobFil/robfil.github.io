@@ -1,0 +1,19 @@
+#inverter-lab { padding: clamp(2.5rem, 7vw, 5rem) 0 1rem; }
+#inverter-lab .lab-header { max-width: 52rem; }
+#inverter-lab .lab-eyebrow { margin: 0 0 .7rem; color: var(--accent); font-size: .74rem; font-weight: 800; letter-spacing: .13em; }
+#inverter-lab h1 { margin: 0; font-size: clamp(2.4rem, 6vw, 4.8rem); line-height: 1; letter-spacing: -.05em; }
+#inverter-lab .lab-header > p:last-child { max-width: 44rem; margin: 1rem 0 2rem; color: var(--muted); }
+#inverter-lab .lab-tabs { display: flex; gap: .55rem; flex-wrap: wrap; margin-bottom: 1rem; border-bottom: 1px solid var(--line); }
+#inverter-lab button { min-height: 2.55rem; padding: .55rem .8rem; border: 1px solid var(--line); background: var(--surface); color: var(--text); font: inherit; font-size: .88rem; font-weight: 750; cursor: pointer; }
+#inverter-lab button:hover, #inverter-lab button:focus-visible { border-color: var(--accent); color: var(--accent); }
+#inverter-lab .lab-tab { border-bottom: 0; }
+#inverter-lab .lab-tab.is-active { background: var(--accent); border-color: var(--accent); color: #041116; }
+#inverter-lab .lab-controls { display: flex; align-items: end; gap: 1rem; flex-wrap: wrap; padding: 1rem; border: 1px solid var(--line); background: rgba(13, 26, 39, .75); }
+#inverter-lab .lab-controls label { display: grid; min-width: min(100%, 16rem); gap: .3rem; color: var(--muted); font-size: .82rem; font-weight: 700; }
+#inverter-lab output { color: var(--accent-soft); font-variant-numeric: tabular-nums; }
+#inverter-lab input { width: 100%; accent-color: var(--accent); }
+#inverter-lab .lab-controls > span { flex: 1 1 15rem; align-self: center; color: var(--muted); font-size: .82rem; }
+#inverter-lab .phase-button.is-active { border-color: #4ade80; background: #166534; color: white; }
+#inverter-lab canvas { display: block; width: 100%; height: auto; margin-top: 1rem; border: 1px solid var(--line); background: #f8fafc; touch-action: none; }
+#inverter-lab .lab-note { margin: 1rem 0 0; color: var(--muted); font-size: .82rem; }
+@media (max-width: 640px) { #inverter-lab .lab-controls { align-items: stretch; gap: .7rem; } #inverter-lab .lab-controls label { min-width: 100%; } #inverter-lab button { flex: 1 1 auto; } }

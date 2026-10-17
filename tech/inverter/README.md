@@ -10,6 +10,12 @@ Die Anwendung benötigt nur Python mit der Standardbibliothek (`tkinter`).
 
 Sie startet maximiert mit `0 rpm`. Die Lehrgrafik wird automatisch an die verfügbare Fensterfläche skaliert.
 
+## Seiten
+
+- `1 Spule`: RL-Demonstration mit regelbarer Batterie (−10 bis +10 V), Strom und Magnetfeld
+- `2 Motor-versuch`: manueller Inverter-Versuch mit drei Phasenschaltern
+- `3 Motor`: die bisherige vollstaendige Motor-, Strom-, Spannungs- und ESB-Visualisierung
+
 ## Was die Visualisierung zeigt
 
 - `iabc`: drei um 120° versetzte Phasenströme
@@ -21,6 +27,14 @@ Sie startet maximiert mit `0 rpm`. Die Lehrgrafik wird automatisch an die verfü
 - numerische Eingabefelder direkt neben jedem Schieberegler (Enter oder Feld verlassen zum Uebernehmen)
 - ein vereinfachtes ESB mit µC, 3-Phasen-Inverter, drei Stromsensoren, Motor und RLG-Rueckfuehrung
 - interaktive Halbbruecken mit Batteriesymbol und Zwischenkreis-Schienen: HS wird bei positiver, LS bei negativer Phasenspannung gruen bzw. rot hervorgehoben
+
+## Seite „Spule"
+
+Die Spulenseite verwendet intern feste Werte fuer Widerstand und Induktivitaet. Mit dem Batteriespannungsregler wird das RL-Modell `U = R*i + L*di/dt` berechnet. Sie nutzt bewusst dasselbe Raster wie die Motorseite: links drei Verlaufskarten fuer Strom, Magnetfeld und Batteriespannung; rechts die physikalische Spule sowie darunter das einfache Ersatzschaltbild. Der Stromzeiger zeigt Betrag und Richtung des Stroms; der Feldzeiger in der Spule folgt dem einfachen linearen Zusammenhang `B = k*i` und dreht sich bei negativem Strom um.
+
+## Seite „Motor-versuch"
+
+Auf dieser Seite ist jede Phase bewusst nur `0 V` oder `+Udc`. Die Tasten `Q`, `S` und `E` legen `+Udc` gegen den Uhrzeigersinn versetzt an die Phasen `V`, `W` und `U`, aber ausschliesslich solange die Taste gedrueckt bleibt; beim Loslassen faellt die Phase sofort auf `0 V` zurueck. Die Maus-Taster funktionieren genauso. Jede aktive Phase erzeugt dort einen roten Stator-Nordpol. Die drei Nordpole werden als Vektoren addiert: Der resultierende Nordpol wird angezeigt. Fuer die Rotorbewegung gilt das normierte Drehmomentmodell `T_em = k * |B_res| * sin(Winkelfehler)`. Trägheit und Reibung integrieren daraus Drehzahl und Rotorwinkel. Der Rotor kann deshalb kurz weiterlaufen und nachschwingen, statt unmittelbar auf die Feldposition zu springen. Bei allen drei aktiven Phasen heben sich die drei gleich grossen Vektoren in diesem einfachen Modell auf.
 
 Das ist ein Anschauungsmodell einer oberflaechenmontierten Permanentmagnet-Synchronmaschine (SPMSM), kein Motorregler. Der Stromamplituden-Schieberegler setzt den Spitzenwert des dreiphasigen Stroms. Der Stromwinkel `phi` dreht das daraus entstehende Statorfeld relativ zum Rotor.
 

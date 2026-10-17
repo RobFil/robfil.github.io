@@ -31,5 +31,10 @@ title: 日本語の読解
       <h2>旅行</h2>
       <p>これまで日本で訪れた場所を地図で確認できます。</p>
     </a>
+    <a class="portal-card" data-index="04" href="{{ '/tech/inverter/' | relative_url }}">
+      <span class="portal-kicker">TECH LAB</span>
+      <h2>Inverter-Labor</h2>
+      <p>Spule, manueller Inverter und dreiphasige Maschine interaktiv erkunden.</p>
+    </a>
   </div>
 </section>
