@@ -1,0 +1,11 @@
+---
+layout: default
+---
+<article class="post-shell">
+  <header class="post-header">
+    <p class="eyebrow">{{ page.categories | join: ' / ' | upcase }} // {{ page.date | date: "%d.%m.%Y" }}</p>
+    <h1>{{ page.title }}</h1>
+    {% if page.summary_de %}<p class="post-summary">{{ page.summary_de }}</p>{% endif %}
+  </header>
+  <div class="post-content">{{ content }}</div>
+</article>

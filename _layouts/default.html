@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="{{ site.description | escape }}">
+    <title>{% if page.title %}{{ page.title | escape }} · {% endif %}{{ site.title | escape }}</title>
+    <link rel="stylesheet" href="{{ '/assets/css/site.css' | relative_url }}">
+  </head>
+  <body>
+    <div class="site-frame">
+      <header class="site-header">
+        <div class="site-header-inner">
+          <a class="site-brand" href="{{ '/' | relative_url }}" aria-label="Startseite">
+            <span class="site-brand-mark" aria-hidden="true">RF</span>
+            <span class="site-brand-text">NOTES<span>//</span></span>
+          </a>
+          <nav class="site-nav" aria-label="Hauptnavigation">
+            <a href="{{ '/reading/' | relative_url }}">Lesetexte</a>
+            <a href="{{ '/career/' | relative_url }}">Karriere</a>
+            <a href="{{ '/travel/' | relative_url }}">Reisen</a>
+          </nav>
+        </div>
+      </header>
+      <main class="site-main">{{ content }}</main>
+      <footer class="site-footer">
+        <div class="site-footer-inner">
+          <span>RF//NOTES</span>
+          <span>Japanisch · Karriere · Reisen</span>
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>

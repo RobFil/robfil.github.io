@@ -1,4 +1,4 @@
-name: Deploy website and Food Inventory
+name: Deploy Jekyll website
 
 on:
   push:
@@ -23,32 +23,6 @@ jobs:
 
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v6
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v7
-        with:
-          node-version: 22
-          package-manager-cache: false
-
-      - name: Install Food Inventory dependencies
-        working-directory: apps/food-inventory
-        run: npm install --no-package-lock
-
-      - name: Test Food Inventory
-        working-directory: apps/food-inventory
-        run: npm run test
-
-      - name: Build Food Inventory
-        working-directory: apps/food-inventory
-        env:
-          VITE_SUPABASE_URL: ${{ vars.VITE_SUPABASE_URL }}
-          VITE_SUPABASE_ANON_KEY: ${{ vars.VITE_SUPABASE_ANON_KEY }}
-        run: npm run build
-
-      - name: Stage Food Inventory for Jekyll
-        run: |
-          mkdir -p food-inventory
-          cp -R apps/food-inventory/dist/. food-inventory/
 
       - name: Build Jekyll website
         uses: actions/jekyll-build-pages@v1

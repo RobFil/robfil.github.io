@@ -1,4 +1,6 @@
 *.raw
+*.py[cod]
+__pycache__/
 *.pdf
 *.PDF
 debug.log

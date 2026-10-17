@@ -1,6 +1,6 @@
 ---
 name: teacher-read
-description: Read and discuss a specific Japanese text with critical source-grounded feedback on reading, pronunciation, and word choice. Prefer the project's GitHub Pages reading texts; use a user-provided web source when requested. Do not generate new reading texts or ingest sources.
+description: Read and discuss a specific Japanese text with critical source-grounded feedback on reading, pronunciation, and word choice. Prefer the project's local reading texts; use a user-provided web source when requested. Do not generate new reading texts or ingest sources.
 ---
 
 # Japanese Teacher Read
@@ -16,10 +16,8 @@ Conduct a source-bound Japanese reading session. Speak Japanese by default.
 - Keep that browser tab open and use its rendered page as the shared reading
   view for the session.
 
-1. Prefer the project's published reading texts. Resolve a title, date or post
-   request to its public post URL and open that exact page in `@Browser`. Use
-   `https://robfil.github.io/reading/` only to locate the linked post when its
-   URL is not already known.
+1. Prefer the project's local reading texts. Resolve a title or date to its
+   Markdown post in `_posts/reading/` and use that file as the source.
 2. If the learner provides a URL, read that source instead. For current or
    changing material, open it freshly in `@Browser`.
 3. State the title and source once at session start. Keep the open page as the

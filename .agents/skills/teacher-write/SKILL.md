@@ -53,5 +53,5 @@ Create original, source-grounded Japanese reading practice for the site.
 
 - Creating or editing a local post is the normal output of this skill.
 - Do not commit, push, open a pull request, or otherwise publish to GitHub
-  unless the learner explicitly asks. GitHub Pages deploys after a push.
+  unless the learner explicitly asks.
 - Do not run an interactive reading session; hand that work to `teacher-read`.

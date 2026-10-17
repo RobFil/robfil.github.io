@@ -2,7 +2,7 @@
 layout: post
 title: "PMSMモーター制御：センサーから電圧出力まで"
 date: 2026-10-11
-categories: [interview]
+categories: [career]
 topic: "Bewerbungsgespräch / モーター制御"
 summary_de: "Verständlicher Überblick über die PMSM-Regelkette: Sensorik, feldorientierte Stromregelung, PWM-Spannungsausgabe, Ziele und technische Herausforderungen."
 generated: false
