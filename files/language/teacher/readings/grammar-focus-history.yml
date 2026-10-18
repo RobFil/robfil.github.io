@@ -226,7 +226,7 @@ entries:
     learning_sources: ["20261011_Unit8__振り返り_教材.pdf"]
   - post: "2026-10-18-kokyaku-review-no-furikaeri.md"
     recorded_at: 2026-10-18
-    status: current
+    status: removed
     grammar: ["～のがよかったと思います", "～が難しかったです"]
     source_selection: guided
     learning_sources: ["20261018_Unit8__振り返り_教材.pdf"]
@@ -234,9 +234,45 @@ entries:
     pages: [3, 4, 7]
   - post: "2026-10-18-kaizen-action-no-tantou.md"
     recorded_at: 2026-10-18
-    status: current
+    status: removed
     grammar: ["～してみるのもよいと思います", "～を意識したいと思います"]
     source_selection: guided
     learning_sources: ["20261018_Unit8__振り返り_教材.pdf"]
     topic: "Business / Unit 8: 改善案とアクションの決定"
     pages: [10]
+  - post: "2026-10-18-koujou-kensa-no-kakunin.md"
+    recorded_at: 2026-10-18
+    status: current
+    grammar: ["～の部分が聞き取れませんでした", "～という理解でよろしいでしょうか"]
+    source_selection: random
+    learning_sources: ["20260918_Unit7_会議に参加する_教材.pdf"]
+    topic: "Business / Unit 7: 設備の納入前確認"
+    pages: [4, 6]
+  - post: "2026-10-18-shin-koukoku-no-furikaeri.md"
+    recorded_at: 2026-10-18
+    status: current
+    grammar: ["～からかもしれませんが", "～がうまくいかなかったと感じました"]
+    source_selection: random
+    learning_sources: ["20261018_Unit8__振り返り_教材.pdf"]
+    topic: "Business / Unit 8: 店舗キャンペーンの振り返り"
+    pages: [7, 10, 11]
+  - post: "2026-10-18-kinkyu-jishin-sokuhou-no-kenshou.md"
+    recorded_at: 2026-10-18
+    status: current
+    grammar: ["～を受けて", "～によるものです"]
+    source_selection: guided
+    learning_sources: ["general_n2"]
+    topic: "ニュース / 防災: 緊急地震速報の推定を検証"
+    source_url: "https://www.jma.go.jp/jma/press/2610/16b/202610161400.html"
+    source_published_at: 2026-10-16
+    source_checked_at: 2026-10-18
+  - post: "2026-10-18-lithium-ion-battery-kaishuu.md"
+    recorded_at: 2026-10-18
+    status: current
+    grammar: ["～を背景に", "～に基づいて"]
+    source_selection: guided
+    learning_sources: ["general_n2"]
+    topic: "ニュース / 環境: リチウムイオン電池の回収"
+    source_url: "https://www.env.go.jp/press/press_05701.html"
+    source_published_at: 2026-10-16
+    source_checked_at: 2026-10-18

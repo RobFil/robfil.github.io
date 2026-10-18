@@ -112,9 +112,25 @@ entries:
     topic: "Business / Meeting: eine eigene Meinung einbringen"
   - post: "2026-10-18-kokyaku-review-no-furikaeri.md"
     recorded_at: 2026-10-18
-    status: current
+    status: removed
     topic: "Business / Unit 8: 顧客レビューの振り返り"
   - post: "2026-10-18-kaizen-action-no-tantou.md"
     recorded_at: 2026-10-18
-    status: current
+    status: removed
     topic: "Business / Unit 8: 改善案とアクションの決定"
+  - post: "2026-10-18-koujou-kensa-no-kakunin.md"
+    recorded_at: 2026-10-18
+    status: current
+    topic: "Business / Unit 7: 設備の納入前確認"
+  - post: "2026-10-18-shin-koukoku-no-furikaeri.md"
+    recorded_at: 2026-10-18
+    status: current
+    topic: "Business / Unit 8: 店舗キャンペーンの振り返り"
+  - post: "2026-10-18-kinkyu-jishin-sokuhou-no-kenshou.md"
+    recorded_at: 2026-10-18
+    status: current
+    topic: "ニュース / 防災: 緊急地震速報の推定を検証"
+  - post: "2026-10-18-lithium-ion-battery-kaishuu.md"
+    recorded_at: 2026-10-18
+    status: current
+    topic: "ニュース / 環境: リチウムイオン電池の回収"
