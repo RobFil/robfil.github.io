@@ -92,11 +92,11 @@ entries:
     topic: "Alltag / Nachbarschaft: 祭りの準備"
   - post: "2026-10-17-shanai-happyo-kai.md"
     recorded_at: 2026-10-17
-    status: current
+    status: replaced
     topic: "Business / Unit 7: 社内改善アイデア発表会"
   - post: "2026-10-17-sprint-no-furikaeri.md"
     recorded_at: 2026-10-17
-    status: current
+    status: replaced
     topic: "Business / Unit 8: チームの振り返り"
   - post: "2026-10-04-robert-no-mensetsu.md"
     recorded_at: 2026-10-04
@@ -110,3 +110,11 @@ entries:
     recorded_at: 2026-10-04
     status: replaced
     topic: "Business / Meeting: eine eigene Meinung einbringen"
+  - post: "2026-10-18-kokyaku-review-no-furikaeri.md"
+    recorded_at: 2026-10-18
+    status: current
+    topic: "Business / Unit 8: 顧客レビューの振り返り"
+  - post: "2026-10-18-kaizen-action-no-tantou.md"
+    recorded_at: 2026-10-18
+    status: current
+    topic: "Business / Unit 8: 改善案とアクションの決定"

@@ -214,13 +214,29 @@ entries:
     learning_sources: ["かけて・わたって説明と例文.pdf"]
   - post: "2026-10-17-shanai-happyo-kai.md"
     recorded_at: 2026-10-17
-    status: current
+    status: replaced
     grammar: ["～てもよろしいでしょうか"]
     source_selection: guided
     learning_sources: ["20260918_Unit7_会議に参加する_教材.pdf"]
   - post: "2026-10-17-sprint-no-furikaeri.md"
     recorded_at: 2026-10-17
-    status: current
+    status: replaced
     grammar: ["～たことで", "～ことができる"]
     source_selection: guided
     learning_sources: ["20261011_Unit8__振り返り_教材.pdf"]
+  - post: "2026-10-18-kokyaku-review-no-furikaeri.md"
+    recorded_at: 2026-10-18
+    status: current
+    grammar: ["～のがよかったと思います", "～が難しかったです"]
+    source_selection: guided
+    learning_sources: ["20261018_Unit8__振り返り_教材.pdf"]
+    topic: "Business / Unit 8: 顧客レビューの振り返り"
+    pages: [3, 4, 7]
+  - post: "2026-10-18-kaizen-action-no-tantou.md"
+    recorded_at: 2026-10-18
+    status: current
+    grammar: ["～してみるのもよいと思います", "～を意識したいと思います"]
+    source_selection: guided
+    learning_sources: ["20261018_Unit8__振り返り_教材.pdf"]
+    topic: "Business / Unit 8: 改善案とアクションの決定"
+    pages: [10]
