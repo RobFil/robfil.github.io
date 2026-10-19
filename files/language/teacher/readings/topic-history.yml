@@ -28,11 +28,11 @@ entries:
     topic: "Alltag / Reise: Ryokan in einer Küstenstadt"
   - post: "2026-10-08-shiyou-sho-no-saishu-kakunin.md"
     recorded_at: 2026-10-08
-    status: current
+    status: removed
     topic: "Business / Kundendokumente: Spezifikationsprüfung"
   - post: "2026-10-08-ririsu-henkou-no-soudan.md"
     recorded_at: 2026-10-08
-    status: current
+    status: removed
     topic: "Business / Projektabstimmung: Release-Änderung"
   - post: "2026-10-08-soai-kenso-no-noberu-kagakusho.md"
     recorded_at: 2026-10-08
@@ -68,27 +68,27 @@ entries:
     topic: "Business / Online-Meeting"
   - post: "2026-10-17-furuhon-ichi-no-chizu.md"
     recorded_at: 2026-10-17
-    status: current
+    status: replaced
     topic: "Alltag / Freizeit: 古本市での思いがけない発見"
   - post: "2026-10-17-hogoneko-no-satooya.md"
     recorded_at: 2026-10-17
-    status: current
+    status: replaced
     topic: "Alltag / Tiere: 保護猫との出会い"
   - post: "2026-10-17-machinaka-hanadan.md"
     recorded_at: 2026-10-17
-    status: current
+    status: replaced
     topic: "Alltag / Gemeinschaft: 公園の花壇づくり"
   - post: "2026-10-17-kouen-sanpo-no-tenki.md"
     recorded_at: 2026-10-17
-    status: current
+    status: replaced
     topic: "Alltag / Freizeit: 公園散歩の計画"
   - post: "2026-10-17-tana-tsukuri-no-kouza.md"
     recorded_at: 2026-10-17
-    status: current
+    status: replaced
     topic: "Alltag / Wohnen: 木の棚づくり"
   - post: "2026-10-17-andonzukuri-no-sankakan.md"
     recorded_at: 2026-10-17
-    status: current
+    status: replaced
     topic: "Alltag / Nachbarschaft: 祭りの準備"
   - post: "2026-10-17-shanai-happyo-kai.md"
     recorded_at: 2026-10-17
@@ -120,17 +120,49 @@ entries:
     topic: "Business / Unit 8: 改善案とアクションの決定"
   - post: "2026-10-18-koujou-kensa-no-kakunin.md"
     recorded_at: 2026-10-18
-    status: current
+    status: replaced
     topic: "Business / Unit 7: 設備の納入前確認"
   - post: "2026-10-18-shin-koukoku-no-furikaeri.md"
     recorded_at: 2026-10-18
-    status: current
+    status: replaced
     topic: "Business / Unit 8: 店舗キャンペーンの振り返り"
   - post: "2026-10-18-kinkyu-jishin-sokuhou-no-kenshou.md"
     recorded_at: 2026-10-18
-    status: current
+    status: replaced
     topic: "ニュース / 防災: 緊急地震速報の推定を検証"
   - post: "2026-10-18-lithium-ion-battery-kaishuu.md"
     recorded_at: 2026-10-18
+    status: replaced
+  - post: "2026-10-19-shain-ken-kakunin-no-kaigi.md"
+    recorded_at: 2026-10-19
     status: current
+    topic: "Business / Unit 7: 品質基準の見直し"
+  - post: "2026-10-19-kpt-chiimu-no-try.md"
+    recorded_at: 2026-10-19
+    status: current
+    topic: "Business / Unit 8: 振り返りと次のアクション"
+  - post: "2026-10-19-asaichi-no-yasai.md"
+    recorded_at: 2026-10-19
+    status: current
+    topic: "Alltag / Einkaufen: 朝市での買い物"
+  - post: "2026-10-19-kissa-ten-no-machi-aruki.md"
+    recorded_at: 2026-10-19
+    status: current
+    topic: "Alltag / Café: 雨の日の待ち合わせ"
+  - post: "2026-10-19-kodomo-no-toshokan.md"
+    recorded_at: 2026-10-19
+    status: current
+    topic: "Alltag / Nachbarschaft: 図書館の読み聞かせ会"
+  - post: "2026-10-19-hikkoshi-no-tetsudai.md"
+    recorded_at: 2026-10-19
+    status: current
+    topic: "Alltag / Nachbarschaft: 引っ越しの手伝い"
+  - post: "2026-10-19-ryokou-saki-no-machikado.md"
+    recorded_at: 2026-10-19
+    status: current
+    topic: "Alltag / Reise: 旅先の商店街"
+  - post: "2026-10-19-bansanka-to-tuki.md"
+    recorded_at: 2026-10-19
+    status: current
+    topic: "音楽 / tuki.: 晩餐歌"
     topic: "ニュース / 環境: リチウムイオン電池の回収"

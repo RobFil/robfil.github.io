@@ -35,13 +35,25 @@ entries:
     pages: [10]
   - post: "2026-10-18-koujou-kensa-no-kakunin.md"
     recorded_at: 2026-10-18
-    status: current
+    status: replaced
     expressions: ["申し訳ありません、～の部分が聞き取れませんでした", "もう一度お願いできますか", "～という理解でよろしいでしょうか"]
     learning_sources: ["20260918_Unit7_会議に参加する_教材.pdf"]
     pages: [4, 6]
   - post: "2026-10-18-shin-koukoku-no-furikaeri.md"
     recorded_at: 2026-10-18
-    status: current
+    status: replaced
     expressions: ["～からかもしれませんが、～が難しかったです", "～がうまくいかなかったと感じました", "次回は～できるとよいと思います"]
     learning_sources: ["20261018_Unit8__振り返り_教材.pdf"]
     pages: [7, 10, 11]
+  - post: "2026-10-19-shain-ken-kakunin-no-kaigi.md"
+    recorded_at: 2026-10-19
+    status: current
+    expressions: ["確かにその通りですね", "～という点は賛成です", "～についてなのですが"]
+    learning_sources: ["20260918_Unit7_会議に参加する_教材.pdf"]
+    pages: [1, 9]
+  - post: "2026-10-19-kpt-chiimu-no-try.md"
+    recorded_at: 2026-10-19
+    status: current
+    expressions: ["できるだけ～たいです", "～ておいてください"]
+    learning_sources: ["20261018_Unit8__振り返り_教材.pdf"]
+    pages: [10, 11]
