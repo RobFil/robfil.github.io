@@ -1,4 +1,4 @@
-# Dauerhaftes Register genutzter und ersetzter Themen zur Themenrotation.
+﻿# Dauerhaftes Register genutzter und ersetzter Themen zur Themenrotation.
 # Ein Thema bleibt registriert, auch wenn sein Post später überarbeitet wird.
 version: 1
 entries:
@@ -135,34 +135,67 @@ entries:
     status: replaced
   - post: "2026-10-19-shain-ken-kakunin-no-kaigi.md"
     recorded_at: 2026-10-19
-    status: current
+    status: replaced
     topic: "Business / Unit 7: 品質基準の見直し"
   - post: "2026-10-19-kpt-chiimu-no-try.md"
     recorded_at: 2026-10-19
-    status: current
+    status: replaced
     topic: "Business / Unit 8: 振り返りと次のアクション"
   - post: "2026-10-19-asaichi-no-yasai.md"
     recorded_at: 2026-10-19
-    status: current
+    status: replaced
     topic: "Alltag / Einkaufen: 朝市での買い物"
   - post: "2026-10-19-kissa-ten-no-machi-aruki.md"
     recorded_at: 2026-10-19
-    status: current
+    status: replaced
     topic: "Alltag / Café: 雨の日の待ち合わせ"
   - post: "2026-10-19-kodomo-no-toshokan.md"
     recorded_at: 2026-10-19
-    status: current
+    status: replaced
     topic: "Alltag / Nachbarschaft: 図書館の読み聞かせ会"
   - post: "2026-10-19-hikkoshi-no-tetsudai.md"
     recorded_at: 2026-10-19
-    status: current
+    status: replaced
     topic: "Alltag / Nachbarschaft: 引っ越しの手伝い"
   - post: "2026-10-19-ryokou-saki-no-machikado.md"
     recorded_at: 2026-10-19
-    status: current
+    status: replaced
     topic: "Alltag / Reise: 旅先の商店街"
   - post: "2026-10-19-bansanka-to-tuki.md"
     recorded_at: 2026-10-19
-    status: current
+    status: replaced
     topic: "音楽 / tuki.: 晩餐歌"
     topic: "ニュース / 環境: リチウムイオン電池の回収"
+
+  - post: "2026-10-24-unit8-kpt-success.md"
+    recorded_at: 2026-10-24
+    status: current
+    topic: "Business / Unit 8: 問い合わせ対応の振り返り"
+  - post: "2026-10-24-unit8-release-review.md"
+    recorded_at: 2026-10-24
+    status: current
+    topic: "Business / Unit 8: 新機能リリース後の改善"
+  - post: "2026-10-24-unit8-retro-dialog.md"
+    recorded_at: 2026-10-24
+    status: current
+    topic: "Business / Unit 8: スプリントの振り返り会話"
+  - post: "2026-10-24-aki-no-hoshikansatsu.md"
+    recorded_at: 2026-10-24
+    status: current
+    topic: "Alltag / Freizeit: 秋の夜の星空観察"
+  - post: "2026-10-24-dentist-dialog.md"
+    recorded_at: 2026-10-24
+    status: current
+    topic: "Alltag / Gesundheit: Zahnarzttermin vereinbaren"
+  - post: "2026-10-24-hotel-checkin-dialog.md"
+    recorded_at: 2026-10-24
+    status: current
+    topic: "Alltag / Reise: Ryokan-Check-in"
+  - post: "2026-10-24-paris-agreement-meeting.md"
+    recorded_at: 2026-10-24
+    status: current
+    topic: "Nachrichten / Umwelt: Methoden für klimafreundliches Kochen"
+  - post: "2026-10-24-kitchen-garden.md"
+    recorded_at: 2026-10-24
+    status: current
+    topic: "Alltag / Wohnen: Kräuter auf dem Balkon"

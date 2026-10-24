@@ -1,4 +1,4 @@
-# Verbindliche Historie der Grammatikschwerpunkte für teacher-write.
+﻿# Verbindliche Historie der Grammatikschwerpunkte für teacher-write.
 # Jeder Eintrag bleibt erhalten, auch wenn ein Post später inhaltlich ersetzt wird.
 version: 1
 entries:
@@ -271,7 +271,7 @@ entries:
     status: replaced
   - post: "2026-10-19-shain-ken-kakunin-no-kaigi.md"
     recorded_at: 2026-10-19
-    status: current
+    status: replaced
     grammar: ["～という点は賛成です", "～についてなのですが"]
     source_selection: random
     learning_sources: ["20260918_Unit7_会議に参加する_教材.pdf"]
@@ -279,7 +279,7 @@ entries:
     pages: [1, 9]
   - post: "2026-10-19-kpt-chiimu-no-try.md"
     recorded_at: 2026-10-19
-    status: current
+    status: replaced
     grammar: ["できるだけ～たいです", "～ておいてください"]
     source_selection: random
     learning_sources: ["20261018_Unit8__振り返り_教材.pdf"]
@@ -287,7 +287,7 @@ entries:
     pages: [10, 11]
   - post: "2026-10-19-asaichi-no-yasai.md"
     recorded_at: 2026-10-19
-    status: current
+    status: replaced
     grammar: ["～に限り", "～に限る", "～にわたる"]
     source_selection: random
     learning_sources: ["AIに限り・に限らず説明と例文①.pdf", "かけて・わたって説明と例文.pdf"]
@@ -303,7 +303,7 @@ entries:
         document_date: null
   - post: "2026-10-19-kissa-ten-no-machi-aruki.md"
     recorded_at: 2026-10-19
-    status: current
+    status: replaced
     grammar: ["～に限らず", "～から～にかけて", "なかなか～ない"]
     source_selection: random
     learning_sources: ["AIに限り・に限らず説明と例文①.pdf", "かけて・わたって説明と例文.pdf", "なかなか～ない説明文.pdf"]
@@ -323,7 +323,7 @@ entries:
         document_date: null
   - post: "2026-10-19-kodomo-no-toshokan.md"
     recorded_at: 2026-10-19
-    status: current
+    status: replaced
     grammar: ["～ば～ほど", "～わけにはいかない", "～に限り"]
     source_selection: random
     learning_sources: ["35課条件形～ば～ほど.pdf", "わけにはいかない説明文①.pdf", "AIに限り・に限らず説明と例文①.pdf"]
@@ -343,7 +343,7 @@ entries:
         document_date: null
   - post: "2026-10-19-hikkoshi-no-tetsudai.md"
     recorded_at: 2026-10-19
-    status: current
+    status: replaced
     grammar: ["～にわたって", "～にしては", "なかなか～ない"]
     source_selection: random
     learning_sources: ["かけて・わたって説明と例文.pdf", "にしては解説文.pdf", "なかなか～ない説明文.pdf"]
@@ -363,7 +363,7 @@ entries:
         document_date: null
   - post: "2026-10-19-ryokou-saki-no-machikado.md"
     recorded_at: 2026-10-19
-    status: current
+    status: replaced
     grammar: ["～に限らず", "～ば～ほど", "～にわたって"]
     source_selection: random
     learning_sources: ["AIに限り・に限らず説明と例文①.pdf", "35課条件形～ば～ほど.pdf", "かけて・わたって説明と例文.pdf"]
@@ -383,7 +383,7 @@ entries:
         document_date: null
   - post: "2026-10-19-bansanka-to-tuki.md"
     recorded_at: 2026-10-19
-    status: current
+    status: replaced
     grammar: ["～によると", "～とは限らない", "～を通じて"]
     source_selection: guided
     learning_sources: ["general_n2"]
@@ -398,3 +398,63 @@ entries:
     source_url: "https://www.env.go.jp/press/press_05701.html"
     source_published_at: 2026-10-16
     source_checked_at: 2026-10-18
+
+  - post: "2026-10-24-unit8-kpt-success.md"
+    recorded_at: 2026-10-24
+    status: current
+    grammar: ["～たことで", "～のがよかったと思います"]
+    source_selection: random
+    learning_sources: ["20261011_Unit8__振り返り_教材.pdf"]
+    topic: "Business / Unit 8: 問い合わせ対応の振り返り"
+  - post: "2026-10-24-unit8-release-review.md"
+    recorded_at: 2026-10-24
+    status: current
+    grammar: ["～がうまくいかなかったと感じました", "次回は～してみるのもよいと思います"]
+    source_selection: random
+    learning_sources: ["20261018_Unit8__振り返り_教材.pdf"]
+    topic: "Business / Unit 8: 新機能リリース後の改善"
+  - post: "2026-10-24-unit8-retro-dialog.md"
+    recorded_at: 2026-10-24
+    status: current
+    grammar: ["～のおかげで", "次回は～を意識したいと思います"]
+    source_selection: random
+    learning_sources: ["20261018_Unit8__振り返り_教材.pdf"]
+    topic: "Business / Unit 8: スプリントの振り返り会話"
+  - post: "2026-10-24-aki-no-hoshikansatsu.md"
+    recorded_at: 2026-10-24
+    status: current
+    grammar: ["～ば～ほど", "～に限らず", "～にわたって"]
+    source_selection: random
+    learning_sources: ["35課条件形～ば～ほど.pdf", "AIに限り・に限らず説明と例文①.pdf", "かけて・わたって説明と例文.pdf"]
+    topic: "Alltag / Freizeit: 秋の夜の星空観察"
+  - post: "2026-10-24-dentist-dialog.md"
+    recorded_at: 2026-10-24
+    status: current
+    grammar: ["なかなか～ない", "～にしては", "～わけにはいかない"]
+    source_selection: random
+    learning_sources: ["なかなか～ない説明文.pdf", "にしては解説文.pdf", "わけにはいかない説明文①.pdf"]
+    topic: "Alltag / Gesundheit: Zahnarzttermin vereinbaren"
+  - post: "2026-10-24-hotel-checkin-dialog.md"
+    recorded_at: 2026-10-24
+    status: current
+    grammar: ["～から～にかけて", "～に限らず", "～にしては"]
+    source_selection: random
+    learning_sources: ["かけて・わたって説明と例文.pdf", "AIに限り・に限らず説明と例文①.pdf", "にしては解説文.pdf"]
+    topic: "Alltag / Reise: Ryokan-Check-in"
+  - post: "2026-10-24-paris-agreement-meeting.md"
+    recorded_at: 2026-10-24
+    status: current
+    grammar: ["～に基づき", "～を受けて"]
+    source_selection: random
+    learning_sources: ["general_n2"]
+    topic: "Nachrichten / Umwelt: Methoden für klimafreundliches Kochen"
+    source_url: "https://www.env.go.jp/press/press_05719.html"
+    source_published_at: 2026-10-23
+    source_checked_at: 2026-10-24
+  - post: "2026-10-24-kitchen-garden.md"
+    recorded_at: 2026-10-24
+    status: current
+    grammar: ["～ば～ほど", "なかなか～ない", "～わけにはいかない"]
+    source_selection: random
+    learning_sources: ["35課条件形～ば～ほど.pdf", "なかなか～ない説明文.pdf", "わけにはいかない説明文①.pdf"]
+    topic: "Alltag / Wohnen: Kräuter auf dem Balkon"
