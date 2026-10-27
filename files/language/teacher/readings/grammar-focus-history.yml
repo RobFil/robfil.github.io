@@ -458,3 +458,132 @@ entries:
     source_selection: random
     learning_sources: ["35課条件形～ば～ほど.pdf", "なかなか～ない説明文.pdf", "わけにはいかない説明文①.pdf"]
     topic: "Alltag / Wohnen: Kräuter auf dem Balkon"
+  - post: "2026-10-27-unit8-retrospective-dialog.md"
+    recorded_at: 2026-10-27
+    status: current
+    grammar: ["～たことで", "～のおかげで", "次回は～を意識したいと思います"]
+    source_selection: guided
+    learning_sources: ["20261025_Unit8__振り返り_教材.pdf"]
+    topic: "Business / Unit 8: スプリントを振り返る三人の会話"
+    learning_source_details:
+      - source_file: "20261025_Unit8__振り返り_教材.pdf"
+        pages: [6, 7]
+        topic_group: "Unit8 振り返り"
+        document_date: 2026-10-25
+  - post: "2026-10-27-unit8-sprint-article.md"
+    recorded_at: 2026-10-27
+    status: current
+    grammar: ["～がうまくいかなかったと感じました", "～のがよかったと思います", "次回は～してみるのもよいかと思います"]
+    source_selection: guided
+    learning_sources: ["20261025_Unit8__振り返り_教材.pdf"]
+    topic: "Business / Unit 8: 振り返りから見えた次の改善"
+    learning_source_details:
+      - source_file: "20261025_Unit8__振り返り_教材.pdf"
+        pages: [6, 7, 10, 11]
+        topic_group: "Unit8 振り返り"
+        document_date: 2026-10-25
+  - post: "2026-10-27-new-company-first-day-dialog.md"
+    recorded_at: 2026-10-27
+    status: current
+    grammar: ["～ば～ほど", "～にしては", "なかなか～ない"]
+    source_selection: guided
+    learning_sources: ["35課条件形～ば～ほど.pdf", "にしては解説文.pdf", "なかなか～ない説明文.pdf"]
+    topic: "Alltag / Neue Firma: Erster Tag nach dem Jobwechsel"
+    note: "Die Nicht-Unit-Fokusauswahl ist ausgeschöpft; zufällige Kombination mit notwendiger Wiederverwendung. Thema ausdrücklich vorgegeben."
+    learning_source_details:
+      - source_file: "35課条件形～ば～ほど.pdf"
+        pages: [1, 2]
+        topic_group: "35課条件形～ば～ほど"
+        document_date: null
+      - source_file: "にしては解説文.pdf"
+        pages: [1]
+        topic_group: "にしては解説文"
+        document_date: null
+      - source_file: "なかなか～ない説明文.pdf"
+        pages: [1]
+        topic_group: "なかなか～ない説明文"
+        document_date: null
+  - post: "2026-10-27-job-interview-long-dialog.md"
+    recorded_at: 2026-10-27
+    status: current
+    grammar: ["～に限らず", "～にわたって", "～わけにはいかない"]
+    source_selection: guided
+    learning_sources: ["AIに限り・に限らず説明と例文①.pdf", "かけて・わたって説明と例文.pdf", "わけにはいかない説明文①.pdf"]
+    topic: "Alltag / Bewerbungsgespräch: Berufserfahrung und Stellenwechsel"
+    note: "Wiederholung des historischen Bewerbungsthemas auf ausdrücklichen Wunsch; als 15-Minuten-Dialog neu erstellt. Die Nicht-Unit-Fokusauswahl ist ausgeschöpft."
+    learning_source_details:
+      - source_file: "AIに限り・に限らず説明と例文①.pdf"
+        pages: [1]
+        topic_group: "AIに限り・に限らず説明と例文①"
+        document_date: null
+      - source_file: "かけて・わたって説明と例文.pdf"
+        pages: [1, 3]
+        topic_group: "かけて・わたって説明と例文"
+        document_date: null
+      - source_file: "わけにはいかない説明文①.pdf"
+        pages: [1]
+        topic_group: "わけにはいかない説明文①"
+        document_date: null
+  - post: "2026-10-27-hairdresser-dialog.md"
+    recorded_at: 2026-10-27
+    status: current
+    grammar: ["～から～にかけて", "～ば～ほど", "～にしては"]
+    source_selection: guided
+    learning_sources: ["かけて・わたって説明と例文.pdf", "35課条件形～ば～ほど.pdf", "にしては解説文.pdf"]
+    topic: "Alltag / Friseur: Pflegeleichter Haarschnitt"
+    note: "Die Nicht-Unit-Fokusauswahl ist ausgeschöpft; zufällige Kombination mit notwendiger Wiederverwendung. Thema ausdrücklich vorgegeben."
+    learning_source_details:
+      - source_file: "かけて・わたって説明と例文.pdf"
+        pages: [1, 2]
+        topic_group: "かけて・わたって説明と例文"
+        document_date: null
+      - source_file: "35課条件形～ば～ほど.pdf"
+        pages: [1, 2]
+        topic_group: "35課条件形～ば～ほど"
+        document_date: null
+      - source_file: "にしては解説文.pdf"
+        pages: [1]
+        topic_group: "にしては解説文"
+        document_date: null
+  - post: "2026-10-27-bike-repair-article.md"
+    recorded_at: 2026-10-27
+    status: current
+    grammar: ["～に限らず", "なかなか～ない", "～にわたって"]
+    source_selection: random
+    learning_sources: ["AIに限り・に限らず説明と例文①.pdf", "なかなか～ない説明文.pdf", "かけて・わたって説明と例文.pdf"]
+    topic: "Alltag / Reparatur: Fahrradreifen flicken lassen"
+    note: "Die Nicht-Unit-Fokusauswahl ist ausgeschöpft; zufällige Kombination mit notwendiger Wiederverwendung."
+    learning_source_details:
+      - source_file: "AIに限り・に限らず説明と例文①.pdf"
+        pages: [1]
+        topic_group: "AIに限り・に限らず説明と例文①"
+        document_date: null
+      - source_file: "なかなか～ない説明文.pdf"
+        pages: [1]
+        topic_group: "なかなか～ない説明文"
+        document_date: null
+      - source_file: "かけて・わたって説明と例文.pdf"
+        pages: [1, 3]
+        topic_group: "かけて・わたって説明と例文"
+        document_date: null
+  - post: "2026-10-27-disaster-kit-article.md"
+    recorded_at: 2026-10-27
+    status: current
+    grammar: ["～ば～ほど", "～わけにはいかない", "～に限らず"]
+    source_selection: random
+    learning_sources: ["35課条件形～ば～ほど.pdf", "わけにはいかない説明文①.pdf", "AIに限り・に限らず説明と例文①.pdf"]
+    topic: "Alltag / Zuhause: Familien-Notfallausrüstung prüfen"
+    note: "Die Nicht-Unit-Fokusauswahl ist ausgeschöpft; zufällige Kombination mit notwendiger Wiederverwendung."
+    learning_source_details:
+      - source_file: "35課条件形～ば～ほど.pdf"
+        pages: [1, 2]
+        topic_group: "35課条件形～ば～ほど"
+        document_date: null
+      - source_file: "わけにはいかない説明文①.pdf"
+        pages: [1]
+        topic_group: "わけにはいかない説明文①"
+        document_date: null
+      - source_file: "AIに限り・に限らず説明と例文①.pdf"
+        pages: [1]
+        topic_group: "AIに限り・に限らず説明と例文①"
+        document_date: null

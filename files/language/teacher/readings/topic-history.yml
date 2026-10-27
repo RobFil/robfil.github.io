@@ -199,3 +199,31 @@ entries:
     recorded_at: 2026-10-24
     status: current
     topic: "Alltag / Wohnen: Kräuter auf dem Balkon"
+  - post: "2026-10-27-unit8-retrospective-dialog.md"
+    recorded_at: 2026-10-27
+    status: current
+    topic: "Business / Unit 8: スプリントを振り返る三人の会話"
+  - post: "2026-10-27-unit8-sprint-article.md"
+    recorded_at: 2026-10-27
+    status: current
+    topic: "Business / Unit 8: 振り返りから見えた次の改善"
+  - post: "2026-10-27-new-company-first-day-dialog.md"
+    recorded_at: 2026-10-27
+    status: current
+    topic: "Alltag / Neue Firma: Erster Tag nach dem Jobwechsel"
+  - post: "2026-10-27-job-interview-long-dialog.md"
+    recorded_at: 2026-10-27
+    status: current
+    topic: "Alltag / Bewerbungsgespräch: Berufserfahrung und Stellenwechsel"
+  - post: "2026-10-27-hairdresser-dialog.md"
+    recorded_at: 2026-10-27
+    status: current
+    topic: "Alltag / Friseur: Pflegeleichter Haarschnitt"
+  - post: "2026-10-27-bike-repair-article.md"
+    recorded_at: 2026-10-27
+    status: current
+    topic: "Alltag / Reparatur: Fahrradreifen flicken lassen"
+  - post: "2026-10-27-disaster-kit-article.md"
+    recorded_at: 2026-10-27
+    status: current
+    topic: "Alltag / Zuhause: Familien-Notfallausrüstung prüfen"

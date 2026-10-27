@@ -76,3 +76,15 @@ entries:
     expressions: ["～のおかげで", "次回は～を意識したいと思います", "それぞれ次回までに進めておいてください"]
     learning_sources: ["20261018_Unit8__振り返り_教材.pdf"]
     pages: [3, 4, 9, 10, 11]
+  - post: "2026-10-27-unit8-retrospective-dialog.md"
+    recorded_at: 2026-10-27
+    status: current
+    expressions: ["～たことで", "～のおかげで", "次回は～を意識したいと思います", "それぞれ次回までに進めておいてください"]
+    learning_sources: ["20261025_Unit8__振り返り_教材.pdf"]
+    pages: [6, 7]
+  - post: "2026-10-27-unit8-sprint-article.md"
+    recorded_at: 2026-10-27
+    status: current
+    expressions: ["～がうまくいかなかったと感じました", "～のがよかったと思います", "次回は～してみるのもよいかと思います"]
+    learning_sources: ["20261025_Unit8__振り返り_教材.pdf"]
+    pages: [6, 7, 10, 11]
