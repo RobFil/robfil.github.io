@@ -60,19 +60,19 @@ entries:
 
   - post: "2026-10-24-unit8-kpt-success.md"
     recorded_at: 2026-10-24
-    status: current
+    status: removed
     expressions: ["～たことで、～ことができました", "～のがよかったと思います", "次回は～したいです"]
     learning_sources: ["20261011_Unit8__振り返り_教材.pdf"]
     pages: [1, 3, 4]
   - post: "2026-10-24-unit8-release-review.md"
     recorded_at: 2026-10-24
-    status: current
+    status: removed
     expressions: ["～がうまくいかなかったと感じました", "次回は～してみるのもよいと思います", "この対応の担当は私でよろしいでしょうか"]
     learning_sources: ["20261018_Unit8__振り返り_教材.pdf"]
     pages: [7, 10, 11]
   - post: "2026-10-24-unit8-retro-dialog.md"
     recorded_at: 2026-10-24
-    status: current
+    status: removed
     expressions: ["～のおかげで", "次回は～を意識したいと思います", "それぞれ次回までに進めておいてください"]
     learning_sources: ["20261018_Unit8__振り返り_教材.pdf"]
     pages: [3, 4, 9, 10, 11]

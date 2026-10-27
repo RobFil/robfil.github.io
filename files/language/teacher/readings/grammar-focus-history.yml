@@ -401,49 +401,49 @@ entries:
 
   - post: "2026-10-24-unit8-kpt-success.md"
     recorded_at: 2026-10-24
-    status: current
+    status: removed
     grammar: ["～たことで", "～のがよかったと思います"]
     source_selection: random
     learning_sources: ["20261011_Unit8__振り返り_教材.pdf"]
     topic: "Business / Unit 8: 問い合わせ対応の振り返り"
   - post: "2026-10-24-unit8-release-review.md"
     recorded_at: 2026-10-24
-    status: current
+    status: removed
     grammar: ["～がうまくいかなかったと感じました", "次回は～してみるのもよいと思います"]
     source_selection: random
     learning_sources: ["20261018_Unit8__振り返り_教材.pdf"]
     topic: "Business / Unit 8: 新機能リリース後の改善"
   - post: "2026-10-24-unit8-retro-dialog.md"
     recorded_at: 2026-10-24
-    status: current
+    status: removed
     grammar: ["～のおかげで", "次回は～を意識したいと思います"]
     source_selection: random
     learning_sources: ["20261018_Unit8__振り返り_教材.pdf"]
     topic: "Business / Unit 8: スプリントの振り返り会話"
   - post: "2026-10-24-aki-no-hoshikansatsu.md"
     recorded_at: 2026-10-24
-    status: current
+    status: removed
     grammar: ["～ば～ほど", "～に限らず", "～にわたって"]
     source_selection: random
     learning_sources: ["35課条件形～ば～ほど.pdf", "AIに限り・に限らず説明と例文①.pdf", "かけて・わたって説明と例文.pdf"]
     topic: "Alltag / Freizeit: 秋の夜の星空観察"
   - post: "2026-10-24-dentist-dialog.md"
     recorded_at: 2026-10-24
-    status: current
+    status: removed
     grammar: ["なかなか～ない", "～にしては", "～わけにはいかない"]
     source_selection: random
     learning_sources: ["なかなか～ない説明文.pdf", "にしては解説文.pdf", "わけにはいかない説明文①.pdf"]
     topic: "Alltag / Gesundheit: Zahnarzttermin vereinbaren"
   - post: "2026-10-24-hotel-checkin-dialog.md"
     recorded_at: 2026-10-24
-    status: current
+    status: removed
     grammar: ["～から～にかけて", "～に限らず", "～にしては"]
     source_selection: random
     learning_sources: ["かけて・わたって説明と例文.pdf", "AIに限り・に限らず説明と例文①.pdf", "にしては解説文.pdf"]
     topic: "Alltag / Reise: Ryokan-Check-in"
   - post: "2026-10-24-paris-agreement-meeting.md"
     recorded_at: 2026-10-24
-    status: current
+    status: removed
     grammar: ["～に基づき", "～を受けて"]
     source_selection: random
     learning_sources: ["general_n2"]
@@ -453,7 +453,7 @@ entries:
     source_checked_at: 2026-10-24
   - post: "2026-10-24-kitchen-garden.md"
     recorded_at: 2026-10-24
-    status: current
+    status: removed
     grammar: ["～ば～ほど", "なかなか～ない", "～わけにはいかない"]
     source_selection: random
     learning_sources: ["35課条件形～ば～ほど.pdf", "なかなか～ない説明文.pdf", "わけにはいかない説明文①.pdf"]

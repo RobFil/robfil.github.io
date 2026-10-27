@@ -169,35 +169,35 @@ entries:
 
   - post: "2026-10-24-unit8-kpt-success.md"
     recorded_at: 2026-10-24
-    status: current
+    status: removed
     topic: "Business / Unit 8: 問い合わせ対応の振り返り"
   - post: "2026-10-24-unit8-release-review.md"
     recorded_at: 2026-10-24
-    status: current
+    status: removed
     topic: "Business / Unit 8: 新機能リリース後の改善"
   - post: "2026-10-24-unit8-retro-dialog.md"
     recorded_at: 2026-10-24
-    status: current
+    status: removed
     topic: "Business / Unit 8: スプリントの振り返り会話"
   - post: "2026-10-24-aki-no-hoshikansatsu.md"
     recorded_at: 2026-10-24
-    status: current
+    status: removed
     topic: "Alltag / Freizeit: 秋の夜の星空観察"
   - post: "2026-10-24-dentist-dialog.md"
     recorded_at: 2026-10-24
-    status: current
+    status: removed
     topic: "Alltag / Gesundheit: Zahnarzttermin vereinbaren"
   - post: "2026-10-24-hotel-checkin-dialog.md"
     recorded_at: 2026-10-24
-    status: current
+    status: removed
     topic: "Alltag / Reise: Ryokan-Check-in"
   - post: "2026-10-24-paris-agreement-meeting.md"
     recorded_at: 2026-10-24
-    status: current
+    status: removed
     topic: "Nachrichten / Umwelt: Methoden für klimafreundliches Kochen"
   - post: "2026-10-24-kitchen-garden.md"
     recorded_at: 2026-10-24
-    status: current
+    status: removed
     topic: "Alltag / Wohnen: Kräuter auf dem Balkon"
   - post: "2026-10-27-unit8-retrospective-dialog.md"
     recorded_at: 2026-10-27
