@@ -88,3 +88,9 @@ entries:
     expressions: ["～がうまくいかなかったと感じました", "～のがよかったと思います", "次回は～してみるのもよいかと思います"]
     learning_sources: ["20261025_Unit8__振り返り_教材.pdf"]
     pages: [6, 7, 10, 11]
+  - post: "2026-10-28-nihon-no-shokuba-first-day-dialog.md"
+    recorded_at: 2026-10-28
+    status: current
+    expressions: ["おっしゃる通りです", "そうですね、～と思います", "もう一度おっしゃっていただけますか"]
+    learning_sources: ["20260918_Unit7_会議に参加する_教材.pdf"]
+    pages: [4, 9]
