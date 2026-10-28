@@ -589,7 +589,7 @@ entries:
         document_date: null
   - post: "2026-10-28-nihon-no-shokuba-first-day-dialog.md"
     recorded_at: 2026-10-28
-    status: current
+    status: replaced
     grammar: ["おっしゃる通りです", "そうですね、～と思います", "もう一度おっしゃっていただけますか"]
     source_selection: guided
     learning_sources: ["20260918_Unit7_会議に参加する_教材.pdf"]
@@ -598,5 +598,18 @@ entries:
     learning_source_details:
       - source_file: "20260918_Unit7_会議に参加する_教材.pdf"
         pages: [4, 9]
+        topic_group: "Unit7 会議に参加する"
+        document_date: 2026-09-18
+  - post: "2026-10-28-nihon-no-shokuba-first-day-dialog.md"
+    recorded_at: 2026-10-28
+    status: current
+    grammar: ["質問してもよろしいでしょうか", "1点確認させてください", "～という理解でよろしいでしょうか"]
+    source_selection: guided
+    learning_sources: ["20260918_Unit7_会議に参加する_教材.pdf"]
+    topic: "Business / Japan: Erster Arbeitstag vom Empfang bis zum Gespräch mit dem Chef; Product Owner und Team Lead für Motorsteuerung"
+    note: "Auf ausdrücklichen Wunsch vollständig neu geschrieben: konkreter Ablauf ab Empfang, neue Rolle im Bereich Leistungselektronik/Motorsteuerung. Revision des Posts vom selben Tag."
+    learning_source_details:
+      - source_file: "20260918_Unit7_会議に参加する_教材.pdf"
+        pages: [1, 4]
         topic_group: "Unit7 会議に参加する"
         document_date: 2026-09-18

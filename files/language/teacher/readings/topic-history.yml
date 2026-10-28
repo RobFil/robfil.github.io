@@ -229,5 +229,9 @@ entries:
     topic: "Alltag / Zuhause: Familien-Notfallausrüstung prüfen"
   - post: "2026-10-28-nihon-no-shokuba-first-day-dialog.md"
     recorded_at: 2026-10-28
-    status: current
+    status: replaced
     topic: "Business / Japan: Erster Arbeitstag und Kennenlernen des Vorgesetzten"
+  - post: "2026-10-28-nihon-no-shokuba-first-day-dialog.md"
+    recorded_at: 2026-10-28
+    status: current
+    topic: "Business / Japan: Erster Arbeitstag vom Empfang bis zum Gespräch mit dem Chef; Product Owner und Team Lead für Motorsteuerung"
