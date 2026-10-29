@@ -1,4 +1,4 @@
-﻿# Dauerhaftes Rotationsregister für Business-Hyōgen.
+# Dauerhaftes Rotationsregister für Business-Hyōgen.
 version: 1
 entries:
   - post: "2026-10-08-shiyou-sho-no-saishu-kakunin.md"
@@ -100,3 +100,32 @@ entries:
     expressions: ["質問してもよろしいでしょうか", "1点確認させてください", "～という理解でよろしいでしょうか"]
     learning_sources: ["20260918_Unit7_会議に参加する_教材.pdf"]
     pages: [1, 4]
+
+  - post: "2026-10-29-mensetsu-jinji.md"
+    recorded_at: 2026-10-29
+    status: current
+    expressions: ["～のではないかと考えています"]
+    source_selection: guided
+    topic: "Business / Bewerbung Japan: HR, Persönlichkeit und Umzug"
+    learning_sources: ["20261025_Unit8__振り返り_教材.pdf"]
+    pages: [11]
+
+
+  - post: "2026-10-29-mensetsu-gijutsu.md"
+    recorded_at: 2026-10-29
+    status: current
+    expressions: ["～がよくなかったと思います"]
+    source_selection: guided
+    topic: "Business / Bewerbung Japan: Technik, Inverter und fachliche Führung"
+    learning_sources: ["20261025_Unit8__振り返り_教材.pdf"]
+    pages: [7]
+
+
+  - post: "2026-10-29-mensetsu-gyakushitsumon.md"
+    recorded_at: 2026-10-29
+    status: current
+    expressions: ["～て助かりました"]
+    source_selection: guided
+    topic: "Business / Bewerbung Japan: Rückfragen zu Rolle und Umzug"
+    learning_sources: ["20261025_Unit8__振り返り_教材.pdf"]
+    pages: [6]

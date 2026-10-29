@@ -1,4 +1,4 @@
-﻿# Verbindliche Historie der Grammatikschwerpunkte für teacher-write.
+# Verbindliche Historie der Grammatikschwerpunkte für teacher-write.
 # Jeder Eintrag bleibt erhalten, auch wenn ein Post später inhaltlich ersetzt wird.
 version: 1
 entries:
@@ -613,3 +613,47 @@ entries:
         pages: [1, 4]
         topic_group: "Unit7 会議に参加する"
         document_date: 2026-09-18
+
+  - post: "2026-10-29-mensetsu-jinji.md"
+    recorded_at: 2026-10-29
+    status: current
+    grammar: ["～のではないかと考えています"]
+    source_selection: guided
+    learning_sources: ["20261025_Unit8__振り返り_教材.pdf"]
+    topic: "Business / Bewerbung Japan: HR, Persönlichkeit und Umzug"
+    note: "Bewerbungsgespräch ausdrücklich gewünscht; Teil einer zusammenhängenden dreiteiligen Übung."
+    learning_source_details:
+      - source_file: "20261025_Unit8__振り返り_教材.pdf"
+        pages: [11]
+        topic_group: "Unit8 振り返り"
+        document_date: 2026-10-25
+
+
+  - post: "2026-10-29-mensetsu-gijutsu.md"
+    recorded_at: 2026-10-29
+    status: current
+    grammar: ["～がよくなかったと思います"]
+    source_selection: guided
+    learning_sources: ["20261025_Unit8__振り返り_教材.pdf"]
+    topic: "Business / Bewerbung Japan: Technik, Inverter und fachliche Führung"
+    note: "Bewerbungsgespräch ausdrücklich gewünscht; Teil einer zusammenhängenden dreiteiligen Übung."
+    learning_source_details:
+      - source_file: "20261025_Unit8__振り返り_教材.pdf"
+        pages: [7]
+        topic_group: "Unit8 振り返り"
+        document_date: 2026-10-25
+
+
+  - post: "2026-10-29-mensetsu-gyakushitsumon.md"
+    recorded_at: 2026-10-29
+    status: current
+    grammar: ["～て助かりました"]
+    source_selection: guided
+    learning_sources: ["20261025_Unit8__振り返り_教材.pdf"]
+    topic: "Business / Bewerbung Japan: Rückfragen zu Rolle und Umzug"
+    note: "Bewerbungsgespräch ausdrücklich gewünscht; Teil einer zusammenhängenden dreiteiligen Übung."
+    learning_source_details:
+      - source_file: "20261025_Unit8__振り返り_教材.pdf"
+        pages: [6]
+        topic_group: "Unit8 振り返り"
+        document_date: 2026-10-25

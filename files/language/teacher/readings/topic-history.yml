@@ -1,4 +1,4 @@
-﻿# Dauerhaftes Register genutzter und ersetzter Themen zur Themenrotation.
+# Dauerhaftes Register genutzter und ersetzter Themen zur Themenrotation.
 # Ein Thema bleibt registriert, auch wenn sein Post später überarbeitet wird.
 version: 1
 entries:
@@ -235,3 +235,23 @@ entries:
     recorded_at: 2026-10-28
     status: current
     topic: "Business / Japan: Erster Arbeitstag vom Empfang bis zum Gespräch mit dem Chef; Product Owner und Team Lead für Motorsteuerung"
+
+  - post: "2026-10-29-mensetsu-jinji.md"
+    recorded_at: 2026-10-29
+    status: current
+    topic: "Business / Bewerbung Japan: HR, Persönlichkeit und Umzug"
+    note: "Bewerbungsgespräch auf ausdrücklichen Wunsch; Wiederaufnahme des Bewerbungsthemas."
+
+
+  - post: "2026-10-29-mensetsu-gijutsu.md"
+    recorded_at: 2026-10-29
+    status: current
+    topic: "Business / Bewerbung Japan: Technik, Inverter und fachliche Führung"
+    note: "Bewerbungsgespräch auf ausdrücklichen Wunsch; Wiederaufnahme des Bewerbungsthemas."
+
+
+  - post: "2026-10-29-mensetsu-gyakushitsumon.md"
+    recorded_at: 2026-10-29
+    status: current
+    topic: "Business / Bewerbung Japan: Rückfragen zu Rolle und Umzug"
+    note: "Bewerbungsgespräch auf ausdrücklichen Wunsch; Wiederaufnahme des Bewerbungsthemas."
