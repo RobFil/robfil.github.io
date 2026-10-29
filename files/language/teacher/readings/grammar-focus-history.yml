@@ -616,7 +616,7 @@ entries:
 
   - post: "2026-10-29-mensetsu-jinji.md"
     recorded_at: 2026-10-29
-    status: removed
+    status: current
     grammar: ["～のではないかと考えています"]
     source_selection: guided
     learning_sources: ["20261025_Unit8__振り返り_教材.pdf"]

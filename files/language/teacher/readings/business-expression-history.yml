@@ -103,7 +103,7 @@ entries:
 
   - post: "2026-10-29-mensetsu-jinji.md"
     recorded_at: 2026-10-29
-    status: removed
+    status: current
     expressions: ["～のではないかと考えています"]
     source_selection: guided
     topic: "Business / Bewerbung Japan: HR, Persönlichkeit und Umzug"
