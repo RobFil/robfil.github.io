@@ -255,3 +255,13 @@ entries:
     status: current
     topic: "Business / Bewerbung Japan: Rückfragen zu Rolle und Umzug"
     note: "Bewerbungsgespräch auf ausdrücklichen Wunsch; Wiederaufnahme des Bewerbungsthemas."
+  - post: "2026-10-30-yotsuya-no-kusakari-yagi.md"
+    recorded_at: 2026-10-30
+    status: current
+    topic: "Nachrichten / Umwelt und Stadtleben: Ziegen mähen am Bahnhof Yotsuya"
+    note: "Aktuelle Nachricht dieser Woche ausdrücklich gewünscht."
+  - post: "2026-10-30-hokudai-no-100yen-choshoku.md"
+    recorded_at: 2026-10-30
+    status: current
+    topic: "Nachrichten / Universität und Essen: 100-Yen-Frühstück an der Universität Hokkaido"
+    note: "Aktuelle Nachricht dieser Woche ausdrücklich gewünscht."
