@@ -9,13 +9,17 @@ Create original, source-grounded Japanese reading practice for the site.
 
 ## Sources and selection
 
-- Resolve the repository root before reading learning context: walk up from
-  this skill file until both `_posts/reading/` and
-  `files/language/source-ingest/` exist. The canonical input is
-  `files/language/source-ingest/output/machine/context.jsonl`; the matching
-  source registry is `files/language/source-ingest/output/machine/parsed_files_index.json`.
-  Do not resolve this path relative to the current shell directory or the
-  skill directory.
+- Resolve the repository root before reading learning context. First walk up
+  from this skill file until both `_posts/reading/` and
+  `files/language/source-ingest/` exist. If this installed skill is outside
+  the checkout and that search finds no root, check
+  `%USERPROFILE%/Documents/Japanisch/git/robfil.github.io` for the same two
+  markers. Use that checkout only when both markers exist. The canonical input
+  is `files/language/source-ingest/output/machine/context.jsonl`; the matching
+  source registry is
+  `files/language/source-ingest/output/machine/parsed_files_index.json`.
+  Do not resolve these paths relative to the current shell directory or
+  silently substitute another checkout.
 - Read teaching material only from accepted records in `context.jsonl`,
   cross-checked against accepted entries in `parsed_files_index.json`. Never
   read raw PDFs, pending records, source-side JSONL files, OCR/debug artifacts
