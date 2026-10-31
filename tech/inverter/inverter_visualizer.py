@@ -740,14 +740,23 @@ class InverterVisualizer(tk.Tk):
         )
 
         coil_left, coil_right, coil_y = 710, 970, 276
-        turn_height = 118
-        canvas.create_line(coil_left - 18, coil_y - turn_height / 2, coil_left + 8, coil_y - turn_height / 2, fill="#7c3aed", width=3)
-        canvas.create_line(coil_right - 8, coil_y + turn_height / 2, coil_right + 18, coil_y + turn_height / 2, fill="#7c3aed", width=3)
-        for turn_index in range(8):
-            turn_x = coil_left + 20 + turn_index * 31
-            canvas.create_oval(turn_x - 12, coil_y - turn_height / 2, turn_x + 12, coil_y + turn_height / 2, outline="#7c3aed", width=2)
-        canvas.create_line(coil_left + 8, coil_y - turn_height / 2, coil_right - 8, coil_y - turn_height / 2, fill="#7c3aed", width=2)
-        canvas.create_line(coil_left + 8, coil_y + turn_height / 2, coil_right - 8, coil_y + turn_height / 2, fill="#7c3aed", width=2)
+        winding_top, winding_bottom = 212, 340
+        former_left, former_right, former_top, former_bottom = 722, 958, 229, 323
+        # Neutraler Wicklungstraeger: Die Darstellung behauptet bewusst
+        # keinen Eisenkern und bleibt damit fuer die RL-Lehrspule allgemein.
+        canvas.create_rectangle(former_left, former_top, former_right, former_bottom, outline="#64748b", width=2, fill="#e2e8f0")
+        canvas.create_rectangle(former_left, coil_y - 28, former_right, coil_y + 28, outline="#94a3b8", fill="#f8fafc")
+        for flange_x in (coil_left, coil_right - 14):
+            canvas.create_rectangle(flange_x, winding_top, flange_x + 14, winding_bottom, outline="#475569", width=2, fill="#cbd5e1")
+        for turn_index in range(9):
+            turn_x = coil_left + 20 + turn_index * 28
+            canvas.create_oval(turn_x - 11, coil_y - 64, turn_x + 11, coil_y + 64, outline="#9a3412", width=5)
+            canvas.create_oval(turn_x - 11, coil_y - 64, turn_x + 11, coil_y + 64, outline="#fb923c", width=2)
+        canvas.create_line(687, winding_top, coil_left, winding_top, fill="#c2410c", width=3)
+        canvas.create_line(687, winding_bottom, coil_left, winding_bottom, fill="#c2410c", width=3)
+        for terminal_y, terminal_name, label_y in ((winding_top, "A1", winding_top - 14), (winding_bottom, "A2", winding_bottom + 14)):
+            canvas.create_oval(676, terminal_y - 5, 686, terminal_y + 5, outline="#c2410c", width=2, fill="#ffffff")
+            canvas.create_text(681, label_y, text=terminal_name, font=("Segoe UI", 8, "bold"), fill="#9a3412")
 
         current_scale = min(abs(current) / 10.0, 1.0)
         arrow_length = 12.0 + 112.0 * current_scale
@@ -785,20 +794,9 @@ class InverterVisualizer(tk.Tk):
             )
             left_pole, right_pole = ("S", "N") if field_sign > 0.0 else ("N", "S")
             pole_colours = {"N": "#dc2626", "S": "#2563eb"}
-            canvas.create_text(
-                coil_left - 25,
-                coil_y,
-                text=left_pole,
-                font=("Segoe UI", 18, "bold"),
-                fill=pole_colours[left_pole],
-            )
-            canvas.create_text(
-                coil_right + 25,
-                coil_y,
-                text=right_pole,
-                font=("Segoe UI", 18, "bold"),
-                fill=pole_colours[right_pole],
-            )
+            for pole_name, pole_x in ((left_pole, coil_left - 18), (right_pole, coil_right + 18)):
+                canvas.create_oval(pole_x - 15, coil_y - 15, pole_x + 15, coil_y + 15, outline="#334155", fill=pole_colours[pole_name])
+                canvas.create_text(pole_x, coil_y, text=pole_name, font=("Segoe UI", 12, "bold"), fill="white")
         canvas.create_text(830, 384, text=f"B = {magnetic_field_t:+.3f} T", font=("Segoe UI", 12, "bold"), fill="#15803d")
 
     def _draw_coil_esb(self, voltage: float, current: float) -> None:
