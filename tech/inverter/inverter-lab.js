@@ -262,7 +262,7 @@
       text(ctx, `${phaseNames[index]} ${active ? "+Udc" : "0 V"}`, cx + 104 * rx + labelDx, cy + 104 * ry + labelDy, 9, active ? "#166534" : "#64748b", "center", "700");
       if (active) { const nx = cx + 132 * rx; const ny = cy + 132 * ry; ctx.fillStyle = "#2563eb"; ctx.strokeStyle = "#1d4ed8"; ctx.lineWidth = 2; ctx.beginPath(); ctx.arc(nx, ny, 16, 0, 2 * Math.PI); ctx.fill(); ctx.stroke(); text(ctx, "S", nx, ny, 12, "#ffffff", "center", "700"); }
     });
-    if (field.strength > 1e-9) arrow(ctx, cx, cy, cx + 142 * Math.cos(field.angle), cy - 142 * Math.sin(field.angle), "#16a34a", 4);
+    if (field.strength > 1e-9) { const resultArrowLength = 48 + 52 * Math.min(field.strength, 1); arrow(ctx, cx, cy, cx + resultArrowLength * Math.cos(field.angle), cy - resultArrowLength * Math.sin(field.angle), "#16a34a", 4); }
     drawRotor(ctx, cx, cy, state.test.theta, 72, 32, rotorRadius);
   }
 

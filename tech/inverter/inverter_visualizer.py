@@ -445,7 +445,9 @@ class InverterVisualizer(tk.Tk):
                 canvas.create_text(pole_x, pole_y, text="S", font=("Segoe UI", 12, "bold"), fill="white")
 
         if field_strength > 1e-9:
-            field_length = 62 + 80 * min(field_strength, 1.0)
+            # Der Ergebniszeiger endet vor dem Stator-Suedpol, damit beide
+            # Informationen getrennt und eindeutig lesbar bleiben.
+            field_length = 48 + 52 * min(field_strength, 1.0)
             canvas.create_line(
                 centre_x,
                 centre_y,
