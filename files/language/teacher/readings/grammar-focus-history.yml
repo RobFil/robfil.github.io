@@ -321,6 +321,31 @@ entries:
         pages: [1]
         topic_group: "なかなか～ない説明文"
         document_date: null
+
+  - post: "2026-10-31-unit9-control-schedule-dialog.md"
+    recorded_at: 2026-10-31
+    status: current
+    grammar: ["本日の会議の目的は～ことです", "～についてご意見はありますか", "論点を整理しましょう", "この件は一度保留にします"]
+    source_selection: guided
+    learning_sources: ["20261031_Unit9_会議のファシリテーション_教材.pdf"]
+    topic: "Business / Unit 9: モーター制御装置の評価試験日程を決める会議"
+    learning_source_details:
+      - source_file: "20261031_Unit9_会議のファシリテーション_教材.pdf"
+        pages: [2, 3]
+        topic_group: "Unit9 会議のファシリテーション"
+        document_date: 2026-10-31
+  - post: "2026-10-31-unit9-meeting-facilitation-article.md"
+    recorded_at: 2026-10-31
+    status: current
+    grammar: ["まず～を確認します", "～についてご意見はありますか", "結論を出す前に～"]
+    source_selection: guided
+    learning_sources: ["20261031_Unit9_会議のファシリテーション_教材.pdf"]
+    topic: "Business / Unit 9: 試験計画の優先順位を決める会議"
+    learning_source_details:
+      - source_file: "20261031_Unit9_会議のファシリテーション_教材.pdf"
+        pages: [2, 3]
+        topic_group: "Unit9 会議のファシリテーション"
+        document_date: 2026-10-31
   - post: "2026-10-19-kodomo-no-toshokan.md"
     recorded_at: 2026-10-19
     status: replaced

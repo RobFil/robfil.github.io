@@ -265,3 +265,11 @@ entries:
     status: current
     topic: "Nachrichten / Universität und Essen: 100-Yen-Frühstück an der Universität Hokkaido"
     note: "Aktuelle Nachricht dieser Woche ausdrücklich gewünscht."
+  - post: "2026-10-31-unit9-control-schedule-dialog.md"
+    recorded_at: 2026-10-31
+    status: current
+    topic: "Business / Unit 9: モーター制御装置の評価試験日程を決める会議"
+  - post: "2026-10-31-unit9-meeting-facilitation-article.md"
+    recorded_at: 2026-10-31
+    status: current
+    topic: "Business / Unit 9: 試験計画の優先順位を決める会議"

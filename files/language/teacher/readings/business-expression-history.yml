@@ -129,3 +129,16 @@ entries:
     topic: "Business / Bewerbung Japan: Rückfragen zu Rolle und Umzug"
     learning_sources: ["20261025_Unit8__振り返り_教材.pdf"]
     pages: [6]
+
+  - post: "2026-10-31-unit9-control-schedule-dialog.md"
+    recorded_at: 2026-10-31
+    status: current
+    expressions: ["本日の会議の目的は～ことです", "～についてご意見はありますか", "論点を整理しましょう", "この件は一度保留にします"]
+    learning_sources: ["20261031_Unit9_会議のファシリテーション_教材.pdf"]
+    pages: [2, 3]
+  - post: "2026-10-31-unit9-meeting-facilitation-article.md"
+    recorded_at: 2026-10-31
+    status: current
+    expressions: ["まず～を確認します", "～についてご意見はありますか", "結論を出す前に～"]
+    learning_sources: ["20261031_Unit9_会議のファシリテーション_教材.pdf"]
+    pages: [2, 3]
