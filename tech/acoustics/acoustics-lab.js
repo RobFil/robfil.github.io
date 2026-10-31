@@ -4,21 +4,23 @@
   const ctx = canvas.getContext("2d");
   const controls = {
     fundamental: document.getElementById("fundamental"), amplitude: document.getElementById("amplitude"),
-    fifth: document.getElementById("fifth"), seventh: document.getElementById("seventh"),
+    fifth: document.getElementById("fifth"), fifthPhase: document.getElementById("fifth-phase"),
+    seventh: document.getElementById("seventh"), seventhPhase: document.getElementById("seventh-phase"),
     angle: document.getElementById("angle"), compensation: document.getElementById("compensation")
   };
   const outputs = {
     fundamental: document.getElementById("fundamental-value"), amplitude: document.getElementById("amplitude-value"),
-    fifth: document.getElementById("fifth-value"), seventh: document.getElementById("seventh-value"), angle: document.getElementById("angle-value")
+    fifth: document.getElementById("fifth-value"), fifthPhase: document.getElementById("fifth-phase-value"),
+    seventh: document.getElementById("seventh-value"), seventhPhase: document.getElementById("seventh-phase-value"), angle: document.getElementById("angle-value")
   };
   const colours = { u: "#1d4ed8", v: "#059669", w: "#c2410c", d: "#7c3aed", q: "#db2777", field: "#0f9f64", grid: "#cbd5e1", ink: "#0f172a", muted: "#64748b", card: "#ffffff" };
   const tau = Math.PI * 2;
 
   function state() {
     const i1 = Number(controls.amplitude.value); const i5 = i1 * Number(controls.fifth.value) / 100; const i7 = i1 * Number(controls.seventh.value) / 100;
-    return { f: Number(controls.fundamental.value), i1, i5, i7, angle: Number(controls.angle.value) * Math.PI / 180, compensated: controls.compensation.checked, phi5: Math.PI / 6, phi7: -Math.PI / 8 };
+    return { f: Number(controls.fundamental.value), i1, i5, i7, angle: Number(controls.angle.value) * Math.PI / 180, compensated: controls.compensation.checked, phi5: Number(controls.fifthPhase.value) * Math.PI / 180, phi7: Number(controls.seventhPhase.value) * Math.PI / 180 };
   }
-  function updateLabels() { const s = state(); outputs.fundamental.textContent = `${s.f} Hz`; outputs.amplitude.textContent = `${s.i1.toFixed(1)} A`; outputs.fifth.textContent = `${controls.fifth.value} %`; outputs.seventh.textContent = `${controls.seventh.value} %`; outputs.angle.textContent = `${controls.angle.value}°`; }
+  function updateLabels() { const s = state(); outputs.fundamental.textContent = `${s.f} Hz`; outputs.amplitude.textContent = `${s.i1.toFixed(1)} A`; outputs.fifth.textContent = `${controls.fifth.value} %`; outputs.fifthPhase.textContent = `${controls.fifthPhase.value}°`; outputs.seventh.textContent = `${controls.seventh.value} %`; outputs.seventhPhase.textContent = `${controls.seventhPhase.value}°`; outputs.angle.textContent = `${controls.angle.value}°`; }
   function line(x1, y1, x2, y2, color, width = 1, dash = []) { ctx.save(); ctx.strokeStyle = color; ctx.lineWidth = width; ctx.setLineDash(dash); ctx.beginPath(); ctx.moveTo(x1, y1); ctx.lineTo(x2, y2); ctx.stroke(); ctx.restore(); }
   function text(value, x, y, size = 12, color = colours.ink, align = "left", weight = "400") { ctx.fillStyle = color; ctx.font = `${weight} ${size}px Inter, system-ui, sans-serif`; ctx.textAlign = align; ctx.textBaseline = "middle"; ctx.fillText(value, x, y); }
   function card(x, y, w, h, title, detail = "") { ctx.fillStyle = colours.card; ctx.strokeStyle = colours.grid; ctx.lineWidth = 1; ctx.fillRect(x, y, w, h); ctx.strokeRect(x, y, w, h); text(title, x + 14, y + 17, 13, colours.ink, "left", "700"); if (detail) text(detail, x + w - 12, y + 17, 9, colours.muted, "right", "700"); }
@@ -46,9 +48,9 @@
     let sx = 0, sy = 0; vectors.forEach(([mag, a, color, label]) => { const vx = mag * Math.cos(a) * ratio, vy = -mag * Math.sin(a) * ratio; sx += vx; sy += vy; if (mag > 0) vector(cx, cy, cx + vx, cy + vy, color, label); }); vector(cx, cy, cx + sx, cy + sy, colours.field, "resultant"); text("α", cx + r + 18, cy + 3, 10, colours.muted); text("β", cx - 4, cy - r - 18, 10, colours.muted);
   }
   function drawDq(x, y, w, h, s) {
-    card(x, y, w, h, "Fundamental dq frame", "5th / 7th appear at ±6ω"); const left = x + 42, right = x + w - 16, top = y + 38, bottom = y + h - 27, mid = (top + bottom) / 2, scale = (bottom - top) / (2 * Math.max(s.i5 + s.i7, 1)); line(left, mid, right, mid, colours.grid, 1, [4, 3]);
-    const draw = (sign, magnitude, phase, color, label) => { if (s.compensated || magnitude === 0) return; ctx.strokeStyle = color; ctx.lineWidth = 2; ctx.beginPath(); for (let px = left; px <= right; px += 2) { const a = tau * 2 * (px - left) / (right - left); const value = magnitude * (sign === -1 ? Math.cos(-6 * a - phase) : Math.cos(6 * a + phase)); const py = mid - value * scale; if (px === left) ctx.moveTo(px, py); else ctx.lineTo(px, py); } ctx.stroke(); text(label, right - 4, top + (sign === -1 ? 12 : 28), 9, color, "right"); };
-    draw(-1, s.i5, s.phi5, colours.q, "5th: −6ω"); draw(1, s.i7, s.phi7, "#d97706", "7th: +6ω"); text("d / q harmonic ripple", left, y + h - 10, 9, colours.muted); if (s.compensated) text("Only DC fundamental remains", x + w / 2, mid, 12, colours.field, "center", "700");
+    card(x, y, w, h, "Fundamental dq frame", `5th / 7th ripple at +/-${6 * s.f} Hz`); const left = x + 42, right = x + w - 16, top = y + 38, bottom = y + h - 27, mid = (top + bottom) / 2, scale = (bottom - top) / (2 * Math.max(s.i5 + s.i7, 1)); line(left, mid, right, mid, colours.grid, 1, [4, 3]);
+    const draw = (magnitude, phase, color, label) => { if (s.compensated || magnitude === 0) return; ctx.strokeStyle = color; ctx.lineWidth = 2; ctx.beginPath(); for (let px = left; px <= right; px += 2) { const time = .02 * (px - left) / (right - left); const value = magnitude * Math.cos(tau * 6 * s.f * time + phase); const py = mid - value * scale; if (px === left) ctx.moveTo(px, py); else ctx.lineTo(px, py); } ctx.stroke(); text(label, right - 4, top + (label.startsWith("5th") ? 12 : 28), 9, color, "right"); };
+    draw(s.i5, s.phi5, colours.q, "5th d-axis"); draw(s.i7, s.phi7, "#d97706", "7th d-axis"); text("d-axis harmonic ripple", left, y + h - 10, 9, colours.muted); if (s.compensated) text("Only DC fundamental remains", x + w / 2, mid, 12, colours.field, "center", "700");
   }
   function drawMsrft(x, y, w, h, s) {
     card(x, y, w, h, "MSRFT harmonic channels", "harmonics become DC"); const channels = [["5th in −6ω", s.compensated ? 0 : s.i5, s.phi5, -1, colours.q], ["7th in +6ω", s.compensated ? 0 : s.i7, s.phi7, 1, "#d97706"]];
