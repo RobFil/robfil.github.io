@@ -204,11 +204,10 @@
     const ctx = prepare(canvases.test);
     const field = testField();
     const activeNames = phaseNames.filter((_, index) => state.test.active[index]).join(", ") || "none";
-    const result = field.strength > 1e-9 ? `S_res at ${degrees(field.angle).toFixed(0)} degrees` : "no resultant stator pole";
     const rpm = state.test.speed * 60 / (2 * Math.PI);
     text(ctx, "Motor experiment: switch stator poles manually", 25, 25, 18, "#0f172a", "left", "700");
-    text(ctx, `Active: ${activeNames}   |   ${result}   |   T_em = ${state.test.torque >= 0 ? "+" : ""}${state.test.torque.toFixed(2)}   |   n = ${rpm >= 0 ? "+" : ""}${rpm.toFixed(1)} rpm`, 25, 55, 12, field.strength ? "#166534" : "#475569", "left", "700");
-    drawTestPhasePanel(ctx); drawTestFieldPanel(ctx, field); drawTestRotorPanel(ctx); drawTestMachine(ctx, field); drawTestEsb(ctx);
+    text(ctx, `Active: ${activeNames}   |   T_em = ${state.test.torque >= 0 ? "+" : ""}${state.test.torque.toFixed(2)}   |   n = ${rpm >= 0 ? "+" : ""}${rpm.toFixed(1)} rpm`, 25, 55, 12, field.strength ? "#166534" : "#475569", "left", "700");
+    drawTestPhasePanel(ctx); drawTestRotorPanel(ctx); drawTestMachine(ctx, field); drawTestEsb(ctx);
   }
 
   function drawTestPhasePanel(ctx) {

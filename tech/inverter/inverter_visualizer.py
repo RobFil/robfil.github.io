@@ -257,10 +257,6 @@ class InverterVisualizer(tk.Tk):
         field_angle, field_strength, _field_x = self._test_stator_field()
         active_phases = [phase for phase, active in zip(("U", "V", "W"), self.test_phase_active) if active]
         active_text = ", ".join(active_phases) if active_phases else "keine"
-        if field_strength <= 1e-9:
-            result_text = "kein resultierender Statorpol"
-        else:
-            result_text = f"S_res bei {math.degrees(field_angle) % 360.0:.0f} Grad"
         test_speed_rpm = self.test_rotor_speed_rad_s * 60.0 / (2.0 * math.pi)
 
         canvas.create_text(
@@ -275,13 +271,12 @@ class InverterVisualizer(tk.Tk):
             25,
             55,
             anchor="w",
-            text=f"Aktiv: {active_text}   |   {result_text}   |   T_em = {self.test_torque:+.2f}   |   n = {test_speed_rpm:+.1f} rpm",
+            text=f"Aktiv: {active_text}   |   T_em = {self.test_torque:+.2f}   |   n = {test_speed_rpm:+.1f} rpm",
             font=("Segoe UI", 12, "bold"),
             fill="#166534" if field_strength > 1e-9 else "#475569",
         )
 
         self._draw_test_phase_panel()
-        self._draw_test_field_panel(field_angle, field_strength)
         self._draw_test_rotor_panel()
         self._draw_test_machine(field_angle, field_strength)
         self._draw_test_esb()
