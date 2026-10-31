@@ -30,27 +30,27 @@
     return s.i1 * Math.cos(theta + phase) + i5 * Math.cos(5 * (theta + phase) + s.phi5) + i7 * Math.cos(7 * (theta + phase) + s.phi7);
   }
   function drawWave(x, y, w, h, s) {
-    card(x, y, w, h, "Three-phase currents iuvw", s.compensated ? "ideal compensation on" : "fundamental + harmonics");
-    const left = x + 42, right = x + w - 16, top = y + 38, bottom = y + h - 27, mid = (top + bottom) / 2, scale = (bottom - top) / (2 * (s.i1 * 1.35));
+    card(x, y, w, h, "Three-phase currents iuvw", s.compensated ? "ideal cancellation on" : "instantaneous values at t = 0");
+    const left = x + 42, right = x + w - 16, top = y + 38, bottom = y + h - 27, mid = (top + bottom) / 2, limit = 1.08 * (s.compensated ? s.i1 : s.i1 + s.i5 + s.i7), scale = (bottom - top) / (2 * limit);
     line(left, mid, right, mid, colours.grid, 1, [4, 3]); text("t = 0 ms", left, y + h - 10, 9, colours.muted); text("20 ms", right, y + h - 10, 9, colours.muted, "right");
     [[0, colours.u, "u"], [-2 * Math.PI / 3, colours.v, "v"], [2 * Math.PI / 3, colours.w, "w"]].forEach(([phase, color, label]) => {
       ctx.strokeStyle = color; ctx.lineWidth = 2; ctx.beginPath();
       for (let px = left; px <= right; px += 2) { const local = s.angle + tau * s.f * .02 * (px - left) / (right - left); const py = mid - scale * current(phase, local, s); if (px === left) ctx.moveTo(px, py); else ctx.lineTo(px, py); }
-      ctx.stroke(); const value = current(phase, s.angle + tau * s.f * .02, s); text(`${label}: ${value >= 0 ? "+" : ""}${value.toFixed(2)} A`, right - 2, top + 12 + ["u", "v", "w"].indexOf(label) * 16, 9, color, "right");
+      ctx.stroke(); const value = current(phase, s.angle, s); text(`${label}: ${value >= 0 ? "+" : ""}${value.toFixed(2)} A`, right - 2, top + 12 + ["u", "v", "w"].indexOf(label) * 16, 9, color, "right");
     });
-    text(`±${(s.i1 * 1.35).toFixed(0)}`, x + 10, top, 8, colours.muted); text(`−${(s.i1 * 1.35).toFixed(0)}`, x + 7, bottom, 8, colours.muted);
+    text(`±${limit.toFixed(1)}`, x + 7, top, 8, colours.muted); text(`−${limit.toFixed(1)}`, x + 7, bottom, 8, colours.muted);
   }
   function drawSpaceVector(x, y, w, h, s) {
-    card(x, y, w, h, "αβ space vectors", "sequence direction"); const cx = x + w / 2, cy = y + h / 2 + 12, r = Math.min(w, h) * .30;
+    card(x, y, w, h, "αβ space vectors", "instantaneous at t = 0"); const cx = x + w / 2, cy = y + h / 2 + 12, r = Math.min(w, h) * .30;
     ctx.strokeStyle = colours.grid; ctx.lineWidth = 1; ctx.beginPath(); ctx.arc(cx, cy, r, 0, tau); ctx.stroke(); line(cx - r - 12, cy, cx + r + 12, cy, colours.grid); line(cx, cy - r - 12, cx, cy + r + 12, colours.grid);
     const a1 = s.angle, a5 = -5 * s.angle - s.phi5, a7 = 7 * s.angle + s.phi7;
     const ratio = r / Math.max(s.i1 + s.i5 + s.i7, 1); const vectors = [[s.i1, a1, colours.u, "1st +ω"], [s.compensated ? 0 : s.i5, a5, colours.q, "5th −5ω"], [s.compensated ? 0 : s.i7, a7, "#d97706", "7th +7ω"]];
     let sx = 0, sy = 0; vectors.forEach(([mag, a, color, label]) => { const vx = mag * Math.cos(a) * ratio, vy = -mag * Math.sin(a) * ratio; sx += vx; sy += vy; if (mag > 0) vector(cx, cy, cx + vx, cy + vy, color, label); }); vector(cx, cy, cx + sx, cy + sy, colours.field, "resultant"); text("α", cx + r + 18, cy + 3, 10, colours.muted); text("β", cx - 4, cy - r - 18, 10, colours.muted);
   }
   function drawDq(x, y, w, h, s) {
-    card(x, y, w, h, "Fundamental dq frame", `5th / 7th ripple at +/-${6 * s.f} Hz`); const left = x + 42, right = x + w - 16, top = y + 38, bottom = y + h - 27, mid = (top + bottom) / 2, scale = (bottom - top) / (2 * Math.max(s.i5 + s.i7, 1)); line(left, mid, right, mid, colours.grid, 1, [4, 3]);
-    const draw = (magnitude, phase, color, label) => { if (s.compensated || magnitude === 0) return; ctx.strokeStyle = color; ctx.lineWidth = 2; ctx.beginPath(); for (let px = left; px <= right; px += 2) { const time = .02 * (px - left) / (right - left); const value = magnitude * Math.cos(tau * 6 * s.f * time + 6 * s.angle + phase); const py = mid - value * scale; if (px === left) ctx.moveTo(px, py); else ctx.lineTo(px, py); } ctx.stroke(); text(label, right - 4, top + (label.startsWith("5th") ? 12 : 28), 9, color, "right"); };
-    draw(s.i5, s.phi5, colours.q, "5th d-axis"); draw(s.i7, s.phi7, "#d97706", "7th d-axis"); text("d-axis harmonic ripple", left, y + h - 10, 9, colours.muted); text("t = 0 ms", left + 150, y + h - 10, 9, colours.muted); text("20 ms", right, y + h - 10, 9, colours.muted, "right"); if (s.compensated) text("Only DC fundamental remains", x + w / 2, mid, 12, colours.field, "center", "700");
+    card(x, y, w, h, "Current-synchronous dq frame", `harmonic ripple at |6 f1| = ${6 * s.f} Hz`); const left = x + 42, right = x + w - 16, top = y + 38, bottom = y + h - 27, mid = (top + bottom) / 2, scale = (bottom - top) / (2 * Math.max(s.i5 + s.i7, 1)); line(left, mid, right, mid, colours.grid, 1, [4, 3]);
+    const draw = (axis, color, label) => { if (s.compensated || (s.i5 === 0 && s.i7 === 0)) return; ctx.strokeStyle = color; ctx.lineWidth = 2; ctx.beginPath(); for (let px = left; px <= right; px += 2) { const time = .02 * (px - left) / (right - left); const harmonicAngle = tau * 6 * s.f * time + 6 * s.angle; const value = axis === "d" ? s.i5 * Math.cos(harmonicAngle + s.phi5) + s.i7 * Math.cos(harmonicAngle + s.phi7) : -s.i5 * Math.sin(harmonicAngle + s.phi5) + s.i7 * Math.sin(harmonicAngle + s.phi7); const py = mid - value * scale; if (px === left) ctx.moveTo(px, py); else ctx.lineTo(px, py); } ctx.stroke(); text(label, right - 4, top + (axis === "d" ? 12 : 28), 9, color, "right"); };
+    draw("d", colours.d, "d harmonic"); draw("q", colours.q, "q harmonic"); text("d/q harmonic ripple", left, y + h - 10, 9, colours.muted); text("t = 0 ms", left + 150, y + h - 10, 9, colours.muted); text("20 ms", right, y + h - 10, 9, colours.muted, "right"); if (s.compensated) text("Only DC fundamental remains", x + w / 2, mid, 12, colours.field, "center", "700");
   }
   function drawMsrft(x, y, w, h, s) {
     card(x, y, w, h, "MSRFT harmonic channels", "harmonics become DC"); const channels = [["5th in −6ω", s.compensated ? 0 : s.i5, s.phi5, -1, colours.q], ["7th in +6ω", s.compensated ? 0 : s.i7, s.phi7, 1, "#d97706"]];
