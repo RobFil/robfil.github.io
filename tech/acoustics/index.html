@@ -8,8 +8,14 @@ title: Current Harmonics Lab
   <header class="acoustics-header">
     <p class="acoustics-eyebrow">TECH // INTERACTIVE LEARNING MODEL</p>
     <h1 id="acoustics-title">Current Harmonics</h1>
-    <p>Explore three-phase currents, the 5th and 7th harmonic, and their MSRFT reference frames.</p>
+    <p>A technically defined PMSM current-harmonics model with a synchronous rotor reference frame.</p>
   </header>
+
+  <aside class="model-convention" aria-labelledby="convention-title">
+    <h2 id="convention-title">Model convention</h2>
+    <p><code>θ1 = ωe t</code> and <code>iU = I1 cos(θ1) + I5 cos(5θ1 + φ5) + I7 cos(7θ1 + φ7)</code>.</p>
+    <p><code>φ5</code> and <code>φ7</code> are initial harmonic phases referenced to <code>θ1 = 0</code> at <code>t = 0</code>. The synchronous rotor d-axis is <code>θr = θ1 + δ</code>.</p>
+  </aside>
 
   <div class="acoustics-controls" aria-label="Harmonic parameters">
     <section class="control-group" aria-labelledby="fundamental-controls">
@@ -20,24 +26,24 @@ title: Current Harmonics Lab
     <section class="control-group" aria-labelledby="fifth-controls">
       <h2 id="fifth-controls">5th harmonic</h2>
       <label>Amplitude (of I1) <output id="fifth-value">10 %</output><input id="fifth" type="range" min="0" max="30" value="10" step="1"></label>
-      <label>Phase relative to fundamental φ5 <output id="fifth-phase-value">0°</output><input id="fifth-phase" type="range" min="-180" max="180" value="0" step="1"></label>
-      <p class="phase-reference">αβ vector at t = 0: <output id="fifth-vector-angle">0° (0°)</output></p>
+      <label>Initial phase φ5 at θ1 = 0 <output id="fifth-phase-value">0°</output><input id="fifth-phase" type="range" min="-180" max="180" value="0" step="1"></label>
+      <p class="phase-reference">αβ space-vector angle at t = 0: <output id="fifth-vector-angle">0° (0°)</output></p>
     </section>
     <section class="control-group" aria-labelledby="seventh-controls">
       <h2 id="seventh-controls">7th harmonic</h2>
       <label>Amplitude (of I1) <output id="seventh-value">4 %</output><input id="seventh" type="range" min="0" max="30" value="4" step="1"></label>
-      <label>Phase relative to fundamental φ7 <output id="seventh-phase-value">0°</output><input id="seventh-phase" type="range" min="-180" max="180" value="0" step="1"></label>
-      <p class="phase-reference">αβ vector at t = 0: <output id="seventh-vector-angle">0° (0°)</output></p>
+      <label>Initial phase φ7 at θ1 = 0 <output id="seventh-phase-value">0°</output><input id="seventh-phase" type="range" min="-180" max="180" value="0" step="1"></label>
+      <p class="phase-reference">αβ space-vector angle at t = 0: <output id="seventh-vector-angle">0° (0°)</output></p>
     </section>
     <section class="control-group" aria-labelledby="rotor-controls">
       <h2 id="rotor-controls">Rotor position</h2>
-      <label>Electrical offset δ at t = 0 <output id="rotor-angle-value">0°</output><input id="rotor-angle" type="range" min="0" max="360" value="0" step="1"></label>
+      <label>Electrical rotor position δ at t = 0 <output id="rotor-angle-value">0°</output><input id="rotor-angle" type="range" min="0" max="360" value="0" step="1"></label>
       <label class="compensation"><input id="compensation" type="checkbox"> Show mathematical cancellation</label>
     </section>
   </div>
 
   <canvas id="acoustics-canvas" width="1050" height="690" aria-label="Three-phase current harmonics and MSRFT visualisation"></canvas>
-  <p class="acoustics-note">The 5th harmonic rotates at −5ω and becomes DC in the −6ω frame. The 7th harmonic rotates at +7ω and becomes DC in the +6ω frame. Harmonic phases are relative to the fundamental current. The rotor is assumed synchronous with the fundamental: θr(t) = ω1t + δ. All amplitudes are peak values; the αβ vector angle at t = 0 is shown separately.</p>
+  <p class="acoustics-note">The 5th harmonic rotates at −5ω and becomes DC in the −6ω frame. The 7th harmonic rotates at +7ω and becomes DC in the +6ω frame. The model assumes synchronous rotor speed, balanced currents, and peak values. It does not model voltage limits, inverter switching, saturation, torque, or mechanics.</p>
 </section>
 
 <script src="{{ '/tech/acoustics/acoustics-lab.js' | relative_url }}" defer></script>
