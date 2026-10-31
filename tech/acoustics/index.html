@@ -13,8 +13,8 @@ title: Current Harmonics Lab
 
   <aside class="model-convention" aria-labelledby="convention-title">
     <h2 id="convention-title">Model convention</h2>
-    <p><code>θ1 = ωe t</code> and <code>iU = I1 cos(θ1) + I5 cos(5θ1 + φ5) + I7 cos(7θ1 + φ7)</code>.</p>
-    <p><code>φ5</code> and <code>φ7</code> are initial harmonic phases referenced to <code>θ1 = 0</code> at <code>t = 0</code>. The rotor is synchronous, so its d-axis has <code>θr = θ1</code>.</p>
+    <p><code>θ1 = ωe t</code> and <code>iU = I1 cos(θ1) + I5 cos(5θ1 − γ5) + I7 cos(7θ1 + γ7)</code>.</p>
+    <p><code>γ5</code> and <code>γ7</code> are initial αβ-vector angles at <code>θ1 = 0</code>; positive angles are counter-clockwise. The 5th harmonic is negative sequence, the 7th positive sequence. The rotor is synchronous, so its d-axis has <code>θr = θ1</code>.</p>
   </aside>
 
   <div class="acoustics-controls" aria-label="Harmonic parameters">
@@ -26,18 +26,18 @@ title: Current Harmonics Lab
     <section class="control-group" aria-labelledby="fifth-controls">
       <h2 id="fifth-controls">5th harmonic</h2>
       <label>Amplitude (of I1) <output id="fifth-value">10 %</output><input id="fifth" type="range" min="0" max="30" value="10" step="1"></label>
-      <label>Initial phase φ5 at θ1 = 0 <output id="fifth-phase-value">0°</output><input id="fifth-phase" type="range" min="-180" max="180" value="0" step="1"></label>
-      <p class="phase-reference">αβ space-vector angle at t = 0: <output id="fifth-vector-angle">0° (0°)</output></p>
+      <label>Initial αβ phase γ5 at θ1 = 0 (CCW +) <output id="fifth-phase-value">0°</output><input id="fifth-phase" type="range" min="-180" max="180" value="0" step="1"></label>
+      <p class="phase-reference">αβ-vector angle at t = 0: <output id="fifth-vector-angle">0° (0°)</output></p>
     </section>
     <section class="control-group" aria-labelledby="seventh-controls">
       <h2 id="seventh-controls">7th harmonic</h2>
       <label>Amplitude (of I1) <output id="seventh-value">4 %</output><input id="seventh" type="range" min="0" max="30" value="4" step="1"></label>
-      <label>Initial phase φ7 at θ1 = 0 <output id="seventh-phase-value">0°</output><input id="seventh-phase" type="range" min="-180" max="180" value="0" step="1"></label>
-      <p class="phase-reference">αβ space-vector angle at t = 0: <output id="seventh-vector-angle">0° (0°)</output></p>
+      <label>Initial αβ phase γ7 at θ1 = 0 (CCW +) <output id="seventh-phase-value">0°</output><input id="seventh-phase" type="range" min="-180" max="180" value="0" step="1"></label>
+      <p class="phase-reference">αβ-vector angle at t = 0: <output id="seventh-vector-angle">0° (0°)</output></p>
     </section>
     <section class="control-group" aria-labelledby="cursor-controls">
       <h2 id="cursor-controls">Current instant</h2>
-      <label>Electrical rotor angle θr <output id="cursor-angle-value">0°</output><input id="cursor-angle" type="range" min="0" max="360" value="0" step="1"></label>
+      <label>Electrical rotor angle θr <output id="cursor-angle-value">0°</output><input id="cursor-angle" type="range" min="-180" max="180" value="0" step="1"></label>
       <label class="compensation"><input id="compensation" type="checkbox"> Show mathematical cancellation</label>
     </section>
   </div>
