@@ -30,11 +30,11 @@ title: Interactive Inverter Lab
 
   <section class="lab-panel" id="test-panel" role="tabpanel" aria-labelledby="test-tab" data-panel="test" hidden>
     <div class="lab-controls test-controls">
-      <button type="button" class="phase-button" data-phase="1">Q: V = 0 V</button>
-      <button type="button" class="phase-button" data-phase="2">S: W = 0 V</button>
-      <button type="button" class="phase-button" data-phase="0">E: U = 0 V</button>
+      <button type="button" class="phase-button" data-phase="1">Q: V = GND</button>
+      <button type="button" class="phase-button" data-phase="2">S: W = GND</button>
+      <button type="button" class="phase-button" data-phase="0">E: U = GND</button>
       <button id="test-reset" type="button">Reset rotor</button>
-      <span>+Udc is applied only while a key or button is held.</span>
+      <span>Held: +Udc. Released: the phase is connected to GND.</span>
     </div>
     <canvas id="test-canvas" width="1050" height="660" aria-label="Manual three-phase inverter experiment"></canvas>
   </section>

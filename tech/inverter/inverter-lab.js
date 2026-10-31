@@ -211,14 +211,14 @@
   }
 
   function drawTestPhasePanel(ctx) {
-    card(ctx, 25, 95, 610, 195, "Phases: 0 V or +Udc"); text(ctx, "Q / S / E", 623, 112, 9, "#475569", "right", "700");
+    card(ctx, 25, 95, 610, 195, "Phases: GND or +Udc"); text(ctx, "Q / S / E", 623, 112, 9, "#475569", "right", "700");
     const keys = ["E", "Q", "S"];
     [0, 1, 2].forEach(index => {
       const y = 150 + index * 42; const active = state.test.active[index];
       ctx.fillStyle = active ? "#dcfce7" : "#f8fafc"; ctx.strokeStyle = active ? "#16a34a" : "#94a3b8"; ctx.lineWidth = 2; ctx.fillRect(49, y - 14, 94, 28); ctx.strokeRect(49, y - 14, 94, 28);
       text(ctx, `${keys[index]}: ${phaseNames[index]}`, 96, y, 10, "#0f172a", "center", "700");
       line(ctx, 165, y, 480, y, active ? "#16a34a" : "#cbd5e1", active ? 5 : 2);
-      text(ctx, active ? "+Udc  ->  S" : "0 V", 525, y, 11, active ? "#166534" : "#475569", "center", "700");
+      text(ctx, active ? "+Udc  ->  S" : "GND", 525, y, 11, active ? "#166534" : "#475569", "center", "700");
       text(ctx, `${index * 120}°`, 610, y, 9, "#64748b", "right");
     });
   }
@@ -253,7 +253,7 @@
       line(ctx, px - 33 * rx, py - 33 * ry, px - 24 * rx, py - 24 * ry, active ? "#16a34a" : "#64748b", 3);
       line(ctx, px + 24 * rx, py + 24 * ry, px + 33 * rx, py + 33 * ry, active ? "#16a34a" : "#64748b", 3);
       const [labelDx, labelDy] = phaseLabelOffsets[index];
-      text(ctx, `${phaseNames[index]} ${active ? "+Udc" : "0 V"}`, cx + 104 * rx + labelDx, cy + 104 * ry + labelDy, 9, active ? "#166534" : "#64748b", "center", "700");
+      text(ctx, `${phaseNames[index]} ${active ? "+Udc" : "GND"}`, cx + 104 * rx + labelDx, cy + 104 * ry + labelDy, 9, active ? "#166534" : "#64748b", "center", "700");
       if (active) { const nx = cx + 132 * rx; const ny = cy + 132 * ry; ctx.fillStyle = "#2563eb"; ctx.strokeStyle = "#1d4ed8"; ctx.lineWidth = 2; ctx.beginPath(); ctx.arc(nx, ny, 16, 0, 2 * Math.PI); ctx.fill(); ctx.stroke(); text(ctx, "S", nx, ny, 12, "#ffffff", "center", "700"); }
     });
     if (field.strength > 1e-9) { const resultArrowLength = 48 + 52 * Math.min(field.strength, 1); arrow(ctx, cx, cy, cx + resultArrowLength * Math.cos(field.angle), cy - resultArrowLength * Math.sin(field.angle), "#16a34a", 4); }
@@ -271,9 +271,30 @@
   }
 
   function drawTestEsb(ctx) {
-    card(ctx, 655, 493, 370, 153, "Simplified inverter"); text(ctx, "0 V / +Udc only", 1013, 510, 9, "#475569", "right");
-    line(ctx, 694, 527, 895, 527, "#dc2626", 2); line(ctx, 694, 582, 895, 582, "#64748b", 2); text(ctx, "+Udc", 680, 527, 8, "#dc2626", "right", "700"); text(ctx, "0 V", 680, 582, 8, "#475569", "right", "700");
-    [746, 803, 860].forEach((x, index) => { const active = state.test.active[index]; const colour = phaseColours[index]; line(ctx, x, 527, x, 541, "#475569", 1); ctx.fillStyle = active ? "#16a34a" : "#ffffff"; ctx.strokeStyle = active ? "#166534" : "#64748b"; ctx.lineWidth = 2; ctx.fillRect(x - 17, 541, 34, 16); ctx.strokeRect(x - 17, 541, 34, 16); text(ctx, active ? "+Udc" : "0 V", x, 549, 7, active ? "#ffffff" : "#475569", "center", "700"); line(ctx, x, 557, x, 567, colour, 2); line(ctx, x, 567, 935, 567, colour, 2); text(ctx, phaseNames[index], x, 603, 9, colour, "center", "700"); });
+    card(ctx, 655, 493, 370, 153, "Simplified inverter");
+    text(ctx, "pressed: +Udc | released: GND", 1013, 510, 8, "#475569", "right");
+    const plusY = 523; const groundY = 607; const railLeft = 683; const railRight = 875;
+    line(ctx, railLeft, plusY, railRight, plusY, "#dc2626", 2);
+    line(ctx, railLeft, groundY, railRight, groundY, "#64748b", 2);
+    text(ctx, "+Udc", 677, plusY, 8, "#dc2626", "right", "700");
+    text(ctx, "GND", 677, groundY, 8, "#475569", "right", "700");
+    const legs = [728, 788, 848]; const motorInputs = [546, 565, 584];
+    legs.forEach((x, index) => {
+      const active = state.test.active[index]; const colour = phaseColours[index]; const outputY = motorInputs[index];
+      line(ctx, x, plusY, x, 535, "#475569", 1);
+      ctx.fillStyle = active ? "#16a34a" : "#ffffff"; ctx.strokeStyle = "#166534"; ctx.lineWidth = 2;
+      ctx.fillRect(x - 13, 535, 26, 13); ctx.strokeRect(x - 13, 535, 26, 13);
+      text(ctx, "HS", x, 543, 7, active ? "#ffffff" : "#166534", "center", "700");
+      line(ctx, x, 548, x, 562, active ? "#16a34a" : "#475569", 2);
+      ctx.fillStyle = colour; ctx.beginPath(); ctx.arc(x, 562, 3, 0, 2 * Math.PI); ctx.fill();
+      ctx.fillStyle = active ? "#ffffff" : "#2563eb"; ctx.strokeStyle = "#475569"; ctx.lineWidth = 2;
+      ctx.fillRect(x - 13, 576, 26, 13); ctx.strokeRect(x - 13, 576, 26, 13);
+      text(ctx, "LS", x, 584, 7, active ? "#475569" : "#ffffff", "center", "700");
+      line(ctx, x, 562, x, 576, active ? "#475569" : "#2563eb", 2); line(ctx, x, 589, x, groundY, "#475569", 1);
+      line(ctx, x, 562, 918, outputY, colour, 2); line(ctx, 918, outputY, 940, outputY, colour, 2);
+      text(ctx, phaseNames[index], 909, outputY - 7, 8, colour, "center", "700");
+      text(ctx, `${phaseNames[index]}: ${active ? "+Udc" : "GND"}`, x, 625, 7, active ? "#166534" : "#475569", "center", "700");
+    });
     ctx.fillStyle = "#f8fafc"; ctx.strokeStyle = "#334155"; ctx.lineWidth = 2; ctx.beginPath(); ctx.arc(970, 565, 30, 0, 2 * Math.PI); ctx.fill(); ctx.stroke(); text(ctx, "M", 970, 560, 14, "#0f172a", "center", "700"); text(ctx, "PSM", 970, 577, 8, "#475569", "center");
   }
 
@@ -380,7 +401,7 @@
     ctx.fillStyle = "#f9fafb"; ctx.strokeStyle = "#111827"; ctx.lineWidth = 2; ctx.fillRect(916, 616, 58, 24); ctx.strokeRect(916, 616, 58, 24); text(ctx, "RLG", 945, 628, 9, "#111827", "center", "700"); line(ctx, motorX, motorY + 27, motorX, 616, "#111827", 1, [3, 2]); line(ctx, 916, 628, 720, 628, "#111827", 1, [3, 2]); arrow(ctx, 720, 628, 720, 556, "#111827", 1); text(ctx, "angle", 815, 619, 8, "#111827", "center");
   }
 
-  function updateTestButtons() { document.querySelectorAll(".phase-button").forEach(button => { const index = Number(button.dataset.phase); const active = state.test.active[index]; const key = index === 1 ? "Q" : index === 2 ? "S" : "E"; button.textContent = `${key}: ${phaseNames[index]} = ${active ? "+Udc" : "0 V"}`; button.classList.toggle("is-active", active); }); }
+  function updateTestButtons() { document.querySelectorAll(".phase-button").forEach(button => { const index = Number(button.dataset.phase); const active = state.test.active[index]; const key = index === 1 ? "Q" : index === 2 ? "S" : "E"; button.textContent = `${key}: ${phaseNames[index]} = ${active ? "+Udc" : "GND"}`; button.classList.toggle("is-active", active); }); }
   function setTestPhase(index, active) { if (state.test.active[index] === active) return; state.test.active[index] = active; updateTestButtons(); }
 
   function switchTab(tab) { state.activeTab = tab; document.querySelectorAll(".lab-tab").forEach(button => { const active = button.dataset.tab === tab; button.classList.toggle("is-active", active); button.setAttribute("aria-selected", String(active)); }); document.querySelectorAll(".lab-panel").forEach(panel => { panel.hidden = panel.dataset.panel !== tab; }); }

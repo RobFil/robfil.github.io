@@ -68,7 +68,7 @@ class InverterVisualizer(tk.Tk):
         # Kurzer Verlauf fuer dieselbe Diagramm-Sprache wie auf der Motorseite.
         self.coil_history: list[tuple[float, float, float, float]] = [(0.0, 0.0, 0.0, 0.0)]
         # Seite 2: ein absichtlich vereinfachter Inverter. Jede Phase ist
-        # entweder spannungsfrei oder direkt mit +Udc verbunden.
+        # entweder mit GND oder direkt mit +Udc verbunden.
         self.test_phase_active = [False, False, False]
         self.test_rotor_angle = 0.0
         self.test_rotor_speed_rad_s = 0.0
@@ -136,7 +136,7 @@ class InverterVisualizer(tk.Tk):
 
     def _build_motor_test_page(self) -> None:
         """Erstellt den manuellen, bewusst stark vereinfachten Inverter-Versuch."""
-        controls = ttk.LabelFrame(self.motor_test_tab, text="Phasenschalter: 0 V oder +Udc", padding=10)
+        controls = ttk.LabelFrame(self.motor_test_tab, text="Phasenschalter: GND oder +Udc", padding=10)
         controls.grid(row=0, column=0, sticky="ew")
         self.test_phase_buttons: list[tk.Button] = []
         for button_index, (phase_index, key) in enumerate(zip((1, 2, 0), ("Q", "S", "E"))):
@@ -154,7 +154,7 @@ class InverterVisualizer(tk.Tk):
         ttk.Button(controls, text="Rotor zurücksetzen", command=self._reset_test_rotor).grid(row=0, column=3, padx=(12, 18))
         ttk.Label(
             controls,
-            text="Tastatur: Q = Phase V, S = Phase W, E = Phase U. +Udc liegt nur an, solange Taste oder Taster gedrückt ist.",
+            text="Tastatur: Q = Phase V, S = Phase W, E = Phase U. Gedrückt: +Udc; losgelassen: GND.",
             foreground="#475569",
         ).grid(row=0, column=4, sticky="w")
         controls.columnconfigure(4, weight=1)
@@ -205,7 +205,7 @@ class InverterVisualizer(tk.Tk):
                 )
             else:
                 button.config(
-                    text=f"{key}: {phase} = 0 V",
+                    text=f"{key}: {phase} = GND",
                     background="#e2e8f0",
                     foreground="#334155",
                     activebackground="#cbd5e1",
@@ -286,7 +286,7 @@ class InverterVisualizer(tk.Tk):
         canvas = self.test_canvas
         left, top, width, height = 25, 95, 610, 195
         canvas.create_rectangle(left, top, left + width, top + height, outline="#cbd5e1", fill="#ffffff")
-        canvas.create_text(left + 12, top + 13, text="Phasen: 0 V oder +Udc", anchor="w", font=("Segoe UI", 12, "bold"), fill="#0f172a")
+        canvas.create_text(left + 12, top + 13, text="Phasen: GND oder +Udc", anchor="w", font=("Segoe UI", 12, "bold"), fill="#0f172a")
         canvas.create_text(
             left + width - 12,
             top + 13,
@@ -309,7 +309,7 @@ class InverterVisualizer(tk.Tk):
                 canvas.create_line(left + 140, row_y, left + 455, row_y, fill="#16a34a", width=5)
                 canvas.create_text(left + 500, row_y, text="+Udc  ->  S", font=("Segoe UI", 11, "bold"), fill="#166534")
             else:
-                canvas.create_text(left + 500, row_y, text="0 V", font=("Segoe UI", 11, "bold"), fill=text_colour)
+                canvas.create_text(left + 500, row_y, text="GND", font=("Segoe UI", 11, "bold"), fill=text_colour)
             canvas.create_text(left + 585, row_y, text=f"{angle_deg}°", anchor="e", font=("Segoe UI", 9), fill="#64748b")
 
     def _draw_test_field_panel(self, field_angle: float, field_strength: float) -> None:
@@ -429,7 +429,7 @@ class InverterVisualizer(tk.Tk):
             canvas.create_text(
                 centre_x + 104 * radial_x + label_dx,
                 centre_y + 104 * radial_y + label_dy,
-                text=f"{phase} {'+Udc' if active else '0 V'}",
+                text=f"{phase} {'+Udc' if active else 'GND'}",
                 font=("Segoe UI", 9, "bold"),
                 fill=coil_colour,
             )
@@ -513,25 +513,40 @@ class InverterVisualizer(tk.Tk):
         left, top, right, bottom = 655, 493, 1025, 646
         canvas.create_rectangle(left, top, right, bottom, outline="#94a3b8", fill="#ffffff")
         canvas.create_text(left + 12, top + 13, text="Vereinfachter Inverter", anchor="w", font=("Segoe UI", 12, "bold"), fill="#0f172a")
-        canvas.create_text(right - 12, top + 13, text="nur 0 V / +Udc", anchor="e", font=("Segoe UI", 9), fill="#475569")
-        plus_y, zero_y = 527, 582
-        rail_left, rail_right = 694, 895
+        canvas.create_text(right - 12, top + 13, text="gedrückt: +Udc | losgelassen: GND", anchor="e", font=("Segoe UI", 8), fill="#475569")
+        plus_y, ground_y = 523, 607
+        rail_left, rail_right = 683, 875
         canvas.create_line(rail_left, plus_y, rail_right, plus_y, fill="#dc2626", width=2)
-        canvas.create_line(rail_left, zero_y, rail_right, zero_y, fill="#64748b", width=2)
-        canvas.create_text(680, plus_y, text="+Udc", anchor="e", font=("Segoe UI", 8, "bold"), fill="#dc2626")
-        canvas.create_text(680, zero_y, text="0 V", anchor="e", font=("Segoe UI", 8, "bold"), fill="#475569")
-        phase_x_values = (746, 803, 860)
-        for phase, phase_x, active, colour in zip(("U", "V", "W"), phase_x_values, self.test_phase_active, PHASE_COLOURS):
-            switch_fill = "#16a34a" if active else "#ffffff"
-            switch_text = "+Udc" if active else "0 V"
-            switch_text_colour = "white" if active else "#475569"
-            canvas.create_line(phase_x, plus_y, phase_x, 541, fill="#475569", width=1)
-            canvas.create_rectangle(phase_x - 17, 541, phase_x + 17, 557, outline="#166534" if active else "#64748b", fill=switch_fill, width=2)
-            canvas.create_text(phase_x, 549, text=switch_text, font=("Segoe UI", 7, "bold"), fill=switch_text_colour)
-            canvas.create_line(phase_x, 557, phase_x, 567, fill=colour, width=2)
-            canvas.create_oval(phase_x - 3, 564, phase_x + 3, 570, fill=colour, outline=colour)
-            canvas.create_line(phase_x, 567, 935, 567, fill=colour, width=2)
-            canvas.create_text(phase_x, 603, text=phase, font=("Segoe UI", 9, "bold"), fill=colour)
+        canvas.create_line(rail_left, ground_y, rail_right, ground_y, fill="#64748b", width=2)
+        canvas.create_text(677, plus_y, text="+Udc", anchor="e", font=("Segoe UI", 8, "bold"), fill="#dc2626")
+        canvas.create_text(677, ground_y, text="GND", anchor="e", font=("Segoe UI", 8, "bold"), fill="#475569")
+        phase_x_values = (728, 788, 848)
+        motor_input_y_values = (546, 565, 584)
+        for phase, phase_x, motor_input_y, active, colour in zip(
+            ("U", "V", "W"), phase_x_values, motor_input_y_values, self.test_phase_active, PHASE_COLOURS
+        ):
+            canvas.create_line(phase_x, plus_y, phase_x, 535, fill="#475569", width=1)
+            canvas.create_rectangle(
+                phase_x - 13, 535, phase_x + 13, 548,
+                outline="#166534", fill="#16a34a" if active else "#ffffff", width=2,
+            )
+            canvas.create_text(phase_x, 542, text="HS", font=("Segoe UI", 7, "bold"), fill="white" if active else "#166534")
+            canvas.create_line(phase_x, 548, phase_x, 562, fill="#16a34a" if active else "#475569", width=2)
+            canvas.create_oval(phase_x - 3, 559, phase_x + 3, 565, fill=colour, outline=colour)
+            canvas.create_rectangle(
+                phase_x - 13, 576, phase_x + 13, 589,
+                outline="#475569", fill="#ffffff" if active else "#2563eb", width=2,
+            )
+            canvas.create_text(phase_x, 583, text="LS", font=("Segoe UI", 7, "bold"), fill="#475569" if active else "white")
+            canvas.create_line(phase_x, 562, phase_x, 576, fill="#475569" if active else "#2563eb", width=2)
+            canvas.create_line(phase_x, 589, phase_x, ground_y, fill="#475569", width=1)
+            canvas.create_line(phase_x, 562, 918, motor_input_y, fill=colour, width=2)
+            canvas.create_line(918, motor_input_y, 940, motor_input_y, fill=colour, width=2)
+            canvas.create_text(909, motor_input_y - 7, text=phase, font=("Segoe UI", 8, "bold"), fill=colour)
+            canvas.create_text(
+                phase_x, 625, text=f"{phase}: {'+Udc' if active else 'GND'}",
+                font=("Segoe UI", 7, "bold"), fill="#166534" if active else "#475569",
+            )
         motor_x, motor_y, motor_radius = 970, 565, 30
         canvas.create_oval(motor_x - motor_radius, motor_y - motor_radius, motor_x + motor_radius, motor_y + motor_radius, outline="#334155", width=2, fill="#f8fafc")
         canvas.create_text(motor_x, motor_y - 5, text="M", font=("Segoe UI", 14, "bold"), fill="#0f172a")
