@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-10-27T12:36:55+00:00",
+  "updated_at": "2026-10-31T15:49:05+00:00",
   "files": {
     "20260918_Unit7_会議に参加する_教材.pdf": {
       "source_file": "20260918_Unit7_会議に参加する_教材.pdf",
@@ -328,6 +328,47 @@
       },
       "review_history": [],
       "review_notes": "Visual review of all 12 rendered pages: OCR content corresponds to the page images; no page is missing. OCR has individual character errors, especially on exercise pages 1?5 and the summary on page 12. The readable teaching content on pages 6?11 is understandable; no pages excluded.",
+      "excluded_pages": [],
+      "exclusion_reason": null
+    },
+    "20261031_Unit9_会議のファシリテーション_教材.pdf": {
+      "source_file": "20261031_Unit9_会議のファシリテーション_教材.pdf",
+      "source_id": "92209f9fea208f84",
+      "document_date": "2026-10-31",
+      "topic_group": "Unit9 会議のファシリテーション",
+      "document_role": "material",
+      "sha256": "b75f39f8cb295026b5db9e83508c0f3521a22ac8bde2e8dd8c11e9618c3b7763",
+      "size_bytes": 286088,
+      "modified_utc": "2026-10-31T15:46:54+00:00",
+      "status": "accepted",
+      "attempts": 1,
+      "parsed_at": "2026-10-31T15:48:43+00:00",
+      "accepted_at": "2026-10-31T15:48:43+00:00",
+      "page_count": 3,
+      "rendered_review_pages": 3,
+      "record_count": 3,
+      "artifact_jsonl": "output/machine/sources/92209f9fea208f84.jsonl",
+      "review_markdown": "output/human/review/92209f9fea208f84.md",
+      "review_images": "output/debug/review/92209f9fea208f84",
+      "extraction": {
+        "pdf_method": "pypdf",
+        "ocr_mode": "missing",
+        "ocr_pages": 3,
+        "ocr_language": "jpn+deu+eng",
+        "ocr_dpi": 300,
+        "ocr_psm": 3
+      },
+      "review_history": [
+        {
+          "reviewed_at": "2026-10-31T15:49:05+00:00",
+          "decision": "accept_visual_review",
+          "attempt": 1,
+          "notes": "Alle 3 Seitenbilder visuell geprüft und mit Extraktion verglichen. Lernziele (S. 1), Vokabeltabelle mit Beispielen (S. 2) und Meeting-Dialog (S. 3) sind vollständig erfasst. Der Dialog endet im Original auf Seite 3 nach der Frage nach weiteren Meinungen; kein Extraktionsverlust. OCR ist insgesamt gut lesbar; bei einzelnen Zeichen und Fachvokabeln gegebenenfalls Originalseite heranziehen.",
+          "excluded_pages": [],
+          "exclusion_reason": null
+        }
+      ],
+      "review_notes": "Alle 3 Seitenbilder visuell geprüft und mit Extraktion verglichen. Lernziele (S. 1), Vokabeltabelle mit Beispielen (S. 2) und Meeting-Dialog (S. 3) sind vollständig erfasst. Der Dialog endet im Original auf Seite 3 nach der Frage nach weiteren Meinungen; kein Extraktionsverlust. OCR ist insgesamt gut lesbar; bei einzelnen Zeichen und Fachvokabeln gegebenenfalls Originalseite heranziehen.",
       "excluded_pages": [],
       "exclusion_reason": null
     }
