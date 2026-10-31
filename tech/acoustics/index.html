@@ -37,7 +37,7 @@ title: Current Harmonics Lab
     </section>
     <section class="control-group" aria-labelledby="cursor-controls">
       <h2 id="cursor-controls">Current instant</h2>
-      <label>Electrical rotor angle θr <output id="cursor-angle-value">0°</output><input id="cursor-angle" type="range" min="-180" max="180" value="0" step="1"></label>
+      <label>Electrical rotor angle θr <output id="cursor-angle-value">0°</output><input id="cursor-angle" type="range" min="0" max="360" value="0" step="1"></label>
       <label class="compensation"><input id="compensation" type="checkbox"> Show mathematical cancellation</label>
     </section>
   </div>
@@ -46,4 +46,4 @@ title: Current Harmonics Lab
   <p class="acoustics-note">The vertical cursor is the current rotor position and does not shift the signals. The 5th harmonic rotates at −5ω and becomes DC in the −6ω frame; the 7th rotates at +7ω and becomes DC in the +6ω frame. The model assumes synchronous rotor speed, balanced currents, and peak values. It does not model voltage limits, inverter switching, saturation, torque, or mechanics.</p>
 </section>
 
-<script src="{{ '/tech/acoustics/acoustics-lab.js' | relative_url }}" defer></script>
+<script src="{{ '/tech/acoustics/acoustics-lab.js' | relative_url }}?v={{ site.time | date: '%s' }}" defer></script>
