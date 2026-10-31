@@ -12,14 +12,26 @@ title: Current Harmonics Lab
   </header>
 
   <div class="acoustics-controls" aria-label="Harmonic parameters">
-    <label>Fundamental <output id="fundamental-value">100 Hz</output><input id="fundamental" type="range" min="25" max="200" value="100" step="1"></label>
-    <label>Fundamental amplitude <output id="amplitude-value">10.0 A</output><input id="amplitude" type="range" min="1" max="20" value="10" step="0.5"></label>
-    <label>5th harmonic <output id="fifth-value">10 %</output><input id="fifth" type="range" min="0" max="30" value="10" step="1"></label>
-    <label>5th phase <output id="fifth-phase-value">0°</output><input id="fifth-phase" type="range" min="-180" max="180" value="0" step="1"></label>
-    <label>7th harmonic <output id="seventh-value">4 %</output><input id="seventh" type="range" min="0" max="30" value="4" step="1"></label>
-    <label>7th phase <output id="seventh-phase-value">0°</output><input id="seventh-phase" type="range" min="-180" max="180" value="0" step="1"></label>
-    <label>Electrical angle <output id="angle-value">0 deg</output><input id="angle" type="range" min="0" max="360" value="0" step="1"></label>
-    <label class="compensation"><input id="compensation" type="checkbox"> Show ideal compensation</label>
+    <section class="control-group" aria-labelledby="fundamental-controls">
+      <h2 id="fundamental-controls">Fundamental</h2>
+      <label>Frequency <output id="fundamental-value">100 Hz</output><input id="fundamental" type="range" min="25" max="200" value="100" step="1"></label>
+      <label>Amplitude <output id="amplitude-value">10.0 A</output><input id="amplitude" type="range" min="1" max="20" value="10" step="0.5"></label>
+    </section>
+    <section class="control-group" aria-labelledby="fifth-controls">
+      <h2 id="fifth-controls">5th harmonic</h2>
+      <label>Amplitude <output id="fifth-value">10 %</output><input id="fifth" type="range" min="0" max="30" value="10" step="1"></label>
+      <label>Phase <output id="fifth-phase-value">0°</output><input id="fifth-phase" type="range" min="-180" max="180" value="0" step="1"></label>
+    </section>
+    <section class="control-group" aria-labelledby="seventh-controls">
+      <h2 id="seventh-controls">7th harmonic</h2>
+      <label>Amplitude <output id="seventh-value">4 %</output><input id="seventh" type="range" min="0" max="30" value="4" step="1"></label>
+      <label>Phase <output id="seventh-phase-value">0°</output><input id="seventh-phase" type="range" min="-180" max="180" value="0" step="1"></label>
+    </section>
+    <section class="control-group" aria-labelledby="system-controls">
+      <h2 id="system-controls">Reference</h2>
+      <label>Electrical angle <output id="angle-value">0 deg</output><input id="angle" type="range" min="0" max="360" value="0" step="1"></label>
+      <label class="compensation"><input id="compensation" type="checkbox"> Show ideal compensation</label>
+    </section>
   </div>
 
   <canvas id="acoustics-canvas" width="1050" height="690" aria-label="Three-phase current harmonics and MSRFT visualisation"></canvas>
