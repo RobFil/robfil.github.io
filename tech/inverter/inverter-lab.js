@@ -135,27 +135,22 @@
     const coilLeft = 710;
     const coilRight = 970;
     const coilY = 276;
-    const windingTop = 212;
-    const windingBottom = 340;
-    const formerLeft = 722;
-    const formerRight = 958;
-    const formerTop = 229;
-    const formerBottom = 323;
-    // Neutral winding former: the drawing intentionally does not imply an iron core.
-    ctx.fillStyle = "#e2e8f0"; ctx.strokeStyle = "#64748b"; ctx.lineWidth = 2;
-    ctx.fillRect(formerLeft, formerTop, formerRight - formerLeft, formerBottom - formerTop); ctx.strokeRect(formerLeft, formerTop, formerRight - formerLeft, formerBottom - formerTop);
-    ctx.fillStyle = "#f8fafc"; ctx.fillRect(formerLeft, coilY - 28, formerRight - formerLeft, 56); ctx.strokeStyle = "#94a3b8"; ctx.strokeRect(formerLeft, coilY - 28, formerRight - formerLeft, 56);
-    ctx.fillStyle = "#cbd5e1"; ctx.strokeStyle = "#475569"; ctx.lineWidth = 2;
-    ctx.fillRect(coilLeft, windingTop, 14, windingBottom - windingTop); ctx.strokeRect(coilLeft, windingTop, 14, windingBottom - windingTop);
-    ctx.fillRect(coilRight - 14, windingTop, 14, windingBottom - windingTop); ctx.strokeRect(coilRight - 14, windingTop, 14, windingBottom - windingTop);
-    for (let turn = 0; turn < 9; turn += 1) {
-      const turnX = coilLeft + 20 + turn * 28;
-      ctx.strokeStyle = "#9a3412"; ctx.lineWidth = 5; ctx.beginPath(); ctx.ellipse(turnX, coilY, 11, 64, 0, 0, 2 * Math.PI); ctx.stroke();
-      ctx.strokeStyle = "#fb923c"; ctx.lineWidth = 2; ctx.beginPath(); ctx.ellipse(turnX, coilY, 11, 64, 0, 0, 2 * Math.PI); ctx.stroke();
-    }
-    line(ctx, 687, windingTop, coilLeft, windingTop, "#c2410c", 3); line(ctx, 687, windingBottom, coilLeft, windingBottom, "#c2410c", 3);
-    ctx.fillStyle = "#ffffff"; ctx.strokeStyle = "#c2410c"; ctx.lineWidth = 2; ctx.beginPath(); ctx.arc(681, windingTop, 5, 0, 2 * Math.PI); ctx.fill(); ctx.stroke(); ctx.beginPath(); ctx.arc(681, windingBottom, 5, 0, 2 * Math.PI); ctx.fill(); ctx.stroke();
-    text(ctx, "A1", 681, windingTop - 14, 8, "#9a3412", "center", "700"); text(ctx, "A2", 681, windingBottom + 14, 8, "#9a3412", "center", "700");
+    const terminalLeft = 680;
+    const terminalRight = 1000;
+    const turns = 8;
+    const windingAmplitude = 60;
+    // One continuous winding wire; no core is implied in this air-core view.
+    [["#9a3412", 6], ["#fb923c", 2]].forEach(([colour, width]) => {
+      ctx.strokeStyle = colour; ctx.lineWidth = width; ctx.beginPath();
+      for (let point = 0; point <= 160; point += 1) {
+        const progress = point / 160; const x = coilLeft + (coilRight - coilLeft) * progress; const y = coilY - windingAmplitude * Math.sin(2 * Math.PI * turns * progress);
+        if (point) ctx.lineTo(x, y); else ctx.moveTo(x, y);
+      }
+      ctx.stroke();
+    });
+    line(ctx, terminalLeft, coilY, coilLeft, coilY, "#c2410c", 4); line(ctx, coilRight, coilY, terminalRight, coilY, "#c2410c", 4);
+    [terminalLeft, terminalRight].forEach(x => { ctx.fillStyle = "#ffffff"; ctx.strokeStyle = "#c2410c"; ctx.lineWidth = 3; ctx.beginPath(); ctx.arc(x, coilY, 7, 0, 2 * Math.PI); ctx.fill(); ctx.stroke(); });
+    text(ctx, "A1", terminalLeft, coilY - 17, 8, "#9a3412", "center", "700"); text(ctx, "A2", terminalRight, coilY - 17, 8, "#9a3412", "center", "700");
     const currentLength = 12 + 112 * Math.min(Math.abs(current) / 10, 1);
     if (Math.abs(current) > 0.02) {
       const direction = Math.sign(current);
@@ -168,7 +163,7 @@
       arrow(ctx, 840 - (direction * fieldLength) / 2, coilY, 840 + (direction * fieldLength) / 2, coilY, "#16a34a", 4);
       const leftPole = direction > 0 ? "S" : "N";
       const rightPole = direction > 0 ? "N" : "S";
-      [[leftPole, coilLeft - 18], [rightPole, coilRight + 18]].forEach(([pole, x]) => { const colour = pole === "N" ? "#dc2626" : "#2563eb"; ctx.fillStyle = colour; ctx.strokeStyle = "#334155"; ctx.lineWidth = 1; ctx.beginPath(); ctx.arc(x, coilY, 15, 0, 2 * Math.PI); ctx.fill(); ctx.stroke(); text(ctx, pole, x, coilY, 12, "#ffffff", "center", "700"); });
+      [[leftPole, coilLeft], [rightPole, coilRight]].forEach(([pole, x]) => { const colour = pole === "N" ? "#dc2626" : "#2563eb"; ctx.fillStyle = colour; ctx.strokeStyle = "#334155"; ctx.lineWidth = 1; ctx.beginPath(); ctx.arc(x, coilY - 82, 15, 0, 2 * Math.PI); ctx.fill(); ctx.stroke(); text(ctx, pole, x, coilY - 82, 12, "#ffffff", "center", "700"); });
     } else line(ctx, 832, coilY, 848, coilY, "#64748b", 2);
     text(ctx, `B = ${magneticField >= 0 ? "+" : ""}${magneticField.toFixed(3)} T`, 840, 384, 12, "#15803d", "center", "700");
     drawCoilEsb(ctx, voltage, current);
