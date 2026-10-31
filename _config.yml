@@ -1,8 +1,8 @@
-title: "日本のブログ"
-description: "日本語、キャリア、旅行"
+title: "RF NOTES"
+description: "Japanese reading, career, and travel"
 theme: minima
 
-# optional (schöne URLs)
+# Optional clean URLs
 permalink: /:categories/:year/:month/:day/:title/
 
 exclude:
