@@ -14,7 +14,7 @@ title: Current Harmonics Lab
   <aside class="model-convention" aria-labelledby="convention-title">
     <h2 id="convention-title">Model convention</h2>
     <p><code>θ1 = ωe t</code> and <code>iU = I1 cos(θ1) + I5 cos(5θ1 + φ5) + I7 cos(7θ1 + φ7)</code>.</p>
-    <p><code>φ5</code> and <code>φ7</code> are initial harmonic phases referenced to <code>θ1 = 0</code> at <code>t = 0</code>. The synchronous rotor d-axis is <code>θr = θ1 + δ</code>.</p>
+    <p><code>φ5</code> and <code>φ7</code> are initial harmonic phases referenced to <code>θ1 = 0</code> at <code>t = 0</code>. The rotor is synchronous, so its d-axis has <code>θr = θ1</code>.</p>
   </aside>
 
   <div class="acoustics-controls" aria-label="Harmonic parameters">
@@ -35,15 +35,15 @@ title: Current Harmonics Lab
       <label>Initial phase φ7 at θ1 = 0 <output id="seventh-phase-value">0°</output><input id="seventh-phase" type="range" min="-180" max="180" value="0" step="1"></label>
       <p class="phase-reference">αβ space-vector angle at t = 0: <output id="seventh-vector-angle">0° (0°)</output></p>
     </section>
-    <section class="control-group" aria-labelledby="rotor-controls">
-      <h2 id="rotor-controls">Rotor position</h2>
-      <label>Electrical rotor position δ at t = 0 <output id="rotor-angle-value">0°</output><input id="rotor-angle" type="range" min="0" max="360" value="0" step="1"></label>
+    <section class="control-group" aria-labelledby="cursor-controls">
+      <h2 id="cursor-controls">Current instant</h2>
+      <label>Electrical rotor angle θr <output id="cursor-angle-value">0°</output><input id="cursor-angle" type="range" min="0" max="360" value="0" step="1"></label>
       <label class="compensation"><input id="compensation" type="checkbox"> Show mathematical cancellation</label>
     </section>
   </div>
 
   <canvas id="acoustics-canvas" width="1050" height="690" aria-label="Three-phase current harmonics and MSRFT visualisation"></canvas>
-  <p class="acoustics-note">The 5th harmonic rotates at −5ω and becomes DC in the −6ω frame. The 7th harmonic rotates at +7ω and becomes DC in the +6ω frame. The model assumes synchronous rotor speed, balanced currents, and peak values. It does not model voltage limits, inverter switching, saturation, torque, or mechanics.</p>
+  <p class="acoustics-note">The vertical cursor is the current rotor position and does not shift the signals. The 5th harmonic rotates at −5ω and becomes DC in the −6ω frame; the 7th rotates at +7ω and becomes DC in the +6ω frame. The model assumes synchronous rotor speed, balanced currents, and peak values. It does not model voltage limits, inverter switching, saturation, torque, or mechanics.</p>
 </section>
 
 <script src="{{ '/tech/acoustics/acoustics-lab.js' | relative_url }}" defer></script>
