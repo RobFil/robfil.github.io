@@ -1,0 +1,15 @@
+#acoustics-lab { padding: clamp(2.5rem, 7vw, 5rem) 0 1rem; }
+#acoustics-lab .acoustics-header { max-width: 54rem; }
+#acoustics-lab .acoustics-eyebrow { margin: 0 0 .7rem; color: var(--accent); font-size: .74rem; font-weight: 800; letter-spacing: .13em; }
+#acoustics-lab h1 { margin: 0; font-size: clamp(2.4rem, 6vw, 4.8rem); line-height: 1; letter-spacing: -.05em; }
+#acoustics-lab .acoustics-header > p:last-child { max-width: 48rem; margin: 1rem 0 2rem; color: var(--muted); }
+#acoustics-lab .acoustics-controls { display: grid; grid-template-columns: repeat(5, minmax(9rem, 1fr)); gap: 1rem; align-items: end; padding: 1rem; border: 1px solid var(--line); background: rgba(13, 26, 39, .75); }
+#acoustics-lab label { display: grid; gap: .3rem; color: var(--muted); font-size: .8rem; font-weight: 700; }
+#acoustics-lab output { color: var(--accent-soft); font-variant-numeric: tabular-nums; }
+#acoustics-lab input[type="range"] { width: 100%; accent-color: var(--accent); }
+#acoustics-lab .compensation { grid-column: span 2; display: flex; align-items: center; gap: .55rem; min-height: 2.25rem; color: var(--text); }
+#acoustics-lab .compensation input { accent-color: var(--accent); }
+#acoustics-lab canvas { display: block; width: 100%; height: auto; margin-top: 1rem; border: 1px solid var(--line); background: #f8fafc; touch-action: none; }
+#acoustics-lab .acoustics-note { margin: 1rem 0 0; color: var(--muted); font-size: .82rem; }
+@media (max-width: 820px) { #acoustics-lab .acoustics-controls { grid-template-columns: repeat(2, minmax(0, 1fr)); } #acoustics-lab .compensation { grid-column: span 2; } }
+@media (max-width: 480px) { #acoustics-lab .acoustics-controls { grid-template-columns: 1fr; } #acoustics-lab .compensation { grid-column: auto; } }

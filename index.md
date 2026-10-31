@@ -36,5 +36,10 @@ title: Japanese Reading
       <h2>Inverter Lab</h2>
       <p>Explore a coil, a manual inverter, and a three-phase machine interactively.</p>
     </a>
+    <a class="portal-card" data-index="05" href="{{ '/tech/acoustics/' | relative_url }}">
+      <span class="portal-kicker">TECH LAB</span>
+      <h2>Current Harmonics</h2>
+      <p>Explore three-phase current harmonics, MSRFT frames, and ideal compensation.</p>
+    </a>
   </div>
 </section>

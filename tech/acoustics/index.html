@@ -1,0 +1,27 @@
+---
+layout: default
+title: Current Harmonics Lab
+---
+<link rel="stylesheet" href="{{ '/tech/acoustics/acoustics-lab.css' | relative_url }}">
+
+<section id="acoustics-lab" aria-labelledby="acoustics-title">
+  <header class="acoustics-header">
+    <p class="acoustics-eyebrow">TECH // INTERACTIVE LEARNING MODEL</p>
+    <h1 id="acoustics-title">Current Harmonics</h1>
+    <p>Explore three-phase currents, the 5th and 7th harmonic, and their MSRFT reference frames.</p>
+  </header>
+
+  <div class="acoustics-controls" aria-label="Harmonic parameters">
+    <label>Fundamental <output id="fundamental-value">100 Hz</output><input id="fundamental" type="range" min="25" max="200" value="100" step="1"></label>
+    <label>Fundamental amplitude <output id="amplitude-value">10.0 A</output><input id="amplitude" type="range" min="1" max="20" value="10" step="0.5"></label>
+    <label>5th harmonic <output id="fifth-value">10 %</output><input id="fifth" type="range" min="0" max="30" value="10" step="1"></label>
+    <label>7th harmonic <output id="seventh-value">4 %</output><input id="seventh" type="range" min="0" max="30" value="4" step="1"></label>
+    <label>Electrical angle <output id="angle-value">0 deg</output><input id="angle" type="range" min="0" max="360" value="0" step="1"></label>
+    <label class="compensation"><input id="compensation" type="checkbox"> Show ideal compensation</label>
+  </div>
+
+  <canvas id="acoustics-canvas" width="1050" height="690" aria-label="Three-phase current harmonics and MSRFT visualisation"></canvas>
+  <p class="acoustics-note">The 5th harmonic rotates at −5ω and becomes DC in the −6ω frame. The 7th harmonic rotates at +7ω and becomes DC in the +6ω frame.</p>
+</section>
+
+<script src="{{ '/tech/acoustics/acoustics-lab.js' | relative_url }}" defer></script>
