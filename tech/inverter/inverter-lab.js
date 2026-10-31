@@ -4,7 +4,10 @@
   const WIDTH = 1050;
   const HEIGHT = 660;
   const phaseNames = ["U", "V", "W"];
-  const phaseAngles = [0, (2 * Math.PI) / 3, (4 * Math.PI) / 3];
+  // Spatial axes point to the three stator poles. The current offsets use
+  // the opposite sign so their vector sum points at currentAngle.
+  const phaseAxes = [0, (2 * Math.PI) / 3, (4 * Math.PI) / 3];
+  const phaseCurrentOffsets = [0, -(2 * Math.PI) / 3, (2 * Math.PI) / 3];
   const phaseColours = ["#1d4ed8", "#059669", "#c2410c"];
   const canvases = {
     coil: document.getElementById("coil-canvas"),
@@ -187,7 +190,7 @@
 
   function testField() {
     let x = 0; let y = 0;
-    state.test.active.forEach((active, index) => { if (active) { x += Math.cos(phaseAngles[index]); y += Math.sin(phaseAngles[index]); } });
+    state.test.active.forEach((active, index) => { if (active) { x += Math.cos(phaseAxes[index]); y += Math.sin(phaseAxes[index]); } });
     const strength = Math.hypot(x, y);
     return { angle: strength > 1e-9 ? Math.atan2(y, x) : 0, strength };
   }
@@ -238,10 +241,12 @@
   function drawTestMachine(ctx, field) {
     const cx = 830; const cy = 280; const radius = 182; text(ctx, "Three-phase machine", cx, 66, 12, "#0f172a", "center", "700");
     ctx.fillStyle = "#e2e8f0"; ctx.strokeStyle = "#334155"; ctx.lineWidth = 3; ctx.beginPath(); ctx.arc(cx, cy, radius, 0, 2 * Math.PI); ctx.fill(); ctx.stroke();
-    phaseAngles.forEach((angle, index) => {
+    phaseAxes.forEach((angle, index) => {
       const active = state.test.active[index]; const rx = Math.cos(angle); const ry = -Math.sin(angle); const tx = -Math.sin(angle); const ty = -Math.cos(angle); const px = cx + 150 * rx; const py = cy + 150 * ry;
       ctx.strokeStyle = active ? "#16a34a" : "#64748b"; ctx.lineWidth = 3; ctx.beginPath();
-      for (let point = 0; point <= 24; point += 1) { const progress = point / 24; const along = -23 + 46 * progress; const offset = 7 * Math.sin(6 * Math.PI * progress); const x = px + along * tx + offset * rx; const y = py + along * ty + offset * ry; if (point) ctx.lineTo(x, y); else ctx.moveTo(x, y); } ctx.stroke();
+      for (let point = 0; point <= 24; point += 1) { const progress = point / 24; const along = -23 + 46 * progress; const offset = 7 * Math.sin(6 * Math.PI * progress); const x = px + along * rx + offset * tx; const y = py + along * ry + offset * ty; if (point) ctx.lineTo(x, y); else ctx.moveTo(x, y); } ctx.stroke();
+      line(ctx, px - 33 * rx, py - 33 * ry, px - 23 * rx, py - 23 * ry, active ? "#16a34a" : "#64748b", 3);
+      line(ctx, px + 23 * rx, py + 23 * ry, px + 33 * rx, py + 33 * ry, active ? "#16a34a" : "#64748b", 3);
       text(ctx, `${phaseNames[index]} ${active ? "+Udc" : "0 V"}`, cx + 174 * rx, cy + 174 * ry, 8, active ? "#166534" : "#64748b", "center", "700");
       if (active) { const nx = cx + 118 * rx; const ny = cy + 118 * ry; ctx.fillStyle = "#2563eb"; ctx.strokeStyle = "#1d4ed8"; ctx.lineWidth = 2; ctx.beginPath(); ctx.arc(nx, ny, 16, 0, 2 * Math.PI); ctx.fill(); ctx.stroke(); text(ctx, "S", nx, ny, 12, "#ffffff", "center", "700"); }
     });
@@ -276,7 +281,7 @@
 
   function drawMotorWave(ctx, x, y, title, unit, amplitude, limit, angle) {
     card(ctx, x, y, 610, 195, title); const left = x + 55; const right = x + 592; const top = y + 42; const bottom = y + 167; const mid = (top + bottom) / 2; line(ctx, left, mid, right, mid, "#94a3b8", 1, [3, 3]); text(ctx, `+${limit}`, x + 9, top, 9, "#64748b"); text(ctx, `-${limit}`, x + 9, bottom, 9, "#64748b"); text(ctx, unit, right, y + 186, 9, "#64748b", "right");
-    phaseAngles.forEach((offset, phase) => { const colour = phaseColours[phase]; ctx.strokeStyle = colour; ctx.lineWidth = 2; ctx.beginPath(); for (let px = left; px <= right; px += 3) { const historyAngle = angle - 2 * Math.PI * (right - px) / (right - left); const py = mid - (bottom - top) * .43 * (amplitude / limit) * Math.cos(historyAngle + offset); if (px === left) ctx.moveTo(px, py); else ctx.lineTo(px, py); } ctx.stroke(); const instantaneous = amplitude * Math.cos(angle + offset); const markerY = mid - (bottom - top) * .43 * (amplitude / limit) * Math.cos(angle + offset); ctx.fillStyle = colour; ctx.beginPath(); ctx.arc(right, markerY, 4, 0, 2 * Math.PI); ctx.fill(); text(ctx, `${"abc"[phase]}: ${instantaneous >= 0 ? "+" : ""}${instantaneous.toFixed(1)} ${unit}`, right - 2, top + 12 + phase * 18, 9, colour, "right"); });
+    phaseCurrentOffsets.forEach((offset, phase) => { const colour = phaseColours[phase]; ctx.strokeStyle = colour; ctx.lineWidth = 2; ctx.beginPath(); for (let px = left; px <= right; px += 3) { const historyAngle = angle - 2 * Math.PI * (right - px) / (right - left); const py = mid - (bottom - top) * .43 * (amplitude / limit) * Math.cos(historyAngle + offset); if (px === left) ctx.moveTo(px, py); else ctx.lineTo(px, py); } ctx.stroke(); const instantaneous = amplitude * Math.cos(angle + offset); const markerY = mid - (bottom - top) * .43 * (amplitude / limit) * Math.cos(angle + offset); ctx.fillStyle = colour; ctx.beginPath(); ctx.arc(right, markerY, 4, 0, 2 * Math.PI); ctx.fill(); text(ctx, `${"abc"[phase]}: ${instantaneous >= 0 ? "+" : ""}${instantaneous.toFixed(1)} ${unit}`, right - 2, top + 12 + phase * 18, 9, colour, "right"); });
   }
 
   function drawMotorRotorPanel(ctx) {
@@ -302,29 +307,29 @@
     text(ctx, "Three-phase machine", cx, 66, 12, "#0f172a", "center", "700");
     ctx.fillStyle = "#e2e8f0"; ctx.strokeStyle = "#334155"; ctx.lineWidth = 3; ctx.beginPath(); ctx.arc(cx, cy, outerRadius, 0, 2 * Math.PI); ctx.fill(); ctx.stroke();
 
-    phaseAngles.forEach((angle, index) => {
+    phaseAxes.forEach((angle, index) => {
       const radialX = Math.cos(angle); const radialY = -Math.sin(angle);
       const tangentX = -Math.sin(angle); const tangentY = -Math.cos(angle);
       const coilX = cx + 157 * radialX; const coilY = cy + 157 * radialY;
-      const current = state.motor.amplitude * Math.cos(currentAngle + phaseAngles[index]);
+      const current = state.motor.amplitude * Math.cos(currentAngle + phaseCurrentOffsets[index]);
       const colour = phaseColours[index];
 
       ctx.strokeStyle = colour; ctx.lineWidth = 3; ctx.beginPath();
       for (let point = 0; point <= 24; point += 1) {
         const progress = point / 24; const along = -24 + 48 * progress; const offset = 8 * Math.sin(6 * Math.PI * progress);
-        const x = coilX + along * tangentX + offset * radialX; const y = coilY + along * tangentY + offset * radialY;
+        const x = coilX + along * radialX + offset * tangentX; const y = coilY + along * radialY + offset * tangentY;
         if (point) ctx.lineTo(x, y); else ctx.moveTo(x, y);
       }
       ctx.stroke();
-      line(ctx, coilX - 33 * tangentX, coilY - 33 * tangentY, coilX - 24 * tangentX, coilY - 24 * tangentY, colour, 3);
-      line(ctx, coilX + 24 * tangentX, coilY + 24 * tangentY, coilX + 33 * tangentX, coilY + 33 * tangentY, colour, 3);
+      line(ctx, coilX - 33 * radialX, coilY - 33 * radialY, coilX - 24 * radialX, coilY - 24 * radialY, colour, 3);
+      line(ctx, coilX + 24 * radialX, coilY + 24 * radialY, coilX + 33 * radialX, coilY + 33 * radialY, colour, 3);
 
       const relativeCurrent = Math.abs(current) / Math.max(state.motor.amplitude, 1);
-      const arrowLength = 10 + 46 * relativeCurrent; const arrowX = coilX - 25 * radialX; const arrowY = coilY - 25 * radialY;
-      if (Math.abs(current) < 0.05) line(ctx, arrowX - 5 * tangentX, arrowY - 5 * tangentY, arrowX + 5 * tangentX, arrowY + 5 * tangentY, "#64748b", 2);
+      const arrowLength = 10 + 46 * relativeCurrent; const arrowX = coilX - 25 * tangentX; const arrowY = coilY - 25 * tangentY;
+      if (Math.abs(current) < 0.05) line(ctx, arrowX - 5 * radialX, arrowY - 5 * radialY, arrowX + 5 * radialX, arrowY + 5 * radialY, "#64748b", 2);
       else {
         const direction = Math.sign(current);
-        arrow(ctx, arrowX - direction * arrowLength / 2 * tangentX, arrowY - direction * arrowLength / 2 * tangentY, arrowX + direction * arrowLength / 2 * tangentX, arrowY + direction * arrowLength / 2 * tangentY, colour, 3);
+        arrow(ctx, arrowX - direction * arrowLength / 2 * radialX, arrowY - direction * arrowLength / 2 * radialY, arrowX + direction * arrowLength / 2 * radialX, arrowY + direction * arrowLength / 2 * radialY, colour, 3);
       }
       text(ctx, `${phaseNames[index]}  ${current >= 0 ? "+" : ""}${current.toFixed(0)} A`, cx + 104 * radialX, cy + 104 * radialY, 9, colour, "center", "700");
     });
@@ -357,7 +362,7 @@
     text(ctx, "+", batteryX - 20, 533, 10, "#dc2626", "center", "700"); text(ctx, "-", batteryX - 20, 563, 12, "#2563eb", "center", "700");
     const sensors = [];
     [799, 827, 855].forEach((legX, index) => {
-      const phaseY = 535 + index * 15; const colour = phaseColours[index]; const phaseVoltage = voltage * Math.cos(currentAngle + phaseAngles[index]); const highSide = phaseVoltage >= 0;
+      const phaseY = 535 + index * 15; const colour = phaseColours[index]; const phaseVoltage = voltage * Math.cos(currentAngle + phaseCurrentOffsets[index]); const highSide = phaseVoltage >= 0;
       const hsY = phaseY - 6; const lsY = phaseY + 6;
       line(ctx, legX, plusRail, legX, hsY - 4, "#475569", 1); ctx.fillStyle = highSide ? "#16a34a" : "#ffffff"; ctx.strokeStyle = "#166534"; ctx.lineWidth = 1; ctx.fillRect(legX - 8, hsY - 4, 16, 8); ctx.strokeRect(legX - 8, hsY - 4, 16, 8); text(ctx, "HS", legX, hsY, 6, highSide ? "#ffffff" : "#166534", "center", "700");
       line(ctx, legX, hsY + 4, legX, phaseY, "#475569", 1); ctx.fillStyle = colour; ctx.beginPath(); ctx.arc(legX, phaseY, 2, 0, 2 * Math.PI); ctx.fill(); line(ctx, legX, phaseY, legX, lsY - 4, "#475569", 1);

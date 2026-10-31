@@ -426,8 +426,10 @@ class InverterVisualizer(tk.Tk):
                 progress = point_index / 24.0
                 along = -23.0 + 46.0 * progress
                 offset = 7.0 * math.sin(3.0 * 2.0 * math.pi * progress)
-                coil_points.extend((coil_x + along * tangent_x + offset * radial_x, coil_y + along * tangent_y + offset * radial_y))
+                coil_points.extend((coil_x + along * radial_x + offset * tangent_x, coil_y + along * radial_y + offset * tangent_y))
             canvas.create_line(*coil_points, fill=coil_colour, width=3, smooth=True, splinesteps=12)
+            canvas.create_line(coil_x - 33 * radial_x, coil_y - 33 * radial_y, coil_x - 23 * radial_x, coil_y - 23 * radial_y, fill=coil_colour, width=3)
+            canvas.create_line(coil_x + 23 * radial_x, coil_y + 23 * radial_y, coil_x + 33 * radial_x, coil_y + 33 * radial_y, fill=coil_colour, width=3)
             canvas.create_text(
                 centre_x + 174 * radial_x,
                 centre_y + 174 * radial_y,
@@ -1166,8 +1168,8 @@ class InverterVisualizer(tk.Tk):
             current = values.current_peak * math.cos(self._current_angle() + PHASE_OFFSETS[phase_index])
             colour = PHASE_COLOURS[phase_index]
 
-            # Eine einzelne, einfache Spule: eine gewundene Leitung mit zwei
-            # kurzen Anschluessen. Weitere Leiterseiten werden nicht gezeigt.
+            # Eine einzelne, einfache Spule: ihre Enden liegen radial, damit
+            # ein Ende klar zum Luftspalt und eines nach aussen zeigt.
             radial_x = math.cos(stator_angle)
             radial_y = -math.sin(stator_angle)
             tangent_x = -math.sin(stator_angle)
@@ -1180,24 +1182,24 @@ class InverterVisualizer(tk.Tk):
                 coil_offset = 8.0 * math.sin(3.0 * 2.0 * math.pi * progress)
                 coil_points.extend(
                     (
-                        x + along_coil * tangent_x + coil_offset * radial_x,
-                        y + along_coil * tangent_y + coil_offset * radial_y,
+                        x + along_coil * radial_x + coil_offset * tangent_x,
+                        y + along_coil * radial_y + coil_offset * tangent_y,
                     )
                 )
             self.canvas.create_line(*coil_points, fill=colour, width=3, smooth=True, splinesteps=12)
             self.canvas.create_line(
-                x - 33 * tangent_x,
-                y - 33 * tangent_y,
-                x - 24 * tangent_x,
-                y - 24 * tangent_y,
+                x - 33 * radial_x,
+                y - 33 * radial_y,
+                x - 24 * radial_x,
+                y - 24 * radial_y,
                 fill=colour,
                 width=3,
             )
             self.canvas.create_line(
-                x + 24 * tangent_x,
-                y + 24 * tangent_y,
-                x + 33 * tangent_x,
-                y + 33 * tangent_y,
+                x + 24 * radial_x,
+                y + 24 * radial_y,
+                x + 33 * radial_x,
+                y + 33 * radial_y,
                 fill=colour,
                 width=3,
             )
@@ -1207,22 +1209,22 @@ class InverterVisualizer(tk.Tk):
             # eine separate Leiterseiten-Darstellung.
             relative_current = abs(current) / max(values.current_peak, 1.0)
             arrow_length = 10.0 + 46.0 * relative_current
-            arrow_centre = (x - 25.0 * radial_x, y - 25.0 * radial_y)
+            arrow_centre = (x - 25.0 * tangent_x, y - 25.0 * tangent_y)
             if abs(current) < 0.05:
                 self.canvas.create_line(
-                    arrow_centre[0] - 5 * tangent_x,
-                    arrow_centre[1] - 5 * tangent_y,
-                    arrow_centre[0] + 5 * tangent_x,
-                    arrow_centre[1] + 5 * tangent_y,
+                    arrow_centre[0] - 5 * radial_x,
+                    arrow_centre[1] - 5 * radial_y,
+                    arrow_centre[0] + 5 * radial_x,
+                    arrow_centre[1] + 5 * radial_y,
                     fill="#64748b",
                     width=2,
                 )
             else:
                 current_direction = 1.0 if current > 0.0 else -1.0
-                arrow_tail_x = arrow_centre[0] - current_direction * arrow_length / 2.0 * tangent_x
-                arrow_tail_y = arrow_centre[1] - current_direction * arrow_length / 2.0 * tangent_y
-                arrow_head_x = arrow_centre[0] + current_direction * arrow_length / 2.0 * tangent_x
-                arrow_head_y = arrow_centre[1] + current_direction * arrow_length / 2.0 * tangent_y
+                arrow_tail_x = arrow_centre[0] - current_direction * arrow_length / 2.0 * radial_x
+                arrow_tail_y = arrow_centre[1] - current_direction * arrow_length / 2.0 * radial_y
+                arrow_head_x = arrow_centre[0] + current_direction * arrow_length / 2.0 * radial_x
+                arrow_head_y = arrow_centre[1] + current_direction * arrow_length / 2.0 * radial_y
                 self.canvas.create_line(arrow_tail_x, arrow_tail_y, arrow_head_x, arrow_head_y, fill=colour, width=3, arrow=tk.LAST)
 
             label_x = centre_x + 104 * radial_x
