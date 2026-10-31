@@ -32,7 +32,7 @@
   function drawWave(x, y, w, h, s) {
     card(x, y, w, h, "Three-phase currents iuvw", s.compensated ? "ideal compensation on" : "fundamental + harmonics");
     const left = x + 42, right = x + w - 16, top = y + 38, bottom = y + h - 27, mid = (top + bottom) / 2, scale = (bottom - top) / (2 * (s.i1 * 1.35));
-    line(left, mid, right, mid, colours.grid, 1, [4, 3]); text("A", right, y + h - 10, 9, colours.muted, "right");
+    line(left, mid, right, mid, colours.grid, 1, [4, 3]); text("t = 0 ms", left, y + h - 10, 9, colours.muted); text("20 ms", right, y + h - 10, 9, colours.muted, "right");
     [[0, colours.u, "u"], [-2 * Math.PI / 3, colours.v, "v"], [2 * Math.PI / 3, colours.w, "w"]].forEach(([phase, color, label]) => {
       ctx.strokeStyle = color; ctx.lineWidth = 2; ctx.beginPath();
       for (let px = left; px <= right; px += 2) { const local = s.angle + tau * s.f * .02 * (px - left) / (right - left); const py = mid - scale * current(phase, local, s); if (px === left) ctx.moveTo(px, py); else ctx.lineTo(px, py); }
@@ -49,8 +49,8 @@
   }
   function drawDq(x, y, w, h, s) {
     card(x, y, w, h, "Fundamental dq frame", `5th / 7th ripple at +/-${6 * s.f} Hz`); const left = x + 42, right = x + w - 16, top = y + 38, bottom = y + h - 27, mid = (top + bottom) / 2, scale = (bottom - top) / (2 * Math.max(s.i5 + s.i7, 1)); line(left, mid, right, mid, colours.grid, 1, [4, 3]);
-    const draw = (magnitude, phase, color, label) => { if (s.compensated || magnitude === 0) return; ctx.strokeStyle = color; ctx.lineWidth = 2; ctx.beginPath(); for (let px = left; px <= right; px += 2) { const time = .02 * (px - left) / (right - left); const value = magnitude * Math.cos(tau * 6 * s.f * time + phase); const py = mid - value * scale; if (px === left) ctx.moveTo(px, py); else ctx.lineTo(px, py); } ctx.stroke(); text(label, right - 4, top + (label.startsWith("5th") ? 12 : 28), 9, color, "right"); };
-    draw(s.i5, s.phi5, colours.q, "5th d-axis"); draw(s.i7, s.phi7, "#d97706", "7th d-axis"); text("d-axis harmonic ripple", left, y + h - 10, 9, colours.muted); if (s.compensated) text("Only DC fundamental remains", x + w / 2, mid, 12, colours.field, "center", "700");
+    const draw = (magnitude, phase, color, label) => { if (s.compensated || magnitude === 0) return; ctx.strokeStyle = color; ctx.lineWidth = 2; ctx.beginPath(); for (let px = left; px <= right; px += 2) { const time = .02 * (px - left) / (right - left); const value = magnitude * Math.cos(tau * 6 * s.f * time + 6 * s.angle + phase); const py = mid - value * scale; if (px === left) ctx.moveTo(px, py); else ctx.lineTo(px, py); } ctx.stroke(); text(label, right - 4, top + (label.startsWith("5th") ? 12 : 28), 9, color, "right"); };
+    draw(s.i5, s.phi5, colours.q, "5th d-axis"); draw(s.i7, s.phi7, "#d97706", "7th d-axis"); text("d-axis harmonic ripple", left, y + h - 10, 9, colours.muted); text("t = 0 ms", left + 150, y + h - 10, 9, colours.muted); text("20 ms", right, y + h - 10, 9, colours.muted, "right"); if (s.compensated) text("Only DC fundamental remains", x + w / 2, mid, 12, colours.field, "center", "700");
   }
   function drawMsrft(x, y, w, h, s) {
     card(x, y, w, h, "MSRFT harmonic channels", "harmonics become DC"); const channels = [["5th in −6ω", s.compensated ? 0 : s.i5, s.phi5, -1, colours.q], ["7th in +6ω", s.compensated ? 0 : s.i7, s.phi7, 1, "#d97706"]];
