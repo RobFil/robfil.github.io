@@ -249,20 +249,21 @@
   }
 
   function drawTestMachine(ctx, field) {
-    const cx = 830; const cy = 280; const radius = 182; text(ctx, "Three-phase machine", cx, 66, 12, "#0f172a", "center", "700");
-    ctx.fillStyle = "#e2e8f0"; ctx.strokeStyle = "#334155"; ctx.lineWidth = 3; ctx.beginPath(); ctx.arc(cx, cy, radius, 0, 2 * Math.PI); ctx.fill(); ctx.stroke();
+    const cx = 830; const cy = 280; const outerRadius = 205; const rotorRadius = 84; text(ctx, "Three-phase machine", cx, 66, 12, "#0f172a", "center", "700");
+    ctx.fillStyle = "#e2e8f0"; ctx.strokeStyle = "#334155"; ctx.lineWidth = 3; ctx.beginPath(); ctx.arc(cx, cy, outerRadius, 0, 2 * Math.PI); ctx.fill(); ctx.stroke();
+    const phaseLabelOffsets = [[-5, 35], [-15, 10], [15, -10]];
     phaseAxes.forEach((angle, index) => {
-      const active = state.test.active[index]; const rx = Math.cos(angle); const ry = -Math.sin(angle); const tx = -Math.sin(angle); const ty = -Math.cos(angle); const px = cx + 150 * rx; const py = cy + 150 * ry;
+      const active = state.test.active[index]; const rx = Math.cos(angle); const ry = -Math.sin(angle); const tx = -Math.sin(angle); const ty = -Math.cos(angle); const px = cx + 157 * rx; const py = cy + 157 * ry;
       ctx.strokeStyle = active ? "#16a34a" : "#64748b"; ctx.lineWidth = 3; ctx.beginPath();
-      for (let point = 0; point <= 24; point += 1) { const progress = point / 24; const along = -23 + 46 * progress; const offset = 7 * Math.sin(6 * Math.PI * progress); const x = px + along * rx + offset * tx; const y = py + along * ry + offset * ty; if (point) ctx.lineTo(x, y); else ctx.moveTo(x, y); } ctx.stroke();
-      line(ctx, px - 33 * rx, py - 33 * ry, px - 23 * rx, py - 23 * ry, active ? "#16a34a" : "#64748b", 3);
-      line(ctx, px + 23 * rx, py + 23 * ry, px + 33 * rx, py + 33 * ry, active ? "#16a34a" : "#64748b", 3);
-      text(ctx, `${phaseNames[index]} ${active ? "+Udc" : "0 V"}`, cx + 174 * rx, cy + 174 * ry, 8, active ? "#166534" : "#64748b", "center", "700");
-      if (active) { const nx = cx + 118 * rx; const ny = cy + 118 * ry; ctx.fillStyle = "#2563eb"; ctx.strokeStyle = "#1d4ed8"; ctx.lineWidth = 2; ctx.beginPath(); ctx.arc(nx, ny, 16, 0, 2 * Math.PI); ctx.fill(); ctx.stroke(); text(ctx, "S", nx, ny, 12, "#ffffff", "center", "700"); }
+      for (let point = 0; point <= 24; point += 1) { const progress = point / 24; const along = -24 + 48 * progress; const offset = 8 * Math.sin(6 * Math.PI * progress); const x = px + along * rx + offset * tx; const y = py + along * ry + offset * ty; if (point) ctx.lineTo(x, y); else ctx.moveTo(x, y); } ctx.stroke();
+      line(ctx, px - 33 * rx, py - 33 * ry, px - 24 * rx, py - 24 * ry, active ? "#16a34a" : "#64748b", 3);
+      line(ctx, px + 24 * rx, py + 24 * ry, px + 33 * rx, py + 33 * ry, active ? "#16a34a" : "#64748b", 3);
+      const [labelDx, labelDy] = phaseLabelOffsets[index];
+      text(ctx, `${phaseNames[index]} ${active ? "+Udc" : "0 V"}`, cx + 104 * rx + labelDx, cy + 104 * ry + labelDy, 9, active ? "#166534" : "#64748b", "center", "700");
+      if (active) { const nx = cx + 132 * rx; const ny = cy + 132 * ry; ctx.fillStyle = "#2563eb"; ctx.strokeStyle = "#1d4ed8"; ctx.lineWidth = 2; ctx.beginPath(); ctx.arc(nx, ny, 16, 0, 2 * Math.PI); ctx.fill(); ctx.stroke(); text(ctx, "S", nx, ny, 12, "#ffffff", "center", "700"); }
     });
     if (field.strength > 1e-9) arrow(ctx, cx, cy, cx + 142 * Math.cos(field.angle), cy - 142 * Math.sin(field.angle), "#16a34a", 4);
-    drawRotor(ctx, cx, cy, state.test.theta, 67, 29, 78);
-    text(ctx, "T_em from angle error moves the rotor", cx, 468, 9, "#475569", "center");
+    drawRotor(ctx, cx, cy, state.test.theta, 72, 32, rotorRadius);
   }
 
   function drawRotor(ctx, cx, cy, theta, halfLength, halfWidth, radius) {

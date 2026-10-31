@@ -402,7 +402,7 @@ class InverterVisualizer(tk.Tk):
     def _draw_test_machine(self, field_angle: float, field_strength: float) -> None:
         canvas = self.test_canvas
         centre_x, centre_y = 830, 280
-        outer_radius, rotor_radius = 182, 78
+        outer_radius, rotor_radius = 205, 84
         canvas.create_text(centre_x, 66, text="Dreiphasen-Maschine", font=("Segoe UI", 12, "bold"), fill="#0f172a")
         canvas.create_oval(
             centre_x - outer_radius,
@@ -415,31 +415,32 @@ class InverterVisualizer(tk.Tk):
         )
 
         phase_angles = (0.0, 2.0 * math.pi / 3.0, 4.0 * math.pi / 3.0)
-        for phase, phase_angle, active in zip(("U", "V", "W"), phase_angles, self.test_phase_active):
+        phase_label_offsets = ((-5.0, 35.0), (-15.0, 10.0), (15.0, -10.0))
+        for phase, phase_angle, active, (label_dx, label_dy) in zip(("U", "V", "W"), phase_angles, self.test_phase_active, phase_label_offsets):
             radial_x, radial_y = math.cos(phase_angle), -math.sin(phase_angle)
             tangent_x, tangent_y = -math.sin(phase_angle), -math.cos(phase_angle)
-            coil_x = centre_x + 150 * radial_x
-            coil_y = centre_y + 150 * radial_y
+            coil_x = centre_x + 157 * radial_x
+            coil_y = centre_y + 157 * radial_y
             coil_colour = "#16a34a" if active else "#64748b"
             coil_points: list[float] = []
             for point_index in range(25):
                 progress = point_index / 24.0
-                along = -23.0 + 46.0 * progress
-                offset = 7.0 * math.sin(3.0 * 2.0 * math.pi * progress)
+                along = -24.0 + 48.0 * progress
+                offset = 8.0 * math.sin(3.0 * 2.0 * math.pi * progress)
                 coil_points.extend((coil_x + along * radial_x + offset * tangent_x, coil_y + along * radial_y + offset * tangent_y))
             canvas.create_line(*coil_points, fill=coil_colour, width=3, smooth=True, splinesteps=12)
-            canvas.create_line(coil_x - 33 * radial_x, coil_y - 33 * radial_y, coil_x - 23 * radial_x, coil_y - 23 * radial_y, fill=coil_colour, width=3)
-            canvas.create_line(coil_x + 23 * radial_x, coil_y + 23 * radial_y, coil_x + 33 * radial_x, coil_y + 33 * radial_y, fill=coil_colour, width=3)
+            canvas.create_line(coil_x - 33 * radial_x, coil_y - 33 * radial_y, coil_x - 24 * radial_x, coil_y - 24 * radial_y, fill=coil_colour, width=3)
+            canvas.create_line(coil_x + 24 * radial_x, coil_y + 24 * radial_y, coil_x + 33 * radial_x, coil_y + 33 * radial_y, fill=coil_colour, width=3)
             canvas.create_text(
-                centre_x + 174 * radial_x,
-                centre_y + 174 * radial_y,
+                centre_x + 104 * radial_x + label_dx,
+                centre_y + 104 * radial_y + label_dy,
                 text=f"{phase} {'+Udc' if active else '0 V'}",
-                font=("Segoe UI", 8, "bold"),
+                font=("Segoe UI", 9, "bold"),
                 fill=coil_colour,
             )
             if active:
-                pole_x = centre_x + 118 * radial_x
-                pole_y = centre_y + 118 * radial_y
+                pole_x = centre_x + 132 * radial_x
+                pole_y = centre_y + 132 * radial_y
                 canvas.create_oval(pole_x - 16, pole_y - 16, pole_x + 16, pole_y + 16, fill="#2563eb", outline="#1d4ed8", width=2)
                 canvas.create_text(pole_x, pole_y, text="S", font=("Segoe UI", 12, "bold"), fill="white")
 
@@ -468,26 +469,26 @@ class InverterVisualizer(tk.Tk):
         for longitudinal, lateral in ((-1, -1), (-1, 1), (1, 1), (1, -1)):
             corners.extend(
                 (
-                    centre_x + longitudinal * 67 * direction_x + lateral * 29 * perpendicular_x,
-                    centre_y + longitudinal * 67 * direction_y + lateral * 29 * perpendicular_y,
+                    centre_x + longitudinal * 72 * direction_x + lateral * 32 * perpendicular_x,
+                    centre_y + longitudinal * 72 * direction_y + lateral * 32 * perpendicular_y,
                 )
             )
         canvas.create_polygon(*corners, fill="#fef3c7", outline="#334155", width=2)
         canvas.create_line(
             centre_x,
             centre_y,
-            centre_x + 67 * direction_x,
-            centre_y + 67 * direction_y,
+            centre_x + 72 * direction_x,
+            centre_y + 72 * direction_y,
             fill="#dc2626",
-            width=58,
+            width=64,
         )
         canvas.create_line(
             centre_x,
             centre_y,
-            centre_x - 67 * direction_x,
-            centre_y - 67 * direction_y,
+            centre_x - 72 * direction_x,
+            centre_y - 72 * direction_y,
             fill="#2563eb",
-            width=58,
+            width=64,
         )
         canvas.create_text(centre_x + 40 * direction_x, centre_y + 40 * direction_y, text="N", font=("Segoe UI", 13, "bold"), fill="white")
         canvas.create_text(centre_x - 40 * direction_x, centre_y - 40 * direction_y, text="S", font=("Segoe UI", 13, "bold"), fill="white")
@@ -508,13 +509,6 @@ class InverterVisualizer(tk.Tk):
             text="RLG 0°",
             font=("Segoe UI", 9, "bold"),
             fill="#000000",
-        )
-        canvas.create_text(
-            centre_x,
-            468,
-            text="T_em aus Winkelfehler bewegt den Rotor",
-            font=("Segoe UI", 9),
-            fill="#475569",
         )
 
     def _draw_test_esb(self) -> None:
