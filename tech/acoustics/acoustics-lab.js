@@ -42,6 +42,17 @@
     });
     text(`±${limit.toFixed(1)}`, x + 7, top, 8, colours.muted); text(`−${limit.toFixed(1)}`, x + 7, bottom, 8, colours.muted);
   }
+  function drawUPhaseHarmonics(x, y, w, h, s) {
+    const harmonic5 = s.compensated ? 0 : s.i5, harmonic7 = s.compensated ? 0 : s.i7;
+    card(x, y, w, h, "U-phase harmonic components", "5th and 7th only; no fundamental");
+    const left = x + 42, right = x + w - 16, top = y + 52, bottom = y + h - 27, mid = (top + bottom) / 2, limit = Math.max(.1, 1.08 * (harmonic5 + harmonic7)), scale = (bottom - top) / (2 * limit), zeroX = left + (right - left) / 4, periodEndX = left + 3 * (right - left) / 4, cursorX = left + (right - left) * (s.cursorAngle + Math.PI) / (2 * tau);
+    const value5 = theta => harmonic5 * Math.cos(5 * theta - s.gamma5), value7 = theta => harmonic7 * Math.cos(7 * theta + s.gamma7);
+    line(left, mid, right, mid, colours.grid, 1, [4, 3]); line(zeroX, top, zeroX, bottom, colours.grid, 1, [3, 3]); line(periodEndX, top, periodEndX, bottom, colours.grid, 1, [3, 3]); line(cursorX, top, cursorX, bottom, colours.field, 2);
+    const drawComponent = (fn, color, label, labelY) => { if (fn === value5 && harmonic5 === 0) return; if (fn === value7 && harmonic7 === 0) return; ctx.strokeStyle = color; ctx.lineWidth = 2.25; ctx.beginPath(); for (let px = left; px <= right; px += 2) { const theta = -Math.PI + 2 * tau * (px - left) / (right - left); const py = mid - scale * fn(theta); if (px === left) ctx.moveTo(px, py); else ctx.lineTo(px, py); } ctx.stroke(); text(label, right - 4, labelY, 10, color, "right", "700"); };
+    drawComponent(value5, colours.q, "u5", top + 13); drawComponent(value7, "#d97706", "u7", top + 30);
+    text(`At cursor: u5 = ${value5(s.cursorAngle).toFixed(2)} A, u7 = ${value7(s.cursorAngle).toFixed(2)} A`, left, y + 36, 9, colours.muted); text(`±${limit.toFixed(2)} A`, x + 7, top, 8, colours.muted); text(`−${limit.toFixed(2)} A`, x + 7, bottom, 8, colours.muted);
+    text("θ1 = −180°", left, y + h - 10, 9, colours.muted); text("θ1 = 0°", zeroX, y + h - 10, 9, colours.muted, "center"); text("θ1 = 360°", periodEndX, y + h - 10, 9, colours.muted, "center"); text("θ1 = +540°", right, y + h - 10, 9, colours.muted, "right");
+  }
   function drawSpaceVector(x, y, w, h, s) {
     card(x, y, w, h, "αβ space vectors", "at current rotor position"); const cx = x + w / 2, cy = y + h / 2 + 12, r = Math.min(w, h) * .30;
     ctx.strokeStyle = colours.grid; ctx.lineWidth = 1; ctx.beginPath(); ctx.arc(cx, cy, r, 0, tau); ctx.stroke(); line(cx - r - 12, cy, cx + r + 12, cy, colours.grid); line(cx, cy - r - 12, cx, cy + r + 12, colours.grid);
@@ -59,6 +70,6 @@
     channels.forEach(([label, mag, phase, color], index) => { const cx = x + 125 + index * 185, cy = y + 105, r = 43; ctx.strokeStyle = colours.grid; ctx.lineWidth = 1; ctx.beginPath(); ctx.arc(cx, cy, r, 0, tau); ctx.stroke(); line(cx - r - 6, cy, cx + r + 6, cy, colours.grid); line(cx, cy - r - 6, cx, cy + r + 6, colours.grid); const d = mag * Math.cos(phase), q = mag * Math.sin(phase); const scale = r / Math.max(s.i1 * .35, 1); vector(cx, cy, cx + d * scale, cy - q * scale, color, "DC"); text(label, cx, y + 45, 11, colours.ink, "center", "700"); text(`d: ${d.toFixed(2)} A`, cx, y + 166, 10, colours.muted, "center"); text(`q: ${q.toFixed(2)} A`, cx, y + 184, 10, colours.muted, "center"); text(`|I|: ${mag.toFixed(2)} A`, cx, y + 202, 10, color, "center", "700"); });
     text(s.compensated ? "Counter-currents cancel both harmonic components." : "Rotate into ±6ω frames to obtain constant d/q values.", x + w / 2, y + h - 16, 10, colours.muted, "center");
   }
-  function draw() { const s = state(); ctx.clearRect(0, 0, canvas.width, canvas.height); ctx.fillStyle = "#f8fafc"; ctx.fillRect(0, 0, canvas.width, canvas.height); drawWave(25, 25, 610, 275, s); drawSpaceVector(655, 25, 370, 275, s); drawDq(25, 325, 610, 270, s); drawMsrft(655, 325, 370, 270, s); text(`f₁ = ${s.f} Hz   |   I₁ = ${s.i1.toFixed(1)} A   |   I₅ = ${s.i5.toFixed(2)} A   |   I₇ = ${s.i7.toFixed(2)} A   |   θr = ${controls.cursorAngle.value}°`, 25, 640, 12, colours.ink, "left", "700"); text("Ideal balanced-current model with a synchronous rotor-position cursor and MSRFT extraction.", 25, 665, 10, colours.muted); }
+  function draw() { const s = state(); ctx.clearRect(0, 0, canvas.width, canvas.height); ctx.fillStyle = "#f8fafc"; ctx.fillRect(0, 0, canvas.width, canvas.height); drawWave(25, 25, 610, 275, s); drawSpaceVector(655, 25, 370, 275, s); drawUPhaseHarmonics(25, 325, 1000, 270, s); drawDq(25, 620, 610, 270, s); drawMsrft(655, 620, 370, 270, s); text(`f₁ = ${s.f} Hz   |   I₁ = ${s.i1.toFixed(1)} A   |   I₅ = ${s.i5.toFixed(2)} A   |   I₇ = ${s.i7.toFixed(2)} A   |   θr = ${controls.cursorAngle.value}°`, 25, 930, 12, colours.ink, "left", "700"); text("Ideal balanced-current model with a synchronous rotor-position cursor and MSRFT extraction.", 25, 955, 10, colours.muted); }
   Object.values(controls).forEach(control => control.addEventListener("input", () => { updateLabels(); draw(); })); updateLabels(); draw();
 })();
