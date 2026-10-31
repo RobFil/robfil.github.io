@@ -10,8 +10,8 @@
   };
   const outputs = {
     fundamental: document.getElementById("fundamental-value"), amplitude: document.getElementById("amplitude-value"),
-    fifth: document.getElementById("fifth-value"), fifthPhase: document.getElementById("fifth-phase-value"),
-    seventh: document.getElementById("seventh-value"), seventhPhase: document.getElementById("seventh-phase-value"), angle: document.getElementById("angle-value")
+    fifth: document.getElementById("fifth-value"), fifthPhase: document.getElementById("fifth-phase-value"), fifthVectorAngle: document.getElementById("fifth-vector-angle"),
+    seventh: document.getElementById("seventh-value"), seventhPhase: document.getElementById("seventh-phase-value"), seventhVectorAngle: document.getElementById("seventh-vector-angle"), angle: document.getElementById("angle-value")
   };
   const colours = { u: "#1d4ed8", v: "#059669", w: "#c2410c", d: "#7c3aed", q: "#db2777", field: "#0f9f64", grid: "#cbd5e1", ink: "#0f172a", muted: "#64748b", card: "#ffffff" };
   const tau = Math.PI * 2;
@@ -20,7 +20,8 @@
     const i1 = Number(controls.amplitude.value); const i5 = i1 * Number(controls.fifth.value) / 100; const i7 = i1 * Number(controls.seventh.value) / 100;
     return { f: Number(controls.fundamental.value), i1, i5, i7, angle: Number(controls.angle.value) * Math.PI / 180, compensated: controls.compensation.checked, phi5: Number(controls.fifthPhase.value) * Math.PI / 180, phi7: Number(controls.seventhPhase.value) * Math.PI / 180 };
   }
-  function updateLabels() { const s = state(); outputs.fundamental.textContent = `${s.f} Hz`; outputs.amplitude.textContent = `${s.i1.toFixed(1)} A`; outputs.fifth.textContent = `${controls.fifth.value} %`; outputs.fifthPhase.textContent = `${controls.fifthPhase.value}°`; outputs.seventh.textContent = `${controls.seventh.value} %`; outputs.seventhPhase.textContent = `${controls.seventhPhase.value}°`; outputs.angle.textContent = `${controls.angle.value}°`; }
+  function formatVectorAngle(angle) { const raw = Math.round(angle * 180 / Math.PI); const signed = ((raw + 180) % 360 + 360) % 360 - 180; const full = (signed + 360) % 360; return `${signed}° (${full}°)`; }
+  function updateLabels() { const s = state(); outputs.fundamental.textContent = `${s.f} Hz`; outputs.amplitude.textContent = `${s.i1.toFixed(1)} A`; outputs.fifth.textContent = `${controls.fifth.value} %`; outputs.fifthPhase.textContent = `${controls.fifthPhase.value}°`; outputs.fifthVectorAngle.textContent = formatVectorAngle(-5 * s.angle - s.phi5); outputs.seventh.textContent = `${controls.seventh.value} %`; outputs.seventhPhase.textContent = `${controls.seventhPhase.value}°`; outputs.seventhVectorAngle.textContent = formatVectorAngle(7 * s.angle + s.phi7); outputs.angle.textContent = `${controls.angle.value}°`; }
   function line(x1, y1, x2, y2, color, width = 1, dash = []) { ctx.save(); ctx.strokeStyle = color; ctx.lineWidth = width; ctx.setLineDash(dash); ctx.beginPath(); ctx.moveTo(x1, y1); ctx.lineTo(x2, y2); ctx.stroke(); ctx.restore(); }
   function text(value, x, y, size = 12, color = colours.ink, align = "left", weight = "400") { ctx.fillStyle = color; ctx.font = `${weight} ${size}px Inter, system-ui, sans-serif`; ctx.textAlign = align; ctx.textBaseline = "middle"; ctx.fillText(value, x, y); }
   function card(x, y, w, h, title, detail = "") { ctx.fillStyle = colours.card; ctx.strokeStyle = colours.grid; ctx.lineWidth = 1; ctx.fillRect(x, y, w, h); ctx.strokeRect(x, y, w, h); text(title, x + 14, y + 17, 13, colours.ink, "left", "700"); if (detail) text(detail, x + w - 12, y + 17, 9, colours.muted, "right", "700"); }

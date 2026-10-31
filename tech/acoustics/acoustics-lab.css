@@ -6,6 +6,8 @@
 #acoustics-lab .acoustics-controls { display: grid; grid-template-columns: repeat(4, minmax(10rem, 1fr)); gap: 1.25rem; align-items: start; padding: 1rem; border: 1px solid var(--line); background: rgba(13, 26, 39, .75); }
 #acoustics-lab .control-group { display: grid; gap: .7rem; min-width: 0; }
 #acoustics-lab .control-group h2 { margin: 0; color: var(--text); font-size: .88rem; line-height: 1.2; }
+#acoustics-lab .phase-reference { margin: -.25rem 0 0; color: var(--muted); font-size: .68rem; line-height: 1.3; }
+#acoustics-lab .phase-reference output { color: var(--accent-soft); }
 #acoustics-lab label { display: grid; gap: .3rem; color: var(--muted); font-size: .8rem; font-weight: 700; }
 #acoustics-lab output { color: var(--accent-soft); font-variant-numeric: tabular-nums; }
 #acoustics-lab input[type="range"] { width: 100%; accent-color: var(--accent); }
