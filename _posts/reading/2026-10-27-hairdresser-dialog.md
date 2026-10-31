@@ -3,7 +3,7 @@ layout: reading
 title: "美容室で髪型を相談する"
 date: 2026-10-27
 categories: [reading]
-topic: Alltag
+topic: Everyday life
 level: N2
 reading_time_minutes: 10
 grammar: ["～から～にかけて", "～ば～ほど", "～にしては"]
@@ -23,6 +23,7 @@ learning_source_details:
     topic_group: "にしては解説文"
     document_date: null
 summary_de: "Ein Kunde bespricht beim Friseur einen pflegeleichten Haarschnitt für den Arbeitsalltag."
+summary_en: "A customer discusses an easy-care haircut for everyday work with a hairdresser."
 generated: true
 fictional: true
 source_url: null

@@ -3,7 +3,7 @@ layout: reading
 title: "家族で防災用品を見直す"
 date: 2026-10-27
 categories: [reading]
-topic: Alltag
+topic: Everyday life
 level: N2
 reading_time_minutes: 10
 grammar: ["～ば～ほど", "～わけにはいかない", "～に限らず"]
@@ -23,6 +23,7 @@ learning_source_details:
     topic_group: "AIに限り・に限らず説明と例文①"
     document_date: null
 summary_de: "Eine Familie überprüft ihre Notfalltasche und ordnet Wasser, Medikamente und wichtige Dokumente neu."
+summary_en: "A family reviews its emergency kit and reorganizes water, medicine, and important documents."
 generated: true
 fictional: true
 source_url: null

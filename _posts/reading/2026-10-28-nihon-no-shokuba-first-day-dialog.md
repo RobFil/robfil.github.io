@@ -16,6 +16,7 @@ learning_source_details:
     topic_group: "Unit7 会議に参加する"
     document_date: 2026-09-18
 summary_de: "Vom Empfang über Personal-Onboarding und Teameinführung bis zum Gespräch mit dem Chef: Eine neu eingestellte Person übernimmt Product Ownership und Teamleitung für Leistungselektronik und Motorsteuerung und klärt den Ablauf der ersten Wochen."
+summary_en: "From reception and HR onboarding to a team introduction, a new hire takes product ownership and team-lead responsibilities for power electronics and motor control."
 generated: true
 fictional: true
 source_url: null

@@ -3,7 +3,7 @@ layout: reading
 title: "転職先で迎える初日"
 date: 2026-10-27
 categories: [reading]
-topic: Alltag
+topic: Everyday life
 level: N2
 reading_time_minutes: 10
 grammar: ["～ば～ほど", "～にしては", "なかなか～ない"]
@@ -23,6 +23,7 @@ learning_source_details:
     topic_group: "なかなか～ない説明文"
     document_date: null
 summary_de: "Nach einem Jobwechsel lernt eine neue Mitarbeiterin Team, Abläufe und Arbeitsplatz kennen."
+summary_en: "After changing jobs, a new employee gets to know the team, routines, and workplace."
 generated: true
 fictional: true
 source_url: null

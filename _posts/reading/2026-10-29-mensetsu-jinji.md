@@ -16,6 +16,7 @@ learning_source_details:
     topic_group: "Unit8 振り返り"
     document_date: 2026-10-25
 summary_de: "Im Personalgespräch stellt Herr Meier seinen Werdegang, seine Motivation für Japan, seine Sprachziele und seinen Führungsstil vor. Die Firma und ihre Antworten sind fiktiv."
+summary_en: "In an HR interview, an applicant presents professional experience, motivation for Japan, language goals, and leadership style. The company is fictional."
 generated: true
 fictional: true
 source_url: null

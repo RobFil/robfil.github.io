@@ -3,7 +3,7 @@ layout: default
 ---
 <link rel="stylesheet" href="{{ '/assets/css/reading.css' | relative_url }}">
 
-<main class="reading-shell" aria-label="Lesetexte">
+<main class="reading-shell" aria-label="Japanese reading texts">
   {% if page.reading_time_minutes %}
     <article class="reading-article">
       <header class="reading-article-header">
@@ -14,9 +14,9 @@ layout: default
     </article>
   {% else %}
     <header class="reading-index-header">
-      <p class="eyebrow">日本語読解</p>
+      <p class="eyebrow">JAPANESE READING</p>
       <h1>{{ page.title }}</h1>
-      <p>日常生活から仕事まで、さまざまなテーマで日本語を読むためのオリジナル教材です。</p>
+      <p>Original Japanese reading practice for everyday life, work, and technical topics.</p>
     </header>
     <section class="reading-index">{{ content }}</section>
   {% endif %}

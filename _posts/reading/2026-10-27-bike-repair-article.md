@@ -3,7 +3,7 @@ layout: reading
 title: "自転車店でパンクを直す"
 date: 2026-10-27
 categories: [reading]
-topic: Alltag
+topic: Everyday life
 level: N2
 reading_time_minutes: 10
 grammar: ["～に限らず", "なかなか～ない", "～にわたって"]
@@ -23,6 +23,7 @@ learning_source_details:
     topic_group: "かけて・わたって説明と例文"
     document_date: null
 summary_de: "Nach einem platten Reifen lässt Ken sein Fahrrad prüfen und entdeckt einen kleinen Riss im Mantel."
+summary_en: "After a flat tire, a cyclist has a bicycle checked and discovers a small tear in the tire."
 generated: true
 fictional: true
 source_url: null

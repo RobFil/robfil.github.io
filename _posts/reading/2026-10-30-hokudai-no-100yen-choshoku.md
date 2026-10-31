@@ -3,7 +3,7 @@ layout: reading
 title: "北大の朝食が百円に"
 date: 2026-10-30
 categories: [reading]
-topic: ニュース
+topic: News
 level: N2
 reading_time_minutes: 10
 grammar: ["～にしては", "～にわたって", "なかなか～ない"]
@@ -26,6 +26,7 @@ learning_source_details:
     topic_group: "なかなか～ない説明文"
     document_date: null
 summary_de: "Eine Aktionswoche an der Universität Hokkaido bot ein reichhaltiges Frühstück mit frittiertem Hähnchen für nur 100 Yen statt 520 Yen an."
+summary_en: "A campaign week at Hokkaido University offered a substantial fried-chicken breakfast for 100 yen instead of 520 yen."
 generated: true
 fictional: false
 source_url: "https://j-town.net/2026/10/29367415.html?p=all"

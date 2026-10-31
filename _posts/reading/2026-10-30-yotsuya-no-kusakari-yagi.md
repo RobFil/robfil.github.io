@@ -3,7 +3,7 @@ layout: reading
 title: "四ツ谷駅で働く二頭のヤギ"
 date: 2026-10-30
 categories: [reading]
-topic: ニュース
+topic: News
 level: N2
 reading_time_minutes: 10
 grammar: ["～に限らず", "～ば～ほど", "～わけにはいかない"]
@@ -26,6 +26,7 @@ learning_source_details:
     topic_group: "わけにはいかない説明文①"
     document_date: null
 summary_de: "Zwei Ziegen fressen Unkraut am Bahnhof Yotsuya. Der ungewöhnliche Einsatz soll bis Dezember laufen und begeistert zugleich Passanten."
+summary_en: "Two goats eat weeds at Yotsuya Station in an unusual project that is planned to continue until December."
 generated: true
 fictional: false
 source_url: "https://www.nack5.co.jp/oricon/2489140/"

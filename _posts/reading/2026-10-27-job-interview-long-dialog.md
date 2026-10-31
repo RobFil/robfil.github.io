@@ -3,7 +3,7 @@ layout: reading
 title: "経験を伝える面接"
 date: 2026-10-27
 categories: [reading]
-topic: Alltag
+topic: Everyday life
 level: N2
 reading_time_minutes: 15
 grammar: ["～に限らず", "～にわたって", "～わけにはいかない"]
@@ -23,6 +23,7 @@ learning_source_details:
     topic_group: "わけにはいかない説明文①"
     document_date: null
 summary_de: "Eine Bewerberin spricht mit zwei Personen aus dem Unternehmen über ihre Berufserfahrung, den Wechselwunsch und die neue Stelle."
+summary_en: "An applicant discusses work experience, a planned career change, and a new role with two company representatives."
 generated: true
 fictional: true
 source_url: null

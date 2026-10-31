@@ -16,6 +16,7 @@ learning_source_details:
     topic_group: "Unit8 振り返り"
     document_date: 2026-10-25
 summary_de: "Der technische Leiter fragt nach Motorregelung, Inverterschnittstellen, Validierung, ASPICE, Priorisierung und fachlicher Führung. Die Gesprächssituation ist fiktiv."
+summary_en: "A technical lead asks about motor control, inverter interfaces, validation, ASPICE, prioritization, and technical leadership in a fictional interview."
 generated: true
 fictional: true
 source_url: null

@@ -16,6 +16,7 @@ learning_source_details:
     topic_group: "Unit8 振り返り"
     document_date: 2026-10-25
 summary_de: "Ein Teammitglied wertet einen Sprint aus: Frühe Tests waren hilfreich, aber unklare Zuständigkeiten und späte Rückfragen führten zu zusätzlicher Arbeit."
+summary_en: "A team member reviews a sprint: early tests helped, but unclear responsibilities and late questions created extra work."
 generated: true
 fictional: true
 source_url: null

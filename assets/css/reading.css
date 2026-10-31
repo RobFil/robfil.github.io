@@ -3,6 +3,10 @@
 .reading-index-header h1, .reading-article h1 { margin: 0; font-size: clamp(2.35rem, 5vw, 4rem); line-height: 1.07; letter-spacing: -0.05em; }
 .reading-index-header > p:last-child { max-width: 38rem; margin: 1.1rem 0 0; color: var(--muted); font-size: 1.1rem; }
 .reading-index { padding-top: 2rem; }
+.reading-section + .reading-archive { margin-top: 2rem; }
+.reading-section-heading { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; margin-bottom: 1rem; }
+.reading-section-heading h2 { margin: 0; font-size: 1.25rem; letter-spacing: -0.02em; }
+.reading-section-heading span { color: var(--muted); font-size: 0.82rem; }
 .reading-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
 .reading-list-item { display: flex; min-height: 13.5rem; flex-direction: column; padding: 1.35rem; border: 1px solid var(--line); background: linear-gradient(150deg, rgba(16, 34, 53, 0.92), rgba(10, 22, 34, 0.92)); }
 .reading-list-item h2 { margin: 0 0 0.75rem; font-size: 1.25rem; line-height: 1.35; letter-spacing: -0.02em; }
@@ -12,6 +16,13 @@
 .reading-list-item .reading-meta { color: var(--signal); font-size: 0.72rem; font-weight: 800; letter-spacing: 0.08em; }
 .reading-list-item .reading-grammar { margin-top: auto; padding-top: 1rem; }
 .reading-list-item code, .reading-prose code { padding: 0.12rem 0.32rem; border: 1px solid var(--line); background: var(--surface); color: var(--accent-soft); font-size: 0.88em; }
+.reading-archive { padding: 1.35rem; border: 1px solid var(--line); background: rgba(13, 26, 39, 0.72); }
+.reading-archive .reading-section-heading { margin-bottom: 0.8rem; }
+.archive-list { display: grid; gap: 0.45rem; margin: 0; padding: 0; list-style: none; }
+.archive-list li { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; padding: 0.55rem 0; border-top: 1px solid rgba(36, 64, 85, 0.72); }
+.archive-list a { color: var(--accent-soft); text-decoration: none; }
+.archive-list a:hover, .archive-list a:focus-visible { color: var(--accent); text-decoration: underline; }
+.archive-list span, .archive-empty { color: var(--muted); font-size: 0.82rem; }
 .reading-article { width: min(100%, 45rem); margin: 0 auto; }
 .reading-article-header { padding-bottom: 2.5rem; border-bottom: 1px solid var(--line); }
 .reading-prose { padding-top: 2.4rem; color: #dbe6ed; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif; font-size: 1.1rem; line-height: 2.05; }

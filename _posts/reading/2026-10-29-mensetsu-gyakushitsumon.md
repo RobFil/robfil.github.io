@@ -16,6 +16,7 @@ learning_source_details:
     topic_group: "Unit8 振り返り"
     document_date: 2026-10-25
 summary_de: "Herr Meier fragt nach Verantwortung, Team, technischen Schnittstellen, Sprache, Einarbeitung und Umzug. Alle Angaben der fiktiven Firma dienen nur als Gesprächsbeispiel."
+summary_en: "An applicant asks about responsibilities, the team, technical interfaces, language, onboarding, and relocation at a fictional company."
 generated: true
 fictional: true
 source_url: null
