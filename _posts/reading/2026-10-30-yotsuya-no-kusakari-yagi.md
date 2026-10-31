@@ -3,6 +3,7 @@ layout: reading
 title: "四ツ谷駅で働く二頭のヤギ"
 date: 2026-10-30
 categories: [reading]
+archived: true
 topic: News
 level: N2
 reading_time_minutes: 10

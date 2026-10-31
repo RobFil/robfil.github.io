@@ -346,6 +346,48 @@ entries:
         pages: [2, 3]
         topic_group: "Unit9 会議のファシリテーション"
         document_date: 2026-10-31
+  - post: "2026-10-31-ishikari-bay-red-imported-fire-ant.md"
+    recorded_at: 2026-10-31
+    status: current
+    grammar: ["～にしては", "～にわたって", "なかなか～ない"]
+    source_selection: guided
+    learning_sources: ["にしては解説文.pdf", "かけて・わたって説明と例文.pdf", "なかなか～ない説明文.pdf"]
+    topic: "News / Environment: red imported fire ants at Ishikari Bay New Port"
+    note: "Current-news replacement explicitly requested; reuse was necessary because all eligible non-Unit grammar focuses are already recorded."
+    learning_source_details:
+      - source_file: "にしては解説文.pdf"
+        pages: [1]
+        topic_group: "にしては解説文"
+        document_date: null
+      - source_file: "かけて・わたって説明と例文.pdf"
+        pages: [1, 3]
+        topic_group: "かけて・わたって説明と例文"
+        document_date: null
+      - source_file: "なかなか～ない説明文.pdf"
+        pages: [1]
+        topic_group: "なかなか～ない説明文"
+        document_date: null
+  - post: "2026-10-31-tokyo-kogarashi-first.md"
+    recorded_at: 2026-10-31
+    status: current
+    grammar: ["～に限らず", "～ば～ほど", "～わけにはいかない"]
+    source_selection: guided
+    learning_sources: ["AIに限り・に限らず説明と例文①.pdf", "35課条件形～ば～ほど.pdf", "わけにはいかない説明文①.pdf"]
+    topic: "News / Weather: the first cold winter wind in Tokyo"
+    note: "Current-news replacement explicitly requested; reuse was necessary because all eligible non-Unit grammar focuses are already recorded."
+    learning_source_details:
+      - source_file: "AIに限り・に限らず説明と例文①.pdf"
+        pages: [1]
+        topic_group: "AIに限り・に限らず説明と例文①"
+        document_date: null
+      - source_file: "35課条件形～ば～ほど.pdf"
+        pages: [1, 2]
+        topic_group: "35課条件形～ば～ほど"
+        document_date: null
+      - source_file: "わけにはいかない説明文①.pdf"
+        pages: [1]
+        topic_group: "わけにはいかない説明文①"
+        document_date: null
   - post: "2026-10-19-kodomo-no-toshokan.md"
     recorded_at: 2026-10-19
     status: replaced
@@ -684,7 +726,7 @@ entries:
         document_date: 2026-10-25
   - post: "2026-10-30-yotsuya-no-kusakari-yagi.md"
     recorded_at: 2026-10-30
-    status: current
+    status: archived
     grammar: ["～に限らず", "～ば～ほど", "～わけにはいかない"]
     source_selection: guided
     learning_sources: ["AIに限り・に限らず説明と例文①.pdf", "35課条件形～ば～ほど.pdf", "わけにはいかない説明文①.pdf"]
@@ -705,7 +747,7 @@ entries:
         document_date: null
   - post: "2026-10-30-hokudai-no-100yen-choshoku.md"
     recorded_at: 2026-10-30
-    status: current
+    status: archived
     grammar: ["～にしては", "～にわたって", "なかなか～ない"]
     source_selection: guided
     learning_sources: ["にしては解説文.pdf", "かけて・わたって説明と例文.pdf", "なかなか～ない説明文.pdf"]

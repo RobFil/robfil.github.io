@@ -257,12 +257,12 @@ entries:
     note: "Bewerbungsgespräch auf ausdrücklichen Wunsch; Wiederaufnahme des Bewerbungsthemas."
   - post: "2026-10-30-yotsuya-no-kusakari-yagi.md"
     recorded_at: 2026-10-30
-    status: current
+    status: archived
     topic: "Nachrichten / Umwelt und Stadtleben: Ziegen mähen am Bahnhof Yotsuya"
     note: "Aktuelle Nachricht dieser Woche ausdrücklich gewünscht."
   - post: "2026-10-30-hokudai-no-100yen-choshoku.md"
     recorded_at: 2026-10-30
-    status: current
+    status: archived
     topic: "Nachrichten / Universität und Essen: 100-Yen-Frühstück an der Universität Hokkaido"
     note: "Aktuelle Nachricht dieser Woche ausdrücklich gewünscht."
   - post: "2026-10-31-unit9-control-schedule-dialog.md"
@@ -273,3 +273,13 @@ entries:
     recorded_at: 2026-10-31
     status: current
     topic: "Business / Unit 9: 試験計画の優先順位を決める会議"
+  - post: "2026-10-31-ishikari-bay-red-imported-fire-ant.md"
+    recorded_at: 2026-10-31
+    status: current
+    topic: "News / Environment: red imported fire ants at Ishikari Bay New Port"
+    note: "Current-news replacement explicitly requested."
+  - post: "2026-10-31-tokyo-kogarashi-first.md"
+    recorded_at: 2026-10-31
+    status: current
+    topic: "News / Weather: the first cold winter wind in Tokyo"
+    note: "Current-news replacement explicitly requested."

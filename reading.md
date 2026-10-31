@@ -42,4 +42,3 @@ permalink: /reading/
 {% endunless %}
 </ul>
 </section>
-</div>

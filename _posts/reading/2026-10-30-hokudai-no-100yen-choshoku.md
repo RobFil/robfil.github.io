@@ -3,6 +3,7 @@ layout: reading
 title: "北大の朝食が百円に"
 date: 2026-10-30
 categories: [reading]
+archived: true
 topic: News
 level: N2
 reading_time_minutes: 10
