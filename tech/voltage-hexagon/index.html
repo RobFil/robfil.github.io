@@ -1,0 +1,22 @@
+---
+layout: default
+title: Voltage Hexagon Lab
+---
+<link rel="stylesheet" href="{{ '/tech/voltage-hexagon/voltage.css' | relative_url }}">
+<section class="voltage-lab">
+  <header><p class="eyebrow">TECH // INTERACTIVE LEARNING MODEL</p><h1>Voltage Hexagon</h1><p>Follow the voltage vector and its three-phase and rotating-frame components through PWM steps.</p></header>
+  <div class="controls" aria-label="Simulation parameters">
+    <label>Speed [rpm]<input id="rpm" type="number" min="1" max="100000" step="100" value="8000"></label>
+    <label>Pole pairs<input id="poles" type="number" min="1" max="100" step="1" value="3"></label>
+    <label>PWM frequency [Hz]<input id="fsw" type="number" min="1" max="1000000" step="100" value="10000"></label>
+    <label>Angle offset [° electrical]<input id="offset" type="number" step="1" value="0"></label>
+    <label>u<sub>d</sub> [V RMS]<input id="ud" type="number" step="1" value="-261"></label>
+    <label>u<sub>q</sub> [V RMS]<input id="uq" type="number" step="1" value="0"></label>
+    <label class="wide">Modulation index <output id="m-value"></output><input id="m" type="range" min="0.01" max="1.1547" step="0.001" value="0.999"></label>
+  </div>
+  <div class="playback"><button id="play" type="button">Pause</button><button id="reset" type="button">Reset</button><label>Electrical angle <output id="angle-value">0°</output><input id="angle" type="range" min="0" max="2160" step="0.1" value="0"></label></div>
+  <div class="readouts" id="readouts" aria-live="off"></div>
+  <div class="charts"><div class="chart"><h2>αβ voltage plane</h2><canvas id="hex" width="620" height="520" aria-label="Voltage hexagon, linear SVM circle and rotating voltage vector"></canvas><p class="legend"><span class="red">● Voltage vector</span> <span class="grey">● Rotor axis</span> <span class="orange">● PWM trail</span></p></div><div class="chart"><h2>Phase voltages</h2><canvas id="phase" width="760" height="280" aria-label="Three phase voltages over electrical angle"></canvas><p class="legend"><span class="blue">● uₐ</span> <span class="green">● uᵦ</span> <span class="purple">● u꜀</span></p><h2>Rotating-frame voltages</h2><canvas id="dq" width="760" height="280" aria-label="d and q voltages over time"></canvas><p class="legend"><span class="green">● uᵈ</span> <span class="brown">● uᑫ</span></p></div></div>
+  <p class="note">The DC-link voltage is calculated from the requested d/q RMS voltages and modulation index. The vector is limited to the hexagon; this simplified model shows sampled reference voltages, not individual switching pulses. Playback is slowed down for inspection. At very high PWM-to-electrical-frequency ratios, the plots display a subset of PWM samples.</p>
+</section>
+<script src="{{ '/tech/voltage-hexagon/voltage.js' | relative_url }}" defer></script>

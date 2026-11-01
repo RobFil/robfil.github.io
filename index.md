@@ -41,5 +41,10 @@ title: Japanese Reading
       <h2>Current Harmonics</h2>
       <p>Explore three-phase current harmonics, MSRFT frames, and ideal compensation.</p>
     </a>
+    <a class="portal-card" data-index="06" href="{{ '/tech/voltage-hexagon/' | relative_url }}">
+      <span class="portal-kicker">TECH LAB</span>
+      <h2>Voltage Hexagon</h2>
+      <p>Explore space-vector limits, PWM steps, and three-phase voltages.</p>
+    </a>
   </div>
 </section>
