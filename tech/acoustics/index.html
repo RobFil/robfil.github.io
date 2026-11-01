@@ -14,7 +14,7 @@ title: Current Harmonics Lab
   <details class="model-convention">
     <summary id="convention-title">Model convention</summary>
     <p><code>θ<sub>1</sub> = ω<sub>e</sub>t</code> is the rotor-synchronous electrical angle. With fundamental start angle <code>φ<sub>1</sub></code>, the signed sequence orders <code>k<sub>5</sub> = −5</code> and <code>k<sub>7</sub> = +7</code> are applied to the same shifted electrical reference: <code>i<sub>p,1</sub> = I<sub>1</sub> cos(θ<sub>1</sub> + φ<sub>1</sub> + δ<sub>p</sub>)</code>, <code>i<sub>p,h</sub> = I<sub>h</sub> cos(k<sub>h</sub>(θ<sub>1</sub> + φ<sub>1</sub>) + γ<sub>h</sub> + δ<sub>p</sub>)</code>.</p>
-    <p><code>δ<sub>U</sub> = 0°</code>, <code>δ<sub>V</sub> = −120°</code>, <code>δ<sub>W</sub> = +120°</code>. The harmonic phase controls <code>γ<sub>h</sub></code> are additional offsets; the actual αβ angle at <code>θ<sub>1</sub> = 0</code> is <code>k<sub>h</sub>φ<sub>1</sub> + γ<sub>h</sub></code>. In rotor-synchronous dq, the fundamental is constant at angle <code>φ<sub>1</sub></code>; harmonic dq orders are <code>k<sub>5</sub> − 1 = −6</code> and <code>k<sub>7</sub> − 1 = +6</code>.</p>
+    <p><code>δ<sub>U</sub> = 0°</code>, <code>δ<sub>V</sub> = −120°</code>, <code>δ<sub>W</sub> = +120°</code>. Since the harmonics have different frequencies, they have no constant angular separation from the fundamental. The slider <code>γ<sub>h</sub></code> sets their relative Fourier phase: if <code>φ<sub>h</sub></code> is the harmonic phase in <code>cos(k<sub>h</sub>θ<sub>1</sub> + φ<sub>h</sub>)</code>, then <code>γ<sub>h</sub> = φ<sub>h</sub> − k<sub>h</sub>φ<sub>1</sub></code>. The actual αβ angle at <code>θ<sub>1</sub> = 0</code> is therefore <code>φ<sub>h</sub> = k<sub>h</sub>φ<sub>1</sub> + γ<sub>h</sub></code>. In rotor-synchronous dq, the fundamental is constant at angle <code>φ<sub>1</sub></code>; harmonic dq orders are <code>k<sub>5</sub> − 1 = −6</code> and <code>k<sub>7</sub> − 1 = +6</code>.</p>
     <p>The rotor-angle cursor selects an instant; the start-angle control shifts the current waveforms relative to the rotor. The model assumes balanced currents, synchronous rotor speed, and peak values; it excludes inverter voltage limits, saturation, torque, and mechanics.</p>
   </details>
 
@@ -27,13 +27,13 @@ title: Current Harmonics Lab
     <section class="control-group" aria-labelledby="fifth-controls">
       <h2 id="fifth-controls">−5th harmonic</h2>
       <label>Amplitude (of I1) <output id="fifth-value">10 %</output><input id="fifth" type="range" min="0" max="30" value="10" step="1"></label>
-      <label>Harmonic phase offset γ₅ (CCW +) <output id="fifth-phase-value">0°</output><input id="fifth-phase" type="range" min="-180" max="180" value="0" step="1"></label>
+      <label>Phase shift vs fundamental γ₅ (CCW +) <output id="fifth-phase-value">0°</output><input id="fifth-phase" type="range" min="-180" max="180" value="0" step="1"></label>
       <p class="phase-reference">Actual αβ angle at θr = 0: <output id="fifth-vector-angle">0° (0°)</output></p>
     </section>
     <section class="control-group" aria-labelledby="seventh-controls">
       <h2 id="seventh-controls">+7th harmonic</h2>
       <label>Amplitude (of I1) <output id="seventh-value">4 %</output><input id="seventh" type="range" min="0" max="30" value="4" step="1"></label>
-      <label>Harmonic phase offset γ₇ (CCW +) <output id="seventh-phase-value">0°</output><input id="seventh-phase" type="range" min="-180" max="180" value="0" step="1"></label>
+      <label>Phase shift vs fundamental γ₇ (CCW +) <output id="seventh-phase-value">0°</output><input id="seventh-phase" type="range" min="-180" max="180" value="0" step="1"></label>
       <p class="phase-reference">Actual αβ angle at θr = 0: <output id="seventh-vector-angle">0° (0°)</output></p>
     </section>
     <section class="control-group" aria-labelledby="cursor-controls">
