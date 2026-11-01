@@ -119,7 +119,7 @@
   }
   function drawHarmonicFrameComponents(x, y, w, h, s) {
     const harmonic5 = s.i5, harmonic7 = s.i7;
-    card(x, y, w, h, "Combined sixth-frequency ripple in rotor dq", `−5th → −6f₁; +7th → +6f₁ (${6 * s.f} Hz); d solid, q dashed`);
+    card(x, y, w, h, "dq sixth-frequency sum (harmonics only)", `−5th: −6f₁; +7th: +6f₁ (${6 * s.f} Hz); d solid, q dashed`);
     const left = x + 60, right = x + w - 16, top = y + 72, bottom = y + h - 27, mid = (top + bottom) / 2, limit = Math.max(.1, 1.08 * (harmonic5 + harmonic7)), scale = (bottom - top) / (2 * limit), zeroX = left + (right - left) / 4, periodEndX = left + 3 * (right - left) / 4, cursorX = angleToX(phaseAngleAtRotor(s), left, right);
     drawCurrentAxis(left, right, top, bottom, limit, 2); line(zeroX, top, zeroX, bottom, colours.grid, 1, [3, 3]); line(periodEndX, top, periodEndX, bottom, colours.grid, 1, [3, 3]); line(cursorX, top, cursorX, bottom, colours.field, 2);
     const at5 = dqComponents(harmonic5, sequenceOrder.fifth, s.gamma5, s.cursorAngle, s.phi1), at7 = dqComponents(harmonic7, sequenceOrder.seventh, s.gamma7, s.cursorAngle, s.phi1);
