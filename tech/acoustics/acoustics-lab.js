@@ -54,11 +54,6 @@
     const angle = (sequence - sequenceOrder.fundamental) * theta + sequence * phi1 + gamma;
     return { d: amplitude * Math.cos(angle), q: amplitude * Math.sin(angle) };
   }
-  function harmonicFrameComponents(amplitude, sequence, gamma, phi1) {
-    // The matching harmonic frame removes (k - 1)θ; the remaining angle is kφ1 + γ.
-    const angle = sequence * phi1 + gamma;
-    return { d: amplitude * Math.cos(angle), q: amplitude * Math.sin(angle) };
-  }
   function current(phase, theta, s) {
     const shiftedTheta = theta + s.phi1;
     return s.i1 * Math.cos(shiftedTheta + phase) + harmonicCurrent(s.i5, sequenceOrder.fifth, s.gamma5, phase, shiftedTheta) + harmonicCurrent(s.i7, sequenceOrder.seventh, s.gamma7, phase, shiftedTheta);
@@ -114,23 +109,22 @@
   }
   function drawHarmonicFrameComponents(x, y, w, h, s) {
     const harmonic5 = s.i5, harmonic7 = s.i7;
-    card(x, y, w, h, "dq6 currents in harmonic-synchronous frames", "−5 in −6ω frame; +7 in +6ω frame; d solid, q dashed");
+    card(x, y, w, h, "Combined dq6 harmonic currents", "sum of −6ω and +6ω components; d solid, q dashed");
     const left = x + 60, right = x + w - 16, top = y + 72, bottom = y + h - 27, mid = (top + bottom) / 2, limit = Math.max(.1, 1.08 * (harmonic5 + harmonic7)), scale = (bottom - top) / (2 * limit), zeroX = left + (right - left) / 4, periodEndX = left + 3 * (right - left) / 4, cursorX = left + (right - left) * (s.cursorAngle + Math.PI) / (2 * tau);
     drawCurrentAxis(left, right, top, bottom, limit, 2); line(zeroX, top, zeroX, bottom, colours.grid, 1, [3, 3]); line(periodEndX, top, periodEndX, bottom, colours.grid, 1, [3, 3]); line(cursorX, top, cursorX, bottom, colours.field, 2);
-    const at5Frame = harmonicFrameComponents(harmonic5, sequenceOrder.fifth, s.gamma5, s.phi1), at7Frame = harmonicFrameComponents(harmonic7, sequenceOrder.seventh, s.gamma7, s.phi1);
-    text(`−5th in −6ω frame: d = ${at5Frame.d.toFixed(2)} A, q = ${at5Frame.q.toFixed(2)} A`, left, y + 38, 8, colours.q);
-    text(`+7th in +6ω frame: d = ${at7Frame.d.toFixed(2)} A, q = ${at7Frame.q.toFixed(2)} A`, left, y + 51, 8, "#d97706");
-    const traces = [
-      { amplitude: harmonic5, sequence: sequenceOrder.fifth, gamma: s.gamma5, axis: "d", color: colours.q, dash: [] },
-      { amplitude: harmonic5, sequence: sequenceOrder.fifth, gamma: s.gamma5, axis: "q", color: colours.q, dash: [5, 3] },
-      { amplitude: harmonic7, sequence: sequenceOrder.seventh, gamma: s.gamma7, axis: "d", color: "#d97706", dash: [] },
-      { amplitude: harmonic7, sequence: sequenceOrder.seventh, gamma: s.gamma7, axis: "q", color: "#d97706", dash: [5, 3] }
-    ];
-    traces.forEach(({ amplitude, sequence, gamma, axis, color, dash }) => {
-      if (amplitude === 0) return;
+    const at5 = dqComponents(harmonic5, sequenceOrder.fifth, s.gamma5, s.cursorAngle, s.phi1), at7 = dqComponents(harmonic7, sequenceOrder.seventh, s.gamma7, s.cursorAngle, s.phi1);
+    text(`At cursor: d₆ = ${(at5.d + at7.d).toFixed(2)} A, q₆ = ${(at5.q + at7.q).toFixed(2)} A`, left, y + 42, 9, colours.muted);
+    [["d", colours.d, []], ["q", colours.q, [5, 3]]].forEach(([axis, color, dash]) => {
       ctx.strokeStyle = color; ctx.lineWidth = 2; ctx.setLineDash(dash); ctx.beginPath();
-      for (let px = left; px <= right; px += 2) { const components = harmonicFrameComponents(amplitude, sequence, gamma, s.phi1), value = components[axis], py = mid - scale * value; if (px === left) ctx.moveTo(px, py); else ctx.lineTo(px, py); }
+      for (let px = left; px <= right; px += 2) {
+        const theta = -Math.PI + 2 * tau * (px - left) / (right - left);
+        const h5 = dqComponents(harmonic5, sequenceOrder.fifth, s.gamma5, theta, s.phi1);
+        const h7 = dqComponents(harmonic7, sequenceOrder.seventh, s.gamma7, theta, s.phi1);
+        const value = h5[axis] + h7[axis], py = mid - scale * value;
+        if (px === left) ctx.moveTo(px, py); else ctx.lineTo(px, py);
+      }
       ctx.stroke(); ctx.setLineDash([]);
+      text(`${axis}₆ current`, right - 4, top + (axis === "d" ? 12 : 28), 9, color, "right");
     });
     text("θ1 = −180°", left, y + h - 10, 9, colours.muted); text("θ1 = 0°", zeroX, y + h - 10, 9, colours.muted, "center"); text("θ1 = 360°", periodEndX, y + h - 10, 9, colours.muted, "center"); text("θ1 = +540°", right, y + h - 10, 9, colours.muted, "right");
   }
