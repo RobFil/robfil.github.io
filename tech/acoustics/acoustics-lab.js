@@ -138,32 +138,19 @@
     text("θ1 = −180°", left, y + h - 10, 9, colours.muted); text("θ1 = 0°", zeroX, y + h - 10, 9, colours.muted, "center"); text("θ1 = 360°", periodEndX, y + h - 10, 9, colours.muted, "center"); text("θ1 = +540°", right, y + h - 10, 9, colours.muted, "right");
   }
   function drawDq6Sum(x, y, w, h, s) {
-    card(x, y, w, h, "Sixth-frequency current in rotor dq", "−5th + 7th; harmonics only; d solid, q dashed");
+    card(x, y, w, h, "Sum of dq±6 DC coefficients", "d₅ + d₇, q₅ + q₇; separate rotating frames");
     const left = x + 60, right = x + w - 16, top = y + 72, bottom = y + h - 27, mid = (top + bottom) / 2;
-    const limit = Math.max(.1, 1.08 * (s.i5 + s.i7)), scale = (bottom - top) / (2 * limit);
+    const d = s.i5 * Math.cos(s.gamma5 + s.phi1) + s.i7 * Math.cos(s.gamma7 + s.phi1);
+    const q = s.i5 * Math.sin(s.gamma5 + s.phi1) + s.i7 * Math.sin(s.gamma7 + s.phi1);
+    const limit = Math.max(.1, 1.08 * Math.hypot(d, q)), scale = (bottom - top) / (2 * limit);
     const zeroX = left + (right - left) / 4, periodEndX = left + 3 * (right - left) / 4, cursorX = angleToX(s.cursorAngle, left, right);
-    const sumAt = theta => {
-      const rotor = theta - Math.PI / 2 - s.phi1;
-      const h5 = dqComponents(s.i5, sequenceOrder.fifth, s.gamma5, rotor, s.phi1);
-      const h7 = dqComponents(s.i7, sequenceOrder.seventh, s.gamma7, rotor, s.phi1);
-      return { d: h5.d + h7.d, q: h5.q + h7.q };
-    };
-    const atCursor = sumAt(s.cursorAngle);
     drawCurrentAxis(left, right, top, bottom, limit, 2);
     line(zeroX, top, zeroX, bottom, colours.grid, 1, [3, 3]);
     line(periodEndX, top, periodEndX, bottom, colours.grid, 1, [3, 3]);
     line(cursorX, top, cursorX, bottom, colours.field, 2);
-    text(`At cursor: d₆ = ${atCursor.d.toFixed(2)} A, q₆ = ${atCursor.q.toFixed(2)} A`, left, y + 42, 9, colours.muted);
-    [["d", colours.d, []], ["q", colours.q, [5, 3]]].forEach(([axis, color, dash]) => {
-      ctx.strokeStyle = color; ctx.lineWidth = 2; ctx.setLineDash(dash); ctx.beginPath();
-      for (let px = left; px <= right; px += 2) {
-        const theta = -Math.PI + 2 * tau * (px - left) / (right - left);
-        const py = mid - scale * sumAt(theta)[axis];
-        if (px === left) ctx.moveTo(px, py); else ctx.lineTo(px, py);
-      }
-      ctx.stroke(); ctx.setLineDash([]);
-      text(`${axis}₆ current`, right - 4, top + (axis === "d" ? 12 : 28), 9, color, "right");
-    });
+    text(`d₅ + d₇ = ${d.toFixed(2)} A, q₅ + q₇ = ${q.toFixed(2)} A`, left, y + 42, 9, colours.muted);
+    line(left, mid - d * scale, right, mid - d * scale, colours.d, 2);
+    line(left, mid - q * scale, right, mid - q * scale, colours.q, 2, [5, 3]);
     text("θ1 = −180°", left, y + h - 10, 9, colours.muted); text("θ1 = 0°", zeroX, y + h - 10, 9, colours.muted, "center"); text("θ1 = 360°", periodEndX, y + h - 10, 9, colours.muted, "center"); text("θ1 = +540°", right, y + h - 10, 9, colours.muted, "right");
   }
   function draw() {
