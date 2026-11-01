@@ -8,14 +8,15 @@ title: Current Harmonics Lab
   <header class="acoustics-header">
     <p class="acoustics-eyebrow">TECH // INTERACTIVE LEARNING MODEL</p>
     <h1 id="acoustics-title">Current Harmonics</h1>
-    <p>A technically defined PMSM current-harmonics model with a synchronous rotor reference frame.</p>
+    <p>A literature-based model of phase harmonics and their rotor-synchronous dq components.</p>
   </header>
 
   <details class="model-convention">
     <summary id="convention-title">Model convention</summary>
-    <p><code>θ<sub>1</sub> = ω<sub>e</sub>t</code> is the electrical phase-current angle. The phase convention is <code>i<sub>U,1</sub> = I<sub>1</sub> sin θ<sub>1</sub></code>, <code>i<sub>V,1</sub> = I<sub>1</sub> sin(θ<sub>1</sub> + 120°)</code>, and <code>i<sub>W,1</sub> = I<sub>1</sub> sin(θ<sub>1</sub> + 240°)</code>. For the fundamental, at <code>θ<sub>1</sub> = 0</code>, U crosses zero rising, V is positive, and W is negative; added harmonics can change the total instantaneous values. Harmonics use <code>i<sub>p,h</sub> = I<sub>h</sub> sin(k<sub>h</sub>θ<sub>1</sub> + γ<sub>h</sub> + δ<sub>p</sub>)</code>, where <code>k<sub>5</sub> = −5</code>, <code>k<sub>7</sub> = +7</code>, and <code>δ<sub>p</sub> = {0°, +120°, +240°}</code>.</p>
-    <p>Using the standard Clarke transform with U on α and β = (V − W)/√3, this U‑V‑W ordering is a negative phase sequence: the fundamental αβ vector angle is <code>90° − θ<sub>1</sub></code> and rotates clockwise as θ₁ increases. The rotor angle is <code>θ<sub>r</sub> = 90° − θ<sub>1</sub> − φ<sub>1</sub></code>. Subtracting θr in the Park transform gives fundamental dq angle <code>φ<sub>1</sub></code> and harmonic dq angle <code>(1 − k<sub>h</sub>)θ<sub>1</sub> + φ<sub>1</sub> − γ<sub>h</sub></code>. Thus the −5th and +7th terms appear at <code>+6ω</code> and <code>−6ω</code>, respectively. The harmonic phase controls <code>γ<sub>h</sub></code> are Fourier phase offsets relative to this fixed phase-current reference.</p>
-    <p>The rotor-angle cursor selects the instant; the start-angle control <code>φ<sub>1</sub></code> sets the rotor position relative to the phase-current reference. It moves the cursor and changes sampled phase and dq currents while U still crosses zero rising at <code>θ<sub>1</sub> = 0</code>. The model assumes balanced currents, synchronous rotor speed, and peak values; it excludes inverter voltage limits, saturation, torque, and mechanics.</p>
+    <p><strong>Phase and sequence convention.</strong> <code>θ<sub>1</sub> = ω<sub>e</sub>t</code> is the electrical angle, and positive phase sequence is <code>i<sub>U,1</sub> = I<sub>1</sub> sin θ<sub>1</sub></code>, <code>i<sub>V,1</sub> = I<sub>1</sub> sin(θ<sub>1</sub> − 120°)</code>, <code>i<sub>W,1</sub> = I<sub>1</sub> sin(θ<sub>1</sub> + 120°)</code>. Thus U crosses zero rising at θ₁ = 0. The alternative pair of offsets +120°/+240° reverses phase sequence under this Clarke convention, so it would reverse the fundamental vector and the MSRF signs. Clarke is <code>i<sub>α</sub> = 2/3(i<sub>U</sub> − i<sub>V</sub>/2 − i<sub>W</sub>/2)</code>, <code>i<sub>β</sub> = (i<sub>V</sub> − i<sub>W</sub>)/√3</code>; hence <code>i<sub>αβ,1</sub> = I<sub>1</sub>e<sup>j(θ₁−90°)</sup></code> and the fundamental space vector rotates counterclockwise.</p>
+    <p><strong>Harmonics and transforms.</strong> The balanced phase model is <code>i<sub>p</sub> = I<sub>1</sub>sin(θ₁ + δ<sub>p</sub>) + I<sub>5</sub>sin(−5θ₁ + γ<sub>5</sub> + δ<sub>p</sub>) + I<sub>7</sub>sin(7θ₁ + γ<sub>7</sub> + δ<sub>p</sub>)</code>, with <code>δ<sub>U</sub>=0</code>, <code>δ<sub>V</sub>=−120°</code>, <code>δ<sub>W</sub>=+120°</code>. γ₅ and γ₇ are initial Fourier phase offsets from the signed harmonic angles −5θ₁ and +7θ₁. Define the rotor angle as <code>θᵣ=θ₁−90°−φ₁</code> and Park as <code>i<sub>dq</sub>=(i<sub>α</sub>+ji<sub>β</sub>)e<sup>−jθᵣ</sup></code>. Then <code>i<sub>dq,1</sub>=I<sub>1</sub>e<sup>jφ₁</sup></code>, <code>i<sub>dq,5</sub>=I<sub>5</sub>e<sup>j(−6θ₁+γ₅+φ₁)</sup></code>, and <code>i<sub>dq,7</sub>=I<sub>7</sub>e<sup>j(6θ₁+γ₇+φ₁)</sup></code>.</p>
+    <p><strong>Meaning of dq6 and MSRF.</strong> The “dq sixth-frequency sum” plot adds the −5th and +7th d/q components in the same fundamental rotor dq frame; it is a sixth-frequency ripple in dq, not a sixth-harmonic current in the phase conductors. The separate MSRF operations are <code>i<sub>dq,5</sub>e<sup>+j6θ₁</sup></code> for the −6ω frame and <code>i<sub>dq,7</sub>e<sup>−j6θ₁</sup></code> for the +6ω frame, making each component DC in its own frame. Those two DC vectors belong to different coordinate systems and cannot be added directly. This app overlays their sum only in the common fundamental dq frame. It uses balanced peak currents and synchronous electrical angles; it does not model an inverter, voltage equations, saturation, or mechanical torque.</p>
+    <p><strong>Literature basis.</strong> The signed phase-a series and the −5/+7 sequence interpretation follow Joksimovic, Levi &amp; Vukosavic, “Near-complete suppression of harmonic currents in SPMSMs caused by back emf and dead time,” <em>IEEE Transactions on Industrial Electronics</em>, 70(5), 2023, <a href="https://doi.org/10.1109/TIE.2022.3189068">doi:10.1109/TIE.2022.3189068</a> (accepted manuscript <a href="https://researchonline.ljmu.ac.uk/id/eprint/17175/">at LJMU</a>). The harmonic synchronous-frame order and rotation convention follow Ochoa Giménez et al., “Efficient multiple-reference-frame controller for current-harmonic suppression with a shunt active power filter,” <a href="https://www.iit.comillas.edu/documentacion/congreso/IIT-13-078A/Efficient%20multiple-reference-frame_controller_for_current-harmonic_suppression_with_active_power_filter.pdf">paper</a>, especially its generic relation <code>ω<sub>n</sub> = (s·m − 1)ω₀</code> and its dq<sup>−6</sup>/dq<sup>+6</sup> examples.</p>
   </details>
 
   <div class="acoustics-controls" aria-label="Harmonic parameters">
@@ -27,19 +28,19 @@ title: Current Harmonics Lab
     <section class="control-group" aria-labelledby="fifth-controls">
       <h2 id="fifth-controls">−5th harmonic</h2>
       <label>Amplitude (of I1) <output id="fifth-value">0 %</output><input id="fifth" type="range" min="0" max="30" value="0" step="1"></label>
-      <label>Phase shift vs fundamental γ₅ (sine argument) <output id="fifth-phase-value">0°</output><input id="fifth-phase" type="range" min="-180" max="180" value="0" step="1"></label>
-      <p class="phase-reference">Actual αβ angle at θr = 0: <output id="fifth-vector-angle">−180° (180°)</output></p>
+      <label>Initial phase offset γ₅ (from −5θ₁) <output id="fifth-phase-value">0°</output><input id="fifth-phase" type="range" min="-180" max="180" value="0" step="1"></label>
+      <p class="phase-reference">αβ-vector angle at θᵣ = 0: <output id="fifth-vector-angle">−180° (180°)</output></p>
     </section>
     <section class="control-group" aria-labelledby="seventh-controls">
       <h2 id="seventh-controls">+7th harmonic</h2>
       <label>Amplitude (of I1) <output id="seventh-value">10 %</output><input id="seventh" type="range" min="0" max="30" value="10" step="1"></label>
-      <label>Phase shift vs fundamental γ₇ (sine argument) <output id="seventh-phase-value">0°</output><input id="seventh-phase" type="range" min="-180" max="180" value="0" step="1"></label>
-      <p class="phase-reference">Actual αβ angle at θr = 0: <output id="seventh-vector-angle">−180° (180°)</output></p>
+      <label>Initial phase offset γ₇ (from +7θ₁) <output id="seventh-phase-value">0°</output><input id="seventh-phase" type="range" min="-180" max="180" value="0" step="1"></label>
+      <p class="phase-reference">αβ-vector angle at θᵣ = 0: <output id="seventh-vector-angle">−180° (180°)</output></p>
     </section>
     <section class="control-group" aria-labelledby="cursor-controls">
       <h2 id="cursor-controls">Current instant</h2>
       <label>Electrical rotor angle θr <output id="cursor-angle-value">90°</output><input id="cursor-angle" type="range" min="0" max="360" value="90" step="1"></label>
-      <label>Fundamental start angle φ₁ <output id="fundamental-phase-value">0°</output><input id="fundamental-phase" type="range" min="-180" max="180" value="0" step="1"></label>
+      <label>Fundamental current angle φ₁ vs rotor d-axis <output id="fundamental-phase-value">0°</output><input id="fundamental-phase" type="range" min="-180" max="180" value="0" step="1"></label>
     </section>
   </div>
 
@@ -47,7 +48,7 @@ title: Current Harmonics Lab
   <nav class="view-tabs" role="tablist" aria-label="Current views">
     <button id="tab-harmonics" type="button" role="tab" aria-selected="true" aria-controls="detail-canvas">Phase harmonics</button>
     <button id="tab-dq" type="button" role="tab" aria-selected="false" aria-controls="detail-canvas">dq currents</button>
-    <button id="tab-dq6" type="button" role="tab" aria-selected="false" aria-controls="detail-canvas">dq6 currents</button>
+    <button id="tab-dq6" type="button" role="tab" aria-selected="false" aria-controls="detail-canvas">dq sixth-frequency sum</button>
   </nav>
   <fieldset id="phase-visibility" class="phase-visibility" aria-label="Phases shown in the harmonic component plot">
     <legend>Phases shown in the harmonic component plot</legend>
