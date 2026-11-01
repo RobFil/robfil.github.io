@@ -137,22 +137,6 @@
     });
     text("θ1 = −180°", left, y + h - 10, 9, colours.muted); text("θ1 = 0°", zeroX, y + h - 10, 9, colours.muted, "center"); text("θ1 = 360°", periodEndX, y + h - 10, 9, colours.muted, "center"); text("θ1 = +540°", right, y + h - 10, 9, colours.muted, "right");
   }
-  function drawDq6Sum(x, y, w, h, s) {
-    card(x, y, w, h, "Sum of dq±6 DC coefficients", "d₅ + d₇, q₅ + q₇; separate rotating frames");
-    const left = x + 60, right = x + w - 16, top = y + 72, bottom = y + h - 27, mid = (top + bottom) / 2;
-    const d = s.i5 * Math.cos(s.gamma5 + s.phi1) + s.i7 * Math.cos(s.gamma7 + s.phi1);
-    const q = s.i5 * Math.sin(s.gamma5 + s.phi1) + s.i7 * Math.sin(s.gamma7 + s.phi1);
-    const limit = Math.max(.1, 1.08 * Math.hypot(d, q)), scale = (bottom - top) / (2 * limit);
-    const zeroX = left + (right - left) / 4, periodEndX = left + 3 * (right - left) / 4, cursorX = angleToX(s.cursorAngle, left, right);
-    drawCurrentAxis(left, right, top, bottom, limit, 2);
-    line(zeroX, top, zeroX, bottom, colours.grid, 1, [3, 3]);
-    line(periodEndX, top, periodEndX, bottom, colours.grid, 1, [3, 3]);
-    line(cursorX, top, cursorX, bottom, colours.field, 2);
-    text(`d₅ + d₇ = ${d.toFixed(2)} A, q₅ + q₇ = ${q.toFixed(2)} A`, left, y + 42, 9, colours.muted);
-    line(left, mid - d * scale, right, mid - d * scale, colours.d, 2);
-    line(left, mid - q * scale, right, mid - q * scale, colours.q, 2, [5, 3]);
-    text("θ1 = −180°", left, y + h - 10, 9, colours.muted); text("θ1 = 0°", zeroX, y + h - 10, 9, colours.muted, "center"); text("θ1 = 360°", periodEndX, y + h - 10, 9, colours.muted, "center"); text("θ1 = +540°", right, y + h - 10, 9, colours.muted, "right");
-  }
   function draw() {
     const s = state();
     ctx = mainContext; ctx.clearRect(0, 0, canvas.width, canvas.height); ctx.fillStyle = "#f8fafc"; ctx.fillRect(0, 0, canvas.width, canvas.height);
@@ -160,10 +144,9 @@
     ctx = detailContext; ctx.clearRect(0, 0, detailCanvas.width, detailCanvas.height); ctx.fillStyle = "#f8fafc"; ctx.fillRect(0, 0, detailCanvas.width, detailCanvas.height);
     if (activeView === "harmonics") drawUPhaseHarmonics(25, 5, 610, 220, s);
     if (activeView === "dq") drawDq(25, 5, 610, 220, s);
-    if (activeView === "dq6") drawDq6Sum(25, 5, 610, 220, s);
     if (activeView === "frames") drawHarmonicFrameComponents(25, 5, 610, 220, s);
   }
-  const tabs = { harmonics: document.getElementById("tab-harmonics"), dq: document.getElementById("tab-dq"), dq6: document.getElementById("tab-dq6"), frames: document.getElementById("tab-frames") };
+  const tabs = { harmonics: document.getElementById("tab-harmonics"), dq: document.getElementById("tab-dq"), frames: document.getElementById("tab-frames") };
   function selectView(view) {
     activeView = view;
     Object.entries(tabs).forEach(([key, tab]) => { const selected = key === view; tab.setAttribute("aria-selected", String(selected)); tab.tabIndex = selected ? 0 : -1; });
