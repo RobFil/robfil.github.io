@@ -142,3 +142,25 @@ entries:
     expressions: ["まず～を確認します", "～についてご意見はありますか", "結論を出す前に～"]
     learning_sources: ["20261031_Unit9_会議のファシリテーション_教材.pdf"]
     pages: [2, 3]
+
+  - post: "2026-11-01-unit9-training-agenda-dialog.md"
+    recorded_at: 2026-11-01
+    status: current
+    expressions: ["本日の議題は～です", "論点を整理しましょう", "合意に達しました", "決定事項を議事録に記載します"]
+    source_selection: guided
+    learning_sources: ["20261031_Unit9_会議のファシリテーション_教材.pdf"]
+    pages: [2, 3]
+  - post: "2026-11-01-motor-current-weekly-meeting.md"
+    recorded_at: 2026-11-01
+    status: current
+    expressions: ["～という理解でよろしいでしょうか", "～についてご意見はありますか", "論点を整理しましょう", "決定事項を議事録に記載します"]
+    source_selection: guided
+    learning_sources: ["20261031_Unit9_会議のファシリテーション_教材.pdf", "20260918_Unit7_会議に参加する_教材.pdf"]
+    pages: [1, 2, 3, 4, 9]
+  - post: "2026-11-01-japan-career-exploration-interview.md"
+    recorded_at: 2026-11-01
+    status: current
+    expressions: ["これまでの経験を生かす", "～のではないかと考えています", "現時点では具体的な募集がないことも承知しております"]
+    source_selection: guided
+    learning_sources: ["20261025_Unit8__振り返り_教材.pdf"]
+    pages: [6, 7, 11]

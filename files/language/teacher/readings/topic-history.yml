@@ -283,3 +283,35 @@ entries:
     status: removed
     topic: "News / Weather: the first cold winter wind in Tokyo"
     note: "Current-news replacement explicitly requested."
+
+  - post: "2026-11-01-ikebukuro-halloween-cosplay.md"
+    recorded_at: 2026-11-01
+    status: current
+    topic: "News / Weekend in Japan: Halloween cosplay parade in Ikebukuro"
+    source_url: "https://www.fnn.jp/articles/-/1143808"
+    source_published_at: 2026-10-31
+    source_checked_at: 2026-11-01
+  - post: "2026-11-01-hagi-giant-pumpkin-guess.md"
+    recorded_at: 2026-11-01
+    status: current
+    topic: "News / Weekend in Japan: giant pumpkin weight-guessing quiz in Hagi"
+    source_url: "https://yama.minato-yamaguchi.co.jp/e-yama/articles/112614"
+    source_published_at: 2026-10-31
+    source_checked_at: 2026-11-01
+  - post: "2026-11-01-unit9-training-agenda-dialog.md"
+    recorded_at: 2026-11-01
+    status: current
+    topic: "Business / Unit 9: Planning an internal safety workshop"
+  - post: "2026-11-01-pottery-wheel-first-class.md"
+    recorded_at: 2026-11-01
+    status: current
+    topic: "Everyday life / Leisure: first pottery-wheel class"
+  - post: "2026-11-01-motor-current-weekly-meeting.md"
+    recorded_at: 2026-11-01
+    status: current
+    topic: "Business / Power electronics: adapting the current command for a new motor"
+  - post: "2026-11-01-japan-career-exploration-interview.md"
+    recorded_at: 2026-11-01
+    status: current
+    topic: "Business / Career exploration: technical leadership and future Japan-related work"
+    note: "Explicitly requested career interview; intentionally revisits the archived interview theme with a future Japan-related career focus."

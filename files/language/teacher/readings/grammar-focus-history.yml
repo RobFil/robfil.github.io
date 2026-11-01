@@ -766,3 +766,102 @@ entries:
         pages: [1]
         topic_group: "なかなか～ない説明文"
         document_date: null
+
+  - post: "2026-11-01-ikebukuro-halloween-cosplay.md"
+    recorded_at: 2026-11-01
+    status: current
+    grammar: ["～に限らず", "～ば～ほど"]
+    source_selection: random
+    learning_sources: ["AIに限り・に限らず説明と例文①.pdf", "35課条件形～ば～ほど.pdf"]
+    topic: "News / Weekend in Japan: Halloween cosplay parade in Ikebukuro"
+    note: "Weekend news article; non-Unit grammar rotation pool exhausted, so random reuse was necessary."
+    source_url: "https://www.fnn.jp/articles/-/1143808"
+    source_published_at: 2026-10-31
+    source_checked_at: 2026-11-01
+    learning_source_details:
+      - source_file: "AIに限り・に限らず説明と例文①.pdf"
+        pages: [1]
+        topic_group: "AIに限り・に限らず説明と例文①"
+        document_date: null
+      - source_file: "35課条件形～ば～ほど.pdf"
+        pages: [1, 2]
+        topic_group: "35課条件形～ば～ほど"
+        document_date: null
+  - post: "2026-11-01-hagi-giant-pumpkin-guess.md"
+    recorded_at: 2026-11-01
+    status: current
+    grammar: ["なかなか～ない"]
+    source_selection: random
+    learning_sources: ["なかなか～ない説明文.pdf"]
+    topic: "News / Weekend in Japan: giant pumpkin weight-guessing quiz in Hagi"
+    note: "Weekend news article; non-Unit grammar rotation pool exhausted, so random reuse was necessary."
+    source_url: "https://yama.minato-yamaguchi.co.jp/e-yama/articles/112614"
+    source_published_at: 2026-10-31
+    source_checked_at: 2026-11-01
+    learning_source_details:
+      - source_file: "なかなか～ない説明文.pdf"
+        pages: [1]
+        topic_group: "なかなか～ない説明文"
+        document_date: null
+  - post: "2026-11-01-unit9-training-agenda-dialog.md"
+    recorded_at: 2026-11-01
+    status: current
+    grammar: ["本日の議題は～です", "論点を整理しましょう", "合意に達しました", "決定事項を議事録に記載します"]
+    source_selection: guided
+    learning_sources: ["20261031_Unit9_会議のファシリテーション_教材.pdf"]
+    topic: "Business / Unit 9: Planning an internal safety workshop"
+    note: "Unit 9 dialogue explicitly requested; new scenario based on the requested source."
+    learning_source_details:
+      - source_file: "20261031_Unit9_会議のファシリテーション_教材.pdf"
+        pages: [2, 3]
+        topic_group: "Unit9 会議のファシリテーション"
+        document_date: 2026-10-31
+  - post: "2026-11-01-pottery-wheel-first-class.md"
+    recorded_at: 2026-11-01
+    status: current
+    grammar: ["～にしては", "なかなか～ない", "～ば～ほど"]
+    source_selection: random
+    learning_sources: ["にしては解説文.pdf", "なかなか～ない説明文.pdf", "35課条件形～ば～ほど.pdf"]
+    topic: "Everyday life / Leisure: first pottery-wheel class"
+    note: "Random topic and grammar; non-Unit grammar rotation pool exhausted, so reuse was necessary."
+    learning_source_details:
+      - source_file: "にしては解説文.pdf"
+        pages: [1]
+        topic_group: "にしては解説文"
+        document_date: null
+      - source_file: "なかなか～ない説明文.pdf"
+        pages: [1]
+        topic_group: "なかなか～ない説明文"
+        document_date: null
+      - source_file: "35課条件形～ば～ほど.pdf"
+        pages: [1, 2]
+        topic_group: "35課条件形～ば～ほど"
+        document_date: null
+  - post: "2026-11-01-motor-current-weekly-meeting.md"
+    recorded_at: 2026-11-01
+    status: current
+    grammar: ["～という理解でよろしいでしょうか", "～についてご意見はありますか", "論点を整理しましょう", "決定事項を議事録に記載します"]
+    source_selection: guided
+    learning_sources: ["20261031_Unit9_会議のファシリテーション_教材.pdf", "20260918_Unit7_会議に参加する_教材.pdf"]
+    topic: "Business / Power electronics: adapting the current command for a new motor"
+    learning_source_details:
+      - source_file: "20261031_Unit9_会議のファシリテーション_教材.pdf"
+        pages: [2, 3]
+        topic_group: "Unit9 会議のファシリテーション"
+        document_date: 2026-10-31
+      - source_file: "20260918_Unit7_会議に参加する_教材.pdf"
+        pages: [1, 4, 9]
+        topic_group: "Unit7 会議に参加する"
+        document_date: 2026-09-18  - post: "2026-11-01-japan-career-exploration-interview.md"
+    recorded_at: 2026-11-01
+    status: current
+    grammar: ["～たことで", "～のではないかと考えています"]
+    source_selection: guided
+    learning_sources: ["20261025_Unit8__振り返り_教材.pdf"]
+    topic: "Business / Career exploration: technical leadership and future Japan-related work"
+    note: "Explicitly requested interview scenario; intentionally overlaps with previously archived interview texts. Unit 8 reflection language is reused to present outcomes and improvement proposals naturally."
+    learning_source_details:
+      - source_file: "20261025_Unit8__振り返り_教材.pdf"
+        pages: [6, 7, 11]
+        topic_group: "Unit8 振り返り"
+        document_date: 2026-10-25
