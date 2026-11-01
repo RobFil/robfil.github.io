@@ -11,14 +11,6 @@ title: Current Harmonics Lab
     <p>A literature-based model of phase harmonics and their rotor-synchronous dq components.</p>
   </header>
 
-  <details class="model-convention">
-    <summary id="convention-title">Model convention</summary>
-    <p><strong>Phase and sequence convention.</strong> <code>θ<sub>1</sub> = ω<sub>e</sub>t</code> is the electrical angle, and positive phase sequence is <code>i<sub>U,1</sub> = I<sub>1</sub> sin θ<sub>1</sub></code>, <code>i<sub>V,1</sub> = I<sub>1</sub> sin(θ<sub>1</sub> − 120°)</code>, <code>i<sub>W,1</sub> = I<sub>1</sub> sin(θ<sub>1</sub> + 120°)</code>. Thus U crosses zero rising at θ₁ = 0. The alternative pair of offsets +120°/+240° reverses phase sequence under this Clarke convention, so it would reverse the fundamental vector and the MSRF signs. Clarke is <code>i<sub>α</sub> = 2/3(i<sub>U</sub> − i<sub>V</sub>/2 − i<sub>W</sub>/2)</code>, <code>i<sub>β</sub> = (i<sub>V</sub> − i<sub>W</sub>)/√3</code>; hence <code>i<sub>αβ,1</sub> = I<sub>1</sub>e<sup>j(θ₁−90°)</sup></code> and the fundamental space vector rotates counterclockwise.</p>
-    <p><strong>Harmonics and transforms.</strong> The balanced phase model is <code>i<sub>p</sub> = I<sub>1</sub>sin(θ₁ + δ<sub>p</sub>) + I<sub>5</sub>sin(−5θ₁ + γ<sub>5</sub> + δ<sub>p</sub>) + I<sub>7</sub>sin(7θ₁ + γ<sub>7</sub> + δ<sub>p</sub>)</code>, with <code>δ<sub>U</sub>=0</code>, <code>δ<sub>V</sub>=−120°</code>, <code>δ<sub>W</sub>=+120°</code>. γ₅ and γ₇ are initial Fourier phase offsets from the signed harmonic angles −5θ₁ and +7θ₁. Define the rotor angle as <code>θᵣ=θ₁−90°−φ₁</code> and Park as <code>i<sub>dq</sub>=(i<sub>α</sub>+ji<sub>β</sub>)e<sup>−jθᵣ</sup></code>. Then <code>i<sub>dq,1</sub>=I<sub>1</sub>e<sup>jφ₁</sup></code>, <code>i<sub>dq,5</sub>=I<sub>5</sub>e<sup>j(−6θ₁+γ₅+φ₁)</sup></code>, and <code>i<sub>dq,7</sub>=I<sub>7</sub>e<sup>j(6θ₁+γ₇+φ₁)</sup></code>.</p>
-    <p><strong>Meaning of dq6 and MSRF.</strong> With the fundamental alone, current in the rotor-synchronous dq frame is constant. The “dq sixth-frequency sum” plot isolates the −5th/+7th harmonic contribution: both appear as sixth-frequency ripple in fundamental dq, not as sixth-harmonic phase currents. The separate MSRF operations are <code>i<sub>dq,5</sub>e<sup>+j6θ₁</sup></code> for the −6ω frame and <code>i<sub>dq,7</sub>e<sup>−j6θ₁</sup></code> for the +6ω frame, making each component DC in its own frame. Those two DC vectors belong to different coordinate systems and cannot be added directly. The app sums the two harmonics only in the common fundamental dq frame. It uses balanced peak currents and synchronous electrical angles; it does not model an inverter, voltage equations, saturation, or mechanical torque.</p>
-    <p><strong>Literature basis.</strong> The signed phase-a series and −5/+7 sequence interpretation follow Joksimovic, Levi &amp; Vukosavic, “Near-complete suppression of harmonic currents in SPMSMs caused by back emf and dead time,” <em>IEEE Transactions on Industrial Electronics</em>, 70(5), 2023, <a href="https://doi.org/10.1109/TIE.2022.3189068">doi:10.1109/TIE.2022.3189068</a> (accepted manuscript <a href="https://researchonline.ljmu.ac.uk/id/eprint/17175/">at LJMU</a>). The dq constant-current assumption and combined sixth-frequency contribution are consistent with Soricellis et al., “Current and voltage shaping method via modified d–q transformation for the torque ripple compensation in PMSMs,” <a href="https://doi.org/10.1049/joe.2018.8251">doi:10.1049/joe.2018.8251</a>, and Yan et al., “Torque ripple suppression of permanent magnet synchronous machines by minimal harmonic current injection,” <a href="https://doi.org/10.1049/iet-pel.2018.5647">doi:10.1049/iet-pel.2018.5647</a>. The harmonic synchronous-frame rotation convention follows Ochoa Giménez et al., “Efficient multiple-reference-frame controller for current-harmonic suppression with a shunt active power filter,” <a href="https://www.iit.comillas.edu/documentacion/congreso/IIT-13-078A/Efficient%20multiple-reference-frame_controller_for_current-harmonic_suppression_with_active_power_filter.pdf">paper</a>, especially its <code>ω<sub>n</sub> = (s·m − 1)ω₀</code> relation and dq<sup>−6</sup>/dq<sup>+6</sup> examples.</p>
-  </details>
-
   <div class="acoustics-controls" aria-label="Harmonic parameters">
     <section class="control-group" aria-labelledby="fundamental-controls">
       <h2 id="fundamental-controls">Fundamental</h2>
@@ -39,8 +31,8 @@ title: Current Harmonics Lab
     </section>
     <section class="control-group" aria-labelledby="cursor-controls">
       <h2 id="cursor-controls">Current instant</h2>
-      <label>Electrical rotor angle θr <output id="cursor-angle-value">0°</output><input id="cursor-angle" type="range" min="0" max="360" value="0" step="1"></label>
-      <label>Initial phase φ₁ (vs rotor d-axis) <output id="fundamental-phase-value">90°</output><input id="fundamental-phase" type="range" min="-180" max="180" value="90" step="1"></label>
+      <label>Electrical fundamental angle θ₁ <output id="cursor-angle-value">0°</output><input id="cursor-angle" type="range" min="0" max="360" value="0" step="1"></label>
+      <label>Fundamental angle φ₁ relative to rotor d-axis <output id="fundamental-phase-value">90°</output><input id="fundamental-phase" type="range" min="-180" max="180" value="90" step="1"></label>
     </section>
   </div>
 
@@ -48,7 +40,7 @@ title: Current Harmonics Lab
   <nav class="view-tabs" role="tablist" aria-label="Current views">
     <button id="tab-harmonics" type="button" role="tab" aria-selected="true" aria-controls="detail-canvas">Phase harmonics</button>
     <button id="tab-dq" type="button" role="tab" aria-selected="false" aria-controls="detail-canvas">dq currents</button>
-    <button id="tab-dq6" type="button" role="tab" aria-selected="false" aria-controls="detail-canvas">dq sixth-frequency sum</button>
+    <button id="tab-dq6" type="button" role="tab" aria-selected="false" aria-controls="detail-canvas">dq±6 harmonic frames</button>
   </nav>
   <fieldset id="phase-visibility" class="phase-visibility" aria-label="Phases shown in the harmonic component plot">
     <legend>Phases shown in the harmonic component plot</legend>
