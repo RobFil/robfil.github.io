@@ -2,6 +2,7 @@
 layout: reading
 title: "美容室で髪型を相談する"
 date: 2026-10-27
+archived: true
 categories: [reading]
 topic: Everyday life
 level: N2

@@ -2,6 +2,7 @@
 layout: reading
 title: "Unit 8：スプリントを振り返る三人の会話"
 date: 2026-10-27
+archived: true
 categories: [reading]
 topic: Business
 level: N2

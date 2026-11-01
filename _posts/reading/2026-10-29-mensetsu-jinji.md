@@ -2,6 +2,7 @@
 layout: reading
 title: "日本での面接① 人事との対話"
 date: 2026-10-29
+archived: true
 categories: [reading]
 topic: Business
 level: N2

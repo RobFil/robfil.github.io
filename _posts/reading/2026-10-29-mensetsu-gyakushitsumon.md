@@ -2,6 +2,7 @@
 layout: reading
 title: "日本での面接③ 仕事内容と移住についての質問"
 date: 2026-10-29
+archived: true
 categories: [reading]
 topic: Business
 level: N2

@@ -348,7 +348,7 @@ entries:
         document_date: 2026-10-31
   - post: "2026-10-31-ishikari-bay-red-imported-fire-ant.md"
     recorded_at: 2026-10-31
-    status: current
+    status: removed
     grammar: ["～にしては", "～にわたって", "なかなか～ない"]
     source_selection: guided
     learning_sources: ["にしては解説文.pdf", "かけて・わたって説明と例文.pdf", "なかなか～ない説明文.pdf"]
@@ -369,7 +369,7 @@ entries:
         document_date: null
   - post: "2026-10-31-tokyo-kogarashi-first.md"
     recorded_at: 2026-10-31
-    status: current
+    status: removed
     grammar: ["～に限らず", "～ば～ほど", "～わけにはいかない"]
     source_selection: guided
     learning_sources: ["AIに限り・に限らず説明と例文①.pdf", "35課条件形～ば～ほど.pdf", "わけにはいかない説明文①.pdf"]
@@ -527,7 +527,7 @@ entries:
     topic: "Alltag / Wohnen: Kräuter auf dem Balkon"
   - post: "2026-10-27-unit8-retrospective-dialog.md"
     recorded_at: 2026-10-27
-    status: current
+    status: archived
     grammar: ["～たことで", "～のおかげで", "次回は～を意識したいと思います"]
     source_selection: guided
     learning_sources: ["20261025_Unit8__振り返り_教材.pdf"]
@@ -539,7 +539,7 @@ entries:
         document_date: 2026-10-25
   - post: "2026-10-27-unit8-sprint-article.md"
     recorded_at: 2026-10-27
-    status: current
+    status: archived
     grammar: ["～がうまくいかなかったと感じました", "～のがよかったと思います", "次回は～してみるのもよいかと思います"]
     source_selection: guided
     learning_sources: ["20261025_Unit8__振り返り_教材.pdf"]
@@ -551,7 +551,7 @@ entries:
         document_date: 2026-10-25
   - post: "2026-10-27-new-company-first-day-dialog.md"
     recorded_at: 2026-10-27
-    status: current
+    status: archived
     grammar: ["～ば～ほど", "～にしては", "なかなか～ない"]
     source_selection: guided
     learning_sources: ["35課条件形～ば～ほど.pdf", "にしては解説文.pdf", "なかなか～ない説明文.pdf"]
@@ -572,7 +572,7 @@ entries:
         document_date: null
   - post: "2026-10-27-job-interview-long-dialog.md"
     recorded_at: 2026-10-27
-    status: current
+    status: archived
     grammar: ["～に限らず", "～にわたって", "～わけにはいかない"]
     source_selection: guided
     learning_sources: ["AIに限り・に限らず説明と例文①.pdf", "かけて・わたって説明と例文.pdf", "わけにはいかない説明文①.pdf"]
@@ -593,7 +593,7 @@ entries:
         document_date: null
   - post: "2026-10-27-hairdresser-dialog.md"
     recorded_at: 2026-10-27
-    status: current
+    status: archived
     grammar: ["～から～にかけて", "～ば～ほど", "～にしては"]
     source_selection: guided
     learning_sources: ["かけて・わたって説明と例文.pdf", "35課条件形～ば～ほど.pdf", "にしては解説文.pdf"]
@@ -669,7 +669,7 @@ entries:
         document_date: 2026-09-18
   - post: "2026-10-28-nihon-no-shokuba-first-day-dialog.md"
     recorded_at: 2026-10-28
-    status: current
+    status: removed
     grammar: ["質問してもよろしいでしょうか", "1点確認させてください", "～という理解でよろしいでしょうか"]
     source_selection: guided
     learning_sources: ["20260918_Unit7_会議に参加する_教材.pdf"]
@@ -683,7 +683,7 @@ entries:
 
   - post: "2026-10-29-mensetsu-jinji.md"
     recorded_at: 2026-10-29
-    status: current
+    status: archived
     grammar: ["～のではないかと考えています"]
     source_selection: guided
     learning_sources: ["20261025_Unit8__振り返り_教材.pdf"]
@@ -698,7 +698,7 @@ entries:
 
   - post: "2026-10-29-mensetsu-gijutsu.md"
     recorded_at: 2026-10-29
-    status: current
+    status: archived
     grammar: ["～がよくなかったと思います"]
     source_selection: guided
     learning_sources: ["20261025_Unit8__振り返り_教材.pdf"]
@@ -713,7 +713,7 @@ entries:
 
   - post: "2026-10-29-mensetsu-gyakushitsumon.md"
     recorded_at: 2026-10-29
-    status: current
+    status: archived
     grammar: ["～て助かりました"]
     source_selection: guided
     learning_sources: ["20261025_Unit8__振り返り_教材.pdf"]

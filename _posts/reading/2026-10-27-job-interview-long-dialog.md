@@ -2,6 +2,7 @@
 layout: reading
 title: "経験を伝える面接"
 date: 2026-10-27
+archived: true
 categories: [reading]
 topic: Everyday life
 level: N2

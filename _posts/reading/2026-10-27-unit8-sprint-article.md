@@ -2,6 +2,7 @@
 layout: reading
 title: "振り返りから見えた次の改善"
 date: 2026-10-27
+archived: true
 categories: [reading]
 topic: Business
 level: N2

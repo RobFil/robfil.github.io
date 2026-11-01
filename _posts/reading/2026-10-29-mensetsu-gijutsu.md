@@ -2,6 +2,7 @@
 layout: reading
 title: "日本での面接② 技術とチームのリード"
 date: 2026-10-29
+archived: true
 categories: [reading]
 topic: Business
 level: N2
