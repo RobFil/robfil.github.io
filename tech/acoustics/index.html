@@ -42,15 +42,20 @@ title: Current Harmonics Lab
     </section>
   </div>
 
-  <fieldset class="phase-visibility" aria-label="Phases shown in the harmonic component plot">
+  <canvas id="acoustics-canvas" width="1050" height="320" aria-label="Three-phase currents and αβ space vector"></canvas>
+  <nav class="view-tabs" role="tablist" aria-label="Current views">
+    <button id="tab-harmonics" type="button" role="tab" aria-selected="true" aria-controls="harmonic-view">Phase harmonics</button>
+    <button id="tab-dq" type="button" role="tab" aria-selected="false" aria-controls="dq-view">dq currents</button>
+    <button id="tab-dq6" type="button" role="tab" aria-selected="false" aria-controls="dq6-view">dq6 currents</button>
+  </nav>
+  <fieldset id="phase-visibility" class="phase-visibility" aria-label="Phases shown in the harmonic component plot">
     <legend>Phases shown in the harmonic component plot</legend>
     <label><input id="show-phase-u" type="checkbox" checked> U</label>
     <label><input id="show-phase-v" type="checkbox"> V</label>
     <label><input id="show-phase-w" type="checkbox"> W</label>
-    <span>Each selected phase shows both the −5th and +7th components.</span>
+    <span>Selected phases show both the −5th and +7th components.</span>
   </fieldset>
-
-  <canvas id="acoustics-canvas" width="1050" height="1280" aria-label="Three-phase currents, signed harmonic components, rotor-synchronous dq ripple, and individual dq6 components"></canvas>
+  <canvas id="detail-canvas" width="1050" height="300" role="tabpanel" aria-labelledby="tab-harmonics" aria-label="Selected current view"></canvas>
   <p class="acoustics-note">The vertical cursor marks the current rotor position without shifting the waveforms. Signed sequence orders set the rotation direction: −5ω and +7ω in αβ. Transforming into the synchronous rotor frame subtracts +ω, giving −6ω and +6ω. The model assumes balanced currents, synchronous rotor speed, and peak values; it does not model inverter voltage limits, saturation, torque, or mechanics.</p>
 </section>
 

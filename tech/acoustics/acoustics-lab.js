@@ -1,7 +1,11 @@
 (() => {
   "use strict";
   const canvas = document.getElementById("acoustics-canvas");
-  const ctx = canvas.getContext("2d");
+  const detailCanvas = document.getElementById("detail-canvas");
+  let ctx = canvas.getContext("2d");
+  const mainContext = ctx;
+  const detailContext = detailCanvas.getContext("2d");
+  let activeView = "harmonics";
   const controls = {
     fundamental: document.getElementById("fundamental"), amplitude: document.getElementById("amplitude"),
     fifth: document.getElementById("fifth"), fifthPhase: document.getElementById("fifth-phase"),
@@ -89,15 +93,15 @@
   }
   function drawDq(x, y, w, h, s) {
     const harmonic5 = s.compensated ? 0 : s.i5, harmonic7 = s.compensated ? 0 : s.i7;
-    card(x, y, w, h, "Combined dq harmonic ripple", "sum of −6ω and +6ω components");
-    const left = x + 42, right = x + w - 16, top = y + 52, bottom = y + h - 27, mid = (top + bottom) / 2, scale = (bottom - top) / (2 * Math.max(s.i5 + s.i7, 1)), zeroX = left + (right - left) / 4, periodEndX = left + 3 * (right - left) / 4, cursorX = left + (right - left) * (s.cursorAngle + Math.PI) / (2 * tau), h5AtCursor = dqComponents(harmonic5, sequenceOrder.fifth, s.gamma5, s.cursorAngle), h7AtCursor = dqComponents(harmonic7, sequenceOrder.seventh, s.gamma7, s.cursorAngle), currentD = s.i1 + h5AtCursor.d + h7AtCursor.d, currentQ = h5AtCursor.q + h7AtCursor.q;
+    card(x, y, w, h, "Rotor-synchronous dq currents", "fundamental + harmonics; d solid, q dashed");
+    const left = x + 42, right = x + w - 16, top = y + 52, bottom = y + h - 27, mid = (top + bottom) / 2, limit = 1.08 * (s.i1 + s.i5 + s.i7), scale = (bottom - top) / (2 * limit), zeroX = left + (right - left) / 4, periodEndX = left + 3 * (right - left) / 4, cursorX = left + (right - left) * (s.cursorAngle + Math.PI) / (2 * tau), h5AtCursor = dqComponents(harmonic5, sequenceOrder.fifth, s.gamma5, s.cursorAngle), h7AtCursor = dqComponents(harmonic7, sequenceOrder.seventh, s.gamma7, s.cursorAngle), currentD = s.i1 + h5AtCursor.d + h7AtCursor.d, currentQ = h5AtCursor.q + h7AtCursor.q;
     line(left, mid, right, mid, colours.grid, 1, [4, 3]); line(zeroX, top, zeroX, bottom, colours.grid, 1, [3, 3]); line(periodEndX, top, periodEndX, bottom, colours.grid, 1, [3, 3]); line(cursorX, top, cursorX, bottom, colours.field, 2); text(`At cursor: d = ${currentD.toFixed(2)} A, q = ${currentQ.toFixed(2)} A`, left, y + 36, 9, colours.muted);
-    const draw = (axis, color, label) => { if (s.compensated || (s.i5 === 0 && s.i7 === 0)) return; ctx.strokeStyle = color; ctx.lineWidth = 2; ctx.beginPath(); for (let px = left; px <= right; px += 2) { const theta = -Math.PI + 2 * tau * (px - left) / (right - left), h5 = dqComponents(s.i5, sequenceOrder.fifth, s.gamma5, theta), h7 = dqComponents(s.i7, sequenceOrder.seventh, s.gamma7, theta), value = axis === "d" ? h5.d + h7.d : h5.q + h7.q, py = mid - value * scale; if (px === left) ctx.moveTo(px, py); else ctx.lineTo(px, py); } ctx.stroke(); text(label, right - 4, top + (axis === "d" ? 12 : 28), 9, color, "right"); };
-    draw("d", colours.d, "d harmonic"); draw("q", colours.q, "q harmonic"); text("d/q harmonic ripple", left, y + h - 10, 9, colours.muted); text("θ1 = −180°", left, y + h - 10, 9, colours.muted); text("θ1 = 0°", zeroX, y + h - 10, 9, colours.muted, "center"); text("θ1 = 360°", periodEndX, y + h - 10, 9, colours.muted, "center"); text("θ1 = +540°", right, y + h - 10, 9, colours.muted, "right"); if (s.compensated) text("Only fundamental DC remains", x + w / 2, mid, 12, colours.field, "center", "700");
+    const draw = (axis, color, label) => { ctx.strokeStyle = color; ctx.lineWidth = 2; ctx.setLineDash(axis === "q" ? [5, 3] : []); ctx.beginPath(); for (let px = left; px <= right; px += 2) { const theta = -Math.PI + 2 * tau * (px - left) / (right - left), h5 = dqComponents(harmonic5, sequenceOrder.fifth, s.gamma5, theta), h7 = dqComponents(harmonic7, sequenceOrder.seventh, s.gamma7, theta), value = axis === "d" ? s.i1 + h5.d + h7.d : h5.q + h7.q, py = mid - value * scale; if (px === left) ctx.moveTo(px, py); else ctx.lineTo(px, py); } ctx.stroke(); ctx.setLineDash([]); text(label, right - 4, top + (axis === "d" ? 12 : 28), 9, color, "right"); };
+    draw("d", colours.d, "d current"); draw("q", colours.q, "q current"); text("θ1 = −180°", left, y + h - 10, 9, colours.muted); text("θ1 = 0°", zeroX, y + h - 10, 9, colours.muted, "center"); text("θ1 = 360°", periodEndX, y + h - 10, 9, colours.muted, "center"); text("θ1 = +540°", right, y + h - 10, 9, colours.muted, "right");
   }
   function drawHarmonicFrameComponents(x, y, w, h, s) {
     const harmonic5 = s.compensated ? 0 : s.i5, harmonic7 = s.compensated ? 0 : s.i7;
-    card(x, y, w, h, "Harmonic-frame dq components over time", "−5 in −6ω frame; +7 in +6ω frame; solid d, dashed q");
+    card(x, y, w, h, "dq6 currents in harmonic-synchronous frames", "−5 in −6ω frame; +7 in +6ω frame; d solid, q dashed");
     const left = x + 42, right = x + w - 16, top = y + 72, bottom = y + h - 27, mid = (top + bottom) / 2, limit = Math.max(.1, 1.08 * (harmonic5 + harmonic7)), scale = (bottom - top) / (2 * limit), zeroX = left + (right - left) / 4, periodEndX = left + 3 * (right - left) / 4, cursorX = left + (right - left) * (s.cursorAngle + Math.PI) / (2 * tau);
     line(left, mid, right, mid, colours.grid, 1, [4, 3]); line(zeroX, top, zeroX, bottom, colours.grid, 1, [3, 3]); line(periodEndX, top, periodEndX, bottom, colours.grid, 1, [3, 3]); line(cursorX, top, cursorX, bottom, colours.field, 2);
     const at5Frame = harmonicFrameComponents(harmonic5, s.gamma5), at7Frame = harmonicFrameComponents(harmonic7, s.gamma7);
@@ -118,12 +122,34 @@
     text(`±${limit.toFixed(2)} A`, x + 7, top, 8, colours.muted); text(`−${limit.toFixed(2)} A`, x + 7, bottom, 8, colours.muted);
     text("θ1 = −180°", left, y + h - 10, 9, colours.muted); text("θ1 = 0°", zeroX, y + h - 10, 9, colours.muted, "center"); text("θ1 = 360°", periodEndX, y + h - 10, 9, colours.muted, "center"); text("θ1 = +540°", right, y + h - 10, 9, colours.muted, "right");
   }
-  function drawMsrft(x, y, w, h, s) {
-    card(x, y, w, h, "MSRFT harmonic channels", "sequence order k → dq order k − 1");
-    const channels = [[sequenceOrder.fifth, s.compensated ? 0 : s.i5, s.gamma5, colours.q], [sequenceOrder.seventh, s.compensated ? 0 : s.i7, s.gamma7, "#d97706"]];
-    channels.forEach(([sequence, mag, gamma, color], index) => { const dqOrder = sequence - sequenceOrder.fundamental, signed = dqOrder > 0 ? `+${dqOrder}` : `−${Math.abs(dqOrder)}`, label = `${sequence < 0 ? "−5th" : "+7th"} in ${signed}ω`, components = dqComponents(mag, sequence, gamma, 0), d = components.d, q = components.q, cx = x + 125 + index * 185, cy = y + 105, r = 43; ctx.strokeStyle = colours.grid; ctx.lineWidth = 1; ctx.beginPath(); ctx.arc(cx, cy, r, 0, tau); ctx.stroke(); line(cx - r - 6, cy, cx + r + 6, cy, colours.grid); line(cx, cy - r - 6, cx, cy + r + 6, colours.grid); const scale = r / Math.max(s.i1 * .35, 1); vector(cx, cy, cx + d * scale, cy - q * scale, color, "DC"); text(label, cx, y + 45, 11, colours.ink, "center", "700"); text(`d: ${d.toFixed(2)} A`, cx, y + 166, 10, colours.muted, "center"); text(`q: ${q.toFixed(2)} A`, cx, y + 184, 10, colours.muted, "center"); text(`|I|: ${mag.toFixed(2)} A`, cx, y + 202, 10, color, "center", "700"); });
-    text(s.compensated ? "Counter-currents cancel both harmonic components." : "Transform each sequence in its own synchronous frame to obtain DC values.", x + w / 2, y + h - 16, 10, colours.muted, "center");
+  function draw() {
+    const s = state();
+    ctx = mainContext; ctx.clearRect(0, 0, canvas.width, canvas.height); ctx.fillStyle = "#f8fafc"; ctx.fillRect(0, 0, canvas.width, canvas.height);
+    drawWave(25, 25, 610, 275, s); drawSpaceVector(655, 25, 370, 275, s);
+    ctx = detailContext; ctx.clearRect(0, 0, detailCanvas.width, detailCanvas.height); ctx.fillStyle = "#f8fafc"; ctx.fillRect(0, 0, detailCanvas.width, detailCanvas.height);
+    if (activeView === "harmonics") drawUPhaseHarmonics(15, 15, 1020, 270, s);
+    if (activeView === "dq") drawDq(15, 15, 1020, 270, s);
+    if (activeView === "dq6") drawHarmonicFrameComponents(15, 15, 1020, 270, s);
   }
-  function draw() { const s = state(); ctx.clearRect(0, 0, canvas.width, canvas.height); ctx.fillStyle = "#f8fafc"; ctx.fillRect(0, 0, canvas.width, canvas.height); drawWave(25, 25, 610, 275, s); drawSpaceVector(655, 25, 370, 275, s); drawUPhaseHarmonics(25, 325, 610, 270, s); drawDq(25, 620, 610, 270, s); drawMsrft(655, 620, 370, 270, s); drawHarmonicFrameComponents(25, 915, 610, 270, s); text(`f₁ = ${s.f} Hz   |   I₁ = ${s.i1.toFixed(1)} A   |   I₋₅ = ${s.i5.toFixed(2)} A   |   I₊₇ = ${s.i7.toFixed(2)} A   |   θr = ${controls.cursorAngle.value}°`, 25, 1220, 12, colours.ink, "left", "700"); text("Ideal balanced-current model with a synchronous rotor-position cursor and MSRFT extraction.", 25, 1250, 10, colours.muted); }
-  Object.values(controls).forEach(control => control.addEventListener("input", () => { updateLabels(); draw(); })); updateLabels(); draw();
+  const tabs = { harmonics: document.getElementById("tab-harmonics"), dq: document.getElementById("tab-dq"), dq6: document.getElementById("tab-dq6") };
+  function selectView(view) {
+    activeView = view;
+    Object.entries(tabs).forEach(([key, tab]) => { const selected = key === view; tab.setAttribute("aria-selected", String(selected)); tab.tabIndex = selected ? 0 : -1; });
+    document.getElementById("phase-visibility").hidden = view !== "harmonics";
+    detailCanvas.setAttribute("aria-labelledby", tabs[view].id);
+    draw();
+  }
+  const viewOrder = Object.keys(tabs);
+  Object.entries(tabs).forEach(([view, tab]) => {
+    tab.addEventListener("click", () => selectView(view));
+    tab.addEventListener("keydown", event => {
+      const direction = event.key === "ArrowRight" ? 1 : event.key === "ArrowLeft" ? -1 : 0;
+      if (!direction) return;
+      event.preventDefault();
+      const next = viewOrder[(viewOrder.indexOf(view) + direction + viewOrder.length) % viewOrder.length];
+      selectView(next); tabs[next].focus();
+    });
+  });
+  Object.values(controls).forEach(control => control.addEventListener("input", () => { updateLabels(); draw(); }));
+  selectView("harmonics"); updateLabels(); draw();
 })();
