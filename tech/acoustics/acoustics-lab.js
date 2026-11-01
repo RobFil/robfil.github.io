@@ -137,6 +137,35 @@
     });
     text("θ1 = −180°", left, y + h - 10, 9, colours.muted); text("θ1 = 0°", zeroX, y + h - 10, 9, colours.muted, "center"); text("θ1 = 360°", periodEndX, y + h - 10, 9, colours.muted, "center"); text("θ1 = +540°", right, y + h - 10, 9, colours.muted, "right");
   }
+  function drawDq6Sum(x, y, w, h, s) {
+    card(x, y, w, h, "Sixth-frequency current in rotor dq", "−5th + 7th; harmonics only; d solid, q dashed");
+    const left = x + 60, right = x + w - 16, top = y + 72, bottom = y + h - 27, mid = (top + bottom) / 2;
+    const limit = Math.max(.1, 1.08 * (s.i5 + s.i7)), scale = (bottom - top) / (2 * limit);
+    const zeroX = left + (right - left) / 4, periodEndX = left + 3 * (right - left) / 4, cursorX = angleToX(s.cursorAngle, left, right);
+    const sumAt = theta => {
+      const rotor = theta - Math.PI / 2 - s.phi1;
+      const h5 = dqComponents(s.i5, sequenceOrder.fifth, s.gamma5, rotor, s.phi1);
+      const h7 = dqComponents(s.i7, sequenceOrder.seventh, s.gamma7, rotor, s.phi1);
+      return { d: h5.d + h7.d, q: h5.q + h7.q };
+    };
+    const atCursor = sumAt(s.cursorAngle);
+    drawCurrentAxis(left, right, top, bottom, limit, 2);
+    line(zeroX, top, zeroX, bottom, colours.grid, 1, [3, 3]);
+    line(periodEndX, top, periodEndX, bottom, colours.grid, 1, [3, 3]);
+    line(cursorX, top, cursorX, bottom, colours.field, 2);
+    text(`At cursor: d₆ = ${atCursor.d.toFixed(2)} A, q₆ = ${atCursor.q.toFixed(2)} A`, left, y + 42, 9, colours.muted);
+    [["d", colours.d, []], ["q", colours.q, [5, 3]]].forEach(([axis, color, dash]) => {
+      ctx.strokeStyle = color; ctx.lineWidth = 2; ctx.setLineDash(dash); ctx.beginPath();
+      for (let px = left; px <= right; px += 2) {
+        const theta = -Math.PI + 2 * tau * (px - left) / (right - left);
+        const py = mid - scale * sumAt(theta)[axis];
+        if (px === left) ctx.moveTo(px, py); else ctx.lineTo(px, py);
+      }
+      ctx.stroke(); ctx.setLineDash([]);
+      text(`${axis}₆ current`, right - 4, top + (axis === "d" ? 12 : 28), 9, color, "right");
+    });
+    text("θ1 = −180°", left, y + h - 10, 9, colours.muted); text("θ1 = 0°", zeroX, y + h - 10, 9, colours.muted, "center"); text("θ1 = 360°", periodEndX, y + h - 10, 9, colours.muted, "center"); text("θ1 = +540°", right, y + h - 10, 9, colours.muted, "right");
+  }
   function draw() {
     const s = state();
     ctx = mainContext; ctx.clearRect(0, 0, canvas.width, canvas.height); ctx.fillStyle = "#f8fafc"; ctx.fillRect(0, 0, canvas.width, canvas.height);
@@ -144,9 +173,10 @@
     ctx = detailContext; ctx.clearRect(0, 0, detailCanvas.width, detailCanvas.height); ctx.fillStyle = "#f8fafc"; ctx.fillRect(0, 0, detailCanvas.width, detailCanvas.height);
     if (activeView === "harmonics") drawUPhaseHarmonics(25, 5, 610, 220, s);
     if (activeView === "dq") drawDq(25, 5, 610, 220, s);
-    if (activeView === "dq6") drawHarmonicFrameComponents(25, 5, 610, 220, s);
+    if (activeView === "dq6") drawDq6Sum(25, 5, 610, 220, s);
+    if (activeView === "frames") drawHarmonicFrameComponents(25, 5, 610, 220, s);
   }
-  const tabs = { harmonics: document.getElementById("tab-harmonics"), dq: document.getElementById("tab-dq"), dq6: document.getElementById("tab-dq6") };
+  const tabs = { harmonics: document.getElementById("tab-harmonics"), dq: document.getElementById("tab-dq"), dq6: document.getElementById("tab-dq6"), frames: document.getElementById("tab-frames") };
   function selectView(view) {
     activeView = view;
     Object.entries(tabs).forEach(([key, tab]) => { const selected = key === view; tab.setAttribute("aria-selected", String(selected)); tab.tabIndex = selected ? 0 : -1; });
