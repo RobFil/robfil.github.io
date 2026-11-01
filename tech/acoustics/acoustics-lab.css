@@ -15,8 +15,6 @@
 #acoustics-lab label { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: baseline; gap: .1rem .4rem; color: var(--muted); font-size: .74rem; font-weight: 700; }
 #acoustics-lab output { color: var(--accent-soft); font-variant-numeric: tabular-nums; }
 #acoustics-lab input[type="range"] { grid-column: 1 / -1; width: 100%; accent-color: var(--accent); }
-#acoustics-lab .compensation { display: flex; align-items: center; gap: .55rem; min-height: 2.25rem; color: var(--text); }
-#acoustics-lab .compensation input { accent-color: var(--accent); }
 #acoustics-lab .view-tabs { display: flex; flex-wrap: wrap; gap: .3rem; margin-top: .45rem; border-bottom: 1px solid var(--line); }
 #acoustics-lab .view-tabs button { padding: .45rem .8rem; border: 1px solid var(--line); border-bottom: 0; border-radius: .35rem .35rem 0 0; background: rgba(13, 26, 39, .75); color: var(--muted); font: inherit; font-size: .82rem; font-weight: 700; cursor: pointer; }
 #acoustics-lab .view-tabs button[aria-selected="true"] { background: var(--accent); color: #07131e; }

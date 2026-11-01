@@ -10,7 +10,7 @@
     fundamental: document.getElementById("fundamental"), amplitude: document.getElementById("amplitude"), fundamentalPhase: document.getElementById("fundamental-phase"),
     fifth: document.getElementById("fifth"), fifthPhase: document.getElementById("fifth-phase"),
     seventh: document.getElementById("seventh"), seventhPhase: document.getElementById("seventh-phase"),
-    cursorAngle: document.getElementById("cursor-angle"), compensation: document.getElementById("compensation"),
+    cursorAngle: document.getElementById("cursor-angle"),
     showPhaseU: document.getElementById("show-phase-u"), showPhaseV: document.getElementById("show-phase-v"), showPhaseW: document.getElementById("show-phase-w")
   };
   const outputs = {
@@ -29,7 +29,7 @@
 
   function state() {
     const i1 = Number(controls.amplitude.value); const i5 = i1 * Number(controls.fifth.value) / 100; const i7 = i1 * Number(controls.seventh.value) / 100;
-    return { f: Number(controls.fundamental.value), i1, i5, i7, phi1: Number(controls.fundamentalPhase.value) * Math.PI / 180, cursorAngle: Number(controls.cursorAngle.value) * Math.PI / 180, compensated: controls.compensation.checked, gamma5: Number(controls.fifthPhase.value) * Math.PI / 180, gamma7: Number(controls.seventhPhase.value) * Math.PI / 180, shownPhases: phases.filter(phase => controls[phase.key].checked) };
+    return { f: Number(controls.fundamental.value), i1, i5, i7, phi1: Number(controls.fundamentalPhase.value) * Math.PI / 180, cursorAngle: Number(controls.cursorAngle.value) * Math.PI / 180, gamma5: Number(controls.fifthPhase.value) * Math.PI / 180, gamma7: Number(controls.seventhPhase.value) * Math.PI / 180, shownPhases: phases.filter(phase => controls[phase.key].checked) };
   }
   function formatVectorAngle(angle) { const raw = Math.round(angle * 180 / Math.PI); const signed = ((raw + 180) % 360 + 360) % 360 - 180; const full = (signed + 360) % 360; return `${signed}° (${full}°)`; }
   function updateLabels() { const s = state(); outputs.fundamental.textContent = `${s.f} Hz`; outputs.amplitude.textContent = `${s.i1.toFixed(1)} A`; outputs.fundamentalPhase.textContent = `${controls.fundamentalPhase.value}°`; outputs.fifth.textContent = `${controls.fifth.value} %`; outputs.fifthPhase.textContent = `${controls.fifthPhase.value}°`; outputs.fifthVectorAngle.textContent = formatVectorAngle(sequenceOrder.fifth * s.phi1 + s.gamma5); outputs.seventh.textContent = `${controls.seventh.value} %`; outputs.seventhPhase.textContent = `${controls.seventhPhase.value}°`; outputs.seventhVectorAngle.textContent = formatVectorAngle(sequenceOrder.seventh * s.phi1 + s.gamma7); outputs.cursorAngle.textContent = `${controls.cursorAngle.value}°`; }
@@ -60,13 +60,12 @@
     return { d: amplitude * Math.cos(angle), q: amplitude * Math.sin(angle) };
   }
   function current(phase, theta, s) {
-    const i5 = s.compensated ? 0 : s.i5; const i7 = s.compensated ? 0 : s.i7;
     const shiftedTheta = theta + s.phi1;
-    return s.i1 * Math.cos(shiftedTheta + phase) + harmonicCurrent(i5, sequenceOrder.fifth, s.gamma5, phase, shiftedTheta) + harmonicCurrent(i7, sequenceOrder.seventh, s.gamma7, phase, shiftedTheta);
+    return s.i1 * Math.cos(shiftedTheta + phase) + harmonicCurrent(s.i5, sequenceOrder.fifth, s.gamma5, phase, shiftedTheta) + harmonicCurrent(s.i7, sequenceOrder.seventh, s.gamma7, phase, shiftedTheta);
   }
   function drawWave(x, y, w, h, s) {
-    card(x, y, w, h, "Three-phase currents iuvw", s.compensated ? "ideal cancellation on" : "two periods; values at cursor");
-    const left = x + 60, right = x + w - 16, top = y + 40, bottom = y + h - 27, mid = (top + bottom) / 2, limit = 1.08 * (s.compensated ? s.i1 : s.i1 + s.i5 + s.i7), scale = (bottom - top) / (2 * limit);
+    card(x, y, w, h, "Three-phase currents iuvw", "two periods; values at cursor");
+    const left = x + 60, right = x + w - 16, top = y + 40, bottom = y + h - 27, mid = (top + bottom) / 2, limit = 1.08 * (s.i1 + s.i5 + s.i7), scale = (bottom - top) / (2 * limit);
     const zeroX = left + (right - left) / 4, periodEndX = left + 3 * (right - left) / 4, cursorX = left + (right - left) * (s.cursorAngle + Math.PI) / (2 * tau);
     drawCurrentAxis(left, right, top, bottom, limit); line(zeroX, top, zeroX, bottom, colours.grid, 1, [3, 3]); line(periodEndX, top, periodEndX, bottom, colours.grid, 1, [3, 3]); line(cursorX, top, cursorX, bottom, colours.field, 2); text("θ1 = −180°", left, y + h - 10, 9, colours.muted); text("θ1 = 0°", zeroX, y + h - 10, 9, colours.muted, "center"); text("θ1 = 360°", periodEndX, y + h - 10, 9, colours.muted, "center"); text("θ1 = +540°", right, y + h - 10, 9, colours.muted, "right"); text(`rotor θr = ${Math.round(s.cursorAngle * 180 / Math.PI)}°`, cursorX, top + 10, 9, colours.field, "center", "700");
     [[0, colours.u, "u"], [-2 * Math.PI / 3, colours.v, "v"], [2 * Math.PI / 3, colours.w, "w"]].forEach(([phase, color, label]) => {
@@ -76,7 +75,7 @@
     });
   }
   function drawUPhaseHarmonics(x, y, w, h, s) {
-    const harmonic5 = s.compensated ? 0 : s.i5, harmonic7 = s.compensated ? 0 : s.i7;
+    const harmonic5 = s.i5, harmonic7 = s.i7;
     card(x, y, w, h, "Selected phase harmonic components", "U blue, V green, W orange; solid −5th, dashed +7th");
     const selected = s.shownPhases, left = x + 60, right = x + w - 16, top = y + 72, bottom = y + h - 27, mid = (top + bottom) / 2, limit = Math.max(.1, 1.08 * (harmonic5 + harmonic7)), scale = (bottom - top) / (2 * limit), zeroX = left + (right - left) / 4, periodEndX = left + 3 * (right - left) / 4, cursorX = left + (right - left) * (s.cursorAngle + Math.PI) / (2 * tau);
     drawCurrentAxis(left, right, top, bottom, limit, 2); line(zeroX, top, zeroX, bottom, colours.grid, 1, [3, 3]); line(periodEndX, top, periodEndX, bottom, colours.grid, 1, [3, 3]); line(cursorX, top, cursorX, bottom, colours.field, 2);
@@ -98,15 +97,15 @@
   }
   function drawSpaceVector(x, y, w, h, s) {
     card(x, y, w, h, "αβ space vectors", "at current rotor position"); const cx = x + w / 2, cy = y + h / 2 + 12, r = Math.min(w, h) * .30;
-    const vectorLimit = Math.max(s.i1 + (s.compensated ? 0 : s.i5 + s.i7), 1);
+    const vectorLimit = Math.max(s.i1 + s.i5 + s.i7, 1);
     ctx.strokeStyle = colours.grid; ctx.lineWidth = 1; ctx.beginPath(); ctx.arc(cx, cy, r, 0, tau); ctx.stroke(); line(cx - r - 12, cy, cx + r + 12, cy, colours.grid); line(cx, cy - r - 12, cx, cy + r + 12, colours.grid);
     [-1, 0, 1].forEach(level => { const tickY = cy - level * r; line(cx - 4, tickY, cx + 4, tickY, colours.muted); text(level === 0 ? "0" : `${level > 0 ? "+" : "−"}${vectorLimit.toFixed(1)}`, cx - 8, tickY, 7, colours.muted, "right"); });
     const a1 = s.cursorAngle + s.phi1, a5 = sequenceOrder.fifth * (s.cursorAngle + s.phi1) + s.gamma5, a7 = sequenceOrder.seventh * (s.cursorAngle + s.phi1) + s.gamma7;
-    const ratio = r / vectorLimit; const vectors = [[s.i1, a1, colours.u, "1st (+1)"], [s.compensated ? 0 : s.i5, a5, colours.q, "−5th (−5ω)"], [s.compensated ? 0 : s.i7, a7, "#d97706", "+7th (+7ω)"]];
+    const ratio = r / vectorLimit; const vectors = [[s.i1, a1, colours.u, "1st (+1)"], [s.i5, a5, colours.q, "−5th (−5ω)"], [s.i7, a7, "#d97706", "+7th (+7ω)"]];
     const rotorRadius = r * .84; line(cx, cy, cx + rotorRadius * Math.cos(s.cursorAngle), cy - rotorRadius * Math.sin(s.cursorAngle), "#475569", 2, [5, 4]); text("rotor d", cx + (rotorRadius + 16) * Math.cos(s.cursorAngle), cy - (rotorRadius + 16) * Math.sin(s.cursorAngle), 9, "#475569", "center", "700"); let sx = 0, sy = 0; vectors.forEach(([mag, a, color, label]) => { const vx = mag * Math.cos(a) * ratio, vy = -mag * Math.sin(a) * ratio; sx += vx; sy += vy; if (mag > 0) vector(cx, cy, cx + vx, cy + vy, color, label); }); vector(cx, cy, cx + sx, cy + sy, colours.field, "resultant"); text("α [A]", cx + r + 18, cy + 3, 9, colours.muted); text("β [A]", cx - 4, cy - r - 18, 9, colours.muted);
   }
   function drawDq(x, y, w, h, s) {
-    const harmonic5 = s.compensated ? 0 : s.i5, harmonic7 = s.compensated ? 0 : s.i7;
+    const harmonic5 = s.i5, harmonic7 = s.i7;
     card(x, y, w, h, "Rotor-synchronous dq currents", "fundamental + harmonics; d solid, q dashed");
     const left = x + 60, right = x + w - 16, top = y + 52, bottom = y + h - 27, mid = (top + bottom) / 2, limit = 1.08 * (s.i1 + harmonic5 + harmonic7), scale = (bottom - top) / (2 * limit), zeroX = left + (right - left) / 4, periodEndX = left + 3 * (right - left) / 4, cursorX = left + (right - left) * (s.cursorAngle + Math.PI) / (2 * tau), h5AtCursor = dqComponents(harmonic5, sequenceOrder.fifth, s.gamma5, s.cursorAngle, s.phi1), h7AtCursor = dqComponents(harmonic7, sequenceOrder.seventh, s.gamma7, s.cursorAngle, s.phi1), currentD = s.i1 * Math.cos(s.phi1) + h5AtCursor.d + h7AtCursor.d, currentQ = s.i1 * Math.sin(s.phi1) + h5AtCursor.q + h7AtCursor.q;
     drawCurrentAxis(left, right, top, bottom, limit); line(zeroX, top, zeroX, bottom, colours.grid, 1, [3, 3]); line(periodEndX, top, periodEndX, bottom, colours.grid, 1, [3, 3]); line(cursorX, top, cursorX, bottom, colours.field, 2); text(`At cursor: d = ${currentD.toFixed(2)} A, q = ${currentQ.toFixed(2)} A`, left, y + 36, 9, colours.muted);
@@ -114,7 +113,7 @@
     draw("d", colours.d, "d current"); draw("q", colours.q, "q current"); text("θ1 = −180°", left, y + h - 10, 9, colours.muted); text("θ1 = 0°", zeroX, y + h - 10, 9, colours.muted, "center"); text("θ1 = 360°", periodEndX, y + h - 10, 9, colours.muted, "center"); text("θ1 = +540°", right, y + h - 10, 9, colours.muted, "right");
   }
   function drawHarmonicFrameComponents(x, y, w, h, s) {
-    const harmonic5 = s.compensated ? 0 : s.i5, harmonic7 = s.compensated ? 0 : s.i7;
+    const harmonic5 = s.i5, harmonic7 = s.i7;
     card(x, y, w, h, "dq6 currents in harmonic-synchronous frames", "−5 in −6ω frame; +7 in +6ω frame; d solid, q dashed");
     const left = x + 60, right = x + w - 16, top = y + 72, bottom = y + h - 27, mid = (top + bottom) / 2, limit = Math.max(.1, 1.08 * (harmonic5 + harmonic7)), scale = (bottom - top) / (2 * limit), zeroX = left + (right - left) / 4, periodEndX = left + 3 * (right - left) / 4, cursorX = left + (right - left) * (s.cursorAngle + Math.PI) / (2 * tau);
     drawCurrentAxis(left, right, top, bottom, limit, 2); line(zeroX, top, zeroX, bottom, colours.grid, 1, [3, 3]); line(periodEndX, top, periodEndX, bottom, colours.grid, 1, [3, 3]); line(cursorX, top, cursorX, bottom, colours.field, 2);
