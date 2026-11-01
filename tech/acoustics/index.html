@@ -11,11 +11,12 @@ title: Current Harmonics Lab
     <p>A technically defined PMSM current-harmonics model with a synchronous rotor reference frame.</p>
   </header>
 
-  <aside class="model-convention" aria-labelledby="convention-title">
-    <h2 id="convention-title">Model convention</h2>
+  <details class="model-convention">
+    <summary id="convention-title">Model convention</summary>
     <p><code>θ<sub>1</sub> = ω<sub>e</sub>t</code>. Use signed sequence orders <code>k<sub>5</sub> = −5</code> and <code>k<sub>7</sub> = +7</code>: <code>i<sub>p,h</sub> = I<sub>h</sub> cos(k<sub>h</sub>θ<sub>1</sub> + γ<sub>h</sub> + δ<sub>p</sub>)</code>.</p>
     <p><code>δ<sub>U</sub> = 0°</code>, <code>δ<sub>V</sub> = −120°</code>, <code>δ<sub>W</sub> = +120°</code>; <code>γ<sub>h</sub></code> is the αβ-vector angle at <code>θ<sub>1</sub> = 0</code>. Thus <code>i<sub>αβ,h</sub> = I<sub>h</sub>e<sup>j(k<sub>h</sub>θ<sub>1</sub> + γ<sub>h</sub>)</sup></code>. In rotor-synchronous dq, <code>i<sub>dq,h</sub> = i<sub>αβ,h</sub>e<sup>−jθ<sub>1</sub></sup></code>, so the dq orders become <code>k<sub>5</sub> − 1 = −6</code> and <code>k<sub>7</sub> − 1 = +6</code>.</p>
-  </aside>
+    <p>The cursor marks rotor position without shifting the waveforms. The model assumes balanced currents, synchronous rotor speed, and peak values; it excludes inverter voltage limits, saturation, torque, and mechanics.</p>
+  </details>
 
   <div class="acoustics-controls" aria-label="Harmonic parameters">
     <section class="control-group" aria-labelledby="fundamental-controls">
@@ -42,11 +43,11 @@ title: Current Harmonics Lab
     </section>
   </div>
 
-  <canvas id="acoustics-canvas" width="1050" height="320" aria-label="Three-phase currents and αβ space vector"></canvas>
+  <canvas id="acoustics-canvas" width="1050" height="230" aria-label="Three-phase currents and αβ space vector"></canvas>
   <nav class="view-tabs" role="tablist" aria-label="Current views">
-    <button id="tab-harmonics" type="button" role="tab" aria-selected="true" aria-controls="harmonic-view">Phase harmonics</button>
-    <button id="tab-dq" type="button" role="tab" aria-selected="false" aria-controls="dq-view">dq currents</button>
-    <button id="tab-dq6" type="button" role="tab" aria-selected="false" aria-controls="dq6-view">dq6 currents</button>
+    <button id="tab-harmonics" type="button" role="tab" aria-selected="true" aria-controls="detail-canvas">Phase harmonics</button>
+    <button id="tab-dq" type="button" role="tab" aria-selected="false" aria-controls="detail-canvas">dq currents</button>
+    <button id="tab-dq6" type="button" role="tab" aria-selected="false" aria-controls="detail-canvas">dq6 currents</button>
   </nav>
   <fieldset id="phase-visibility" class="phase-visibility" aria-label="Phases shown in the harmonic component plot">
     <legend>Phases shown in the harmonic component plot</legend>
@@ -55,8 +56,7 @@ title: Current Harmonics Lab
     <label><input id="show-phase-w" type="checkbox"> W</label>
     <span>Selected phases show both the −5th and +7th components.</span>
   </fieldset>
-  <canvas id="detail-canvas" width="1050" height="300" role="tabpanel" aria-labelledby="tab-harmonics" aria-label="Selected current view"></canvas>
-  <p class="acoustics-note">The vertical cursor marks the current rotor position without shifting the waveforms. Signed sequence orders set the rotation direction: −5ω and +7ω in αβ. Transforming into the synchronous rotor frame subtracts +ω, giving −6ω and +6ω. The model assumes balanced currents, synchronous rotor speed, and peak values; it does not model inverter voltage limits, saturation, torque, or mechanics.</p>
+  <canvas id="detail-canvas" width="1050" height="230" role="tabpanel" aria-labelledby="tab-harmonics" aria-label="Selected current view"></canvas>
 </section>
 
 <script src="{{ '/tech/acoustics/acoustics-lab.js' | relative_url }}?v={{ site.time | date: '%s' }}" defer></script>

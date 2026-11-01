@@ -125,11 +125,11 @@
   function draw() {
     const s = state();
     ctx = mainContext; ctx.clearRect(0, 0, canvas.width, canvas.height); ctx.fillStyle = "#f8fafc"; ctx.fillRect(0, 0, canvas.width, canvas.height);
-    drawWave(25, 25, 610, 275, s); drawSpaceVector(655, 25, 370, 275, s);
+    drawWave(25, 5, 610, 220, s); drawSpaceVector(655, 5, 370, 220, s);
     ctx = detailContext; ctx.clearRect(0, 0, detailCanvas.width, detailCanvas.height); ctx.fillStyle = "#f8fafc"; ctx.fillRect(0, 0, detailCanvas.width, detailCanvas.height);
-    if (activeView === "harmonics") drawUPhaseHarmonics(15, 15, 1020, 270, s);
-    if (activeView === "dq") drawDq(15, 15, 1020, 270, s);
-    if (activeView === "dq6") drawHarmonicFrameComponents(15, 15, 1020, 270, s);
+    if (activeView === "harmonics") drawUPhaseHarmonics(15, 5, 1020, 220, s);
+    if (activeView === "dq") drawDq(15, 5, 1020, 220, s);
+    if (activeView === "dq6") drawHarmonicFrameComponents(15, 5, 1020, 220, s);
   }
   const tabs = { harmonics: document.getElementById("tab-harmonics"), dq: document.getElementById("tab-dq"), dq6: document.getElementById("tab-dq6") };
   function selectView(view) {
