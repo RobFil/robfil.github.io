@@ -286,14 +286,14 @@ entries:
 
   - post: "2026-11-01-ikebukuro-halloween-cosplay.md"
     recorded_at: 2026-11-01
-    status: current
+    status: removed
     topic: "News / Weekend in Japan: Halloween cosplay parade in Ikebukuro"
     source_url: "https://www.fnn.jp/articles/-/1143808"
     source_published_at: 2026-10-31
     source_checked_at: 2026-11-01
   - post: "2026-11-01-hagi-giant-pumpkin-guess.md"
     recorded_at: 2026-11-01
-    status: current
+    status: removed
     topic: "News / Weekend in Japan: giant pumpkin weight-guessing quiz in Hagi"
     source_url: "https://yama.minato-yamaguchi.co.jp/e-yama/articles/112614"
     source_published_at: 2026-10-31
@@ -304,7 +304,7 @@ entries:
     topic: "Business / Unit 9: Planning an internal safety workshop"
   - post: "2026-11-01-pottery-wheel-first-class.md"
     recorded_at: 2026-11-01
-    status: current
+    status: removed
     topic: "Everyday life / Leisure: first pottery-wheel class"
   - post: "2026-11-01-motor-current-weekly-meeting.md"
     recorded_at: 2026-11-01
@@ -315,3 +315,26 @@ entries:
     status: current
     topic: "Business / Career exploration: technical leadership and future Japan-related work"
     note: "Explicitly requested career interview; intentionally revisits the archived interview theme with a future Japan-related career focus."
+
+  - post: "2026-11-07-weekend-photo-walk.md"
+    recorded_at: 2026-11-07
+    status: current
+    topic: "Everyday life / Leisure: a weekend photo walk through an old shopping street"
+  - post: "2026-11-07-shodo-unesco-recommendation.md"
+    recorded_at: 2026-11-07
+    status: current
+    topic: "News / Culture: UNESCO evaluation body recommends inscribing Japanese calligraphy"
+    source_url: "https://www.bunka.go.jp/koho_hodo_oshirase/hodohappyo/94461801.html"
+    source_published_at: 2026-11-05
+    source_checked_at: 2026-11-07
+  - post: "2026-11-07-typhoon-32-cempaka.md"
+    recorded_at: 2026-11-07
+    status: current
+    topic: "News / Weather: typhoon No. 32 forms for the first time in 32 years"
+    source_url: "https://www.fnn.jp/articles/-/1147975"
+    source_published_at: 2026-11-07
+    source_checked_at: 2026-11-07
+  - post: "2026-11-07-unit9-factory-tour-dialog.md"
+    recorded_at: 2026-11-07
+    status: current
+    topic: "Business / Unit 9: planning an international factory tour"

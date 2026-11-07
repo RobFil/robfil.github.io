@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-10-31T15:49:05+00:00",
+  "updated_at": "2026-11-07T14:34:09+00:00",
   "files": {
     "20260918_Unit7_会議に参加する_教材.pdf": {
       "source_file": "20260918_Unit7_会議に参加する_教材.pdf",
@@ -371,6 +371,51 @@
       "review_notes": "Alle 3 Seitenbilder visuell geprüft und mit Extraktion verglichen. Lernziele (S. 1), Vokabeltabelle mit Beispielen (S. 2) und Meeting-Dialog (S. 3) sind vollständig erfasst. Der Dialog endet im Original auf Seite 3 nach der Frage nach weiteren Meinungen; kein Extraktionsverlust. OCR ist insgesamt gut lesbar; bei einzelnen Zeichen und Fachvokabeln gegebenenfalls Originalseite heranziehen.",
       "excluded_pages": [],
       "exclusion_reason": null
+    },
+    "38課名詞句のは・のが・のを.pdf": {
+      "source_file": "38課名詞句のは・のが・のを.pdf",
+      "source_id": "49b5164fbdb8c3fb",
+      "document_date": null,
+      "topic_group": "38課名詞句のは・のが・のを",
+      "document_role": "material",
+      "sha256": "26c3cedce2505879faff38dd0bc1ee82a3193f5421aa51306637b75177014c46",
+      "size_bytes": 3129242,
+      "modified_utc": "2026-11-07T14:29:42+00:00",
+      "status": "accepted",
+      "attempts": 1,
+      "parsed_at": "2026-11-07T14:32:20+00:00",
+      "accepted_at": "2026-11-07T14:34:09+00:00",
+      "page_count": 51,
+      "rendered_review_pages": 51,
+      "record_count": 51,
+      "artifact_jsonl": "output/machine/sources/49b5164fbdb8c3fb.jsonl",
+      "review_markdown": "output/human/review/49b5164fbdb8c3fb.md",
+      "review_images": "output/debug/review/49b5164fbdb8c3fb",
+      "extraction": {
+        "pdf_method": "pypdf",
+        "ocr_mode": "missing",
+        "ocr_pages": 0,
+        "ocr_language": "jpn+deu+eng",
+        "ocr_dpi": 300,
+        "ocr_psm": 3
+      },
+      "review_history": [
+        {
+          "reviewed_at": "2026-11-07T14:34:09+00:00",
+          "decision": "accept",
+          "attempt": 1,
+          "notes": "Sichtabgleich: 51 extrahierte Seiten geprüft; Seiten 1, 4, 17, 33 und 44 stichprobenweise mit den gerenderten Seitenbildern abgeglichen. Auf Seite 51 steht im Ausgangs-PDF ein fehlerhaftes Beispiel (彼が結婚したを知っていますか); diese Seite wurde vom Lernkontext ausgeschlossen. Die übrigen 50 Seiten enthalten zusammenhängende Grammatik-Erklärungen und Beispiele.",
+          "excluded_pages": [
+            51
+          ],
+          "exclusion_reason": "Seite 51 enthält im Original-PDF ein fehlerhaftes Beispiel ohne の: 彼が結婚したを知っていますか。 Ausgeschlossen, damit die fehlerhafte Form nicht in den Lernkontext gelangt."
+        }
+      ],
+      "review_notes": "Sichtabgleich: 51 extrahierte Seiten geprüft; Seiten 1, 4, 17, 33 und 44 stichprobenweise mit den gerenderten Seitenbildern abgeglichen. Auf Seite 51 steht im Ausgangs-PDF ein fehlerhaftes Beispiel (彼が結婚したを知っていますか); diese Seite wurde vom Lernkontext ausgeschlossen. Die übrigen 50 Seiten enthalten zusammenhängende Grammatik-Erklärungen und Beispiele.",
+      "excluded_pages": [
+        51
+      ],
+      "exclusion_reason": "Seite 51 enthält im Original-PDF ein fehlerhaftes Beispiel ohne の: 彼が結婚したを知っていますか。 Ausgeschlossen, damit die fehlerhafte Form nicht in den Lernkontext gelangt."
     }
   }
 }

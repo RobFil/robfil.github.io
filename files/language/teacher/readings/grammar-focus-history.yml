@@ -769,7 +769,7 @@ entries:
 
   - post: "2026-11-01-ikebukuro-halloween-cosplay.md"
     recorded_at: 2026-11-01
-    status: current
+    status: removed
     grammar: ["～に限らず", "～ば～ほど"]
     source_selection: random
     learning_sources: ["AIに限り・に限らず説明と例文①.pdf", "35課条件形～ば～ほど.pdf"]
@@ -789,7 +789,7 @@ entries:
         document_date: null
   - post: "2026-11-01-hagi-giant-pumpkin-guess.md"
     recorded_at: 2026-11-01
-    status: current
+    status: removed
     grammar: ["なかなか～ない"]
     source_selection: random
     learning_sources: ["なかなか～ない説明文.pdf"]
@@ -818,7 +818,7 @@ entries:
         document_date: 2026-10-31
   - post: "2026-11-01-pottery-wheel-first-class.md"
     recorded_at: 2026-11-01
-    status: current
+    status: removed
     grammar: ["～にしては", "なかなか～ない", "～ば～ほど"]
     source_selection: random
     learning_sources: ["にしては解説文.pdf", "なかなか～ない説明文.pdf", "35課条件形～ば～ほど.pdf"]
@@ -852,7 +852,8 @@ entries:
       - source_file: "20260918_Unit7_会議に参加する_教材.pdf"
         pages: [1, 4, 9]
         topic_group: "Unit7 会議に参加する"
-        document_date: 2026-09-18  - post: "2026-11-01-japan-career-exploration-interview.md"
+        document_date: 2026-09-18
+  - post: "2026-11-01-japan-career-exploration-interview.md"
     recorded_at: 2026-11-01
     status: current
     grammar: ["～たことで", "～のではないかと考えています"]
@@ -865,3 +866,62 @@ entries:
         pages: [6, 7, 11]
         topic_group: "Unit8 振り返り"
         document_date: 2026-10-25
+
+  - post: "2026-11-07-weekend-photo-walk.md"
+    recorded_at: 2026-11-07
+    status: current
+    grammar: ["??????????", "??????????", "????????"]
+    source_selection: guided
+    learning_sources: ["38????????????.pdf"]
+    topic: "Everyday life / Leisure: a weekend photo walk through an old shopping street"
+    note: "The learner explicitly asked to use grammar from the newly added Unit 38 source; these three noun-clause patterns are intentionally selected from it."
+    learning_source_details:
+      - source_file: "38????????????.pdf"
+        pages: [4, 17, 33]
+        topic_group: "38????????????"
+        document_date: null
+  - post: "2026-11-07-shodo-unesco-recommendation.md"
+    recorded_at: 2026-11-07
+    status: current
+    grammar: ["?????????"]
+    source_selection: guided
+    learning_sources: ["38????????????.pdf"]
+    topic: "News / Culture: UNESCO evaluation body recommends inscribing Japanese calligraphy"
+    note: "Current-news topic explicitly requested; noun-clause pattern selected from the newly added Unit 38 source."
+    source_url: "https://www.bunka.go.jp/koho_hodo_oshirase/hodohappyo/94461801.html"
+    source_published_at: 2026-11-05
+    source_checked_at: 2026-11-07
+    learning_source_details:
+      - source_file: "38????????????.pdf"
+        pages: [1]
+        topic_group: "38????????????"
+        document_date: null
+  - post: "2026-11-07-typhoon-32-cempaka.md"
+    recorded_at: 2026-11-07
+    status: current
+    grammar: ["??????????"]
+    source_selection: guided
+    learning_sources: ["38????????????.pdf"]
+    topic: "News / Weather: typhoon No. 32 forms for the first time in 32 years"
+    note: "Current-news topic explicitly requested; a related Unit 38 information-question pattern is included."
+    source_url: "https://www.fnn.jp/articles/-/1147975"
+    source_published_at: 2026-11-07
+    source_checked_at: 2026-11-07
+    learning_source_details:
+      - source_file: "38????????????.pdf"
+        pages: [44, 50]
+        topic_group: "38????????????"
+        document_date: null
+  - post: "2026-11-07-unit9-factory-tour-dialog.md"
+    recorded_at: 2026-11-07
+    status: current
+    grammar: ["?????????", "??????????????", "??????????", "??????????????"]
+    source_selection: guided
+    learning_sources: ["20261031_Unit9_????????????_??.pdf"]
+    topic: "Business / Unit 9: planning an international factory tour"
+    note: "A new Unit 9 dialogue was explicitly requested; meeting-facilitation expressions recur because they are central to the selected unit."
+    learning_source_details:
+      - source_file: "20261031_Unit9_????????????_??.pdf"
+        pages: [2, 3]
+        topic_group: "Unit9 ????????????"
+        document_date: 2026-10-31
