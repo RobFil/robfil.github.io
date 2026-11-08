@@ -891,6 +891,18 @@ entries:
     source_url: "https://www.bunka.go.jp/koho_hodo_oshirase/hodohappyo/94461801.html"
     source_published_at: 2026-11-05
     source_checked_at: 2026-11-07
+  - post: "2026-11-08-electric-drive-project-interview.md"
+    recorded_at: 2026-11-08
+    status: current
+    grammar: ["そのうえで"]
+    source_selection: guided
+    topic: "Business / Career: electric drive project interview"
+    learning_sources: ["20261011_Unit8__振り返り_教材.pdf"]
+    learning_source_details:
+      - source_file: "20261011_Unit8__振り返り_教材.pdf"
+        pages: [3]
+        topic_group: "Unit8 振り返り"
+        document_date: 2026-10-11
     learning_source_details:
       - source_file: "38????????????.pdf"
         pages: [1]
