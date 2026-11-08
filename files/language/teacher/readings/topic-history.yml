@@ -343,3 +343,8 @@ entries:
     status: current
     topic: "Business / Career: electric drive project interview"
     note: "Interview topic explicitly requested; revisits career preparation for an electric drive project role."
+
+  - post: "2026-11-08-unit9-development-meeting.md"
+    recorded_at: 2026-11-08
+    status: current
+    topic: "Business / Unit 9: reviewing development practices"

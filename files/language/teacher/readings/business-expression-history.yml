@@ -172,3 +172,11 @@ entries:
     source_selection: guided
     learning_sources: ["20261031_Unit9_????????????_??.pdf"]
     pages: [2, 3]
+
+  - post: "2026-11-08-unit9-development-meeting.md"
+    recorded_at: 2026-11-08
+    status: current
+    expressions: ["ここまでの議論をまとめると、～", "現時点では、～という意見が出ています", "～という方針でよろしいでしょうか", "時間の関係で、次に進みます"]
+    source_selection: guided
+    learning_sources: ["20261108_Unit9_会議のファシリテーション_教材.pdf"]
+    pages: [4, 7, 10]
