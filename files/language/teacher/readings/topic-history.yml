@@ -271,7 +271,7 @@ entries:
     topic: "Business / Unit 9: モーター制御装置の評価試験日程を決める会議"
   - post: "2026-10-31-unit9-meeting-facilitation-article.md"
     recorded_at: 2026-10-31
-    status: current
+    status: removed
     topic: "Business / Unit 9: 試験計画の優先順位を決める会議"
   - post: "2026-10-31-ishikari-bay-red-imported-fire-ant.md"
     recorded_at: 2026-10-31
@@ -322,21 +322,21 @@ entries:
     topic: "Everyday life / Leisure: a weekend photo walk through an old shopping street"
   - post: "2026-11-07-shodo-unesco-recommendation.md"
     recorded_at: 2026-11-07
-    status: current
+    status: removed
     topic: "News / Culture: UNESCO evaluation body recommends inscribing Japanese calligraphy"
     source_url: "https://www.bunka.go.jp/koho_hodo_oshirase/hodohappyo/94461801.html"
     source_published_at: 2026-11-05
     source_checked_at: 2026-11-07
   - post: "2026-11-07-typhoon-32-cempaka.md"
     recorded_at: 2026-11-07
-    status: current
+    status: removed
     topic: "News / Weather: typhoon No. 32 forms for the first time in 32 years"
     source_url: "https://www.fnn.jp/articles/-/1147975"
     source_published_at: 2026-11-07
     source_checked_at: 2026-11-07
   - post: "2026-11-07-unit9-factory-tour-dialog.md"
     recorded_at: 2026-11-07
-    status: current
+    status: archived
     topic: "Business / Unit 9: planning an international factory tour"
   - post: "2026-11-08-electric-drive-project-interview.md"
     recorded_at: 2026-11-08
@@ -346,5 +346,26 @@ entries:
 
   - post: "2026-11-08-unit9-development-meeting.md"
     recorded_at: 2026-11-08
-    status: current
+    status: archived
     topic: "Business / Unit 9: reviewing development practices"
+  - post: "2026-11-08-futa-red-panda-rehabilitation.md"
+    recorded_at: 2026-11-08
+    status: current
+    topic: "News / Wildlife: rehabilitation of famous red panda Futa at age 23"
+    source_url: "https://www.city.chiba.jp/zoo/news/1105futa.html"
+    source_published_at: 2026-11-05
+    source_checked_at: 2026-11-08
+  - post: "2026-11-08-pudu-fawn-sazanka.md"
+    recorded_at: 2026-11-08
+    status: removed
+    topic: "News / Wildlife: a tiny pudu fawn's brief spotted stage"
+    source_url: "https://www.sun-tv.co.jp/suntvnews/news/2026/11/02/97616/"
+    source_published_at: 2026-11-02
+    source_checked_at: 2026-11-08
+  - post: "2026-11-08-miura-j3-age-record.md"
+    recorded_at: 2026-11-08
+    status: current
+    topic: "News / Sport: Kazuyoshi Miura sets a J3 age record at 59"
+    source_url: "https://www.jleague.jp/news/article/35313/?navicode=j3"
+    source_published_at: 2026-11-07
+    source_checked_at: 2026-11-08

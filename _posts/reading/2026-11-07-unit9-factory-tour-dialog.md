@@ -17,6 +17,7 @@ learning_source_details:
     document_date: 2026-10-31
 summary_de: "Ein dreiköpfiges Team plant den Ablauf einer Werksbesichtigung für internationale Gäste. Es einigt sich auf Route, Übersetzung, Sicherheitsregeln und Zuständigkeiten."
 summary_en: "A three-person team plans a factory tour for international visitors, agreeing on the route, interpretation, safety guidance, and staff responsibilities."
+archived: true
 generated: true
 fictional: true
 source_url: null

@@ -138,7 +138,7 @@ entries:
     pages: [2, 3]
   - post: "2026-10-31-unit9-meeting-facilitation-article.md"
     recorded_at: 2026-10-31
-    status: current
+    status: removed
     expressions: ["まず～を確認します", "～についてご意見はありますか", "結論を出す前に～"]
     learning_sources: ["20261031_Unit9_会議のファシリテーション_教材.pdf"]
     pages: [2, 3]
@@ -167,7 +167,7 @@ entries:
 
   - post: "2026-11-07-unit9-factory-tour-dialog.md"
     recorded_at: 2026-11-07
-    status: current
+    status: archived
     expressions: ["?????????", "??????????????", "??????????", "??????????????"]
     source_selection: guided
     learning_sources: ["20261031_Unit9_????????????_??.pdf"]
@@ -175,7 +175,7 @@ entries:
 
   - post: "2026-11-08-unit9-development-meeting.md"
     recorded_at: 2026-11-08
-    status: current
+    status: archived
     expressions: ["ここまでの議論をまとめると、～", "現時点では、～という意見が出ています", "～という方針でよろしいでしょうか", "時間の関係で、次に進みます"]
     source_selection: guided
     learning_sources: ["20261108_Unit9_会議のファシリテーション_教材.pdf"]

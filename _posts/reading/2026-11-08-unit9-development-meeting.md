@@ -17,6 +17,7 @@ learning_source_details:
     document_date: 2026-11-08
 summary_de: "Ein Entwicklungsteam verständigt sich auf praktikable Regeln für Code-Reviews und die Pflege von Dokumentation."
 summary_en: "A development team agrees on a trial approach to code reviews and keeping its documentation up to date."
+archived: true
 generated: true
 fictional: true
 source_url: null

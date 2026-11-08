@@ -336,7 +336,7 @@ entries:
         document_date: 2026-10-31
   - post: "2026-10-31-unit9-meeting-facilitation-article.md"
     recorded_at: 2026-10-31
-    status: current
+    status: removed
     grammar: ["まず～を確認します", "～についてご意見はありますか", "結論を出す前に～"]
     source_selection: guided
     learning_sources: ["20261031_Unit9_会議のファシリテーション_教材.pdf"]
@@ -882,7 +882,7 @@ entries:
         document_date: null
   - post: "2026-11-07-shodo-unesco-recommendation.md"
     recorded_at: 2026-11-07
-    status: current
+    status: removed
     grammar: ["?????????"]
     source_selection: guided
     learning_sources: ["38????????????.pdf"]
@@ -898,7 +898,7 @@ entries:
         document_date: null
   - post: "2026-11-07-typhoon-32-cempaka.md"
     recorded_at: 2026-11-07
-    status: current
+    status: removed
     grammar: ["??????????"]
     source_selection: guided
     learning_sources: ["38????????????.pdf"]
@@ -914,7 +914,7 @@ entries:
         document_date: null
   - post: "2026-11-07-unit9-factory-tour-dialog.md"
     recorded_at: 2026-11-07
-    status: current
+    status: archived
     grammar: ["?????????", "??????????????", "??????????", "??????????????"]
     source_selection: guided
     learning_sources: ["20261031_Unit9_????????????_??.pdf"]
@@ -940,7 +940,7 @@ entries:
         document_date: 2026-10-11
   - post: "2026-11-08-unit9-development-meeting.md"
     recorded_at: 2026-11-08
-    status: current
+    status: archived
     grammar: ["ここまでの議論をまとめると、～", "現時点では、～という意見が出ています", "～という方針でよろしいでしょうか"]
     source_selection: guided
     topic: "Business / Unit 9: reviewing development practices"
@@ -950,3 +950,33 @@ entries:
         pages: [4, 7, 10]
         topic_group: "Unit9 会議のファシリテーション"
         document_date: 2026-11-08
+  - post: "2026-11-08-futa-red-panda-rehabilitation.md"
+    recorded_at: 2026-11-08
+    status: current
+    grammar: ["～一方で"]
+    source_selection: guided
+    learning_sources: ["general_n2"]
+    topic: "News / Wildlife: rehabilitation of famous red panda Futa at age 23"
+    source_url: "https://www.city.chiba.jp/zoo/news/1105futa.html"
+    source_published_at: 2026-11-05
+    source_checked_at: 2026-11-08
+  - post: "2026-11-08-pudu-fawn-sazanka.md"
+    recorded_at: 2026-11-08
+    status: removed
+    grammar: ["～につれて"]
+    source_selection: guided
+    learning_sources: ["general_n2"]
+    topic: "News / Wildlife: a tiny pudu fawn's brief spotted stage"
+    source_url: "https://www.sun-tv.co.jp/suntvnews/news/2026/11/02/97616/"
+    source_published_at: 2026-11-02
+    source_checked_at: 2026-11-08
+  - post: "2026-11-08-miura-j3-age-record.md"
+    recorded_at: 2026-11-08
+    status: current
+    grammar: ["～とはいえ"]
+    source_selection: guided
+    learning_sources: ["general_n2"]
+    topic: "News / Sport: Kazuyoshi Miura sets a J3 age record at 59"
+    source_url: "https://www.jleague.jp/news/article/35313/?navicode=j3"
+    source_published_at: 2026-11-07
+    source_checked_at: 2026-11-08
