@@ -2,6 +2,7 @@
 layout: reading
 title: "Unit 9：安全研修の議題を決める"
 date: 2026-11-01
+archived: true
 categories: [reading]
 topic: Business
 level: N2

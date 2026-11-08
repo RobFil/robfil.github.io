@@ -805,7 +805,7 @@ entries:
         document_date: null
   - post: "2026-11-01-unit9-training-agenda-dialog.md"
     recorded_at: 2026-11-01
-    status: current
+    status: archived
     grammar: ["本日の議題は～です", "論点を整理しましょう", "合意に達しました", "決定事項を議事録に記載します"]
     source_selection: guided
     learning_sources: ["20261031_Unit9_会議のファシリテーション_教材.pdf"]
