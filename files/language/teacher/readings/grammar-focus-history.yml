@@ -614,7 +614,7 @@ entries:
         document_date: null
   - post: "2026-10-27-bike-repair-article.md"
     recorded_at: 2026-10-27
-    status: current
+    status: archived
     grammar: ["～に限らず", "なかなか～ない", "～にわたって"]
     source_selection: random
     learning_sources: ["AIに限り・に限らず説明と例文①.pdf", "なかなか～ない説明文.pdf", "かけて・わたって説明と例文.pdf"]

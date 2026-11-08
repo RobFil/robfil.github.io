@@ -24,6 +24,7 @@ learning_source_details:
     document_date: null
 summary_de: "Nach einem platten Reifen lässt Ken sein Fahrrad prüfen und entdeckt einen kleinen Riss im Mantel."
 summary_en: "After a flat tire, a cyclist has a bicycle checked and discovers a small tear in the tire."
+archived: true
 generated: true
 fictional: true
 source_url: null
