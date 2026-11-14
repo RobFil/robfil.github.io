@@ -369,3 +369,14 @@ entries:
     source_url: "https://www.jleague.jp/news/article/35313/?navicode=j3"
     source_published_at: 2026-11-07
     source_checked_at: 2026-11-08
+  - post: "2026-11-14-local-pool-first-swim.md"
+    recorded_at: 2026-11-14
+    status: current
+    topic: "Everyday life / Leisure: returning to the local public pool after a long break"
+    source_selection: guided
+    learning_sources: ["みんなの日本語表出副詞.pdf"]
+    learning_source_details:
+      - source_file: "みんなの日本語表出副詞.pdf"
+        pages: [2, 3]
+        topic_group: "みんなの日本語 表出副詞"
+        document_date: 2026-11-14
