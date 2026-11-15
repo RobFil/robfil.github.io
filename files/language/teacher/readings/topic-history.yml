@@ -391,3 +391,14 @@ entries:
         pages: [2, 4, 7, 10]
         topic_group: "Unit9 会議のファシリテーション"
         document_date: 2026-11-08
+  - post: "2026-11-15-unit9-inverter-temperature-warning-dialog.md"
+    recorded_at: 2026-11-15
+    status: current
+    topic: "Business / Unit 9: choosing test conditions for a new inverter temperature warning"
+    source_selection: guided
+    learning_sources: ["20261115_Unit9_会議のファシリテーション_教材.pdf"]
+    learning_source_details:
+      - source_file: "20261115_Unit9_会議のファシリテーション_教材.pdf"
+        pages: [1, 2, 5, 6, 10]
+        topic_group: "Unit9 会議のファシリテーション"
+        document_date: 2026-11-15

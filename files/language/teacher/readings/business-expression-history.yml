@@ -188,3 +188,11 @@ entries:
     topic: "Business / Unit 9: deciding a pilot for a visitor check-in app"
     learning_sources: ["20261108_Unit9_会議のファシリテーション_教材.pdf"]
     pages: [2, 4, 7, 10]
+  - post: "2026-11-15-unit9-inverter-temperature-warning-dialog.md"
+    recorded_at: 2026-11-15
+    status: current
+    expressions: ["～さんは、～についてどのようにお考えですか", "ほかにご意見はありますか", "少し話を戻して、～について確認してもよろしいでしょうか", "時間の関係で、次の議題に進みたいのですが、～確認させてください"]
+    source_selection: guided
+    topic: "Business / Unit 9: choosing test conditions for a new inverter temperature warning"
+    learning_sources: ["20261115_Unit9_会議のファシリテーション_教材.pdf"]
+    pages: [1, 2, 5, 6, 10]
