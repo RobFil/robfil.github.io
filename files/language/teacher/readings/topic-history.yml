@@ -380,3 +380,14 @@ entries:
         pages: [2, 3]
         topic_group: "みんなの日本語 表出副詞"
         document_date: 2026-11-14
+  - post: "2026-11-15-unit9-visitor-check-in-pilot-dialog.md"
+    recorded_at: 2026-11-15
+    status: current
+    topic: "Business / Unit 9: deciding a pilot for a visitor check-in app"
+    source_selection: guided
+    learning_sources: ["20261108_Unit9_会議のファシリテーション_教材.pdf"]
+    learning_source_details:
+      - source_file: "20261108_Unit9_会議のファシリテーション_教材.pdf"
+        pages: [2, 4, 7, 10]
+        topic_group: "Unit9 会議のファシリテーション"
+        document_date: 2026-11-08
