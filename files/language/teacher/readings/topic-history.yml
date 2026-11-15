@@ -350,7 +350,7 @@ entries:
     topic: "Business / Unit 9: reviewing development practices"
   - post: "2026-11-08-futa-red-panda-rehabilitation.md"
     recorded_at: 2026-11-08
-    status: current
+    status: removed
     topic: "News / Wildlife: rehabilitation of famous red panda Futa at age 23"
     source_url: "https://www.city.chiba.jp/zoo/news/1105futa.html"
     source_published_at: 2026-11-05
@@ -364,7 +364,7 @@ entries:
     source_checked_at: 2026-11-08
   - post: "2026-11-08-miura-j3-age-record.md"
     recorded_at: 2026-11-08
-    status: current
+    status: removed
     topic: "News / Sport: Kazuyoshi Miura sets a J3 age record at 59"
     source_url: "https://www.jleague.jp/news/article/35313/?navicode=j3"
     source_published_at: 2026-11-07
@@ -382,7 +382,7 @@ entries:
         document_date: 2026-11-14
   - post: "2026-11-15-unit9-visitor-check-in-pilot-dialog.md"
     recorded_at: 2026-11-15
-    status: current
+    status: archived
     topic: "Business / Unit 9: deciding a pilot for a visitor check-in app"
     source_selection: guided
     learning_sources: ["20261108_Unit9_会議のファシリテーション_教材.pdf"]
@@ -391,6 +391,24 @@ entries:
         pages: [2, 4, 7, 10]
         topic_group: "Unit9 会議のファシリテーション"
         document_date: 2026-11-08
+  - post: "2026-11-15-new-year-card-sheep-design.md"
+    recorded_at: 2026-11-15
+    status: current
+    topic: "News / Design: the sheep motif returning to Japanese New Year mail after 24 years"
+    source_selection: random
+    learning_sources: ["general_n2"]
+    source_url: "https://newsdig.tbs.co.jp/articles/tut/3085585?display=1"
+    source_published_at: 2026-11-15
+    source_checked_at: 2026-11-15
+  - post: "2026-11-15-edo-tea-utensils-return.md"
+    recorded_at: 2026-11-15
+    status: current
+    topic: "News / History and culture: Edo-period tea utensils returning to Japan after about 200 years"
+    source_selection: random
+    learning_sources: ["general_n2"]
+    source_url: "https://newsdig.tbs.co.jp/articles/nbc/3081963?display=1"
+    source_published_at: 2026-11-12
+    source_checked_at: 2026-11-15
   - post: "2026-11-15-unit9-inverter-temperature-warning-dialog.md"
     recorded_at: 2026-11-15
     status: current

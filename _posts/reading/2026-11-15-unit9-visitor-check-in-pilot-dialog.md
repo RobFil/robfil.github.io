@@ -6,6 +6,7 @@ categories: [reading]
 topic: Business
 level: N2
 reading_time_minutes: 10
+archived: true
 grammar: ["現時点では、～という意見が出ています", "ここまでの議論をまとめると、～", "～という方針でよろしいでしょうか", "時間の関係で、次に進みます"]
 business_expressions: ["現時点では、～という意見が出ています", "ここまでの議論をまとめると、～", "～という方針でよろしいでしょうか", "時間の関係で、次に進みます"]
 source_selection: guided

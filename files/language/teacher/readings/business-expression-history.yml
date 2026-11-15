@@ -182,7 +182,7 @@ entries:
     pages: [4, 7, 10]
   - post: "2026-11-15-unit9-visitor-check-in-pilot-dialog.md"
     recorded_at: 2026-11-15
-    status: current
+    status: archived
     expressions: ["現時点では、～という意見が出ています", "ここまでの議論をまとめると、～", "～という方針でよろしいでしょうか", "時間の関係で、次に進みます"]
     source_selection: guided
     topic: "Business / Unit 9: deciding a pilot for a visitor check-in app"
