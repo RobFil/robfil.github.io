@@ -1041,3 +1041,31 @@ entries:
         pages: [1, 2, 5, 6, 10]
         topic_group: "Unit9 会議のファシリテーション"
         document_date: 2026-11-15
+  - post: "2026-11-20-unit9-feature-release-planning-dialog.md"
+    recorded_at: 2026-11-20
+    status: current
+    rotation_cycle: 1
+    grammar: ["本日の会議の目的は～ことです", "～さんは、～についてどのようにお考えですか", "ほかにご意見はありますか", "時間の関係で、次の議題に進みたいのですが、～確認させてください"]
+    source_selection: guided
+    learning_sources: ["20261115_Unit9_会議のファシリテーション_教材.pdf"]
+    topic: "Business / Unit 9: reviewing progress and actions for a feature release"
+    learning_source_details:
+      - source_file: "20261115_Unit9_会議のファシリテーション_教材.pdf"
+        pages: [1, 5, 6, 9, 11]
+        topic_group: "Unit9 会議のファシリテーション"
+        document_date: 2026-11-15
+    note: "Guided repeat: expressions selected to realize role-play 1 from the explicitly requested Unit 9 source."
+  - post: "2026-11-20-unit9-library-vs-custom-implementation-dialog.md"
+    recorded_at: 2026-11-20
+    status: current
+    rotation_cycle: 1
+    grammar: ["～さんは、～についてどのようにお考えですか", "少し話を戻して、～について確認してもよろしいでしょうか", "ここまでの議論をまとめると、～", "～という方針でよろしいでしょうか"]
+    source_selection: guided
+    learning_sources: ["20261115_Unit9_会議のファシリテーション_教材.pdf"]
+    topic: "Business / Unit 9: choosing between an existing library and custom implementation"
+    learning_source_details:
+      - source_file: "20261115_Unit9_会議のファシリテーション_教材.pdf"
+        pages: [1, 6, 10, 11]
+        topic_group: "Unit9 会議のファシリテーション"
+        document_date: 2026-11-15
+    note: "Guided repeat: expressions selected to realize role-play 2 from the explicitly requested Unit 9 source."
